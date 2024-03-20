@@ -7,7 +7,7 @@
   display: flex;
   width: 100%;
   overflow-x: auto;
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
 }
@@ -27,7 +27,7 @@
 
 .product-container {
   flex: 0 0 190px;
-  height: 10%;
+  height: 270px;
   margin-left: 10px;
   transition: translate 300ms ease-in-out;
 }
