@@ -35,7 +35,7 @@ export default function ProductsBar({ title, products }) {
         </button>
         <div className='products-bar-container' >
           {products.slice(0, 10).map(product =>
-            <div key={product.id} className='product-container' style={{ translate: `${productPosition * -200}px` }} >
+            <div key={product.id} className='product-container' style={{ translate: `${productPosition * - 205}px` }} >
               <div className='product-image-container' >
                 <img src={product.imagen[0]} alt={product.imagen[0]} className='image' />
               </div>

@@ -1,6 +1,6 @@
 .product-bar-title {
+  width: 80%;
   margin: 1% auto 0 auto;
-  
 }
 
 .products-bar-container {
@@ -26,10 +26,16 @@
 }
 
 .product-container {
-  flex: 0 0 190px;
+  flex: 0 0 200px;
   height: 270px;
-  margin-left: 10px;
+  margin-right: 5px;
   transition: translate 300ms ease-in-out;
+  overflow: hidden;
+}
+
+.product-container h4 {
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .product-image-container {
