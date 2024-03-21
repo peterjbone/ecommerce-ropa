@@ -1,4 +1,5 @@
 **********COLORES**************
+
 codigosHex: ["#808080", "#000000"],
 nombres: ["gris", "negro"]
 
