@@ -40,7 +40,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home products={products} categories={categories} />} />
         <Route path='/compras' element={''} ></Route>
-			<Route path='/form' element={<Form />} />
+				<Route path='/form' element={<Form />} />
       </Routes>
     </>
   );
