@@ -1,0 +1,37 @@
+.categories-bar-title {
+  width: 80%;
+  margin: 1% auto 0 auto;
+}
+
+.categories-bar-container {
+  display: grid;
+  grid-auto-rows: 130px;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
+
+.category-container {
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.category-container img {
+  position: absolute;
+  scale: 1.1;
+  bottom: 0;
+  left: 0;
+}
+
+.category-container h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: white;
+  text-shadow: 0 0 1px black;
+}
