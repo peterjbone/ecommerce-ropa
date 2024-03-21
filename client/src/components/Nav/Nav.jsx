@@ -1,11 +1,14 @@
 import './Nav.css';
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import logo from '../../../public/vite.svg'
+import { useStore } from '../../store.js';
 
 export default function Nav({ categories }) {
   const [search, setSearch] = useState('');
+  const searchFunction = useStore((state) => state.search);
+  const navigate = useNavigate();
 
   const handleScroll = () => {
     setTimeout(() => {
@@ -33,8 +36,13 @@ export default function Nav({ categories }) {
     }, 500);
   }
 
-  const handleSearch = () => {
-
+  const handleSearch = async () => {
+    try {
+      await searchFunction(search);
+      navigate('/')
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
