@@ -4,7 +4,7 @@
 export default [
   {
     id: 1,
-    nombre: "chomba falabe",
+    nombre: "chomba falabela",
     marca: "falabela",
     descripcion:
       "Chomba básica de jersey de algodón gamuzado, calce regular fit y manga corta con puños que permiten un excelente ajuste. Presenta un cuello polo en un tejido de algodón con botones. Lleva un pequeño logotipo bordado en el pecho y una estampa con textura en relieve en la manga derecha. -Composición colores lisos 100% algodón. Colores granizados 50% algodón, 50% poliéster -El modelo viste un talle M -Talle M: ancho de pecho de 53 cm (medida tomada 2 cm por debajo de la sisa), largo de espalda de 72 cm aprox. (medida tomada desde el centro del cuello hasta el borde inferior del ruedo). Las medidas pueden variar +/- 1 cm -Producto nacional",
@@ -5981,7 +5981,7 @@ export default [
     ],
   },
   {
-    id: 102,
+    id: 103,
     nombre: "Chaqueta acolchada con diseño reversible",
     marca: "UrbanChic",
     descripcion:
@@ -6043,7 +6043,7 @@ export default [
     ],
   },
   {
-    id: 103,
+    id: 104,
     nombre: "Pantalones cargo estilo militar",
     marca: "TacticalGear",
     descripcion:
@@ -6104,7 +6104,7 @@ export default [
     ],
   },
   {
-    id: 104,
+    id: 105,
     nombre: "Camisa de lino con estampado tropical",
     marca: "IslandStyle",
     descripcion:
