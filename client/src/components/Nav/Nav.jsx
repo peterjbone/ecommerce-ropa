@@ -93,7 +93,7 @@ export default function Nav({ categories }) {
           activeClass="active" >
           <NavLink to='/'>
             <div className='logo-container' >
-              <img src='vite.svg' alt='logo' className='logo' />
+              <img src={logo} alt='logo' className='logo' />
             </div>
           </NavLink>
         </ScrollLink>
