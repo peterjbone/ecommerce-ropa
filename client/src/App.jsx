@@ -35,7 +35,7 @@ function App() {
       }
     }())
   });
-
+  
   return (
     <>
       <Nav categories={categories} />

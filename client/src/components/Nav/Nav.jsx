@@ -2,7 +2,6 @@ import './Nav.css';
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
-import logo from '../../../public/vite.svg'
 import { useStore } from '../../store.js';
 
 export default function Nav({ categories }) {
@@ -21,7 +20,7 @@ export default function Nav({ categories }) {
       }
     }, 500);
   };
-
+  
   const triggerAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
     targetElement.classList.add('move-down');
@@ -58,7 +57,7 @@ export default function Nav({ categories }) {
           activeClass="active" >
           <NavLink to='/'>
             <button className='logo' >
-              <img src={logo} alt='logo' />
+              <img src='vite.svg' alt='logo' />
             </button>
           </NavLink>
         </ScrollLink>

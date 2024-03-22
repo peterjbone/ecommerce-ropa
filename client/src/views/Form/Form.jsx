@@ -1,6 +1,55 @@
 import { useState } from 'react'
+import styles from './Form.module.css';
 
 const Form = () => {
+
+  let categorias = [ 'Adulto', 'Infante' ]
+  let subcategorias = ['Camisetas y Polos','Chaquetas y Abrigos','Sudaderas y Hoodies','Chalecos','Jeans','Shorts','Short','Zapatillas Casuales','Botin','Botas','Sandalias','Camisas','Pantalones','Botas Cortas','Leggings y Pantalones Deportivos','Zapatos','Blusas y Tops','Faldas','Pantalones de Pijama','Pantalones Formales','Pantalones Cortos de Ciclismo','Zapatillas de Casa','Zapatillas Deportivas','Camisetas de Deporte','Cardigans y Suéteres','Destacado','Tendencia']
+  let genero = [ 'masculino', 'unisex', 'femenino']
+  let tallesl = ['XS', 'S', 'L', 'M', 'XL', 'XXL', 'XXXL']
+  let tallesn = ['4', '6', '8', '10', '12', '14', '16', '34', '36', '38', '39', '40', '41', '42', '43', '44','45']
+  let marcas = [
+    "Nike",
+    "Adidas",
+    "Gucci",
+    "H&M",
+    "Zara",
+    "Levi's",
+    "Calvin Klein",
+    "Tommy Hilfiger",
+    "Under Armour",
+    "Puma",
+    "Ralph Lauren",
+    "Victoria's Secret",
+    "Versace",
+    "Prada",
+    "Burberry",
+    "Chanel",
+    "Louis Vuitton",
+    "Fendi",
+    "Balenciaga",
+    "Dior",
+    "Armani",
+    "Gap",
+    "Forever 21",
+    "Guess",
+    "Diesel",
+    "Abercrombie & Fitch",
+    "Superdry",
+    "American Eagle",
+    "The North Face",
+    "Columbia",
+    "Patagonia",
+    "Lululemon",
+    "Vans",
+    "Converse",
+    "New Balance",
+    "Reebok"]
+
+  const [discount, setDiscount] = useState({
+    offActiva: false,
+    Descuento: 0
+  })
 
   const [form, setForm] = useState({
     nombre: '',
@@ -10,11 +59,22 @@ const Form = () => {
     subcategoria: '',
     descripcion: '',
     genero: '',
-    oferta: '',
+    oferta: discount,
     activo: false,
     opciones: '',
     productoNuevo: '',
   })
+
+  const changeDiscountHandler = (e) => {
+    const { checked, name, value } = e.target;
+    if(name === 'Descuento') {
+      setDiscount({...discount, Descuento: value})
+      setForm({...form, oferta: {...discount, Descuento: value}})
+    } else {
+      setDiscount({...discount, offActiva: checked});
+      setForm({...form, oferta: {...discount, offActiva: checked}})
+    }
+  }
 
   const changeHandler = (e) => {
     const { name, value } = e.target
@@ -28,7 +88,7 @@ const Form = () => {
 
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Nuevo producto</h1>
       <form>
         <div>
@@ -37,7 +97,10 @@ const Form = () => {
         </div>
         <div>
           <label>Marca: </label>
-          <input type="text" name='marca' value={form.marca} placeholder='Marca del producto' onChange={changeHandler} />
+          <select name="marca" value={form.marca} onChange={changeHandler}>
+            <option value="">--Seleccionar--</option>
+            {marcas.map(marca => <option key={marca}>{marca}</option>)}
+          </select>
         </div>
         <div>
           <label>Precio: </label>
@@ -45,15 +108,24 @@ const Form = () => {
         </div>
         <div>
           <label>Categoria: </label>
-          <input type="text" name='categoria' value={form.categoria} placeholder='Categoria del producto' onChange={changeHandler} />
+          <select name="categoria" value={form.categoria} onChange={changeHandler}>
+            <option value="">--Seleccionar--</option>
+            {categorias.map(categoria => <option key={categoria}>{categoria}</option>)}
+          </select>
         </div>
         <div>
           <label>Sub-categoria: </label>
-          <input type="text" name='subcategoria' value={form.subcategoria} placeholder='Sub-categoria del producto' onChange={changeHandler} />
+          <select name="subcategoria" value={form.subcategoria} onChange={changeHandler}>
+            <option value="">--Seleccionar--</option>
+            {subcategorias.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
+          </select>
         </div>
         <div>
           <label>Género: </label>
-          <input type="text" name='genero' value={form.genero} placeholder='Género del producto' onChange={changeHandler} />
+          <select name="genero" value={form.genero} onChange={changeHandler}>
+            <option value="">--Seleccionar--</option>
+            {genero.map(genero => <option key={genero}>{genero}</option>)}
+          </select>
         </div>
         <div>
           <label>Descripción: </label>
@@ -69,11 +141,12 @@ const Form = () => {
         </div>
         <div>
           <label>Oferta: </label>
-          <input name='oferta' type="checkbox" checked={form.oferta} />
-          {form.oferta && (
+          <input name='oferta' type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
+          {form.oferta.offActiva && (
             <div>
               <label>% Descuento</label>
-              <select name='Descuento'>
+              <select name='Descuento' value={discount.Descuento} onChange={changeDiscountHandler}>
+                <option value="">%%</option>
                 <option value="5">5%</option>
                 <option value="10">10%</option>
                 <option value="15">15%</option>
