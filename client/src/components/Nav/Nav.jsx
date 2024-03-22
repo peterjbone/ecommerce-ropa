@@ -24,7 +24,7 @@ export default function Nav({ categories }) {
       }
     }, 500);
   };
-
+  
   const triggerAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
     targetElement.classList.add('move-down');
