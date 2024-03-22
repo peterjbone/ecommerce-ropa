@@ -41,7 +41,6 @@ function App() {
       <Nav categories={categories} />
       <Routes>
         <Route path='/' element={<Home products={products} categories={categories} />} />
-        <Route path='/compras' element={''} ></Route>
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/:id' element={<Detail products={products} />} />
       </Routes>

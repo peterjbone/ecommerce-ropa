@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
 import './HeroImagesBar.css'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function HeroImagesBar({ products }) {
 
-  const [imageIndex, setImageIndex] = useState(0)
+  const [imageIndex, setImageIndex] = useState(0);
   const navigate = useNavigate();
   let autoScrollIntervalRef = useRef(null);
 
@@ -16,7 +16,7 @@ export default function HeroImagesBar({ products }) {
     return () => {
       clearInterval(autoScrollIntervalRef.current);
     };
-  }, []);
+  });
 
   const stopAutoScroll = () => {
     clearInterval(autoScrollIntervalRef.current);
