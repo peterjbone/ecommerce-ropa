@@ -1,22 +1,11 @@
-import {Link} from "react-router-dom"
 import Card from "../Card/Card"
-import styles from './CardsContainer.module.css'
+import './CardsContainer.css'
 
-const CardsContainer = ({ products }) => {
+export default function CardsContainer({ products }) {
   return (
-    <div className={styles.container}>
+    <div className='cards-container'>
       {products.map(product => (
-      <Link to={`/${product.id}`} key={product.id} className={styles.link}>
-      <Card 
-      key={product.id} 
-      image={product.imagen[0]}
-       name={product.nombre}
-        price={product.precio} 
-        />
-        </Link>
-        ))}
+      <Card key={product.id} product={product} />))}
     </div>
   )
 }
-
-export default CardsContainer

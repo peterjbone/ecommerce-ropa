@@ -10,6 +10,7 @@
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  text-transform: capitalize;
 }
 
 .product-arrow-button {
@@ -55,5 +56,5 @@
   background-color: black;
   color: white;
   border: none;
-  transition: background-color 100ms ease-in-out;
+  cursor: pointer;
 }

@@ -37,27 +37,29 @@ export default function Pages({ cardsPerPage, cards }) {
         {(() => {
           return (
             <button
-              className={(currentPage === 1 || cardsPerPage === cards.length) ? 'invisible' : ''}
+              className={(currentPage === 1 || cardsPerPage === cards.length) ? 'invisible' : 'page-button'}
               onClick={previousPage} >
-              Prev
+              Anterior
             </button>
           );
         })()}
         {Array.from({ length: nPages }, (_, i) => (
           <button
             className={currentPage === i + 1 ? 'selected-page' : 'page-button'}
-            key={i} id={i + 1}
+            key={i} 
+            id={i + 1}
+            disabled={currentPage === i + 1}
             onClick={selectPage} >
             {i + 1}
           </button>
         ))}
         {(() => {
-          const nextClassName = (currentPage === nPages || nPages === 0 || cardsPerPage === cards.length) ? 'invisible' : '';
+          const nextClassName = (currentPage === nPages || nPages === 0 || cardsPerPage === cards.length) ? 'invisible' : 'page-button';
           return (
             <button
               className={nextClassName}
               onClick={nextPage} >
-              Next
+              Siguiente
             </button>
           );
         })()}

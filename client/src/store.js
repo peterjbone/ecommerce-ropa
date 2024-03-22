@@ -3,24 +3,21 @@ import axios from 'axios';
 import productos from './utils/arrayProductos.js';
 
 export const useStore = create((set) => ({
-  products: [],
+  products: productos,
+  productosFiltrados: productos,
   favoritos: [],
-  destacados: [],
   nuevos: [],
+  destacados: [],
   ofertas: [],
+  tendencia: [],
 
-  getDestacados: async () => {
+  getAll: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/destacados`);
-      const data = [];
-      productos.map(producto => {
-        if (producto.precio > 50) {
-          data.push(producto);
-        }
-      })
-      set(() => ({ destacados: data }));
+      // const { data } = await axios(`http://localhost:3001/todos`);
+      const data = [...productos];
+      set(() => ({ products: data, productosFiltrados: data }));
     } catch (error) {
-      console.error("Error occurred while getting Destacados:", error);
+      console.error("Error al buscar Todo:", error);
       throw error;
     }
   },
@@ -35,7 +32,22 @@ export const useStore = create((set) => ({
       })
       set(() => ({ nuevos: data }));
     } catch (error) {
-      console.error("Error occurred while getting Nuevos:", error);
+      console.error("Error al buscar Nuevos:", error);
+      throw error;
+    }
+  },
+  getDestacados: async () => {
+    try {
+      // const { data } = await axios(`http://localhost:3001/destacados`);
+      const data = [];
+      productos.map(producto => {
+        if (producto.subcategoria === 'Destacado') {
+          data.push(producto);
+        }
+      })
+      set(() => ({ destacados: data }));
+    } catch (error) {
+      console.error("Error al buscar Destacados:", error);
       throw error;
     }
   },
@@ -50,7 +62,38 @@ export const useStore = create((set) => ({
       })
       set(() => ({ ofertas: data }));
     } catch (error) {
-      console.error("Error occurred while getting Ofertas:", error);
+      console.error("Error al buscar Ofertas:", error);
+      throw error;
+    }
+  },
+  getTendencia: async () => {
+    try {
+      // const { data } = await axios(`http://localhost:3001/tendencia`);
+      const data = [];
+      productos.map(producto => {
+        if (producto.subcategoria === 'Tendencia') {
+          data.push(producto);
+        }
+      })
+      set(() => ({ tendencia: data }));
+    } catch (error) {
+      console.error("Error al buscar Tendencia:", error);
+      throw error;
+    }
+  },
+  getSubcategoria: async (categoria) => {
+    try {
+      // const { data } = await axios(`http://localhost:3001/subcategoria`);
+      const data = [];
+      productos.map(producto => {
+        // console.log(producto.subcategoria, categoria);
+        if (producto.subcategoria === categoria) {
+          data.push(producto);
+        }
+      })
+      set(() => ({ productosFiltrados: data }));
+    } catch (error) {
+      console.error("Error al buscar por Subcategoria:", error);
       throw error;
     }
   },
@@ -59,7 +102,7 @@ export const useStore = create((set) => ({
       const { data } = await axios.post(`http://localhost:3001/?buscar=${search}`);
       set(() => ({ products: data}));
     } catch (error) {
-      console.error("Error occurred while searching:", error);
+      console.error("Error al buscar:", error);
       throw error;
     }
   }

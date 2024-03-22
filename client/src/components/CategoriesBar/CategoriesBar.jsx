@@ -1,23 +1,36 @@
-import { NavLink } from 'react-router-dom'
 import './CategoriesBar.css'
 
-import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
+import { useStore } from '../../store.js';
 
 export default function CategoriesBar({ title, categories }) {
+  const navigate = useNavigate();
+  const getSubcategoria = useStore((state) => state.getSubcategoria);
+
+  const handleSubcategorySearch = async (event) => {
+    try {
+      await getSubcategoria(event.target.id);
+      navigate('/tienda');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div style={{ display:'flex', flexDirection:'column'}} id='categories' >
       <h3 className='categories-bar-title' >{title}</h3>
         <div className='categories-bar-container' >
           {categories.map(category =>
-            <div key={category.id} className='category-container' >
-              <NavLink to={`/compras?subcategoria:${category.subcategoria}`} >
+            <div key={category.id} className='category-container'>
               <div className='category-image-container' >
-                <img src={category.imagen[0]} alt={category.imagen[0]} className='image' />
+                <img 
+                className='image'  
+                src={category.imagen[0]} 
+                alt={category.imagen[0]} 
+                id={category.subcategoria} 
+                onClick={handleSubcategorySearch} />
               </div>
               <h2>{category.subcategoria}</h2>
-            </NavLink>
             </div>
           )}
         </div>
