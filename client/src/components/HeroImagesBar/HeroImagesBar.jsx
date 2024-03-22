@@ -1,22 +1,49 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './HeroImagesBar.css'
+import { useNavigate } from 'react-router-dom'
 
 export default function HeroImagesBar({ products }) {
 
   const [imageIndex, setImageIndex] = useState(0)
+  const navigate = useNavigate();
+  let autoScrollIntervalRef = useRef(null);
 
-  function showNextImage() {
+  useEffect(() => {
+    autoScrollIntervalRef.current = setInterval(() => {
+      showNextImage();
+    }, 4000);
+
+    return () => {
+      clearInterval(autoScrollIntervalRef.current);
+    };
+  }, []);
+
+  const stopAutoScroll = () => {
+    clearInterval(autoScrollIntervalRef.current);
+  }
+
+  const resumeAutoScroll = () => {
+    autoScrollIntervalRef.current = setInterval(() => {
+      showNextImage();
+    }, 4000);
+  }
+
+  const showNextImage = () => {
     setImageIndex(index => {
       if (index === products.slice(0, 10).length - 1) return 0
       return index + 1
     })
   }
 
-  function showPrevImage() {
+  const showPrevImage = () => {
     setImageIndex(index => {
       if (index === 0) return products.slice(0, 10).length - 1
       return index - 1
     })
+  }
+
+  const handleHeroImageClick = (event) => {
+    navigate(`/${event.target.id}`)
   }
 
   return (
@@ -25,10 +52,14 @@ export default function HeroImagesBar({ products }) {
         {products.slice(0, 10).map(product => (
           <img
             key={product.id}
+            id={product.id}
             src={product.imagen[0]}
             alt={product.imagen[0]}
             className='hero-image'
-            style={{ translate: `${-100 * imageIndex}%` }}
+            style={{ cursor:'pointer', translate: `${-100 * imageIndex}%` }}
+            onClick={handleHeroImageClick}
+            onMouseEnter={stopAutoScroll}
+            onMouseLeave={resumeAutoScroll}
           />
         ))}
       <button
