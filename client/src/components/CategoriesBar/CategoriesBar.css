@@ -17,6 +17,7 @@
   text-align: center;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
 .category-container img {
@@ -34,4 +35,5 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: white;
   text-shadow: 0 0 1px black;
+  pointer-events: none;
 }

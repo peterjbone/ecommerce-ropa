@@ -2,13 +2,16 @@ import './Nav.css';
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
-import logo from '../../../public/vite.svg'
+import logo from '../../assets/images/nombre.png'
 import { useStore } from '../../store.js';
 
 export default function Nav({ categories }) {
   const [search, setSearch] = useState('');
   const searchFunction = useStore((state) => state.search);
+  const getAll = useStore((state) => state.getAll);
+  const getSubcategoria = useStore((state) => state.getSubcategoria);
   const navigate = useNavigate();
+  let windowTimeout;
 
   const handleScroll = () => {
     setTimeout(() => {
@@ -25,21 +28,53 @@ export default function Nav({ categories }) {
   const triggerAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
     targetElement.classList.add('move-down');
+    windowTimeout = setTimeout(() => {
+      targetElement.classList.remove('move-down');
+      targetElement.classList.add('move-up');
+      setTimeout(() => {
+        targetElement.classList.remove('move-up');
+      }, 500);
+    }, 3000);
+  }
+
+  const cancelMoveWindowUp = () => {
+    clearTimeout(windowTimeout);
   }
 
   const resetAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
     targetElement.classList.remove('move-down');
-    targetElement.classList.add('move-up');
     setTimeout(() => {
       targetElement.classList.remove('move-up');
-    }, 500);
+      targetElement.classList.add('move-up');
+      setTimeout(() => {
+        targetElement.classList.remove('move-up');
+      }, 500);
+    }, 1500);
   }
 
   const handleSearch = async () => {
     try {
       await searchFunction(search);
       navigate('/')
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const goToStore = async () => {
+    try {
+      await getAll();
+      navigate('/tienda');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleSubcategorySearch = async (event) => {
+    try {
+      await getSubcategoria(event.target.id);
+      navigate('/tienda');
     } catch (error) {
       console.error(error);
     }
@@ -57,18 +92,16 @@ export default function Nav({ categories }) {
           exact="true"
           activeClass="active" >
           <NavLink to='/'>
-            <button className='logo' >
-              <img src={logo} alt='logo' />
-            </button>
+            <div className='logo-container' >
+              <img src={logo} alt='logo' className='logo' />
+            </div>
           </NavLink>
         </ScrollLink>
         <NavLink to='/' >
           <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation}
-          >Categories</button>
+          >Categorias</button>
         </NavLink>
-        <NavLink to='/tienda'>
-            <button className='nav-bar-button' >Tienda</button>
-          </NavLink>
+        <button className='nav-bar-button' onClick={goToStore} >Tienda</button>
         <div>
           <input
             type="search"
@@ -88,12 +121,16 @@ export default function Nav({ categories }) {
           </NavLink>
         </div>
       </nav>
-
-      <div className='categories-window' onMouseLeave={resetAnimation} >
+      <div className='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
         {categories.map(category =>
-          <NavLink key={category.subcategoria} to={`/compras?subcategoria:${category.subcategoria}`} >
-            <p>{category.subcategoria}</p>
-          </NavLink>
+          <p
+            key={category.id}
+            onMouseEnter={cancelMoveWindowUp}
+            id={category.subcategoria}
+            onClick={handleSubcategorySearch}
+          >
+            {category.subcategoria}
+          </p>
         )}
       </div>
     </>
