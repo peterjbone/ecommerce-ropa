@@ -1,12 +1,13 @@
-import CardsContainer from "../../components/CardsContainer/CardsContainer"
-import products from '../../utils/arrayProductos';
+import Pages from "../../components/Pages/Pages";
+import { useStore } from '../../store.js';
 
-const Tienda = ()=> {
- return (
+export default function Tienda() {
+  const products = useStore((state) => state.productosFiltrados);
+  console.log(products);
+  
+  return (
     <div>
-         <CardsContainer products={products} />
+      <Pages cardsPerPage='20' cards={products} />
     </div>
- )
+  )
 }
-
-export default Tienda
