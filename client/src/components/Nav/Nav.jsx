@@ -66,6 +66,9 @@ export default function Nav({ categories }) {
           <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation}
           >Categories</button>
         </NavLink>
+        <NavLink to='/tienda'>
+            <button className='nav-bar-button' >Tienda</button>
+          </NavLink>
         <div>
           <input
             type="search"

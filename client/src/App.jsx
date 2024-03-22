@@ -4,6 +4,8 @@ import Nav from './components/Nav/Nav';
 import { useEffect, useState } from 'react';
 import { useStore } from './store.js';
 import products from './utils/arrayProductos.js';
+import Detail from "./views/Detail/Detail.jsx"
+import Tienda from "./views/Tienda/Tienda.jsx"
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -40,6 +42,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home products={products} categories={categories} />} />
         <Route path='/compras' element={''} ></Route>
+        <Route path='/tienda' element={<Tienda />} />
+        <Route path='/:id' element={<Detail products={products}/>}/>
       </Routes>
     </>
   );
