@@ -34,7 +34,7 @@ export default function Nav({ categories }) {
       setTimeout(() => {
         targetElement.classList.remove('move-up');
       }, 500);
-    }, 2000);
+    }, 3000);
   }
 
   const cancelMoveWindowUp = () => {
@@ -44,10 +44,13 @@ export default function Nav({ categories }) {
   const resetAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
     targetElement.classList.remove('move-down');
-    targetElement.classList.add('move-up');
     setTimeout(() => {
       targetElement.classList.remove('move-up');
-    }, 500);
+      targetElement.classList.add('move-up');
+      setTimeout(() => {
+        targetElement.classList.remove('move-up');
+      }, 500);
+    }, 1500);
   }
 
   const handleSearch = async () => {
