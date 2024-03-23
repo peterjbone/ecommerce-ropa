@@ -2355,6 +2355,1602 @@ const productos = [
 				]
 			}
 		]
+	},
+	{
+		nombre: "OFF-WHITE X AIR FORCE 1 LOW 'BLACK'",
+		marca: "off-white",
+		descripcion:
+			"Virgil Abloh lanza un rediseño bastante directo de la silueta de Bruce Kilgore con este OFF-WHITE x Air Force 1 Low. Sin embargo, hay muchos detalles nuevos en la reconstrucción: además de una mezcla de ripstop y gamuza, la parte superior usa costuras selladas y un Swoosh blanco unido mediante costuras en zigzag. En la lengüeta aparecen espuma expuesta y etiquetas colocadas de manera inusual, mientras que el toque posmoderno final llega con la palabra 'LOGO' impresa en la lengüeta del talón.",
+		precio: 250.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://cdn.flightclub.com/TEMPLATE/806196/1.jpg?w=640",
+					"https://sneakernews.com/wp-content/uploads/2018/10/off-white-nike-air-force-1-low-black-5.jpg",
+					"https://sneakernews.com/wp-content/uploads/2018/12/off-white-nike-air-force-1-low-black-ao4606-001-7.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "OFF-WHITE X AIR JORDAN 1 RETRO HIGH OG 'CHICAGO'",
+		marca: "off-white",
+		descripcion:
+			"El OFF-WHITE x Air Jordan 1 fue creado por el diseñador Virgil Abloh en la combinación de colores clásica de Chicago. Algunas de las características a medio terminar de la zapatilla incluyen una cremallera OFF-WHITE en el cuello, un Swoosh vinculado al zapato con costuras azules notables y 'Air' impreso en la entresuela. La caja está deconstruida ya que está volteada hacia adentro y el interior consta de una estructura negra y un logotipo dorado de Jumpman, mientras que el exterior es de cartón simple con las palabras 'Jumpman' impresas. La colección Virgil OFF-WHITE incluía iteraciones remezcladas de Air VaporMax, Air Presto, Air Max 90, Blazer, Air Max 97, Hyperdunk 2017, Air Force 1, Zoom Fly y Chuck Taylor.",
+		precio: 300.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://cdn.flightclub.com/TEMPLATE/801781/1.jpg?w=640",
+					"https://legitgrails.com/cdn/shop/articles/34406e43cc8d872d32879281cb29b560_1200x1200.jpg?v=1591046157",
+					"https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2021%2F11%2Foff-white-air-jordan-1-chicago-resale-prices-skyrocket-virgil-abloh-death-001.jpg?cbr=1&q=90",
+					"https://store.yankeekicks.com/cdn/shop/products/off-white-air-jordan-1-the-ten-AA3834-101-4_0e45f5b8-7fa6-4b48-a544-10bca1da5b31.jpg?v=1708276550"
+				]
+			}
+		]
+	},
+	{
+		nombre: "OFF-WHITE X DUNK LOW 'PINE GREEN'",
+		marca: "off-white",
+		descripcion:
+			"Emergiendo con el toque de diseño característico de Virgil Abloh, el OFF-WHITE x Dunk Low 'Pine Green' se lanzó como parte de una colección de tres zapatos. La parte superior aparece en verde pino y blanco en su construcción de cuero, acentuada por una etiqueta de bandera naranja en el lateral y una marca superior en el medio. Un segundo sistema de cordones se superpone al primero, mientras que debajo de los pies, una suela de goma de dos tonos brinda soporte.",
+		precio: 250.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#00ff00"],
+					nombres: ["verde"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://cdn.flightclub.com/TEMPLATE/152361/1.jpg?w=640",
+					"https://www.kicksonfire.com/wp-content/uploads/2019/08/Off-White%E2%84%A2-x-Nike-Dunk-Low-Pine-Green.jpg",
+					"https://sneakerbardetroit.com/wp-content/uploads/2019/08/Off-White-x-Nike-Dunk-Low-Pine-Green-CT0856-100-2019-Release-Date-Pricing-3.jpg",
+					"https://hypebeast.com/image/2019/12/off-white-nike-dunk-low-official-look-university-gold-pine-green-university-red-10-1.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "OFF-WHITE X AIR MAX 90 'DESERT ORE'",
+		marca: "off-white",
+		descripcion:
+			"El OFF-WHITE x Air Max 90 'Desert Ore' se lanzó como parte de una colaboración entre Nike y Virgil Abloh de Off-White. La parte superior de cuero, nobuck y gamuza del zapato aparece en Desert Ore, con Bright mango y Hyper Jade unidos en la marca Swoosh. Bajo los pies, la entresuela clásica alberga una unidad Air visible en el talón, mientras que una etiqueta colgante azul y un texto impreso en el lado medio añaden toques característicos de Abloh.",
+		precio: 300.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ECB159"],
+					nombres: ["cafe"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://cdn.flightclub.com/TEMPLATE/806511/1.jpg?w=640",
+					"https://www.kicksonfire.com/wp-content/uploads/2018/11/OFF-WHITE-x-Nike-Air-Max-90-Desert-Ore-1-1.jpg",
+					"https://sneakernews.com/wp-content/uploads/2019/01/off-white-nike-air-max-90-desert-ore-release-date-5.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse All Star High Top",
+		marca: "converse",
+		descripcion:
+			"Mantente al tanto de tu estilo con estas zapatillas Converse All Star Hi para niña. Siguiendo el modelo de los infames zapatos de Chuck Taylor, estas zapatillas altas brindan el estilo icónico con comodidad moderna.",
+		precio: 40.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					},
+					{
+						talla: "12.5",
+						stock: 20
+					},
+					{
+						talla: "13.0",
+						stock: 20
+					},
+					{
+						talla: "13.5",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/43234_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/43234_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/43234_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/43234_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse UNT1TL3D Hi",
+		marca: "converse",
+		descripcion:
+			"Luce el estilo clásico de Chuck Taylor 'UNT1L3D' de Converse. Con el icónico medallón de Chuck Taylor y los logotipos de Chevron, es una zapatilla que combina con todo y en cualquier lugar.",
+		precio: 29.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					},
+					{
+						talla: "12.5",
+						stock: 20
+					},
+					{
+						talla: "13.0",
+						stock: 20
+					},
+					{
+						talla: "13.5",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A06013C_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A06013C_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A06013C_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A06013C_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#00ff00"],
+					nombres: ["verde"]
+				},
+				tallas: [
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					},
+					{
+						talla: "12.5",
+						stock: 20
+					},
+					{
+						talla: "13.0",
+						stock: 20
+					},
+					{
+						talla: "13.5",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A03147F_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03147F_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03147F_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03147F_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse Hi Eva Lift",
+		marca: "converse",
+		descripcion:
+			"Eleva los niveles de confianza de tus pequeñas con las Converse Hi Eva Lift. Estos zapatos de plataforma alta ofrecen comodidad acogedora con la parte superior de Sherpa. Con un suave forro polar, estas zapatillas garantizan mayor calidez para que tus hijos pequeños se retuerzan. La suela con patrón de diamantes remata las Converse Hi Eva Lift con un estilo apasionante.",
+		precio: 29.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					},
+					{
+						talla: "12.5",
+						stock: 20
+					},
+					{
+						talla: "13.0",
+						stock: 20
+					},
+					{
+						talla: "13.5",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A6085C_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A6085C_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A6085C_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A6085C_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse All Star High Top",
+		marca: "converse",
+		descripcion:
+			"Las Converse All Star Hi son unas zapatillas altas para niños inspiradas en las legendarias Chuck Taylor. La parte superior de lona es liviana para brindar comodidad durante todo el día. También es increíblemente duradero, por lo que su hijo puede usar estas modernas zapatillas hasta que se le acaben. Su cierre de cordones tradicional tiene un aspecto clásico e imparte un ajuste ceñido y de apoyo. La puntera de goma mejora el aspecto de estas zapatillas altas y añade protección adicional contra daños. El parche All Star que aparece en el tobillo realza su aspecto icónico.",
+		precio: 39.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					},
+					{
+						talla: "12.5",
+						stock: 20
+					},
+					{
+						talla: "13.0",
+						stock: 20
+					},
+					{
+						talla: "13.5",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A03605F_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03605F_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03605F_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03605F_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					},
+					{
+						talla: "12.5",
+						stock: 20
+					},
+					{
+						talla: "13.0",
+						stock: 20
+					},
+					{
+						talla: "13.5",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/63310_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/63310_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/63310_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/63310_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Jordan Jumpman Big Air Mesh Shorts",
+		marca: "jordan",
+		descripcion:
+			"Vestirse es muy fácil para tus hijos con los pantalones cortos Jordan Jumpman Big Air Mesh. La cinturilla elástica acanalada con cordón funcional para tallas 4 a XXL garantiza un ajuste cómodo, perfecto para que tus hijos activos se mantengan en movimiento. Estos pantalones cortos, que se ubican debajo de la cintura, son ultracómodos, mientras que los dos bolsillos laterales ofrecen fácil almacenamiento para lo esencial. Terminados con un logotipo de Jordan Air en la pierna, los pantalones cortos de malla Jordan Jumpman Big Air son elegantes y suaves, ¡como los de tus hijos!",
+		precio: 19.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/9B219R78_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/9B219R78_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/9B219R78_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Jordan Air Diamond Shorts",
+		marca: "jordan",
+		descripcion:
+			"Son livianos, absorben la humedad y son los pantalones cortos Jordan Air Diamond: la elección perfecta para los estudiantes activos de primaria. Estos pantalones cortos de malla llegan por encima de la rodilla y ofrecen a sus hijos libertad de movimiento durante cada actividad. Terminados con paneles de diamantes clásicos e íconos Jumpman, los pantalones cortos Jordan Air Diamond envuelven a tus hijos con el look atlético perfecto.",
+		precio: 29.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/5B136023_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5B136023_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5B136023_om4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Jordan 23 Jersey",
+		marca: "jordan",
+		descripcion:
+			"Deje que sus hijos representen el icónico número 23 con la camiseta Jordan 23. Diseñada para jugadores jóvenes, esta camiseta cuenta con malla transpirable que mantiene a sus hijos frescos y listos para jugar. El corte extragrande aporta el estilo clásico del baloncesto al estilo atlético de tus hijos. Mira a tus muchachos dominar la cancha de manera legendaria con la camiseta Jordan 23.",
+		precio: 58.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/5A773R78_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5A773R78_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5A773R78_om3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5A773R78_om4?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/9A773023_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/9A773023_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/9A773023_om3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/9A773023_om4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Jordan Air Diamonds Short Sleeve T-Shirt",
+		marca: "jordan",
+		descripcion:
+			"Cuando el mundo duerme, las leyendas actúan. Deja que tus jóvenes jugadores realicen horas de ejercicios con estilo con la camiseta de manga corta Jordan Air Diamonds. Confeccionada con un tejido de punto suave, ligero y aireado, esta camiseta mantiene a tus hijos frescos a medida que aumenta el ritmo de entrenamiento. Ya sea por diversión o por el próximo torneo, ayuda a tus futuros All-Stars a ser lo mejor que puedan con la camiseta de manga corta Jordan Air Diamonds.",
+		precio: 19.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#EFBC9B"],
+					nombres: ["beige"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/5C743X0L_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5C743X0L_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5C743X0L_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/5C743001_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5C743001_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5C743001_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Jordan Modern AOP T-Shirt",
+		marca: "jordan",
+		descripcion:
+			"Deja que tus hijos mejoren su apariencia con la camiseta Jordan Modern AOP. Confeccionada con tela de algodón suave, esta camiseta brinda comodidad durante todo el día mientras sus hijos salen. El cuello acanalado garantiza un ajuste elástico y ceñido, mientras que el estampado Jordan en toda la prenda ofrece un estilo atrevido y destacado.",
+		precio: 32.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/5B825023_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5B825023_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5B825023_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Jordan Jumpman Flight Stamps Short Sleeve T-Shirt",
+		marca: "jordan",
+		descripcion:
+			"Dale a tus hijos la libertad de disfrutar plenamente del juego que aman con la camiseta de manga corta Jordan Jumpman Flight Stamps. Confeccionada con un tejido de punto ultrasuave y transpirable, esta camiseta mantiene a tus hijos cómodos desde el momento de jugar hasta el tiempo de inactividad. Ya sea que estén practicando sus ejercicios o descansando después del juego, la camiseta de manga corta Jordan Jumpman Flight Stamps es el mejor aliado para todo lo que sus hijos tienen en mente.",
+		precio: 28.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/5D006421_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5D006421_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Jordan 2X 3 Peat Short Sleeve T-Shirt",
+		marca: "jordan",
+		descripcion:
+			"Escuela, deporte, dormir, repetir! Deje que sus hijos afronten sus días ocupados con comodidad con la camiseta de manga corta Jordan 2X 3 Peat. Confeccionada con un tejido de punto suave y transpirable, esta camiseta ayuda a tus hijos a estar listos para jugar y divertirse en todo momento. Observe a sus imparables hijos ser las estrellas del juego y todo lo demás que hacen con la camiseta de manga corta Jordan 2X 3 Peat.",
+		precio: 28.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/5C835023_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5C835023_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/5C835023_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "POWER WORKOUT TEE",
+		marca: "adidas",
+		descripcion:
+			"Supera tus estancamientos con esta camiseta de entrenamiento adidas. Cuando tu entrenamiento requiere potencia y resistencia, AEROREADY absorbe el sudor para mantenerte seco y lograr el máximo rendimiento. El estampado arenisca gana puntos de estilo en la sala de pesas.Este producto está fabricado con al menos un 70% de materiales reciclados. Al reutilizar materiales que ya han sido creados, ayudamos a reducir el desperdicio y nuestra dependencia de recursos finitos y reducimos la huella de los productos que fabricamos.",
+		precio: 50.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#808080"],
+					nombres: ["gris"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/bddee1a319744889be74fa55734bea53_9366/Power_Workout_Tee_Black_IK9685_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/781e22982b47482aa16f3a132b9993cd_9366/Power_Workout_Tee_Black_IK9685_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6df05942dbdb449a8cf4e56ac7d32f53_9366/Power_Workout_Tee_Black_IK9685_01_laydown.jpg"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffff00"],
+					nombres: ["amarillo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/315f87c967304746bfc52631daa6efdc_9366/Power_Workout_Tee_Orange_IS3806_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/de0db0582130423480ca10a6b78937fb_9366/Power_Workout_Tee_Orange_IS3806_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/26a54d44291344b4a44637c1f0e330ae_9366/Power_Workout_Tee_Orange_IS3806_01_laydown.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "GERMANY 2024 HOME AUTHENTIC JERSEY",
+		marca: "adidas",
+		descripcion:
+			"Lleva tu orgullo hasta el estadio con la camiseta local auténtica de Alemania 2024, una pieza súper liviana que acerca el ADN alemán a tu corazón. El innovador uniforme está confeccionado con un tejido transpirable que absorbe la humedad con HEAT.RDY para mantenerte seco. El corte entallado añade una dosis extra de estilo mientras animas a la Mannschaft.",
+		precio: 150.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/449183eb88de46e7a9fe7f1b594fdd4c_9366/Germany_2024_Home_Authentic_Jersey_White_IZ1620_HM1.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1a50bd4f6b234f698bce14672fd7ad9f_9366/Germany_2024_Home_Authentic_Jersey_White_IZ1620_HM3_hover.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/01dafd3f3ea54e32ae5de2f56240d202_9366/Germany_2024_Home_Authentic_Jersey_White_IZ1620_HM4.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "CAMO TONGUE TEE",
+		marca: "adidas",
+		descripcion:
+			"Cuando el camuflaje llama, esta cómoda camiseta responde. Combina una insignia de adidas Originals con un camuflaje fresco y contemporáneo que es una versión fresca y sobria de lo tradicional. Confeccionado con un suave tejido de punto de algodón, ofrece una comodidad suprema para aventuras fuera de la red. Para aquellos a quienes les gusta permanecer encubiertos, este estilo lo tiene cubierto.",
+		precio: 32.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c749ca9fafa148a9b0b27569a305e1f7_9366/Camo_Tongue_Tee_Black_IS0236_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b4dfdb634d6546c5a56ed846dc268e4a_9366/Camo_Tongue_Tee_Black_IS0236_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/fa0afa96060e486ba2f8d5936cdfebf2_9366/Camo_Tongue_Tee_Black_IS0236_01_laydown.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "VRCT SHORT SLEEVE TEE",
+		marca: "adidas",
+		descripcion:
+			"Creado para creadores. Esta camiseta adidas canaliza la herencia atlética a través de un diseño moderno. Un atrevido gráfico del Trifolio mantiene el estilo al frente y al centro, que se repite en la parte posterior con un estilo de gran tamaño. La confección de algodón transpirable te mantiene cómodo todo el día y el cuello redondo clásico añade un toque tradicional.",
+		precio: 40.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1857299772324d54938c2e6de238e598_9366/VRCT_Short_Sleeve_Tee_White_IS0186_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ac36189b095d4a79956e4484dae9ff1d_9366/VRCT_Short_Sleeve_Tee_White_IS0186_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c94984a9e00e4b0986f9295ece7a8c15_9366/VRCT_Short_Sleeve_Tee_White_IS0186_25_model.jpg"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ECB159"],
+					nombres: ["cafe"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9b403176cb2e4ca98813e49bbc6272b6_9366/VRCT_Short_Sleeve_Tee_Brown_IS0185_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7699ae7633f342cab7c9f2458262643c_9366/VRCT_Short_Sleeve_Tee_Brown_IS0185_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d3750e931bf647abb05d9b832dda3289_9366/VRCT_Short_Sleeve_Tee_Brown_IS0185_25_model.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "INTER MIAMI CF 24/25 MESSI HOME JERSEY",
+		marca: "adidas",
+		descripcion:
+			"Orgulloso. Apasionado. Rosa. Mostrando un nuevo tono para una nueva temporada, esta camiseta adidas del Inter Miami CF destaca con los colores característicos del club. Contribuyendo al diseño limpio y elegante, la insignia del equipo y el logotipo de las 3 barras se mueven hacia el centro, mientras que el nombre y el número de Messi rezuman calidad de estrella en la parte posterior. Detrás de esos looks de superestrella, AEROREADY absorbe la humedad para mantener cómodos a los fanáticos del fútbol.",
+		precio: 130.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/371a88bf8c704c47ae51d53272243276_9366/Inter_Miami_CF_24-25_Messi_Home_Jersey_Pink_JE9741_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f7457ed88622439c8d0f414a6a5df606_9366/Inter_Miami_CF_24-25_Messi_Home_Jersey_Pink_JE9741_25_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/cb5aa62fe3ac490eb46221986fc2ee30_9366/Inter_Miami_CF_24-25_Messi_Home_Jersey_Pink_JE9741_01_laydown.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7fd012dec514446c8b7b4731f0f19596_9366/Inter_Miami_CF_24-25_Messi_Home_Jersey_Pink_JE9741_02_laydown.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "ADICOLOR CLASSICS 3-STRIPES LONG SLEEVE TEE",
+		marca: "adidas",
+		descripcion:
+			"Cuando un clásico se reinventa, sabes que tiene poder de permanencia y un estilo llamativo. Ponte esta camiseta de manga larga adidas y sal con una actitud de alto contraste. Las icónicas 3 rayas y el trébol bordado dan un toque retro con un toque moderno. El corte entallado y los detalles acanalados mantienen el estilo clásico de principio a fin.",
+		precio: 45.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas manga larga",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/0e041741b19948d0a870af1200b1dcbe_9366/Adicolor_Classics_3-Stripes_Long_Sleeve_Tee_White_IA4879_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5058fad2d4bf42c8add3af1200b1e3ea_9366/Adicolor_Classics_3-Stripes_Long_Sleeve_Tee_White_IA4879_22_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d9970e69f79d4e8e9ddbaf1200b1ec0c_9366/Adicolor_Classics_3-Stripes_Long_Sleeve_Tee_White_IA4879_23_hover_model.jpg"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3b7eefbce89f4f2eb846af1200b18924_9366/Adicolor_Classics_3-Stripes_Long_Sleeve_Tee_Black_IA4877_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/7aa1a37290a5417e9949af1200b19279_9366/Adicolor_Classics_3-Stripes_Long_Sleeve_Tee_Black_IA4877_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/98cff27c43e440b3b0c7af1200b19a72_9366/Adicolor_Classics_3-Stripes_Long_Sleeve_Tee_Black_IA4877_25_model.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "OWN THE RUN LONG SLEEVE TEE",
+		marca: "adidas",
+		descripcion:
+			"Este producto está fabricado con al menos un 70% de materiales reciclados. Al reutilizar materiales que ya han sido creados, ayudamos a reducir el desperdicio y nuestra dependencia de recursos finitos y reducimos la huella de los productos que fabricamos.",
+		precio: 45.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas manga larga",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9b5fb5be34d8488184108230d4429dee_9366/Own_The_Run_Long_Sleeve_Tee_Blue_IN1488_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3b5f51ec310c473d95e9ed5cb5fa1daf_9366/Own_The_Run_Long_Sleeve_Tee_Blue_IN1488_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2036fb975d6b40148cdc935d41bde8fe_9366/Own_The_Run_Long_Sleeve_Tee_Blue_IN1488_01_laydown.jpg"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/a9c5912bdfc74068822e8ea8425314c4_9366/Own_The_Run_Long_Sleeve_Tee_Black_IN1486_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f54a4e07ecf744299bc68c866f9b94b4_9366/Own_The_Run_Long_Sleeve_Tee_Black_IN1486_23_hover_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/b00a0f958d274443abfba512d6c2c7e2_9366/Own_The_Run_Long_Sleeve_Tee_Black_IN1486_01_laydown.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "UNIVERSITY OF LOUISVILLE TOURNAMENT SHOOTING SHIRT",
+		marca: "adidas",
+		descripcion:
+			"Vístete con los Cardinals con esta auténtica camiseta de tiro de la Universidad de Louisville, perfecta para usar en las gradas o en la cancha.",
+		precio: 45.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas manga larga",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1f1dad9e788a4544853ecd2361076b3d_9366/University_Of_Louisville_Tournament_Shooting_Shirt_Red_JN3172_01_laydown.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/4656ddeb84cc4f78a0d63a4e87b750bb_9366/University_Of_Louisville_Tournament_Shooting_Shirt_Red_JN3172_02_laydown_hover.jpg"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2618f6fea9ad4309b2d1a5b31a3646dd_9366/University_of_Kansas_Tournament_Shooting_Shirt_Blue_JN3173_01_laydown.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/95ad487c7cdb47dc9a7b200f5c9c0520_9366/University_of_Kansas_Tournament_Shooting_Shirt_Blue_JN3173_02_laydown_hover.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Y-3 RUST DYE LONG SLEEVE TEE",
+		marca: "adidas",
+		descripcion:
+			"Las ricas variaciones de color que se encuentran naturalmente en el cobre y el óxido inspiraron la camiseta de manga larga Y-3 Rust Dye, teñida con metal y vapor. Confeccionado con un material suave con una caída fluida, está cortado con líneas que se asemejan a las curvas y contornos del balón de fútbol adidas Teamgeist. El ajuste relajado recibe un toque entallado con un cuello redondo clásico.",
+		precio: 45.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas manga larga",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffff00"],
+					nombres: ["amarillo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/bb2950a249b44579bc07e955f10c7bef_9366/Y-3_Rust_Dye_Long_Sleeve_Tee_Multicolor_IR6256_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2762f36499904ee2a977408f7d5d9854_9366/Y-3_Rust_Dye_Long_Sleeve_Tee_Multicolor_IR6256_22_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/1378a4e74f734ba1a777d4d5921ae9e9_9366/Y-3_Rust_Dye_Long_Sleeve_Tee_Multicolor_IR6256_23_hover_model.jpg"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Y-3 RUNNING LONG SLEEVE TEE",
+		marca: "adidas",
+		descripcion:
+			"Combinando lo mejor de la moda y la funcionalidad, la camiseta de manga larga Y-3 Running está diseñada para el movimiento. Está confeccionado con un tejido de poliéster reciclado que incluye elasticidad para facilitar su uso. Un revestimiento de poliuretano ayuda a expulsar el agua y un cuello redondo mantiene la sensación de ajuste perfecto. El toque final: la firma de Yohji Yamamoto en la espalda en un estampado reflectante que destaca cuando hay poca luz.",
+		precio: 190.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas manga larga",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#808080"],
+					nombres: ["gris"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/93aaa2f1b26d4ec0a81a5225f3f5bce4_9366/Y-3_Running_Long_Sleeve_Tee_Grey_IV5605_21_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/33e2fdb2e3b8447bb6c51e8c19ce3635_9366/Y-3_Running_Long_Sleeve_Tee_Grey_IV5605_22_model.jpg",
+					"https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/59fdb06727844dc1a60dd26cac9b7693_9366/Y-3_Running_Long_Sleeve_Tee_Grey_IV5605_23_hover_model.jpg"
+				]
+			}
+		]
 	}
 ];
 
