@@ -25,7 +25,7 @@ export default function Nav({ categories }) {
       }
     }, 500);
   };
-
+  
   const triggerAnimation = () => {
     if (!isMenuDown) {
       const targetElement = document.querySelector('.categories-window');
