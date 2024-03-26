@@ -9,7 +9,7 @@ export default function Nav({ categories }) {
   const [search, setSearch] = useState('');
   const [isMenuDown, setIsMenuDown] = useState(false);
   const searchFunction = useStore((state) => state.search);
-  const getAll = useStore((state) => state.getAll);
+  const getAllProducts = useStore((state) => state.getAllProducts);
   const getSubcategoria = useStore((state) => state.getSubcategoria);
   const navigate = useNavigate();
   let windowTimeout;
@@ -71,8 +71,9 @@ export default function Nav({ categories }) {
 
   const goToStore = async () => {
     try {
-      await getAll();
+      await getAllProducts();
       navigate('/tienda');
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error(error);
     }
@@ -82,6 +83,7 @@ export default function Nav({ categories }) {
     try {
       await getSubcategoria(event.target.id);
       navigate('/tienda');
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error(error);
     }
