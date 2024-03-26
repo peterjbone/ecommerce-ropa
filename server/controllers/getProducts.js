@@ -1,7 +1,17 @@
 const Producto = require("../models/Producto.js");
 
 const getProducts = async (req, res) => {
-	const { categoria, genero, subcategoria, color, precio, marca } = req.query;
+	const {
+		categoria,
+		genero,
+		subcategoria,
+		color,
+		precio,
+		marca,
+		ordenPrecio,
+		ordenAlfa,
+		pagina
+	} = req.query;
 
 	try {
 		let allProducts = await Producto.find();
@@ -47,22 +57,47 @@ const getProducts = async (req, res) => {
 			});
 		}
 
-		if (precio) {
+		/* if (precio) {
 			allProducts = allProducts.filter(
 				(producto) =>
 					producto.precio <= Number(precio) &&
 					producto.precio >= Number(precio) - 25
 			);
-		}
+		} */
 
 		//* ORDENAMIENTOS
+		if (ordenPrecio) {
+			if (ordenPrecio === "asc") {
+				allProducts = allProducts.sort((a, b) => a.precio - b.precio);
+			}
+			if (ordenPrecio === "desc") {
+				allProducts = allProducts.sort((a, b) => b.precio - a.precio);
+			}
+		} else if (ordenAlfa) {
+			if (ordenAlfa === "asc") {
+				allProducts = allProducts.sort((a, b) =>
+					a.nombre > b.nombre ? 1 : -1
+				);
+			}
+			if (ordenAlfa === "desc") {
+				allProducts = allProducts.sort((a, b) =>
+					a.nombre < b.nombre ? 1 : -1
+				);
+			}
+		}
 
 		//* PAGINADO - LIMIT
+		if (pagina) {
+			const startIndex = (parseInt(pagina) - 1) * 10;
+			allProducts = allProducts.slice(startIndex, startIndex + 10);
+		}
 
+		//* --------------- RESPONDIENDO LOS PRODUCTOS ---------------------
 		if (allProducts.length > 0) {
-			res.status(200).json(allProducts);
+			console.log(allProducts.length);
+			return res.status(200).json(allProducts);
 		} else {
-			res.status(404).send("No se encontraron productos.");
+			return res.status(404).send("No se encontraron productos.");
 		}
 	} catch (error) {
 		console.log("Error interno de ruta /getProducts (backend)", error);

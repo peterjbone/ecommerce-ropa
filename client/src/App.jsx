@@ -13,7 +13,7 @@ function App() {
   const getDestacados = useStore((state) => state.getDestacados);
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
-	  const getTendencia = useStore((state) => state.getTendencia);
+	const getTendencia = useStore((state) => state.getTendencia);
 
   useEffect(() => {
     const uniqueCategories = products.reduce((unique, product) => {

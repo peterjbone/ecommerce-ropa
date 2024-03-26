@@ -7,8 +7,9 @@ import { useStore } from '../../store.js';
 
 export default function Nav({ categories }) {
   const [search, setSearch] = useState('');
+  const [isMenuDown, setIsMenuDown] = useState(false);
   const searchFunction = useStore((state) => state.search);
-  const getAll = useStore((state) => state.getAll);
+  const getAllProducts = useStore((state) => state.getAllProducts);
   const getSubcategoria = useStore((state) => state.getSubcategoria);
   const navigate = useNavigate();
   let windowTimeout;
@@ -26,15 +27,21 @@ export default function Nav({ categories }) {
   };
   
   const triggerAnimation = () => {
-    const targetElement = document.querySelector('.categories-window');
-    targetElement.classList.add('move-down');
-    windowTimeout = setTimeout(() => {
-      targetElement.classList.remove('move-down');
-      targetElement.classList.add('move-up');
+    if (!isMenuDown) {
+      const targetElement = document.querySelector('.categories-window');
       setTimeout(() => {
-        targetElement.classList.remove('move-up');
-      }, 500);
-    }, 3000);
+        targetElement.classList.add('move-down');
+        setIsMenuDown(true);
+      }, 1000);
+      windowTimeout = setTimeout(() => {
+        targetElement.classList.remove('move-down');
+        targetElement.classList.add('move-up');
+        setTimeout(() => {
+          targetElement.classList.remove('move-up');
+          setIsMenuDown(false);
+        }, 500);
+      }, 4000);
+    }
   }
 
   const cancelMoveWindowUp = () => {
@@ -43,12 +50,12 @@ export default function Nav({ categories }) {
 
   const resetAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
-    targetElement.classList.remove('move-down');
     setTimeout(() => {
-      targetElement.classList.remove('move-up');
+      targetElement.classList.remove('move-down');
       targetElement.classList.add('move-up');
       setTimeout(() => {
         targetElement.classList.remove('move-up');
+        setIsMenuDown(false);
       }, 500);
     }, 1500);
   }
@@ -64,8 +71,9 @@ export default function Nav({ categories }) {
 
   const goToStore = async () => {
     try {
-      await getAll();
+      await getAllProducts();
       navigate('/tienda');
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error(error);
     }
@@ -75,6 +83,7 @@ export default function Nav({ categories }) {
     try {
       await getSubcategoria(event.target.id);
       navigate('/tienda');
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error(error);
     }
