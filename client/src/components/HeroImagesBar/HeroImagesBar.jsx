@@ -26,6 +26,9 @@ export default function HeroImagesBar({ products }) {
     autoScrollIntervalRef.current = setInterval(() => {
       showNextImage();
     }, 4000);
+    return () => {
+      clearInterval(autoScrollIntervalRef.current);
+    };
   }
 
   const showNextImage = () => {

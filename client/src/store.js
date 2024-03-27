@@ -2,10 +2,10 @@ import { create } from 'zustand';
 import axios from 'axios';
 import productos from './utils/arrayProductos.js';
 
-export const useStore = create((set) => ({
+export const useStore = create((set, get) => ({
   products: productos,
   productosFiltrados: productos,
-  favoritos: [],
+  favoritos: [1, 2, 3, 4, 5, 10, 15],
   carrito: [],
   nuevos: [],
   destacados: [],
@@ -48,7 +48,6 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-
   getNuevos: async () => {
     try {
       // const { data } = await axios(`http://localhost:3001/nuevos`);
@@ -57,7 +56,7 @@ export const useStore = create((set) => ({
         if (producto.productoNuevo) {
           data.push(producto);
         }
-      })
+      });
       set(() => ({ nuevos: data }));
     } catch (error) {
       console.error("Error al buscar Nuevos:", error);
@@ -72,7 +71,7 @@ export const useStore = create((set) => ({
         if (producto.subcategoria === 'Destacado') {
           data.push(producto);
         }
-      })
+      });
       set(() => ({ destacados: data }));
     } catch (error) {
       console.error("Error al buscar Destacados:", error);
@@ -87,7 +86,7 @@ export const useStore = create((set) => ({
         if (producto.precio < 25) {
           data.push(producto);
         }
-      })
+      });
       set(() => ({ ofertas: data }));
     } catch (error) {
       console.error("Error al buscar Ofertas:", error);
@@ -102,7 +101,7 @@ export const useStore = create((set) => ({
         if (producto.subcategoria === 'Tendencia') {
           data.push(producto);
         }
-      })
+      });
       set(() => ({ tendencia: data }));
     } catch (error) {
       console.error("Error al buscar Tendencia:", error);
@@ -132,6 +131,36 @@ export const useStore = create((set) => ({
     } catch (error) {
       console.error("Error al buscar:", error);
       throw error;
+    }
+  },
+  getFavoritos: async () => {
+    try {
+      const { data } = await axios(`http://localhost:3001/favoritos`);
+      set(() => ({ favoritos: data }));
+    } catch (error) {
+      console.error("Error al buscar Favoritos:", error);
+      throw error;
+    }
+  },
+  addFav: async (id) => {
+    try {
+      // const { data } = await axios.put('http://localhost:3001/agregarFavorito', id);
+      // set(() => ({ favoritos: data }));
+      set((state) => ({ favoritos: [...state.favoritos, id] }));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  removeFav: async (id) => {
+    try {
+      // const { data } = await axios.put('http://localhost:3001/removerFavorito', id);
+      // set(() => ({ favoritos: data }));
+      set((state) => {
+        const updatedFavoritos = state.favoritos.filter((item) => item !== id);
+        return { favoritos: updatedFavoritos };
+      });
+    } catch (error) {
+      console.log(error);
     }
   }
 }));
