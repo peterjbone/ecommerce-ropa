@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './ProductsBar.css'
 
 import { useState } from 'react'
+import Card from '../Card/Card';
 
 
 export default function ProductsBar({ title, products }) {
@@ -35,16 +36,7 @@ export default function ProductsBar({ title, products }) {
         </button>
         <div className='products-bar-container' >
           {products?.map(product =>
-            <div key={`${title}/${product.id}`} className='product-container' style={{ translate: `${productPosition * - 205 * 5}px` }} >
-              <div className='product-image-container' >
-                <Link to={`/${product.id}`} >
-                  <img src={product.imagen[0]} alt={product.imagen[0]} className='image' />
-                </Link>
-              </div>
-              <h4>{product.nombre}</h4>
-              <p>${product.precio}</p>
-              <button className='product-add-to-cart-button' >Agregar Al Carrito</button>
-            </div>
+          <Card product={product} isProductsBar={true} title={title} productPosition={productPosition} key={product.id} />
           )}
         </div>
         <button

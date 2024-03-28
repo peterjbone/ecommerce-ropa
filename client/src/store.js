@@ -2,19 +2,45 @@ import { create } from "zustand";
 import axios from "axios";
 import productos from "./utils/arrayProductos.js";
 
-export const useStore = create((set) => ({
+export const useStore = create((set, get) => ({
 	products: productos,
 	productosFiltrados: productos,
-	favoritos: [],
+	favoritos: [1, 2, 3, 4, 5, 10, 15],
+	carrito: [],
 	nuevos: [],
 	destacados: [],
 	ofertas: [],
 	tendencia: [],
+	filtros: {
+		busqueda: "",
+		precioDesde: 0,
+		precioHasta: "",
+		conOfertas: false, // o porcentageDeOferta: 0,
+		esNuevo: false,
+		categorias: [],
+		generos: [],
+		subcategorias: [],
+		colores: [],
+		tallas: [],
+		ordenadoPor: "",
+		ascendente: false,
+		pagina: 1
+	},
 
-	getAll: async () => {
+	getAllProducts: async () => {
 		try {
-			const { data } = await axios(`http://localhost:3001/productos`);
-			//const data = [...productos];
+			// const { data } = await axios(`http://localhost:3001/todos`);
+			const data = [...productos];
+			set(() => ({ products: data, productosFiltrados: data }));
+		} catch (error) {
+			console.error("Error al buscar Todo:", error);
+			throw error;
+		}
+	},
+	getFilteredProducts: async () => {
+		try {
+			// const { data } = await axios(`http://localhost:3001/todos`);
+			const data = [...productos];
 			set(() => ({ products: data, productosFiltrados: data }));
 		} catch (error) {
 			console.error("Error al buscar Todo:", error);
@@ -106,6 +132,36 @@ export const useStore = create((set) => ({
 		} catch (error) {
 			console.error("Error al buscar:", error);
 			throw error;
+		}
+	},
+	getFavoritos: async () => {
+		try {
+			const { data } = await axios(`http://localhost:3001/favoritos`);
+			set(() => ({ favoritos: data }));
+		} catch (error) {
+			console.error("Error al buscar Favoritos:", error);
+			throw error;
+		}
+	},
+	addFav: async (id) => {
+		try {
+			// const { data } = await axios.put('http://localhost:3001/agregarFavorito', id);
+			// set(() => ({ favoritos: data }));
+			set((state) => ({ favoritos: [...state.favoritos, id] }));
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	removeFav: async (id) => {
+		try {
+			// const { data } = await axios.put('http://localhost:3001/removerFavorito', id);
+			// set(() => ({ favoritos: data }));
+			set((state) => {
+				const updatedFavoritos = state.favoritos.filter((item) => item !== id);
+				return { favoritos: updatedFavoritos };
+			});
+		} catch (error) {
+			console.log(error);
 		}
 	}
 }));
