@@ -1,8 +1,8 @@
 const Producto = require("../models/Producto.js");
 
 const getProducts = async (request, response) => {
-	try {
-    const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, categoria, genero, subcategoria, color, talla, ordenadoPor, ascendente, pagina } = request.body;
+  try {
+    const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, marca, genero, categoria, subcategoria, color, talla, ordenadoPor, ascendente, pagina } = request.body;
 
     // const busqueda = '';
     // const precioDesde = 0;
@@ -44,11 +44,14 @@ const getProducts = async (request, response) => {
     if (typeof esNuevo === 'boolean') {
       query.productoNuevo = esNuevo;
     }
-    if (categoria && categoria.length > 0) {
-      query.categoria = { $in: categoria };
+    if (marca && marca.length > 0) {
+      query.marca = { $in: marca };
     }
     if (genero && genero.length > 0) {
       query.genero = { $in: genero };
+    }
+    if (categoria && categoria.length > 0) {
+      query.categoria = { $in: categoria };
     }
     if (subcategoria && subcategoria.length > 0) {
       query.subcategoria = { $in: subcategoria };
@@ -124,10 +127,10 @@ const getProducts = async (request, response) => {
         }
       }
     ];
-    
+
     const [result] = await Producto.aggregate(aggregationPipeline);
     const { marcas, categorias, generos, subcategorias, colores, talles } = result;
-    
+
     const productOptions = {
       marcas,
       categorias,
@@ -139,25 +142,25 @@ const getProducts = async (request, response) => {
 
     let sort = {};
     switch (ordenadoPor) {
-      case 'nombre':
+      case 'Nombre':
         sort.nombre = ascendente ? 1 : - 1;
         break;
-      case 'marca':
+      case 'Marca':
         sort.marca = ascendente ? 1 : - 1;
         break;
-      case 'precio':
+      case 'Precio':
         sort.precio = ascendente ? 1 : - 1;
         break;
-      case 'oferta':
+      case 'Oferta':
         sort['oferta.Descuento'] = ascendente ? 1 : - 1;
         break;
-      case 'categoria':
-        sort.categoria = ascendente ? 1 : - 1;
-        break;
-      case 'genero':
+      case 'Genero':
         sort.genero = ascendente ? 1 : - 1;
         break;
-      case 'subcategoria':
+      case 'Categoria':
+        sort.categoria = ascendente ? 1 : - 1;
+        break;
+      case 'Subcategoria':
         sort.subcategoria = ascendente ? 1 : - 1;
         break;
       default:

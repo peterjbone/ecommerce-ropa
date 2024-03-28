@@ -15,7 +15,7 @@ export default function Nav() {
   const [search, setSearch] = useState('');
   const [isMenuDown, setIsMenuDown] = useState(false);
   const searchFunction = useStore((state) => state.search);
-  const getAllProducts = useStore((state) => state.getAllProducts);
+  const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const getSubcategoria = useStore((state) => state.getSubcategoria);
   const navigate = useNavigate();
   const lists = [
@@ -84,6 +84,7 @@ export default function Nav() {
   const cancelMoveWindowUp = () => {
     console.log('cancel');
     clearTimeout(windowTimeout);
+    windowTimeout = null;
   }
 
   const handleSearch = async () => {
@@ -97,7 +98,7 @@ export default function Nav() {
 
   const goToStore = async () => {
     try {
-      await getAllProducts();
+      await getFilteredProducts();
       navigate('/tienda');
       window.scrollTo(0, 0);
     } catch (error) {
@@ -159,7 +160,7 @@ export default function Nav() {
       <div className='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
         {lists.map(list => (
           <>
-            <label>{list.title}</label>
+            <label key={list.title} >{list.title}</label>
             {list.list.map(value => (
               <p
                 key={value}

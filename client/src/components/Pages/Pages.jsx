@@ -1,14 +1,15 @@
 import './Pages.css';
 import { useEffect, useState } from "react";
 import CardsContainer from '../CardsContainer/CardsContainer';
+import { useStore } from '../../store.js';
 
-export default function Pages({ cardsPerPage, cards }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const finalIndex = currentPage * cardsPerPage;
-  const initialIndex = finalIndex - cardsPerPage;
-  const products = (cards.slice(initialIndex, finalIndex));
-  const nPages = Math.ceil(cards.length / cardsPerPage);
-
+export default function Pages() {
+  const products = useStore((state) => state.productosFiltrados);
+  const cantidadDeProductos = useStore((state) => state.cantidadDeProductos);
+  const productosPorPagina = useStore((state) => state.productosPorPagina);
+  const pagina = useStore((state) => state.filtros.pagina);
+  const [currentPage, setCurrentPage] = useState(pagina);
+  const nPages = Math.ceil(cantidadDeProductos / productosPorPagina);
 
   useEffect(() => {
     if (currentPage > nPages) {
@@ -37,7 +38,7 @@ export default function Pages({ cardsPerPage, cards }) {
         {(() => {
           return (
             <button
-              className={(currentPage === 1 || cardsPerPage === cards.length) ? 'invisible' : 'page-button'}
+              className={(currentPage === 1 || productosPorPagina === cantidadDeProductos) ? 'invisible' : 'page-button'}
               onClick={previousPage} >
               Anterior
             </button>
@@ -54,7 +55,7 @@ export default function Pages({ cardsPerPage, cards }) {
           </button>
         ))}
         {(() => {
-          const nextClassName = (currentPage === nPages || nPages === 0 || cardsPerPage === cards.length) ? 'invisible' : 'page-button';
+          const nextClassName = (currentPage === nPages || nPages === 0 || productosPorPagina === cantidadDeProductos) ? 'invisible' : 'page-button';
           return (
             <button
               className={nextClassName}

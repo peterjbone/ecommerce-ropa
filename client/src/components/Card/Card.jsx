@@ -50,21 +50,38 @@ export default function Card({ product, isProductsBar, title, productPosition })
         <button className='card-favorite-button' onClick={handleFavorite}>{isFav ? '❤️' : '🤍'}</button>
         <div className='card-image-container'>
           <Link to={`/${product.id}`} key={product.id}>
-            <img src={product.imagen[0]} alt={`Imagen producto ${product.name}`} />
+            <img src={product?.opciones[0]?.imagenes[0]} alt={`Imagen producto ${product.name}`} />
+            {/* <img src={product.imagen[0]} alt={`Imagen producto ${product.name}`} /> */}
           </Link>
         </div>
         <div className='card-info-container'>
           <p style={{ fontSize: '20px' }}>{product.nombre}</p>
           <p>{product.marca}</p>
-          {product?.tallas && (
+          {product?.opciones[0].tallas && (
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              {product.opciones[0].tallas.map(talla => (
+                <p className='sizes' key={talla.stock}>{talla.talla}</p>
+              ))}
+            </div>
+          )}
+          {/* {product?.tallas && (
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               {product.tallas.map(talla => (
                 <p className='sizes' key={talla}>{talla}</p>
               ))}
             </div>
-          )}
+          )} */}
           <div style={{ display: 'flex', flexDirection: 'row' }}>
-            {product.opcion.map((opcion, index) => {
+            {product.opciones[0].colores?.codigosHex.map((color, index) => {
+              return (
+                <div
+                  key={index}
+                  className='colorBox'
+                  style={{ backgroundColor: color }}
+                ></div>
+              );
+            })}
+            {/* {product.opcion.map((opcion, index) => {
               const { codHexadecimal } = opcion.color;
               return (
                 <div
@@ -73,7 +90,7 @@ export default function Card({ product, isProductsBar, title, productPosition })
                   style={{ backgroundColor: codHexadecimal }}
                 ></div>
               );
-            })}
+            })} */}
           </div>
           <p style={{ fontSize: '20px' }}>$ {product.precio.toLocaleString('sp-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
         </div>

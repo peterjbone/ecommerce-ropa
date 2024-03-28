@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <div className={styles['home-container']} id='home' >
-      <HeroImagesBar products={products} />
+      {/* <HeroImagesBar products={products} />
       <ProductsBar title='Nuevos' products={nuevos} />
       <ProductsBar title='Destacados' products={destacados} />
       <ProductsBar title='Ofertas' products={ofertas} />
@@ -30,7 +30,7 @@ const Home = () => {
       <CategoriesBar title='Categorias' categories={listaCategorias} />
       <CategoriesBar title='Subcategorias' categories={listaSubcategorias} />
       <CategoriesBar title='Colores' categories={listaColores} />
-      <CategoriesBar title='Tallas' categories={listaTallas} />
+      <CategoriesBar title='Tallas' categories={listaTallas} /> */}
       <br /><br /><br />
     </div>
   )
