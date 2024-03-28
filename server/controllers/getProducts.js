@@ -4,7 +4,7 @@ const getProducts = async (request, response) => {
 	try {
     const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, categoria, genero, subcategoria, color, talla, ordenadoPor, ascendente, pagina } = request.body;
 
-    // const busqueda = 'no';
+    // const busqueda = '';
     // const precioDesde = 0;
     // const precioHasta = 0;
     // const porcentajeDeOferta = 0;
@@ -166,12 +166,13 @@ const getProducts = async (request, response) => {
     const pageSize = 20;
     const skip = (pagina - 1) * pageSize;
 
+    const count = await Producto.countDocuments(query);
     const filteredProducts = await Producto.find(query)
       .sort(sort)
       .skip(skip)
       .limit(pageSize);
 
-    response.status(200).json({ productOptions, filteredProducts });
+    response.status(200).json({ count, productOptions, filteredProducts });
   } catch (error) {
     console.error(error);
     response.status(500).json({ error, message: 'Error interno de ruta /getProducts' });
