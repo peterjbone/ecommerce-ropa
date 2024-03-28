@@ -11,15 +11,21 @@ export const useStore = create((set, get) => ({
   destacados: [],
   ofertas: [],
   tendencia: [],
+  listaMarcas: [],
+  listaCategorias: [],
+  listaGeneros: [],
+  listaSubcategorias: [],
+  listaColores: [],
+  listaTallas: [],
   filtros: {
     busqueda: '',
     precioDesde: 0,
     precioHasta: '',
     conOfertas: false, // o porcentajeDeOferta: 0,
     esNuevo: false,
-    categorias: [],
-    generos: [],
-    subcategorias: [],
+    categoria: [],
+    genero: [],
+    subcategoria: [],
     colores: [],
     tallas: [],
     ordenadoPor: '',
@@ -27,11 +33,18 @@ export const useStore = create((set, get) => ({
     pagina: 1,
   },
 
-  getAllProducts: async () => {
+  getProductInfo: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/todos`);
-      const data = [...productos];
-      set(() => ({ products: data, productosFiltrados: data }));
+      const { data } = await axios(`http://localhost:3001/infoProductos`);
+      const { marcas, categorias, generos, subcategorias, colores, talles } = data;
+      set(() => ({
+        listaMarcas: marcas,
+        listaCategorias: categorias,
+        listaGeneros: generos,
+        listaSubcategorias: subcategorias,
+        listaColores: colores,
+        listaTallas: talles
+      }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
       throw error;
@@ -39,10 +52,9 @@ export const useStore = create((set, get) => ({
   },
   getFilteredProducts: async () => {
     try {
-
-      // const { data } = await axios(`http://localhost:3001/todos`);
-      const data = [...productos];
-      set(() => ({ products: data, productosFiltrados: data }));
+      const { data } = await axios.post(`http://localhost:3001/productos`);
+      console.log(data);
+      set(() => ({ products: [...productos], productosFiltrados: data }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
       throw error;

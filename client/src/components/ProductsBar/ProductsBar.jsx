@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './ProductsBar.css'
 
 import { useState } from 'react'

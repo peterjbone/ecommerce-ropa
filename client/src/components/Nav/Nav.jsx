@@ -5,13 +5,45 @@ import { Link as ScrollLink } from 'react-scroll';
 import logo from '../../assets/images/nombre.png'
 import { useStore } from '../../store.js';
 
-export default function Nav({ categories }) {
+export default function Nav() {
+  const listaMarcas = useStore((state) => state.listaMarcas);
+  const listaGeneros = useStore((state) => state.listaGeneros);
+  const listaCategorias = useStore((state) => state.listaCategorias);
+  const listaSubcategorias = useStore((state) => state.listaSubcategorias);
+  const listaColores = useStore((state) => state.listaColores);
+  const listaTallas = useStore((state) => state.listaTallas);
   const [search, setSearch] = useState('');
   const [isMenuDown, setIsMenuDown] = useState(false);
   const searchFunction = useStore((state) => state.search);
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getSubcategoria = useStore((state) => state.getSubcategoria);
   const navigate = useNavigate();
+  const lists = [
+    {
+      title: 'Marcas',
+      list: listaMarcas,
+    },
+    {
+      title: 'Generos',
+      list: listaGeneros,
+    },
+    {
+      title: 'Categorias',
+      list: listaCategorias,
+    },
+    {
+      title: 'Subcategorias',
+      list: listaSubcategorias,
+    },
+    {
+      title: 'Colores',
+      list: listaColores,
+    },
+    {
+      title: 'Tallas',
+      list: listaTallas,
+    },
+  ]
   let windowTimeout;
 
   const handleScroll = () => {
@@ -25,7 +57,7 @@ export default function Nav({ categories }) {
       }
     }, 500);
   };
-  
+
   const triggerAnimation = () => {
     if (!isMenuDown) {
       const targetElement = document.querySelector('.categories-window');
@@ -33,31 +65,25 @@ export default function Nav({ categories }) {
         targetElement.classList.add('move-down');
         setIsMenuDown(true);
       }, 1000);
-      windowTimeout = setTimeout(() => {
-        targetElement.classList.remove('move-down');
-        targetElement.classList.add('move-up');
-        setTimeout(() => {
-          targetElement.classList.remove('move-up');
-          setIsMenuDown(false);
-        }, 500);
-      }, 4000);
     }
-  }
-
-  const cancelMoveWindowUp = () => {
-    clearTimeout(windowTimeout);
   }
 
   const resetAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
-    setTimeout(() => {
+    windowTimeout = setTimeout(() => {
+      console.log('start');
       targetElement.classList.remove('move-down');
       targetElement.classList.add('move-up');
       setTimeout(() => {
         targetElement.classList.remove('move-up');
         setIsMenuDown(false);
       }, 500);
-    }, 1500);
+    }, 4000);
+  }
+
+  const cancelMoveWindowUp = () => {
+    console.log('cancel');
+    clearTimeout(windowTimeout);
   }
 
   const handleSearch = async () => {
@@ -131,7 +157,22 @@ export default function Nav({ categories }) {
         </div>
       </nav>
       <div className='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
-        {categories.map(category =>
+        {lists.map(list => (
+          <>
+            <label>{list.title}</label>
+            {list.list.map(value => (
+              <p
+                key={value}
+                onMouseEnter={cancelMoveWindowUp}
+                id={value}
+                onClick={handleSubcategorySearch}
+              >
+                {value}
+              </p>
+            ))}
+          </>
+        ))}
+        {/* {categories.map(category =>
           <p
             key={category.id}
             onMouseEnter={cancelMoveWindowUp}
@@ -140,7 +181,7 @@ export default function Nav({ categories }) {
           >
             {category.subcategoria}
           </p>
-        )}
+        )} */}
       </div>
     </>
   );
