@@ -12294,6 +12294,7 @@ productos.forEach(prod => {
   }
 })
 // console.log(categorias);
+export 
 
 let subcategoria = []
 productos.forEach(prod => {

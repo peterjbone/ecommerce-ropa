@@ -15,7 +15,7 @@ export const useStore = create((set, get) => ({
     busqueda: '',
     precioDesde: 0,
     precioHasta: '',
-    conOfertas: false, // o porcentageDeOferta: 0,
+    conOfertas: false, // o porcentajeDeOferta: 0,
     esNuevo: false,
     categorias: [],
     generos: [],

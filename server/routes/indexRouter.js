@@ -11,8 +11,8 @@ const updateProduct = require("../controllers/updateProduct.js");
 const router = Router();
 
 //* Rutas
-router.get("/productos", getProducts);
 router.get("/producto/:id", getProductById);
+router.post("/productos", getProducts);
 router.post("/createproduct", postProduct);
 router.put("/updateproduct/:id", updateProduct);
 router.delete("/removeproduct/:id", removeProduct);
