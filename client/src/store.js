@@ -29,7 +29,7 @@ export const useStore = create((set) => ({
     esNuevo: false,
     color: [],
     talla: [],
-    ordenadoPor: 'precio',
+    ordenado: 'precio',
     ascendente: false,
     pagina: 1,
   },
@@ -59,18 +59,53 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  setFilters: (name, id) => {
-    console.log(name, id);
+  setOrder: (value) => {
     set((state) => ({
       filtros: {
         ...state.filtros,
-        [name.toLowerCase()]: toggleValue(state.filtros[name.toLowerCase()], id),
+         ordenado: value,
+      },
+    }));
+  },
+  setOrderDirection: () => {
+    set((state) => ({
+      filtros: {
+        ...state.filtros,
+        ascendente: !state.filtros.ascendente,
+      },
+    }));
+  },
+  setPrices: (from, till) => {
+    set((state) => ({
+      filtros: {
+        ...state.filtros,
+         precioDesde: Number(from),
+         precioHasta: Number(till),
+      },
+    }));
+  },
+  setFilters: (name, id) => {
+    set((state) => ({
+      filtros: {
+        ...state.filtros,
+        [name]: toggleValue(state.filtros[name], id),
+        pagina: 1,
+      },
+    }));
+  },
+  setPage: (page) => {
+    console.log(page);
+    set((state) => ({
+      filtros: {
+        ...state.filtros,
+         pagina: page,
       },
     }));
   },
   getFilteredProducts: async () => {
+    console.log(useStore.getState().filtros);
     try {
-      const { data } = await axios.post(`http://localhost:3001/productos`, useStore.getState()?.filtros);
+      const { data } = await axios.post(`http://localhost:3001/productos`, useStore.getState().filtros);
       const { count, productOptions, filteredProducts } = data;
       const { marcas, categorias, generos, subcategorias, colores, talles } = productOptions;
       set(() => ({

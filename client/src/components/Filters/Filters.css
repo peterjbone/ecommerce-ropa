@@ -1,18 +1,100 @@
 .filters-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 20%;
+  height: 90vh;
   padding-left: 10px;
-  margin-top: 20vh;
+  margin-top: 15vh;
+  padding-right: 10px;
   overflow-y: scroll;
+  scrollbar-color: white;
+}
+
+.filters-container::-webkit-scrollbar {
+  background-color: rgb(255, 255, 255);
+  width: 6px;
+}
+
+.filters-container::-webkit-scrollbar-track {
+  background-color: rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 0, 0);
+}
+
+.filters-container::-webkit-scrollbar-button {}
+
+
+.filter-titles {
+  text-transform: capitalize;
+}
+
+.order-by-options-container,
+.filter-list-container {
+  overflow: auto;
+  /* max-height: 34vh; */
+  z-index: 5;
+  margin-bottom: 5px;
+}
+
+.order-by-options-container {
+  position: absolute;
+  width: 79.5%;
+}
+
+.order-by-button-container,
+.order-by-options-button-div,
+.filter-list-button-container {
+  display: flex;
+  height: 25px;
+}
+
+.order-by-button,
+.order-by-options-button,
+.filter-list-button {
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  color: rgb(168, 168, 168);
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.order-by-options-button {
+  color: black;
+}
+
+.order-by-button {
+  border-color: black;
+  background-color: black;
+  color: white;
+}
+
+.order-by-options-button-div {
+  border: 1px solid white;
+}
+
+.order-by-options-button-div:hover {
+  border: 1px solid black;
+  border-color: black;
+}
+
+.order-direction-button,
+.submit-prices-button {
+  margin-left: 5px;
+  height: 25px;
+  background-color: rgb(0, 0, 0);
+  border: none;
+  padding-bottom: 2px;
+  cursor: pointer;
 }
 
 .number-filters-container {
-  margin-top: 4px;
-}
-
-.filter-titles {
+  margin-top: 5px;
 }
 
 .filter-row {
@@ -22,101 +104,63 @@
 
 .filter-row input {
   margin-right: 5px;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
   padding: 0;
-  font-size: 1rem;
   width: 45%;
-  height: 20px;
+  height: 25px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0;
+  border: 1px solid white;
 }
 
+.filter-row input:hover {
+  border-color: black;
+}
+
+.filter-row input:focus {
+  border-color: black;
+  outline: none;
+}
 .filter-row label {
   margin-right: 5px;
   margin-top: 1px;
 }
 
-.filter-row button {
-  max-height: 20px;
-}
-
 .filters-container label:hover {
-  background-color: var(--hover-button-background-color);
+  background-color: white;
 }
 
-.order-by-options-container,
-.filter-list-container {
-  overflow: auto;
-  width: 100%;
-  /* max-height: 34vh; */
-  z-index: 5;
-  border-radius: 0 0 3px 3px;
-  margin-bottom: 5px;
+.filter-list-button-container:hover,
+.filter-list-button:hover {
+  border-color: black;
 }
 
-.filter-list-button-container,
-.order-by-options-button-div,
-.order-by-button-container {
-  display: flex;
-  height: 25px;
-}
-
-.filter-list-button,
-.order-by-options-button,
-.order-by-button {
-  display: flex;
-  align-items: center;
-  border-radius: 0;
-  width: 100%;
-  background-color: var(--input-background-color);
-  color: var(--input-letters-color);
-  text-transform: capitalize;
-  cursor: pointer;
-}
-
-
-.order-button {
-  margin-left: 5px;
-  background-color: var(--input-background-color);
-  border-radius: 0 3px 3px 0;
-}
-
-.order-by-button {
-  border-radius: 3px 0 0 0;
-}
-
-.order-by-options-container {
-  position: absolute;
-  border-radius: 0 0 3px 3px;
-  width: 90%;
-  background-color: var(--button-letters-color);
-}
-
-.order-by-button:hover,
-.order-button:hover,
+.order-direction-button:hover,
 .filter-row button:hover,
 .filter-list-button:hover,
 .clear-all-button:hover {
-  background-color: rgb(175, 175, 175);
+  color: black;
+  /* background-color: rgb(255, 255, 255); */
 }
 
 .available {
-  background-color: rgb(21, 255, 0);
+  background-color: rgb(255, 255, 255);
+  color: black;
 }
 
-.selected {
-  background-color: rgb(255, 0, 0);
+.selected,
+.selected-order {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
-.filter-list-button-container:focus {
-  outline: 0;
+.available:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
-.home-temperament-search {
-  border-radius: 3px 3px 0 0;
-  color: var(--input-letters-color);
-}
-
-.home-temperament-search:hover {
-  color: var(--input-letters-color);
+.selected:hover {
+  color: rgb(255, 0, 0);
 }
 
 .clear-all-button {

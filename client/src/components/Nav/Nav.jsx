@@ -157,13 +157,13 @@ export default function Nav() {
           </NavLink>
         </div>
       </nav>
-      <div className='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
-        {lists.map(list => (
-          <>
-            <label key={list.title} >{list.title}</label>
-            {list.list.map(value => (
+      <div className='categories-window' key='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
+        {lists.map((list, index) => (
+          <div key={`${list.title} ${index}`} >
+            <label>{list.title}</label>
+            {list.list.map((value, index) => (
               <p
-                key={value}
+                key={`${value} ${index}`}
                 onMouseEnter={cancelMoveWindowUp}
                 id={value}
                 onClick={handleSubcategorySearch}
@@ -171,7 +171,7 @@ export default function Nav() {
                 {value}
               </p>
             ))}
-          </>
+          </div>
         ))}
         {/* {categories.map(category =>
           <p

@@ -14,10 +14,10 @@ export default function Card({ product, isProductsBar, title, productPosition })
     try {
       if (isFav) {
         setIsFav(false);
-        await removeFav(product.id);
+        await removeFav(product._id);
       } else {
         setIsFav(true);
-        await addFav(product.id);
+        await addFav(product._id);
       }
     } catch (error) {
       console.error(error);
@@ -26,18 +26,18 @@ export default function Card({ product, isProductsBar, title, productPosition })
 
   useEffect(() => {
     favoritos?.forEach((fav) => {
-      if (fav === product.id) {
+      if (fav === product._id) {
         setIsFav(true);
       }
     });
-  }, [favoritos, product.id]);
+  }, [favoritos, product._id]);
 
   return (
     isProductsBar ? (
-      <div key={`${title}/${product.id}`} className='product-container' style={{ transition: '300ms ease-in-out', transform: `translateX(${productPosition * -205 * 5}px)` }}>
+      <div key={`${title}/${product._id}`} className='product-container' style={{ transition: '300ms ease-in-out', transform: `translateX(${productPosition * -205 * 5}px)` }}>
         <button className='card-favorite-button' onClick={handleFavorite}>{isFav ? '❤️' : '🤍'}</button>
         <div className='product-image-container'>
-          <Link to={`/${product.id}`}>
+          <Link to={`/${product._id}`}>
             <img src={product.imagen[0]} alt={product.imagen[0]} className='image' />
           </Link>
         </div>
@@ -49,7 +49,7 @@ export default function Card({ product, isProductsBar, title, productPosition })
       <div className='card-container'>
         <button className='card-favorite-button' onClick={handleFavorite}>{isFav ? '❤️' : '🤍'}</button>
         <div className='card-image-container'>
-          <Link to={`/${product.id}`} key={product.id}>
+          <Link to={`/${product._id}`} key={product._id}>
             <img src={product?.opciones[0]?.imagenes[0]} alt={`Imagen producto ${product.name}`} />
             {/* <img src={product.imagen[0]} alt={`Imagen producto ${product.name}`} /> */}
           </Link>
@@ -59,8 +59,8 @@ export default function Card({ product, isProductsBar, title, productPosition })
           <p>{product.marca}</p>
           {product?.opciones[0].tallas && (
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-              {product.opciones[0].tallas.map(talla => (
-                <p className='sizes' key={talla.stock}>{talla.talla}</p>
+              {product.opciones[0].tallas.map((talla, index) => (
+                <p className='sizes' key={`${talla.stock} ${index}`}>{talla.talla}</p>
               ))}
             </div>
           )}
@@ -75,7 +75,7 @@ export default function Card({ product, isProductsBar, title, productPosition })
             {product.opciones[0].colores?.codigosHex.map((color, index) => {
               return (
                 <div
-                  key={index}
+                  key={`${color} ${index}`}
                   className='colorBox'
                   style={{ backgroundColor: color }}
                 ></div>

@@ -6,17 +6,17 @@ import styles from './Detail.module.css';
 
 const Detail = ({ products }) => {
   const { id } = useParams();
-  const product = products.find((product) => product.id === parseInt(id));
+  const product = products.find((product) => product._id === parseInt(id));
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    const filteredRelatedProducts = products.filter((p) => p.id !== product.id);
+    const filteredRelatedProducts = products.filter((p) => p.id !== product._id);
     filteredRelatedProducts.sort(() => Math.random() - 0.5);
     const slicedRelatedProducts = filteredRelatedProducts.slice(0, 3);
     setRelatedProducts(slicedRelatedProducts);
-  }, [id, products, product.id]);
+  }, [id, products, product._id]);
 
   if (!product) {
     return <div>Producto no encontrado</div>;

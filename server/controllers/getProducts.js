@@ -2,21 +2,7 @@ const Producto = require("../models/Producto.js");
 
 const getProducts = async (request, response) => {
   try {
-    const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, marca, genero, categoria, subcategoria, color, talla, ordenadoPor, ascendente, pagina } = request.body;
-
-    // const busqueda = '';
-    // const precioDesde = 0;
-    // const precioHasta = 0;
-    // const porcentajeDeOferta = 0;
-    // const esNuevo = undefined;
-    // const categoria = ['adultos'];
-    // const genero = [];
-    // const subcategoria = [];
-    // const color = ['cafe'];
-    // const talla = ['M'];
-    // const ordenadoPor = 'precio';
-    // const ascendente = true;
-    // const pagina = 1;
+    const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, marca, genero, categoria, subcategoria, color, talla, ordenado, ascendente, pagina } = request.body;
 
     let query = {};
     const searchTerms = busqueda.split(' ').map(term => `(?=.*${term})`).join('.*');
@@ -141,26 +127,26 @@ const getProducts = async (request, response) => {
     };
 
     let sort = {};
-    switch (ordenadoPor) {
-      case 'Nombre':
+    switch (ordenado) {
+      case 'nombre':
         sort.nombre = ascendente ? 1 : - 1;
         break;
-      case 'Marca':
+      case 'marca':
         sort.marca = ascendente ? 1 : - 1;
         break;
-      case 'Precio':
+      case 'precio':
         sort.precio = ascendente ? 1 : - 1;
         break;
-      case 'Oferta':
+      case 'oferta':
         sort['oferta.Descuento'] = ascendente ? 1 : - 1;
         break;
-      case 'Genero':
+      case 'genero':
         sort.genero = ascendente ? 1 : - 1;
         break;
-      case 'Categoria':
+      case 'categoria':
         sort.categoria = ascendente ? 1 : - 1;
         break;
-      case 'Subcategoria':
+      case 'subcategoria':
         sort.subcategoria = ascendente ? 1 : - 1;
         break;
       default:

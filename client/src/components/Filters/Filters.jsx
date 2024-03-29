@@ -4,6 +4,9 @@ import { useStore } from '../../store';
 
 export default function Filters() {
   const filtros = useStore((state) => state.filtros);
+  const setOrder = useStore((state) => state.setOrder);
+  const setOrderDirection = useStore((state) => state.setOrderDirection);
+  const setPrices = useStore((state) => state.setPrices);
   const setFilters = useStore((state) => state.setFilters);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const listaMarcas = useStore((state) => state.listaMarcas);
@@ -18,50 +21,52 @@ export default function Filters() {
   const subcategoriasDisponibles = useStore((state) => state.subcategoriasDisponibles);
   const coloresDisponibles = useStore((state) => state.coloresDisponibles);
   const tallasDisponibles = useStore((state) => state.tallasDisponibles);
+  const [priceFrom, setPriceFrom] = useState('');
+  const [priceTill, setPriceTill] = useState('');
 
   const filters = [
     {
-      title: 'Marca',
+      title: 'marca',
       completeList: listaMarcas,
       available: marcasDisponibles,
       selected: filtros.marca
     },
     {
-      title: 'Genero',
+      title: 'genero',
       completeList: listaGeneros,
       available: generosDisponibles,
       selected: filtros.genero
     },
     {
-      title: 'Categoria',
+      title: 'categoria',
       completeList: listaCategorias,
       available: categoriasDisponibles,
       selected: filtros.categoria
     },
     {
-      title: 'Subcategoria',
+      title: 'subcategoria',
       completeList: listaSubcategorias,
       available: subcategoriasDisponibles,
       selected: filtros.subcategoria
     },
     {
-      title: 'Color',
+      title: 'color',
       completeList: listaColores,
       available: coloresDisponibles,
       selected: filtros.color
     },
     {
-      title: 'Talla',
+      title: 'talla',
       completeList: listaTallas,
       available: tallasDisponibles,
       selected: filtros.talla
     },
   ];
 
-  const orderByavailable = {
-    title: 'Order By',
-    available: ['Nombre', 'Marca', 'Precio', 'Oferta', 'Genero', 'Categoria', 'Subcategoria'],
-    default: 'Nombre'
+  const orderByOptions = {
+    title: 'Ordenar Por',
+    options: ['nombre', 'marca', 'precio', 'oferta', 'genero', 'categoria', 'subcategoria'],
+    default: 'nombre'
   };
 
   const [isOrderFocused, setIsOrderFocused] = useState(false);
@@ -72,6 +77,30 @@ export default function Filters() {
   const handleOrderBlur = () => {
     setIsOrderFocused(false);
   }
+  const handleOrderChange = async (event) => {
+    try {
+      setOrder(event.target.id);
+      await getFilteredProducts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handleOrderDirectionChange = async () => {
+    try {
+      setOrderDirection();
+      await getFilteredProducts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handlePricesSubmit = async () => {
+    try {
+      setPrices(priceFrom, priceTill);
+      await getFilteredProducts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
   const handleOptionChange = async (event) => {
     try {
       const { name, id } = event.target;
@@ -80,9 +109,7 @@ export default function Filters() {
     } catch (error) {
       console.error(error);
     }
-
   }
-
 
   return (
     <div className='filters-container'>
@@ -90,7 +117,7 @@ export default function Filters() {
         tabIndex={0}
         onBlur={() => setTimeout(handleOrderBlur, 100)}
         onClick={handleOrderFocus} >
-        {orderByavailable.title}
+        {orderByOptions.title}
       </label>
       <div className='order-by-button-container' key='selectedOrder' >
         <button
@@ -99,25 +126,25 @@ export default function Filters() {
           id='selectedOrder'
           onBlur={() => setTimeout(handleOrderBlur, 100)}
           onClick={handleOrderFocus} >
-          {filtros.ordenadoPor}
+          {filtros.ordenado}
         </button>
         <button
-          className='order-button'
+          className='order-direction-button'
           id='orderButton'
-          onClick={handleOptionChange} >
+          onClick={handleOrderDirectionChange} >
           {filtros.ascendente ? '🔼' : '🔽'}
         </button>
       </div>
-      <div className={`order-by-available-container ${isOrderFocused ? '' : 'invisible'}`} key='order-list-container' >
-        {orderByavailable.available.map((order) => {
-          const orderByClassname = `order-by-available-button ${order === filtros.ordenadoPor ? 'selected' : ''}`;
+      <div className={`order-by-options-container ${isOrderFocused ? '' : 'invisible'}`} >
+        {orderByOptions.options.map((order) => {
           return (
-            <div className='order-by-available-button-div' key={order} >
+            <div className='order-by-options-button-div' key={order} >
               <button
                 key={order}
                 id={order}
-                className={orderByClassname}
-                onClick={handleOptionChange} >
+                name='ordenado'
+                className={`order-by-options-button ${order === filtros.ordenado ? 'selected-order' : ''}`}
+                onClick={handleOrderChange} >
                 {order}
               </button>
             </div>
@@ -135,27 +162,29 @@ export default function Filters() {
             type='number'
             id='precioDesde'
             placeholder='Desde'
-            value={filtros.precioDesde}
-            onChange={handleOptionChange} />
+            value={priceFrom}
+            onChange={(event) => { event.target.value >= 0 ? setPriceFrom(event.target.value) : null }}
+          />
           <label>-</label>
           <input
             type='number'
             id='precioHasta'
             placeholder='Hasta'
-            value={filtros.precioHasta}
-            onChange={handleOptionChange} />
-          {/* <button
-            id={filteravailable.clearIds[i]}
-            onClick={handleFilterChange}
+            value={priceTill}
+            onChange={(event) => { event.target.value >= 0 ? setPriceTill(event.target.value) : null }}
+          />
+          <button
+            className='submit-prices-button'
+            onClick={handlePricesSubmit}
           >
-            Clear
-          </button> */}
+            ▶️
+          </button>
         </div>
       </div>
-      {filters.map(type => {
+      {filters.map((type, index) => {
         return (
-          <div className='filter-list-container' key='filter-list-container' >
-            <label htmlFor="">{type.title}</label>
+          <div className='filter-list-container' key={`${type.title} ${index}`} >
+            <label className='filter-titles' >{type.title}</label>
             {type.completeList.map((value) => {
               return (
                 <div className='filter-list-button-container' key={value} >

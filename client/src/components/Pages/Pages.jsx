@@ -5,6 +5,8 @@ import { useStore } from '../../store.js';
 
 export default function Pages() {
   const products = useStore((state) => state.productosFiltrados);
+  const setPage = useStore((state) => state.setPage);
+  const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const cantidadDeProductos = useStore((state) => state.cantidadDeProductos);
   const productosPorPagina = useStore((state) => state.productosPorPagina);
   const pagina = useStore((state) => state.filtros.pagina);
@@ -18,18 +20,36 @@ export default function Pages() {
   }, [currentPage, nPages]);
 
 
-  const previousPage = () => {
+  const previousPage = async () => {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
+      try {
+        setPage(currentPage - 1);
+        await getFilteredProducts();
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
-  const nextPage = () => {
+  const nextPage = async () => {
     if (currentPage !== nPages) {
       setCurrentPage(currentPage + 1);
+      try {
+        setPage(currentPage + 1);
+        await getFilteredProducts();
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
-  const selectPage = (event) => {
+  const selectPage = async (event) => {
     setCurrentPage(Number(event.target.id));
+    try {
+      setPage(Number(event.target.id));
+      await getFilteredProducts();
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <>

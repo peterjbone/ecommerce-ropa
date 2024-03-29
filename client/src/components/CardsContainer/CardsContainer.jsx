@@ -5,7 +5,7 @@ export default function CardsContainer({ products }) {
   return (
     <div className='cards-container'>
       {products.map(product => (
-      <Card key={product.id} product={product} />))}
+      <Card key={product._id} product={product} />))}
     </div>
   )
 }

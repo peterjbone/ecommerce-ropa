@@ -54,8 +54,8 @@ export default function HeroImagesBar({ products }) {
       <div className='hero-images-container' >
         {products.slice(0, 10).map(product => (
           <img
-            key={product.id}
-            id={product.id}
+            key={product._id}
+            id={product._id}
             src={product.imagen[0]}
             alt={product.imagen[0]}
             className='hero-image'
