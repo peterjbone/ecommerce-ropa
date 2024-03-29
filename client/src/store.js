@@ -12,8 +12,8 @@ export const useStore = create((set) => ({
   ofertas: [],
   tendencia: [],
   listaMarcas: [],
-  listaCategorias: [],
   listaGeneros: [],
+  listaCategorias: [],
   listaSubcategorias: [],
   listaColores: [],
   listaTallas: [],
@@ -27,8 +27,8 @@ export const useStore = create((set) => ({
     precioHasta: '',
     porcentajeDeOferta: 0,
     esNuevo: false,
-    colores: [],
-    tallas: [],
+    color: [],
+    talla: [],
     ordenadoPor: 'precio',
     ascendente: false,
     pagina: 1,
@@ -60,6 +60,7 @@ export const useStore = create((set) => ({
     }
   },
   setFilters: (name, id) => {
+    console.log(name, id);
     set((state) => ({
       filtros: {
         ...state.filtros,

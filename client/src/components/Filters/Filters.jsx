@@ -6,6 +6,12 @@ export default function Filters() {
   const filtros = useStore((state) => state.filtros);
   const setFilters = useStore((state) => state.setFilters);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
+  const listaMarcas = useStore((state) => state.listaMarcas);
+  const listaGeneros = useStore((state) => state.listaGeneros);
+  const listaCategorias = useStore((state) => state.listaCategorias);
+  const listaSubcategorias = useStore((state) => state.listaSubcategorias);
+  const listaColores = useStore((state) => state.listaColores);
+  const listaTallas = useStore((state) => state.listaTallas);
   const marcasDisponibles = useStore((state) => state.marcasDisponibles);
   const categoriasDisponibles = useStore((state) => state.categoriasDisponibles);
   const generosDisponibles = useStore((state) => state.generosDisponibles);
@@ -13,46 +19,50 @@ export default function Filters() {
   const coloresDisponibles = useStore((state) => state.coloresDisponibles);
   const tallasDisponibles = useStore((state) => state.tallasDisponibles);
 
-  console.log(filtros.marca);
-
-  const disponibles = [
+  const filters = [
     {
       title: 'Marca',
+      completeList: listaMarcas,
       available: marcasDisponibles,
       selected: filtros.marca
     },
     {
-      title: 'Generos',
+      title: 'Genero',
+      completeList: listaGeneros,
       available: generosDisponibles,
       selected: filtros.genero
     },
     {
       title: 'Categoria',
+      completeList: listaCategorias,
       available: categoriasDisponibles,
       selected: filtros.categoria
     },
     {
       title: 'Subcategoria',
+      completeList: listaSubcategorias,
       available: subcategoriasDisponibles,
       selected: filtros.subcategoria
     },
     {
       title: 'Color',
+      completeList: listaColores,
       available: coloresDisponibles,
-      selected: filtros.colores
+      selected: filtros.color
     },
     {
       title: 'Talla',
+      completeList: listaTallas,
       available: tallasDisponibles,
-      selected: filtros.tallas
+      selected: filtros.talla
     },
-  ]
+  ];
 
   const orderByavailable = {
     title: 'Order By',
     available: ['Nombre', 'Marca', 'Precio', 'Oferta', 'Genero', 'Categoria', 'Subcategoria'],
     default: 'Nombre'
-  }
+  };
 
   const [isOrderFocused, setIsOrderFocused] = useState(false);
 
@@ -142,28 +152,17 @@ export default function Filters() {
           </button> */}
         </div>
       </div>
-      {disponibles.map(element => {
+      {filters.map(type => {
         return (
           <div className='filter-list-container' key='filter-list-container' >
-            <label htmlFor="">{element.title}</label>
-            <div className='filter-list-button-container' key={'filter-list-button-container'} >
-              <button
-                key='clear'
-                className='filter-list-button'
-                id='clearTemperaments'
-              // onClick={handleFilterChange} 
-              >
-                Cualquiera
-              </button>
-            </div>
-            {element.available.map((value) => {
-              console.log(value);
+            <label htmlFor="">{type.title}</label>
+            {type.completeList.map((value) => {
               return (
                 <div className='filter-list-button-container' key={value} >
                   <button
                     id={value}
-                    name={element.title}
-                    className={`filter-list-button ${element.selected?.includes(value) ? 'selected' : ''}`}
+                    name={type.title}
+                    className={`filter-list-button ${type.selected?.includes(value) ? 'selected' : type.available?.includes(value) ? 'available' : ''}`}
                     value={value}
                     onClick={handleOptionChange} >
                     {value}
