@@ -64,6 +64,7 @@ export const useStore = create((set) => ({
       filtros: {
         ...state.filtros,
          busqueda: search,
+         pagina: 1,
       },
     }));
   },
