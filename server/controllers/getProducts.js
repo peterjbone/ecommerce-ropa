@@ -11,8 +11,8 @@ const getProducts = async (request, response) => {
       { nombre: regex },
       { marca: regex },
       { descripcion: regex },
-      { categoria: regex },
       { genero: regex },
+      { categoria: regex },
       { subcategoria: regex },
     ];
     if (precioDesde || precioHasta) {
@@ -115,16 +115,27 @@ const getProducts = async (request, response) => {
     ];
 
     const [result] = await Producto.aggregate(aggregationPipeline);
-    const { marcas, categorias, generos, subcategorias, colores, talles } = result;
-
-    const productOptions = {
-      marcas,
-      categorias,
-      generos,
-      subcategorias,
-      colores,
-      talles
-    };
+    let productOptions = {};
+    if (result) {
+      const { marcas, categorias, generos, subcategorias, colores, talles } = result;
+      productOptions = {
+        marcas,
+        categorias,
+        generos,
+        subcategorias,
+        colores,
+        talles
+      }
+    } else {
+      productOptions = {
+        marcas: [],
+        categorias: [],
+        generos: [],
+        subcategorias: [],
+        colores: [],
+        talles: [],
+      };
+    }
 
     let sort = {};
     switch (ordenado) {

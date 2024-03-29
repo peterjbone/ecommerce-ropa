@@ -26,7 +26,7 @@ export const useStore = create((set) => ({
     precioDesde: '',
     precioHasta: '',
     porcentajeDeOferta: 0,
-    esNuevo: false,
+    esNuevo: null,
     color: [],
     talla: [],
     ordenado: 'precio',
@@ -58,6 +58,14 @@ export const useStore = create((set) => ({
       console.error("Error al buscar Todo:", error);
       throw error;
     }
+  },
+  setSearch: (search) => {
+    set((state) => ({
+      filtros: {
+        ...state.filtros,
+         busqueda: search,
+      },
+    }));
   },
   setOrder: (value) => {
     set((state) => ({
@@ -103,7 +111,6 @@ export const useStore = create((set) => ({
     }));
   },
   getFilteredProducts: async () => {
-    console.log(useStore.getState().filtros);
     try {
       const { data } = await axios.post(`http://localhost:3001/productos`, useStore.getState().filtros);
       const { count, productOptions, filteredProducts } = data;
@@ -200,15 +207,6 @@ export const useStore = create((set) => ({
   //     throw error;
   //   }
   // },
-  search: async (search) => {
-    try {
-      const { data } = await axios.post(`http://localhost:3001/?buscar=${search}`);
-      set(() => ({ products: data }));
-    } catch (error) {
-      console.error("Error al buscar:", error);
-      throw error;
-    }
-  },
   getFavoritos: async () => {
     try {
       const { data } = await axios(`http://localhost:3001/favoritos`);

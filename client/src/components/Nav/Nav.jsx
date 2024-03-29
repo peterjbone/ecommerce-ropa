@@ -14,7 +14,7 @@ export default function Nav() {
   const listaTallas = useStore((state) => state.listaTallas);
   const [search, setSearch] = useState('');
   const [isMenuDown, setIsMenuDown] = useState(false);
-  const searchFunction = useStore((state) => state.search);
+  const searchFunction = useStore((state) => state.setSearch);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const getSubcategoria = useStore((state) => state.getSubcategoria);
   const navigate = useNavigate();
@@ -89,8 +89,9 @@ export default function Nav() {
 
   const handleSearch = async () => {
     try {
-      await searchFunction(search);
-      navigate('/')
+      searchFunction(search);
+      await getFilteredProducts();
+      navigate('/tienda')
     } catch (error) {
       console.error(error);
     }
