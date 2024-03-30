@@ -5013,6 +5013,826 @@ const productos = [
 				]
 			}
 		]
+	},
+	{
+		nombre: "Nike Authentic Varsity Leather Jacket",
+		marca: "nike",
+		descripcion:
+			"Ya sea que vayas a ver un partido o pasees por el centro con temperaturas más frías, la chaqueta de cuero Nike Authentic Varsity es perfecta para usarla en todo momento. Esta chaqueta de corte amplio, que vuelve a poner en primer plano las cualidades atemporales de tu vieja chaqueta favorita, viene con hombros caídos que mantienen tu look impecable. Las mangas están hechas de cuero de plena flor de lujo que se siente flexible, se desgasta bien y envejece a la perfección, mientras que el forro de tafetán tiene un tacto suave para ponerse y quitarse fácilmente. El lado exterior es una mezcla de lana cepillada para brindar comodidad y el interior incluye un aislamiento sintético liviano que brinda calidez. Clásica y cómoda, la chaqueta de cuero Nike Authentic Varsity seguramente ganará un primer lugar en tu rotación.",
+		precio: 500.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/D7845010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/D7845010_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Jacket",
+		marca: "nike",
+		descripcion:
+			"Nada grita más icónico que Nike. Únete al club del estilo urbano icónico con la chaqueta Nike Club. Diseñada para ofrecer calidez ligera y versatilidad, esta chaqueta está confeccionada con mucha tela adicional en un ajuste espacioso y extragrande para ayudarte a vestirte con estilo. El diseño de cremallera completa te permite personalizar tu look, mientras que los bolsillos con cremallera mantienen tus elementos esenciales cerca. Acentuada con un patrón de puntos estampado por toda la prenda y un logotipo de Futura bordado en el pecho izquierdo, la chaqueta Nike Club causa una gran impresión de estilo.",
+		precio: 39.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X0531480_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X0531480_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Anorak Jacket",
+		marca: "nike",
+		descripcion:
+			"Es hora de aumentar las apuestas en la moda. Inspirada en la pista y moderna, la chaqueta Nike Anorak hace una declaración como ninguna otra. El ajuste extragrande te ayuda a ponerte capas con estilo, mientras que los detalles icónicos como el clásico ángulo de chevrón cosido y el logotipo de Futura bordado en el pecho izquierdo te hacen lucir con estilo. Detalles funcionales como la capucha plegable y el tejido repelente al agua hacen de esta chaqueta ligera la capa exterior definitiva. Mantente al tanto de tu moda todo el día, todos los días, con la chaqueta Nike Anorak.",
+		precio: 39.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910405_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910405_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910100_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910100_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffff00"],
+					nombres: ["amarillo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910706_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910706_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#FB6D48"],
+					nombres: ["naranja"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910717_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910717_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Electric Anorak Jacket",
+		marca: "nike",
+		descripcion:
+			"La chaqueta Nike Electric Anorak es todo lo que necesitas para lucir elegante y al mismo tiempo estar calentito. Confeccionada con un tejido ligero y de primera calidad, esta chaqueta te permite mantenerte abrigado y cómodo desde el amanecer hasta el anochecer con facilidad. Afronta los días fríos con comodidad y estilo superiores con la chaqueta Nike Electric Anorak.",
+		precio: 49.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/J1634662_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/J1634662_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Woven Jacket",
+		marca: "nike",
+		descripcion:
+			"Una elección fácil para el aire libre, la chaqueta Nike Club Woven ofrece comodidad suave y liviana y te mantiene protegido contra los elementos. El suave tejido de tafetán es repelente al viento y al agua, lo que te ayuda a mantenerte abrigado y seco, mientras que el forro de malla y el tejido elástico añaden comodidad y frescura a la mezcla. Nítida y limpia en el frente, atrevida y colorida en la parte posterior: la chaqueta tejida Nike Club agrega un estilo fresco y divertido a tu equipo para actividades al aire libre.",
+		precio: 95.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X0672010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X0672010_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X0672030_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X0672030_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Tech Woven Jacket",
+		marca: "nike",
+		descripcion:
+			"Sube el cierre y mantente seco con la chaqueta Nike Tech Woven. Confeccionada con tejido arrugado, esta chaqueta ligera se siente suave contra la piel y ofrece un acabado texturizado. El diseño de cremallera completa con capucha forrada de malla brinda cobertura transpirable y estilo versátil. La cremallera Aquaguard de dos direcciones te ayuda a mantenerte seco, mientras que los bolsillos laterales con cremallera Aquaguard de la chaqueta Nike Tech Woven te brindan un lugar seco para guardar tus elementos esenciales y calentar tus manos.",
+		precio: 89.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4340010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340010_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340010_om3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#00ff00"],
+					nombres: ["verde"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4340222_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340222_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4340030_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340030_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike SPU Woven Jacket",
+		marca: "nike",
+		descripcion:
+			"Lleva tu entrenamiento al aire libre con la chaqueta tejida Nike SPU. Diseñado para mantenerse al día con sus actividades activas, este básico de rendimiento cuenta con comodidad liviana y durabilidad con facilidad de movimiento. Con un diseño multicolor con cierre de cremallera, la chaqueta tejida Nike SPU te mantendrá abrigado y llamará la atención en cualquier pista, calle o sendero.",
+		precio: 110.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#00ff00"],
+					nombres: ["verde"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/B2192325_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/B2192325_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Pro Standard NBA All Star 24 Wool Varsity Jacket",
+		marca: "NBA All Star",
+		descripcion:
+			"Los mates más llamativos, las monedas de diez centavos deslumbrantes y los bloqueos feroces. Experimenta cada momento del juego con comodidad con la chaqueta universitaria de lana Pro Standard NBA All Star 24. Con parches con el logo de Star sobre una base de fieltro con chenilla y bordado en 3D, esta chaqueta te permite atravesar partidos emocionantes y días difíciles mientras te ves y te sientes lo mejor posible. El parche principal en la manga derecha sobre una base de sarga con bordado en 3D y puntadas de satén ofrece una apariencia deportiva, mientras que el parche principal en la espalda en vinilo en relieve hace que tu atuendo se destaque el día del juego. Pon a prueba tus habilidades para animar y muestra el orgullo de tu equipo con la chaqueta universitaria de lana Pro Standard NBA All Star 24.",
+		precio: 189.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59023MNR_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59023MNR_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59023MNR_03?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Pro Standard NBA x HBCU All Star 23 Wool Varsity Jacket",
+		marca: "NBA All Star",
+		descripcion:
+			"¡Donde todos son alguien! Representa a tu universidad HBCU favorita con la chaqueta universitaria de lana Pro Standard NBA x HBCU All Star 23. Diseñada con tela suave y duradera, esta sudadera con capucha te mantiene cómodo y calentito durante cuatro cuartos y más. Con parches deportivos de Grambling University en bordados de puntada de satén en 3D sobre una base de sarga, la chaqueta universitaria de lana Pro Standard NBA x HBCU All Star 23 te permite representar a los Grambling Tigers con estilo.",
+		precio: 250.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/CHB67124_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/CHB67124_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/CHB67124_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Woven LND Flow Shorts",
+		marca: "Nike",
+		descripcion:
+			"Una opción fácil para aventuras de todo tipo: los pantalones cortos Nike Sportswear SPE Woven LND Flow tienen que ver con la comodidad y la movilidad. Confeccionados con tejido suave y liviano con un ajuste estándar y forrados con poliéster, estos pantalones cortos son imprescindibles en tu guardarropa de verano. Ya sea que estés relajándote en el sofá o preparándote para bucear, estos pantalones cortos Nike Sportswear SPE Woven LND Flow te mantienen cómodo en todo momento.",
+		precio: 50.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/M6829010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/M6829010_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/M6829657_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/M6829657_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas Tiro Fleece Shorts",
+		marca: "adidas",
+		descripcion:
+			"Relájate, reagrupate, recupérate. Estos pantalones cortos adidas Tiro Fleece son perfectos para esos momentos en ambos lados de la acción. Póntelos cuando estés estirándote antes de un partido o cuando llegue el momento de regresar a casa. El acogedor forro polar de mezcla de algodón garantiza que estés cómodo. Los bolsillos con cremallera mantienen tus objetos de valor guardados de forma segura.",
+		precio: 14.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/HN3285_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/HN3285_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/GM7345_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/GM7345_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas Tiro AOP Shorts",
+		marca: "adidas",
+		descripcion:
+			"Mejora tu look diario con los pantalones cortos adidas Tiro AOP. Confeccionados con tejido de malla transpirable, estos pantalones cortos te mantienen fresco y cómodo durante todo el día y más allá. El corte estándar logra un equilibrio entre libertad de movimiento y una apariencia contemporánea, mientras que el diseño con estampado integral agrega un aire fresco y urbano. Inspirados en el icónico gráfico de adidas Football de los años 80 y 90, estos pantalones cortos cuentan con un logotipo mediano de adidas en la pierna izquierda, una insignia de silicona con estructura en relieve y un logotipo cosido para una apariencia única y un estilo sofisticado. Aprovecha al máximo tu estilo de vida con la comodidad de los pantalones cortos adidas Tiro AOP.",
+		precio: 45.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffff00", "#0000ff"],
+					nombres: ["amarillo", "azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/IS1533_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IS1533_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IS1533_05?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
 	}
 ];
 
