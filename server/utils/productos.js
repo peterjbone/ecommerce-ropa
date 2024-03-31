@@ -5833,6 +5833,1352 @@ const productos = [
 				]
 			}
 		]
+	},
+	{
+		nombre: "PUMA PPE Shorts",
+		marca: "puma",
+		descripcion:
+			"Obtén un rendimiento profesional con una apariencia elegante con los pantalones cortos PUMA PPE. Confeccionados con tejido French terry de primera calidad, estos pantalones cortos ofrecen una sensación cálida y acogedora desde el primer momento. Ya sea que estés haciendo un movimiento en la cancha o descansando en tu sofá, los pantalones cortos PUMA PPE brindan comodidad total en todo momento.",
+		precio: 39.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53714301_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53714301_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Essential Shorts",
+		marca: "puma",
+		descripcion:
+			"Flexiona tus carreras con los pantalones cortos PUMA Essential. Diseñado con tela suave y cinturilla elástica, puedes obtener comodidad superior y dar pasos con facilidad.",
+		precio: 55.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59981001_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59981001_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#808080"],
+					nombres: ["gris"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59981004_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59981004_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Classics Woven Shorts",
+		marca: "puma",
+		descripcion:
+			"Mejora tu look casual con los pantalones cortos tejidos PUMA Classics. Confeccionados con tejido reciclado repelente al agua, estos pantalones cortos te mantienen fresco y cómodo durante todo el día. La cinturilla elástica con cordón interno proporciona un ajuste personalizado, mientras que los bolsillos laterales ofrecen espacio para guardar lo esencial. Con un logotipo Archive No.1 bordado, los pantalones cortos tejidos PUMA Classics combinan sin esfuerzo comodidad y estilo.",
+		precio: 29.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53806801_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53806801_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA X Coca Cola Regular Shorts 8'",
+		marca: "puma",
+		descripcion:
+			"Actualice su rotación con los pantalones cortos regulares PUMA X Coca Cola de 8'. Confeccionados con al menos un 20 % de materiales reciclados, estos pantalones cortos añaden un toque sustentable a su estilo informal. Diseñados en colaboración con Coca-Cola, estos pantalones cortos celebran la herencia de dos de las marcas más icónicas de la historia.",
+		precio: 55.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53616401_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53616401_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53616401_a1?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Iconic T7 Mesh Shorts",
+		marca: "puma",
+		descripcion:
+			"Coge el pantalón corto de malla PUMA Iconic T7 para un ajuste legendario que nunca pasará de moda. Diseñados con el estampado de goma del logotipo número 1 del archivo e inserciones del panel T7, estos pantalones cortos tienen las características de una pieza clásica. Para mantener las cosas seguras y cómodas, cuenta con una cinturilla elástica con cordones externos para que puedas personalizar tu comodidad.",
+		precio: 19.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59990111_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59990111_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59990111_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Every Day Hussle Sweatshort",
+		marca: "puma",
+		descripcion:
+			"Sigue esforzándote pero con estilo con el pantalón corto PUMA Every Day Hussle. Confeccionados con una mezcla de materiales suaves y cómodos, estos pantalones cortos son perfectos para actividades cotidianas como hacer ejercicio en el gimnasio o ir de compras. Rinde homenaje al viaje empresarial de Nipsey Hussle con el pantalón corto PUMA Every Day Hussle.",
+		precio: 29.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53368701_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53368701_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#808080"],
+					nombres: ["gris"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53368702_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53368702_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Game Day Short",
+		marca: "nike",
+		descripcion:
+			"Cómodos, elegantes y elegantes: los pantalones cortos Nike Club Game Day están listos para cualquier cosa. Confeccionados con tejidos de primera calidad, estos pantalones cortos combinan la comodidad clásica para un estilo urbano. Con bolsillos forrados de algodón, estos pantalones cortos te brindan un espacio cómodo para mantener tus manos calientes y tus elementos esenciales seguros. Ya sea que estés cambiando tu rutina de ejercicios o dando un paseo tranquilo, el pantalón corto Nike Club Game Day es la elección perfecta.",
+		precio: 70.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ECB159", "#00ff00"],
+					nombres: ["cafe", "verde"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q6146256_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q6146256_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Running On Empty Short Sleeve T-Shirt",
+		marca: "vans",
+		descripcion:
+			"¿Quedarse sin nada? Potencia tu look y energiza tu día con la camiseta de manga corta Running On Vacuum de Vans. Esta camiseta de uso diario, realzada con gráficos serigrafiados, aporta energía audaz a tu conjunto. La suave tela cardada hilada en anillos brinda comodidad en la que puedes confiar en un ajuste que te permite moverte con facilidad.",
+		precio: 30.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V8RKBLK_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/V8RKBLK_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Soaring Eagle Short Sleeve T-Shirt",
+		marca: "vans",
+		descripcion:
+			"Colorida, informal e innegablemente moderna, la camiseta de manga corta Vans Soaring Eagle le da a tu armario una renovación divertida para el clima cálido que se avecina. Confeccionado con suave algodón hilado y acabado con un ajuste regular, este cuello redondo de manga corta ofrece la comodidad veraniega que anhelas en tu armario. Un gráfico serigrafiado realza el look con un estilo vintage. Adopta lo atrevido y luce de la vieja escuela con la camiseta de manga corta Vans Soaring Eagle.",
+		precio: 25.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V8RRFS8_a1?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans MIrada Multistripe Short Sleeve T-Shirt",
+		marca: "vans",
+		descripcion:
+			"Dale un descanso a tus básicos y apuesta por lo atrevido con la camiseta de manga corta Vans Mirada Multistripe. Confeccionada con un tejido ligero y transpirable, esta camiseta de manga corta con cuello redondo te permite disfrutar de una comodidad ultrasuave con un diseño divertido. Las rayas teñidas en hilo garantizan un ambiente colorido duradero durante años de lavado y uso. Elige y diseña la camiseta de manga corta Vans Mirada Multistripe y haz alarde de tu gusto ecléctico.",
+		precio: 40.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ECB159", "#000000"],
+					nombres: ["cafe", "negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V8SWCBU_a1?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Old Skool",
+		marca: "vans",
+		descripcion:
+			"Mejora tu look con Vans Old Skool. Lanzadas en 1977, estas icónicas zapatillas debutaron con las ahora famosas Vans Sidestripe. El primer modelo de Vans que utiliza paneles de cuero/gamuza para mayor durabilidad y estilo, estas siluetas te mantienen cómodo y seguro desde la pista hasta la calle. La clásica suela Waffle vulcanizada de estas siluetas ofrece un excelente agarre dentro o fuera de la tabla y un estilo sencillo.",
+		precio: 75.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff", "#000000"],
+					nombres: ["blanco", "negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A38G1NQR_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1NQR_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1NQR_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#00ff00", "#ffffff"],
+					nombres: ["verde", "blanco"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A38G1RIQ_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1RIQ_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1RIQ_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Sk8 Hi",
+		marca: "vans",
+		descripcion:
+			"Estas zapatillas Vans Sk8-Hi con forro polar ofrecen un estilo sencillo y calidez durante todo el día con algunas actualizaciones del diseño legendario para el clima frío. A la altura de las expectativas, estas zapatillas incluyen una parte superior de ante Wolverine duradera que viene pretratada con Scotchgard resistente a la intemperie para los meses de invierno y la brisa fresca. Los tradicionales cuellos acolchados están forrados con un suave tejido polar para mayor calidez contra los elementos, y las suelas tipo waffle originales de Vans se diseñaron pensando en el agarre y el control. La durabilidad en forma de costuras estratégicas y una construcción de tela reforzada de una sola pieza, junto con cordones de cordón duraderos, completan estos clásicos actualizados para tus días de clima fresco.",
+		precio: 75.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffff00"],
+					nombres: ["amarillo"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Authentic",
+		marca: "vans",
+		descripcion:
+			"En 1966, cuando Vans todavía era una marca incipiente, se arriesgaron y lanzaron su primer zapato: el Estilo #44. Este diseño fue el primero en proteger realmente a los patinadores mientras perfeccionaban sus habilidades a bordo. Ese zapato ha persistido a través del tiempo como uno de los modelos más vendidos de Vans y hoy en día se lo conoce con orgullo como Vans Authentic. Si bien esta versión moderna presenta muchos de los elementos de diseño clásicos de su antecesor, se ha actualizado completamente con nuevas tecnologías para mantener tus pies más seguros que nunca.",
+		precio: 55.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Knu Skool",
+		marca: "vans",
+		descripcion:
+			"¡La leyenda esta de vuelta! Más audaces y brillantes que nunca, Vans Knu Skool presenta un gran regreso. Familiares pero siempre frescas, estas zapatillas le dan un toque moderno a lo que más te gusta del clásico de los 90. Remasterizadas para reescribir la narrativa para pioneros como tú, estas siluetas vienen con una franja lateral hinchada moldeada en 3D, detalles de estilo dramáticos y cordones gruesos.",
+		precio: 80.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ECB159"],
+					nombres: ["cafe"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 15
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 15
+					},
+					{
+						talla: "9.5",
+						stock: 15
+					},
+					{
+						talla: "10.0",
+						stock: 15
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/N09QCBKA_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QCBKA_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QCBKA_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Classic Slip On",
+		marca: "vans",
+		descripcion:
+			"El Vans Classic Slip-On es uno de los modelos más icónicos de la famosa marca de zapatillas de skate de California. Limpio, sencillo, cómodo y, por supuesto, fácil de poner, el Slip-On ofrece un estilo versátil y sin esfuerzo. Su característico diseño sin cordones le da un aspecto relajado y atemporal, mientras que la construcción de lona lo hace liviano, transpirable y duradero. La parte superior de perfil bajo se asienta sobre la suela vulcanizada clásica de Vans con una suela exterior de goma con diseño tipo gofre para un máximo agarre dentro o fuera de la tabla. El reconocible Slip-On es sin duda la combinación de colores del tablero de ajedrez, que ha sido inmortalizado en la pantalla grande, en el escenario de los conciertos y en las calles desde su lanzamiento por primera vez en la década de 1970.",
+		precio: 60.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff", "#000000"],
+					nombres: ["blanco", "negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/0011999_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011999_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011999_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/0011299_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011299_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011299_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011299_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
 	}
 ];
 
