@@ -20,7 +20,7 @@ const Home = ({ products, categories }) => {
       <ProductsBar title='Tendencia' products={tendencia} />
       <ProductsBar title='Favoritos' products={products} />
       <CategoriesBar title='Categorias' categories={categories} />
-      <br /><br /><br />
+      <br/><br/><br/>
     </div>
   )
 }

@@ -4,13 +4,28 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import styles from './Detail.module.css';
 
+
 const Detail = ({ products }) => {
   const { id } = useParams();
-  const product = products.find((product) => product.id === parseInt(id));
+  // if(isNaN(id)){
+  //   console.log(id)
+  // }else{
+  //   console.log('No es number')
+  // }
+  const product = products.find((product) => product.id === Number(id) );
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
 
+  if (!product) {
+  return(
+    <div className={styles.notFound}>
+    <h1 className={styles.notFoundError}>ERROR 404</h1>
+    <p className={styles.notFoundText}>Esta no es la pagina que estas buscando</p>
+    </div>
+  )
+  }
+  
   useEffect(() => {
     const filteredRelatedProducts = products.filter((p) => p.id !== product.id);
     filteredRelatedProducts.sort(() => Math.random() - 0.5);
@@ -18,9 +33,6 @@ const Detail = ({ products }) => {
     setRelatedProducts(slicedRelatedProducts);
   }, [id, products, product.id]);
 
-  if (!product) {
-    return <div>Producto no encontrado</div>;
-  }
 
   const handleColorChange = (index) => {
     setSelectedColorIndex(index);
