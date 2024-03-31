@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import styles from './Form.module.css';
-import ColorGrid from '../../components/ColorGrid/ColorGrid';
-import StockTable from '../../components/StockTable/StockTable';
-import axios from 'axios';
-import { uploadCloudinary } from '../../utils/upload';
+import { useState, useEffect } from "react"
+import styles from './FormEdit.module.css'
+import { useParams } from "react-router-dom"
+import ColorGrid from "../../components/ColorGrid/ColorGrid"
+import StockTable from "../../components/StockTable/StockTable"
+import axios from "axios"
 
-const Form = () => {
+const FormEdit = () => {
 
   let categorias = [ 'Adulto', 'Infante' ]
   let subcategorias = ['Camisetas y Polos','Chaquetas y Abrigos','Sudaderas y Hoodies','Chalecos','Jeans','Shorts','Short','Zapatillas Casuales','Botin','Botas','Sandalias','Camisas','Pantalones','Botas Cortas','Leggings y Pantalones Deportivos','Zapatos','Blusas y Tops','Faldas','Pantalones de Pijama','Pantalones Formales','Pantalones Cortos de Ciclismo','Zapatillas de Casa','Zapatillas Deportivas','Camisetas de Deporte','Cardigans y Suéteres','Destacado','Tendencia']
@@ -65,9 +65,24 @@ const Form = () => {
     { codHexadecimal: '#78288C', nombreColor: 'violeta' },
   ]
 
-  const [images, setImages] = useState([])
+  const { id } = useParams();
 
-  const [nameColors, setNameColors] = useState([]);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getProductById(id));
+  // }, [dispatch, id]);
+
+  // const product = useSelector(state => state.product);
+
+  let product;
+  axios(`http://localhost:3001/producto/6601f9026241f448c75032f7`)
+    .then((data) => {
+      console.log(data.data);
+      product = data.data
+    })
+  console.log(product);
+
   const [selectedColor, setSelectedColor] = useState([]);
 
   const [tipoTalle, setTipoTalle] = useState('')
@@ -144,48 +159,13 @@ const Form = () => {
     }
   }
 
-  const submitHandler = async (e) => {
-    e.preventDefault()
-    try {
-      // let arr = []
-      // for(let i = 0; i < images.length; i++) {
-      //   const data = await uploadCloudinary(images[i])
-      //   arr.push(data.url)
-      // }
-      // axios.post('http://localhost:3001/createproduct', {...form, imagenes: arr})
-
-      setSelectedColor([])
-      setNameColors([])
-      setImages([])
-      setTipoTalle('')
-      setStock({})
-      setDiscount({
-        offActiva: false,
-        Descuento: 0
-      })
-      setForm({
-        nombre: '',
-        marca: '',
-        precio: '',
-        categoria: '',
-        subcategoria: '',
-        descripcion: '',
-        genero: '',
-        oferta: {},
-        activo: false,
-        opciones: {},
-        colores: [],
-        productoNuevo: false,
-        tallas: {}
-      })
-    } catch (error) {
-      console.log(error);
-    }
+  const submitHandler = () => {
+    axios.post('http://localhost:3001/createproduct', form)
   }
 
   return (
     <div className={styles.container}>
-      <h1>Nuevo producto</h1>
+      <h1>Editar producto</h1>
       <form onSubmit={submitHandler}>
         <div>
           <label>Nombre: </label>
@@ -259,7 +239,7 @@ const Form = () => {
           <input name='opciones' type="checkbox" />
         </div>
 
-        <ColorGrid nameColors={nameColors} setNameColors={setNameColors} colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
+        <ColorGrid colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
 
         <div>
           <label>Tipo de talle</label>
@@ -273,14 +253,10 @@ const Form = () => {
           {tipoTalle === 'N' && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
         </div>
 
-        <div>
-          <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
-        </div>
-
         <button type='submit'>Crear</button>
       </form>
     </div>
   )
 }
 
-export default Form
+export default FormEdit
