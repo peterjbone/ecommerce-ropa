@@ -12293,7 +12293,7 @@ productos.forEach(prod => {
     categorias.push(prod.categoria)
   }
 })
-console.log(categorias);
+// console.log(categorias);
 
 let subcategoria = []
 productos.forEach(prod => {
@@ -12301,7 +12301,7 @@ productos.forEach(prod => {
     subcategoria.push(prod.subcategoria)
   }
 })
-console.log(subcategoria);
+// console.log(subcategoria);
 
 let genero = []
 productos.forEach(prod => {
@@ -12309,7 +12309,7 @@ productos.forEach(prod => {
     genero.push(prod.genero)
   }
 })
-console.log(genero);
+// console.log(genero);
 
 let talles = []
 let colores = []
@@ -12325,7 +12325,7 @@ productos.forEach(prod => {
   })
   
 })
-console.log(talles);
+// console.log(talles);
 
 const uniqueColors = new Set();
 
@@ -12339,4 +12339,4 @@ const uniqueColorsArray = Array.from(uniqueColors).map(identifier => {
   return { codHexadecimal, nombreColor };
 });
 
-console.log(uniqueColorsArray);
+// console.log(uniqueColorsArray);
