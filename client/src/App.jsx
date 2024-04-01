@@ -8,25 +8,28 @@ import Tienda from "./views/Tienda/Tienda.jsx"
 import Footer from './components/Footer/Footer.jsx';
 
 function App() {
-  const [categories, setCategories] = useState([]);
+
+  // const [categories, setCategories] = useState([]);
   const products = useStore((state) => state.products);
+  const getProductInfo = useStore((state) => state.getProductInfo);
   const getDestacados = useStore((state) => state.getDestacados);
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
 	const getTendencia = useStore((state) => state.getTendencia);
 
-  useEffect(() => {
-    const uniqueCategories = products.reduce((unique, product) => {
-      if (!unique.some(item => item.subcategoria === product.subcategoria)) {
-        unique.push(product);
-      }
-      return unique;
-    }, []);
-    setCategories(uniqueCategories);
-  }, [products]);
+  // useEffect(() => {
+  //   const uniqueCategories = products.reduce((unique, product) => {
+  //     if (!unique.some(item => item.subcategoria === product.subcategoria)) {
+  //       unique.push(product);
+  //     }
+  //     return unique;
+  //   }, []);
+  //   setCategories(uniqueCategories);
+  // }, [products]);
 
   (async function loadData() {
     try {
+      await getProductInfo();
       await getDestacados();
       await getNuevos();
       await getOfertas();
@@ -38,9 +41,9 @@ function App() {
   
   return (
     <>
-      <Nav categories={categories} />
+      <Nav />
       <Routes>
-        <Route path='/' element={<Home products={products} categories={categories} />} />
+        <Route path='/' element={<Home />} />
 				<Route path='/form' element={<Form />} />
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/:id' element={<Detail products={products} />} />

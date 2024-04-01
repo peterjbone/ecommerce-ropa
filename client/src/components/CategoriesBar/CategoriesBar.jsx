@@ -21,6 +21,19 @@ export default function CategoriesBar({ title, categories }) {
       <h3 className='categories-bar-title' >{title}</h3>
         <div className='categories-bar-container' >
           {categories.map(category =>
+            <div key={category} className='category-container'>
+              <div className='category-image-container' >
+                <img 
+                className='image'  
+                src={category} 
+                alt={category} 
+                id={category} 
+                onClick={handleSubcategorySearch} />
+              </div>
+              <h2>{category}</h2>
+            </div>
+          )}
+          {/* {categories.map(category =>
             <div key={category.id} className='category-container'>
               <div className='category-image-container' >
                 <img 
@@ -32,7 +45,7 @@ export default function CategoriesBar({ title, categories }) {
               </div>
               <h2>{category.subcategoria}</h2>
             </div>
-          )}
+          )} */}
         </div>
     </div>
   )
