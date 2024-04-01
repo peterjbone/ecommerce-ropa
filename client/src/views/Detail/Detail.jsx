@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import styles from './Detail.module.css';
 
 const Detail = ({ products }) => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const product = products.find((product) => product.id === parseInt(id));
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
@@ -30,6 +31,10 @@ const Detail = ({ products }) => {
   const handleSizeChange = (index) => {
     setSelectedSizeIndex(index);
   };
+
+  const editHandler = () => {
+    navigate(`/editproduct/${id}`)
+  }
 
   return (
     <div>
@@ -94,6 +99,7 @@ const Detail = ({ products }) => {
             <div className={styles.buttonsContainer}>
               <button className={styles.addToCartButton}>Agregar al carrito</button>
               <button className={styles.buyButton}>Comprar</button>
+              <button className={styles.buyButton} onClick={editHandler}>Editar producto</button>
             </div>
           </div>
         </div>

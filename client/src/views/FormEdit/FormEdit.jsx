@@ -1,13 +1,11 @@
-import { useState } from 'react'
-import styles from './Form.module.css';
-import ColorGrid from '../../components/ColorGrid/ColorGrid';
-import StockTable from '../../components/StockTable/StockTable';
-import axios from 'axios';
-import { uploadCloudinary } from '../../utils/upload';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { useState, useEffect } from "react"
+import styles from './FormEdit.module.css'
+import { useParams } from "react-router-dom"
+import ColorGrid from "../../components/ColorGrid/ColorGrid"
+import StockTable from "../../components/StockTable/StockTable"
+import axios from "axios"
 
-const Form = () => {
+const FormEdit = () => {
 
   let categorias = [ 'Adulto', 'Infante' ]
   let subcategorias = ['Camisetas y Polos','Chaquetas y Abrigos','Sudaderas y Hoodies','Chalecos','Jeans','Shorts','Short','Zapatillas Casuales','Botin','Botas','Sandalias','Camisas','Pantalones','Botas Cortas','Leggings y Pantalones Deportivos','Zapatos','Blusas y Tops','Faldas','Pantalones de Pijama','Pantalones Formales','Pantalones Cortos de Ciclismo','Zapatillas de Casa','Zapatillas Deportivas','Camisetas de Deporte','Cardigans y Suéteres','Destacado','Tendencia']
@@ -67,9 +65,24 @@ const Form = () => {
     { codHexadecimal: '#78288C', nombreColor: 'violeta' },
   ]
 
-  const [images, setImages] = useState([])
+  const { id } = useParams();
 
-  const [nameColors, setNameColors] = useState([]);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getProductById(id));
+  // }, [dispatch, id]);
+
+  // const product = useSelector(state => state.product);
+
+  let product;
+  axios(`http://localhost:3001/producto/6601f9026241f448c75032f7`)
+    .then((data) => {
+      console.log(data.data);
+      product = data.data
+    })
+  console.log(product);
+
   const [selectedColor, setSelectedColor] = useState([]);
 
   const [tipoTalle, setTipoTalle] = useState('')
@@ -102,65 +115,29 @@ const Form = () => {
     tallas: stock
   })
 
-  const [errors, setErrors] = useState({
-    nombre: '',
-    marca: '',
-    precio: '',
-    categoria: '',
-    subcategoria: '',
-    descripcion: '',
-    genero: '',
-  })
-
-  const validate = (form) => {
-
-    const newErrors = {
-      nombre: '',
-      marca: '',
-      precio: '',
-      categoria: '',
-      subcategoria: '',
-      descripcion: '',
-      genero: '',
-    };
-
-    let passed = true
-    
-    if(form.nombre.length <= 10) {
-      newErrors.nombre = 'El nombre debe tener al menos 10 caracteres';
-      passed = false
-    }
-    if(!form.marca) {
-      newErrors.marca = 'Debes seleccionar una marca';
-      passed = false
-    }
-    if(!form.precio) {
-      newErrors.precio = 'Debes ingresar un precio';
-      passed = false
-    }
-    if(!form.categoria) {
-      newErrors.categoria = 'Debes seleccionar una categoria';
-      passed = false
-    }
-    if(!form.subcategoria) {
-      newErrors.subcategoria = 'Debes seleccionar una subcategoria';
-      passed = false
-    }
-    if(!form.descripcion) {
-      newErrors.descripcion = 'Debes ingresar una descripcion';
-      passed = false
-    }
-    if(!form.genero) {
-      newErrors.genero = 'Debes ingresar un genero';
-      passed = false
-    }
-
-    setErrors(newErrors);
-
-    return passed;
+  let idUser = {
+    nombre: 'Campera Nike',
+    marca: 'Nike',
+    precio: '300',
+    categoria: 'Adulto',
+    subcategoria: 'Chaquetas y Abrigos',
+    descripcion: 'Campera mara Nike',
+    genero: 'masculino',
+    oferta: { offActiva: true, Descuento: '20' },
+    activo: true,
+    opciones: {},
+    colores: [
+      { codHexadecimal: '#FFFFFF', nombreColor: 'blanco' },
+      { codHexadecimal: '#FF0000', nombreColor: 'rojo' },
+      { codHexadecimal: '#007FFF', nombreColor: 'francia' }
+    ],
+    productoNuevo: true,
+    tallas: { S: '2', L: '4', M: '4', XL: '4', XXL: '3' }
   }
 
+  if(idUser)
   
+  console.log(form);
   const changeDiscountHandler = (e) => {
     const { checked, name, value } = e.target;
     if(name === 'Descuento') {
@@ -180,63 +157,19 @@ const Form = () => {
     } else {
       setForm({...form, [name]: value})
     }
-    validate({...form, [name]: value})
   }
 
-  const submitHandler = async (e) => {
-    e.preventDefault()
-    const isValid = validate(form);
-
-    if(isValid) {
-
-      try {
-        let arr = []
-        for(let i = 0; i < images.length; i++) {
-          const data = await uploadCloudinary(images[i])
-          arr.push(data.url)
-        }
-        axios.post('http://localhost:3001/createproduct', {...form, imagenes: arr})
-  
-        setSelectedColor([])
-        setNameColors([])
-        setImages([])
-        setTipoTalle('')
-        setStock({})
-        setDiscount({
-          offActiva: false,
-          Descuento: 0
-        })
-        setForm({
-          nombre: '',
-          marca: '',
-          precio: '',
-          categoria: '',
-          subcategoria: '',
-          descripcion: '',
-          genero: '',
-          oferta: {},
-          activo: false,
-          opciones: {},
-          colores: [],
-          productoNuevo: false,
-          tallas: {}
-        })
-        toast.success('Producto creado correctamente')
-      } catch (error) {
-        console.log(error);
-        toast.error('Error al crear el producto')
-      }
-    } 
+  const submitHandler = () => {
+    axios.post('http://localhost:3001/createproduct', form)
   }
 
   return (
     <div className={styles.container}>
-      <h1>Nuevo producto</h1>
+      <h1>Editar producto</h1>
       <form onSubmit={submitHandler}>
         <div>
           <label>Nombre: </label>
           <input type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} />
-          {errors.nombre && <span>{errors.nombre}</span>}
         </div>
         <div>
           <label>Marca: </label>
@@ -244,12 +177,10 @@ const Form = () => {
             <option value="">--Seleccionar--</option>
             {marcas.map(marca => <option key={marca}>{marca}</option>)}
           </select>
-          {errors.marca && <span>{errors.marca}</span>}
         </div>
         <div>
           <label>Precio: </label>
           <input type="text" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} />
-          {errors.precio && <span>{errors.precio}</span>}
         </div>
         <div>
           <label>Categoria: </label>
@@ -257,7 +188,6 @@ const Form = () => {
             <option value="">--Seleccionar--</option>
             {categorias.map(categoria => <option key={categoria}>{categoria}</option>)}
           </select>
-          {errors.categoria && <span>{errors.categoria}</span>}
         </div>
         <div>
           <label>Sub-categoria: </label>
@@ -265,7 +195,6 @@ const Form = () => {
             <option value="">--Seleccionar--</option>
             {subcategorias.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
           </select>
-          {errors.subcategoria && <span>{errors.subcategoria}</span>}
         </div>
         <div>
           <label>Género: </label>
@@ -273,12 +202,10 @@ const Form = () => {
             <option value="">--Seleccionar--</option>
             {genero.map(genero => <option key={genero}>{genero}</option>)}
           </select>
-          {errors.genero && <span>{errors.genero}</span>}
         </div>
         <div>
           <label>Descripción: </label>
-          <textarea name="descripcion" value={form.descripcion} id="" cols="30" rows="5" onChange={changeHandler}></textarea>
-          {errors.descripcion && <span>{errors.descripcion}</span>}
+          <textarea name="descripcion" value={form.descripcion} id="" cols="30" rows="10" onChange={changeHandler}></textarea>
         </div>
         <div>
           <label>Activo: </label>
@@ -312,7 +239,7 @@ const Form = () => {
           <input name='opciones' type="checkbox" />
         </div>
 
-        <ColorGrid nameColors={nameColors} setNameColors={setNameColors} colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
+        <ColorGrid colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
 
         <div>
           <label>Tipo de talle</label>
@@ -326,15 +253,10 @@ const Form = () => {
           {tipoTalle === 'N' && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
         </div>
 
-        <div>
-          <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
-        </div>
-
         <button type='submit'>Crear</button>
       </form>
-      <ToastContainer />
     </div>
   )
 }
 
-export default Form
+export default FormEdit

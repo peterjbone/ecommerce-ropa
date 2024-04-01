@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Home, Form } from './views';
+import { Home, Form, FormEdit } from './views';
 import Nav from './components/Nav/Nav';
 import { useEffect, useState } from 'react';
 import { useStore } from './store.js';
@@ -42,6 +42,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home products={products} categories={categories} />} />
 				<Route path='/form' element={<Form />} />
+				<Route path='/editproduct/:id' element={<FormEdit />} />
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/:id' element={<Detail products={products} />} />
       </Routes>
