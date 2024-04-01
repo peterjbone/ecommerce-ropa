@@ -6,12 +6,28 @@ export const useStore = create((set) => ({
   products: productos,
   productosFiltrados: productos,
   favoritos: [],
+  carrito: [],
   nuevos: [],
   destacados: [],
   ofertas: [],
   tendencia: [],
+  filtros: {
+    busqueda: '',
+    precioDesde: 0,
+    precioHasta: '',
+    conOfertas: false, // o porcentageDeOferta: 0,
+    esNuevo: false,
+    categorias: [],
+    generos: [],
+    subcategorias: [],
+    colores: [],
+    tallas: [],
+    ordenadoPor: '',
+    ascendente: false,
+    pagina: 1,
+  },
 
-  getAll: async () => {
+  getAllProducts: async () => {
     try {
       // const { data } = await axios(`http://localhost:3001/todos`);
       const data = [...productos];
@@ -21,6 +37,18 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
+  getFilteredProducts: async () => {
+    try {
+
+      // const { data } = await axios(`http://localhost:3001/todos`);
+      const data = [...productos];
+      set(() => ({ products: data, productosFiltrados: data }));
+    } catch (error) {
+      console.error("Error al buscar Todo:", error);
+      throw error;
+    }
+  },
+
   getNuevos: async () => {
     try {
       // const { data } = await axios(`http://localhost:3001/nuevos`);
@@ -100,7 +128,7 @@ export const useStore = create((set) => ({
   search: async (search) => {
     try {
       const { data } = await axios.post(`http://localhost:3001/?buscar=${search}`);
-      set(() => ({ products: data}));
+      set(() => ({ products: data }));
     } catch (error) {
       console.error("Error al buscar:", error);
       throw error;
