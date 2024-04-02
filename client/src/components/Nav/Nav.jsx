@@ -15,6 +15,7 @@ export default function Nav() {
   const searchFunction = useStore((state) => state.setSearch);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const setFilters = useStore((state) => state.setFilters);
+  const resetFilters = useStore((state) => state.resetFilters);
   const [search, setSearch] = useState('');
   const [isMenuDown, setIsMenuDown] = useState(false);
   const navigate = useNavigate();
@@ -111,6 +112,7 @@ export default function Nav() {
 
   const goToStore = async () => {
     try {
+      resetFilters();
       await getFilteredProducts();
       navigate('/tienda');
       window.scrollTo(0, 0);

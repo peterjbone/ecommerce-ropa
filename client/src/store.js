@@ -125,6 +125,27 @@ export const useStore = create((set) => ({
       }
     }));
   },
+  resetFilters: async () => {
+    set((state) => ({
+      filtros: {
+        ...state.filtros,
+        busqueda: "",
+        marca: [],
+        genero: [],
+        categoria: [],
+        subcategoria: [],
+        precioDesde: "",
+        precioHasta: "",
+        porcentajeDeOferta: 0,
+        esNuevo: null,
+        color: [],
+        talla: [],
+        ordenado: "precio",
+        ascendente: false,
+        pagina: 1
+      }
+    }));
+  },
   getFilteredProducts: async () => {
     try {
       const { data } = await axios.post(

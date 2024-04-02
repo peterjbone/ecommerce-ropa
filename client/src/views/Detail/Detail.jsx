@@ -5,7 +5,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import styles from "./Detail.module.css";
 import { useStore } from "../../store";
 
-const Detail = () => {
+export default function Detail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const products = useStore((state) => state.products);
@@ -168,6 +168,4 @@ const Detail = () => {
       </div>
     );
   }
-};
-
-export default Detail;
+}
