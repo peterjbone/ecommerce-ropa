@@ -51,8 +51,8 @@ export default function Card({
 			<div className="product-image-container">
 				<Link to={`/${product._id}`}>
 					<img
-						src={product.imagen[0]}
-						alt={product.imagen[0]}
+						src={product.opciones[0].imagenes[0]}
+						alt={product.opciones[0].imagenes[0]}
 						className="image"
 					/>
 				</Link>
@@ -70,7 +70,7 @@ export default function Card({
 				<Link to={`/${product._id}`} key={product._id}>
 					<img
 						src={product?.opciones[0]?.imagenes[0]}
-						alt={`Imagen producto ${product.name}`}
+						alt={`Imagen producto ${product.nombre}`}
 					/>
 					{/* <img src={product.imagen[0]} alt={`Imagen producto ${product.name}`} /> */}
 				</Link>

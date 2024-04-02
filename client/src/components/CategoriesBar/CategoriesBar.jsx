@@ -3,13 +3,16 @@ import './CategoriesBar.css'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../../store.js';
 
-export default function CategoriesBar({ title, categories }) {
+export default function CategoriesBar({ title, name, categories }) {
   const navigate = useNavigate();
-  const getSubcategoria = useStore((state) => state.getSubcategoria);
+  const setFilters = useStore((state) => state.setFilters);
+  const getFilteredProducts = useStore((state) => state.getFilteredProducts);
 
-  const handleSubcategorySearch = async (event) => {
+  const handleCategorySearch = async (event) => {
     try {
-      await getSubcategoria(event.target.id);
+      const { name, id } = event.target;
+      setFilters(name, id);
+      await getFilteredProducts();
       navigate('/tienda');
     } catch (error) {
       console.error(error);
@@ -17,36 +20,24 @@ export default function CategoriesBar({ title, categories }) {
   }
 
   return (
-    <div style={{ display:'flex', flexDirection:'column'}} id='categories' >
+    <div style={{ display: 'flex', flexDirection: 'column' }} id='categories' >
       <h3 className='categories-bar-title' >{title}</h3>
-        <div className='categories-bar-container' >
-          {categories.map(category =>
-            <div key={category} className='category-container'>
-              <div className='category-image-container' >
-                <img 
-                className='image'  
-                src={category} 
-                alt={category} 
-                id={category} 
-                onClick={handleSubcategorySearch} />
-              </div>
-              <h2>{category}</h2>
+      <div className='categories-bar-container' >
+        {categories.map(category =>
+          <div key={category} className='category-container'>
+            <div className='category-image-container' >
+              <img
+                className='image'
+                src={category}
+                alt={category}
+                id={category}
+                name={name}
+                onClick={handleCategorySearch} />
             </div>
-          )}
-          {/* {categories.map(category =>
-            <div key={category.id} className='category-container'>
-              <div className='category-image-container' >
-                <img 
-                className='image'  
-                src={category.imagen[0]} 
-                alt={category.imagen[0]} 
-                id={category.subcategoria} 
-                onClick={handleSubcategorySearch} />
-              </div>
-              <h2>{category.subcategoria}</h2>
-            </div>
-          )} */}
-        </div>
+            <h2>{category}</h2>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

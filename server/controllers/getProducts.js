@@ -43,10 +43,11 @@ const getProducts = async (request, response) => {
       query.subcategoria = { $in: subcategoria };
     }
     if (color && color.length > 0) {
-      query['opciones.0.colores.nombres'] = { $in: color };
+      query['opciones.colores.nombres'] = { $in: color };
     }
+    
     if (talla && talla.length > 0) {
-      query['opciones.0.tallas'] = {
+      query['opciones.tallas'] = {
         $elemMatch: { talla: { $in: talla } }
       };
     }

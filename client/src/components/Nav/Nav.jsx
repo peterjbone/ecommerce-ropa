@@ -12,38 +12,44 @@ export default function Nav() {
   const listaSubcategorias = useStore((state) => state.listaSubcategorias);
   const listaColores = useStore((state) => state.listaColores);
   const listaTallas = useStore((state) => state.listaTallas);
-  const [search, setSearch] = useState('');
-  const [isMenuDown, setIsMenuDown] = useState(false);
   const searchFunction = useStore((state) => state.setSearch);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
-  const getSubcategoria = useStore((state) => state.getSubcategoria);
+  const setFilters = useStore((state) => state.setFilters);
+  const [search, setSearch] = useState('');
+  const [isMenuDown, setIsMenuDown] = useState(false);
   const navigate = useNavigate();
-  const lists = [
+  const listas = [
     {
+      lista: listaGeneros,
+      title: 'Géneros',
+      name: 'genero',
+    },
+    {
+      lista: listaMarcas,
       title: 'Marcas',
-      list: listaMarcas,
+      name: 'marca',
     },
     {
-      title: 'Generos',
-      list: listaGeneros,
-    },
-    {
+      lista: listaCategorias,
       title: 'Categorias',
-      list: listaCategorias,
+      name: 'categoria',
     },
     {
+      lista: listaSubcategorias,
       title: 'Subcategorias',
-      list: listaSubcategorias,
+      name: 'subcategoria',
     },
     {
+      lista: listaColores,
       title: 'Colores',
-      list: listaColores,
+      name: 'color',
     },
     {
+      lista: listaTallas,
       title: 'Tallas',
-      list: listaTallas,
+      name: 'talla',
     },
-  ]
+  ];
   let windowTimeout;
 
   const handleScroll = () => {
@@ -61,28 +67,34 @@ export default function Nav() {
   const triggerAnimation = () => {
     if (!isMenuDown) {
       const targetElement = document.querySelector('.categories-window');
-      setTimeout(() => {
+      windowTimeout = setTimeout(() => {
         targetElement.classList.add('move-down');
         setIsMenuDown(true);
       }, 1000);
     }
   }
 
+  const cancelAnimation = () => {
+    if (!isMenuDown) {
+      clearTimeout(windowTimeout);
+      windowTimeout = null;
+      setIsMenuDown(false);
+    }
+  }
+
   const resetAnimation = () => {
     const targetElement = document.querySelector('.categories-window');
     windowTimeout = setTimeout(() => {
-      console.log('start');
       targetElement.classList.remove('move-down');
       targetElement.classList.add('move-up');
       setTimeout(() => {
         targetElement.classList.remove('move-up');
         setIsMenuDown(false);
       }, 500);
-    }, 4000);
+    }, 3000);
   }
 
   const cancelMoveWindowUp = () => {
-    console.log('cancel');
     clearTimeout(windowTimeout);
     windowTimeout = null;
   }
@@ -107,11 +119,22 @@ export default function Nav() {
     }
   }
 
-  const handleSubcategorySearch = async (event) => {
+  const handleCategorySearch = async (event) => {
     try {
-      await getSubcategoria(event.target.id);
+      const { id } = event.target;
+      const name = event.target.getAttribute('name');
+      console.log(event.target);
+      console.log(name);
+      setFilters(name, id);
+      await getFilteredProducts();
       navigate('/tienda');
-      window.scrollTo(0, 0);
+      const targetElement = document.querySelector('.categories-window');
+      targetElement.classList.remove('move-down');
+      targetElement.classList.add('dissapear');
+      setTimeout(() => {
+        targetElement.classList.remove('dissapear');
+        setIsMenuDown(false);
+      }, 100);
     } catch (error) {
       console.error(error);
     }
@@ -135,7 +158,7 @@ export default function Nav() {
           </NavLink>
         </ScrollLink>
         <NavLink to='/' >
-          <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation}
+          <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation} onMouseLeave={cancelAnimation}
           >Categorias</button>
         </NavLink>
         <button className='nav-bar-button' onClick={goToStore} >Tienda</button>
@@ -159,31 +182,22 @@ export default function Nav() {
         </div>
       </nav>
       <div className='categories-window' key='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
-        {lists.map((list, index) => (
-          <div key={`${list.title} ${index}`} >
-            <label>{list.title}</label>
-            {list.list.map((value, index) => (
+        {listas.map((list, index) => (
+          <>
+            <label key={`${list.title} ${index}`} >{list.title}</label>
+            {list.lista.map((value, index) => (
               <p
                 key={`${value} ${index}`}
                 onMouseEnter={cancelMoveWindowUp}
                 id={value}
-                onClick={handleSubcategorySearch}
+                name={list.name}
+                onClick={handleCategorySearch}
               >
                 {value}
               </p>
             ))}
-          </div>
+          </>
         ))}
-        {/* {categories.map(category =>
-          <p
-            key={category.id}
-            onMouseEnter={cancelMoveWindowUp}
-            id={category.subcategoria}
-            onClick={handleSubcategorySearch}
-          >
-            {category.subcategoria}
-          </p>
-        )} */}
       </div>
     </>
   );

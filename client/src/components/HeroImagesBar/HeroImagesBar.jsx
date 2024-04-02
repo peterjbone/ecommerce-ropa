@@ -56,21 +56,21 @@ export default function HeroImagesBar({ products }) {
           <img
             key={product._id}
             id={product._id}
-            src={product.imagen[0]}
-            alt={product.imagen[0]}
+            src={product.opciones[0].imagenes[0]}
+            alt={product.opciones[0].imagenes[0]}
             className='hero-image'
-            style={{ cursor:'pointer', translate: `${-100 * imageIndex}%` }}
+            style={{ cursor: 'pointer', translate: `${-100 * imageIndex}%` }}
             onClick={handleHeroImageClick}
             onMouseEnter={stopAutoScroll}
             onMouseLeave={resumeAutoScroll}
           />
         ))}
-      <button
-        className="hero-image-button"
-        onClick={showPrevImage}
-        style={{ left: 0 }} >
-        ⬅️
-      </button>
+        <button
+          className="hero-image-button"
+          onClick={showPrevImage}
+          style={{ left: 0 }} >
+          ⬅️
+        </button>
       </div>
       <button
         onClick={showNextImage}
