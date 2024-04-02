@@ -20,14 +20,19 @@ const ProductSchema = new Schema({
   },
   activo: Boolean,
   productoNuevo: Boolean,
-  categoria: String,
-  genero: String,
-  subcategoria: String,
-  opciones: {
-    type: Schema.Types.Mixed,
-    default: []
-  }
+  genero: {
+    type: String,
+    index: 'text'
+  },
+  categoria: {
+    type: String,
+    index: 'text'
+  },
+  subcategoria: {
+    type: String,
+    index: 'text'
+  },
 });
 
-const Producto = models.Producto || model("Producto", ProductSchema);
+const Producto = model("Producto", ProductSchema);
 module.exports = Producto;

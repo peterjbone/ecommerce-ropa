@@ -1,11 +1,10 @@
 require("dotenv").config();
 
 const server = require("./server.js");
-const PORT = 3001;
-const { connectDB, insertarDocumentos } = require("./db.js");
+const port = process.env.PORT;
+const { connectDB } = require("./db.js");
 
-server.listen(PORT, async () => {
-	console.log(`Servidor levantado en el puerto: ${PORT} (backend)`);
+server.listen(port, async () => {
+	console.log(`Servidor levantado en el puerto: ${port} (backend)`);
 	await connectDB();
-	// await insertarDocumentos();
 });

@@ -21,17 +21,4 @@ async function connectDB() {
 	}
 }
 
-//* -------------------- Insertar documentos necesarios en MongoDB ----------------------
-const productos = require("./utils/productos.js"); // Array de productos
-const Producto = require("./models/Producto.js"); // Colección de productos
-
-async function insertarDocumentos() {
-	try {
-		await Producto.insertMany(productos);
-		console.log("Documentos insertados correctamente");
-	} catch (error) {
-		console.log("Error al insertar documentos:", error.message);
-	}
-}
-
-module.exports = { connectDB, insertarDocumentos };
+module.exports = { connectDB };
