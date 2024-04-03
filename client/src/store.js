@@ -6,7 +6,7 @@ export const useStore = create((set) => ({
   products: [],
   productosFiltrados: [],
   favoritos: [1, 2, 3, 4, 5, 10, 15],
-  carrito: [],
+  cart: [],
   nuevos: [],
   destacados: [],
   ofertas: [],
@@ -17,7 +17,7 @@ export const useStore = create((set) => ({
   listaSubcategorias: [],
   listaColores: [],
   listaTallas: [],
-  productoDetail: '',
+  productoDetail: "",
   filtros: {
     busqueda: "",
     marca: [],
@@ -32,7 +32,7 @@ export const useStore = create((set) => ({
     talla: [],
     ordenado: "precio",
     ascendente: false,
-    pagina: 1
+    pagina: 1,
   },
   marcasDisponibles: [],
   categoriasDisponibles: [],
@@ -45,7 +45,10 @@ export const useStore = create((set) => ({
 
   getAllProducts: async () => {
     try {
-      const { data } = await axios.post(`http://localhost:3001/productos`, useStore.getState().filtros);
+      const { data } = await axios.post(
+        `http://localhost:3001/productos`,
+        useStore.getState().filtros
+      );
       const { filteredProducts } = data;
       set(() => ({
         products: filteredProducts,
@@ -66,7 +69,7 @@ export const useStore = create((set) => ({
         listaGeneros: generos,
         listaSubcategorias: subcategorias,
         listaColores: colores,
-        listaTallas: talles
+        listaTallas: talles,
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
@@ -78,24 +81,24 @@ export const useStore = create((set) => ({
       filtros: {
         ...state.filtros,
         busqueda: search,
-        pagina: 1
-      }
+        pagina: 1,
+      },
     }));
   },
   setOrder: (value) => {
     set((state) => ({
       filtros: {
         ...state.filtros,
-        ordenado: value
-      }
+        ordenado: value,
+      },
     }));
   },
   setOrderDirection: () => {
     set((state) => ({
       filtros: {
         ...state.filtros,
-        ascendente: !state.filtros.ascendente
-      }
+        ascendente: !state.filtros.ascendente,
+      },
     }));
   },
   setPrices: (from, till) => {
@@ -103,8 +106,8 @@ export const useStore = create((set) => ({
       filtros: {
         ...state.filtros,
         precioDesde: Number(from),
-        precioHasta: Number(till)
-      }
+        precioHasta: Number(till),
+      },
     }));
   },
   setFilters: (name, id) => {
@@ -112,8 +115,8 @@ export const useStore = create((set) => ({
       filtros: {
         ...state.filtros,
         [name]: toggleValue(state.filtros[name], id),
-        pagina: 1
-      }
+        pagina: 1,
+      },
     }));
   },
   setPage: (page) => {
@@ -121,8 +124,8 @@ export const useStore = create((set) => ({
     set((state) => ({
       filtros: {
         ...state.filtros,
-        pagina: page
-      }
+        pagina: page,
+      },
     }));
   },
   getFilteredProducts: async () => {
@@ -142,7 +145,7 @@ export const useStore = create((set) => ({
         subcategoriasDisponibles: subcategorias,
         coloresDisponibles: colores,
         tallasDisponibles: talles,
-        cantidadDeProductos: count
+        cantidadDeProductos: count,
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
@@ -153,7 +156,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/nuevos`);
       const data = [];
-      useStore.getState().products.map(producto => {
+      useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
           data.push(producto);
         }
@@ -168,8 +171,8 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/destacados`);
       const data = [];
-      useStore.getState().products.map(producto => {
-        if (producto.subcategoria === 'Destacado') {
+      useStore.getState().products.map((producto) => {
+        if (producto.subcategoria === "Destacado") {
           data.push(producto);
         }
       });
@@ -183,7 +186,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/ofertas`);
       const data = [];
-      useStore.getState().products.map(producto => {
+      useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
           data.push(producto);
         }
@@ -198,8 +201,8 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/tendencia`);
       const data = [];
-      useStore.getState().products.map(producto => {
-        if (producto.subcategoria === 'Tendencia') {
+      useStore.getState().products.map((producto) => {
+        if (producto.subcategoria === "Tendencia") {
           data.push(producto);
         }
       });
@@ -246,7 +249,64 @@ export const useStore = create((set) => ({
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+
+  addToCart: (productToAdd) => {
+    set((state) => {
+      const existingProduct = state.cart.find(
+        (product) => product.variantId === productToAdd.variantId
+      );
+
+      if (existingProduct) {
+        const updatedCart = state.cart.map((product) =>
+          product.variantId === productToAdd.variantId
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        );
+
+        return { ...state, cart: updatedCart };
+      } else {
+        const updatedCart = [...state.cart, { ...productToAdd, quantity: 1 }];
+        return { ...state, cart: updatedCart };
+      }
+    });
+  },
+
+  removeFromCart: (productId) => {
+    set((state) => {
+      const updatedCart = state.cart.filter(
+        (product) => product.variantId !== productId
+      );
+      return { ...state, cart: updatedCart };
+    });
+  },
+
+  incrementQuantity: (productId) => {
+    set((state) => {
+      const updatedCart = state.cart.map((product) =>
+        product.variantId === productId
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      );
+      return { ...state, cart: updatedCart };
+    });
+  },
+
+  decrementQuantity: (productId) => {
+    set((state) => {
+      const updatedCart = state.cart.map((product) =>
+        product.variantId === productId && product.quantity > 1
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      );
+
+      return { ...state, cart: updatedCart };
+    });
+  },
+
+  setCart: (updatedCart) => {
+    set({ cart: updatedCart });
+  },
 }));
 
 const toggleValue = (array, value) => {

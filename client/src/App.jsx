@@ -6,6 +6,8 @@ import { useStore } from './store.js';
 import Detail from "./views/Detail/Detail.jsx"
 import Tienda from "./views/Tienda/Tienda.jsx"
 import Footer from './components/Footer/Footer.jsx';
+import Carrito from "./components/Carrito/Carrito"
+
 
 function App() {
 
@@ -40,7 +42,8 @@ function App() {
         <Route path='/form' element={<Form />} />
         <Route path='/editproduct/:id' element={<FormEdit />} />
         <Route path='/tienda' element={<Tienda />} />
-        <Route path='/:id' element={<Detail />} />
+        <Route path='/:id' element={<Detail/>} />
+        <Route path='/carrito' element={<Carrito />} />
       </Routes>
       <Footer />
     </>
