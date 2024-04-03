@@ -15,10 +15,17 @@
 	"dependencies": {
 		"bcrypt": "^5.1.1",
 		"dotenv": "^16.4.5",
+<<<<<<< HEAD
 		"express": "^4.18.3",
 		"jsonwebtoken": "^9.0.2",
 		"mongoose": "^8.2.2",
 		"morgan": "^1.10.0",
 		"zod": "^3.22.4"
+=======
+		"express": "^4.19.2",
+		"mongoose": "^8.2.3",
+		"morgan": "^1.10.0",
+		"stripe": "^14.23.0"
+>>>>>>> d402e9b1ef6af8e79d2ce9251c18d41763080d95
 	}
 }

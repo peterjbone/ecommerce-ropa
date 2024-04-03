@@ -1,12 +1,12 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-//? Validando que existe una URL de MongoDB
+//? ------------------------ Validando que existe una URL de MongoDB -----------------------
 if (!process.env.MONGODB_URL) {
 	throw new Error("MONGODB_URL debe estar definido (backend)");
 }
 
-//? Conección con la base de datos "thecloset"
+//? ----------------- Conexión con la base de datos "ecommerce" -------------------
 async function connectDB() {
 	try {
 		await mongoose.connect(process.env.MONGODB_URL);
@@ -20,4 +20,18 @@ async function connectDB() {
 		);
 	}
 }
-module.exports = { connectDB };
+
+//* -------------------- Insertar documentos necesarios en MongoDB ----------------------
+const productos = require("./utils/productos.js"); // Array de productos
+const Producto = require("./models/Producto.js"); // Colección de productos
+
+async function insertarDocumentos() {
+	try {
+		await Producto.insertMany(productos);
+		console.log("Documentos insertados correctamente");
+	} catch (error) {
+		console.log("Error al insertar documentos:", error.message);
+	}
+}
+
+module.exports = { connectDB, insertarDocumentos };

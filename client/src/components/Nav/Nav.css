@@ -1,0 +1,142 @@
+.nav-bar {
+  background-color: rgb(224, 224, 224);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 8vh;
+  z-index: 20;
+}
+
+.logo-container {
+  background-color: rgb(255, 255, 255);
+  height: 8vh;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo {
+  border: none;
+  height: 30px;
+}
+
+.nav-bar-button {
+  background: transparent;
+  width: 100px;
+  height: 8vh;
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.nav-bar input[type="search"] {
+  width: 30vw;
+  padding: 8px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 1px rgb(99, 99, 99);
+  cursor: text;
+  transition: 200ms ease-out;
+}
+
+.nav-bar input[type="search"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.nav-bar-search-button {
+  padding: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-bar-button:hover {
+  color: rgba(69, 69, 69, 0.7);
+}
+
+.categories-window {
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(10rem, 1fr));
+  grid-auto-rows: 1.5rem;
+  margin: auto;
+  padding-top: 10px;
+  padding-left: 20px;
+  position: fixed;
+  top: -100vh;
+  left: 5%;
+  background-color: rgb(255, 255, 255);
+  z-index: 15;
+  border-radius: 0 0px 5px 5px;
+  transition: 0.5s ease-out;
+}
+
+.categories-window label {
+  grid-column: span 6;
+  font-weight: bold;
+}
+
+.categories-window p {
+  width: fit-content;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.categories-window p:hover {
+  color: rgb(141, 141, 141);
+}
+
+.move-down {
+  animation: move-down 0.5s ease-out forwards;
+}
+
+.move-up {
+  animation: move-up 0.5s ease-out forwards;
+}
+
+.dissapear {
+  animation: dissapear 0s forwards;
+}
+
+@keyframes move-down {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
+  
+}
+
+@keyframes move-up {
+
+  0% {
+    transform: translateY(100vh);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+  
+}
+
+@keyframes dissapear {
+
+  0% {
+    transform: translateY(100vh);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+  
+}

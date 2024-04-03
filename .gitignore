@@ -30,3 +30,6 @@ dist-ssr
 # Variables de entorno
 .env
 **/.env
+
+**/opciones_disponibles.txt
+**/productos.js
