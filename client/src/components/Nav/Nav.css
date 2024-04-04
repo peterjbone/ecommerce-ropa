@@ -1,5 +1,7 @@
 .nav-bar {
-  background-color: rgb(224, 224, 224);
+  font-family: Morn, Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
   position: fixed;
   top: 0;
   display: flex;
@@ -11,7 +13,7 @@
 }
 
 .logo-container {
-  background-color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 255, 255); */
   height: 8vh;
   padding: 0 5px;
   display: flex;
@@ -32,6 +34,8 @@
   margin-right: 5px;
   cursor: pointer;
   border: none;
+  font-family: inherit;
+  font-weight: bold;
 }
 
 .nav-bar input[type="search"] {
@@ -72,37 +76,34 @@
   position: fixed;
   top: -100vh;
   left: 5%;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(3px);
   z-index: 15;
-  border-radius: 0 0px 5px 5px;
+  border-radius: 0 0px 10px 10px;
   transition: 0.5s ease-out;
 }
 
 .categories-window label {
   grid-column: span 6;
+  font-size: 14px;
   font-weight: bold;
+  color: black;
 }
 
 .categories-window p {
   width: fit-content;
   text-transform: capitalize;
   cursor: pointer;
+  transition: 0.1s ease-out;
 }
 
 .categories-window p:hover {
-  color: rgb(141, 141, 141);
+  transform: scale(1.2);
+  color: rgb(0, 0, 0);
 }
 
 .move-down {
-  animation: move-down 0.5s ease-out forwards;
-}
-
-.move-up {
-  animation: move-up 0.5s ease-out forwards;
-}
-
-.dissapear {
-  animation: dissapear 0s forwards;
+  animation: move-down 0.3s ease-out forwards;
 }
 
 @keyframes move-down {
@@ -117,6 +118,10 @@
   
 }
 
+.move-up {
+  animation: move-up 0.3s ease-out forwards;
+}
+
 @keyframes move-up {
 
   0% {
@@ -127,6 +132,11 @@
     transform: translateY(0);
   }
   
+}
+
+.dissapear {
+  transition: 0;
+  animation: dissapear 0s forwards;
 }
 
 @keyframes dissapear {

@@ -40,13 +40,13 @@ export default function Home() {
     {
       lista: listaColores,
       title: 'Colores',
-      name: 'color',
+      name: 'colores',
     },
-    {
-      lista: listaTallas,
-      title: 'Tallas',
-      name: 'talla',
-    },
+    // {
+    //   lista: listaTallas,
+    //   title: 'Tallas',
+    //   name: 'talla',
+    // },
   ];
 
   return (
@@ -60,7 +60,7 @@ export default function Home() {
       {listas.map(lista => {
         return (
           <>
-            <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} />
+            <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} products={products} />
           </>
         )
       })}
