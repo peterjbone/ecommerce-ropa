@@ -1,8 +1,45 @@
+
+.selected-list-reset-container {
+  display: flex;
+  align-content: space-between;
+}
+
+.selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  width: 76%;
+  top: 0;
+  right: 0;
+  margin: 8vh auto 5px 22%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.selected-list p {
+  text-transform: capitalize;
+  background-color: black;
+  color: white;
+  min-width: fit-content;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 0;
+  font-size: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.selected-list p:hover {
+  color: red;
+}
+
 .pages-selector {
   display: flex;
   justify-content: center;
-  width: 75%;
-  margin: 10vh auto 0 23%;
+  margin: 10vh auto;
 }
 
 .pages-selector button {
