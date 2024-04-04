@@ -86,12 +86,12 @@ export default function Card({
             </div>
           )}
           <div style={{ display: "flex", flexDirection: "row" }}>
-            {product.opciones[0].colores?.codigosHex.map((color, index) => {
+            {product.opciones.map((opcion, index) => {
               return (
                 <div
-                  key={`${color} ${index}`}
+                  key={`${opcion.colores?.codigosHex[0]} ${index}`}
                   className="colorBox"
-                  style={{ backgroundColor: color }}></div>
+                  style={{ backgroundColor: opcion.colores?.codigosHex[0] }}></div>
               );
             })}
           </div>

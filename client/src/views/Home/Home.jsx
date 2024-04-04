@@ -40,7 +40,7 @@ export default function Home() {
     {
       lista: listaColores,
       title: 'Colores',
-      name: 'colores',
+      name: 'color',
     },
     // {
     //   lista: listaTallas,
