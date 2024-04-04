@@ -2,14 +2,14 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 //? ------------------------ Validando que existe una URL de MongoDB -----------------------
-if (!process.env.MONGODB_URL) {
+if (!process.env.DB_DEPLOY) {
 	throw new Error("MONGODB_URL debe estar definido (backend)");
 }
 
 //? ----------------- Conexión con la base de datos "ecommerce" -------------------
 async function connectDB() {
 	try {
-		await mongoose.connect(process.env.MONGODB_URL);
+		await mongoose.connect(process.env.DB_DEPLOY);
 		console.log(
 			"Conexión establecida con la base de datos 'ecommerce' (backend)"
 		);
