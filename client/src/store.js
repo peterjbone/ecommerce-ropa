@@ -47,7 +47,7 @@ export const useStore = create((set) => ({
   getAllProducts: async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/productos`,
+        `https://ecommerce-ropa-production.up.railway.app/productos`,
         useStore.getState().filtros
       );
       const { filteredProducts } = data;
@@ -66,7 +66,7 @@ export const useStore = create((set) => ({
   },
   getProductInfo: async () => {
     try {
-      const { data } = await axios(`http://localhost:3001/infoProductos`);
+      const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/infoProductos`);
       const { marcas, categorias, generos, subcategorias, colores, talles } =
         data;
       set(() => ({
@@ -171,7 +171,7 @@ export const useStore = create((set) => ({
   getFilteredProducts: async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/productos`,
+        `https://ecommerce-ropa-production.up.railway.app/productos`,
         useStore.getState().filtros
       );
       const { count, productOptions, filteredProducts } = data;
@@ -194,7 +194,7 @@ export const useStore = create((set) => ({
   },
   getNuevos: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/nuevos`);
+      // const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/nuevos`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
@@ -209,7 +209,7 @@ export const useStore = create((set) => ({
   },
   getDestacados: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/destacados`);
+      // const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/destacados`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Destacado") {
@@ -224,7 +224,7 @@ export const useStore = create((set) => ({
   },
   getOfertas: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/ofertas`);
+      // const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/ofertas`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
@@ -239,7 +239,7 @@ export const useStore = create((set) => ({
   },
   getTendencia: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/tendencia`);
+      // const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/tendencia`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Tendencia") {
@@ -254,7 +254,7 @@ export const useStore = create((set) => ({
   },
   // getFavoritos: async () => {
   //   try {
-  //     const { data } = await axios(`http://localhost:3001/favoritos`);
+  //     const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/favoritos`);
   //     set(() => ({ favoritos: data }));
   //   } catch (error) {
   //     console.error("Error al buscar Favoritos:", error);
@@ -263,7 +263,7 @@ export const useStore = create((set) => ({
   // },
   getProductById: async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/producto/${id}`);
+      const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/producto/${id}`);
       set(() => ({ productoDetail: data }));
     } catch (error) {
       console.log(error);
@@ -271,7 +271,7 @@ export const useStore = create((set) => ({
   },
   addFav: async (id) => {
     try {
-      // const { data } = await axios.put('http://localhost:3001/agregarFavorito', id);
+      // const { data } = await axios.put('https://ecommerce-ropa-production.up.railway.app/agregarFavorito', id);
       // set(() => ({ favoritos: data }));
       set((state) => ({ favoritos: [...state.favoritos, id] }));
     } catch (error) {
@@ -280,7 +280,7 @@ export const useStore = create((set) => ({
   },
   removeFav: async (id) => {
     try {
-      // const { data } = await axios.put('http://localhost:3001/removerFavorito', id);
+      // const { data } = await axios.put('https://ecommerce-ropa-production.up.railway.app/removerFavorito', id);
       // set(() => ({ favoritos: data }));
       set((state) => {
         const updatedFavoritos = state.favoritos.filter((item) => item !== id);
