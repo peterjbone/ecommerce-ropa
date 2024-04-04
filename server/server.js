@@ -8,7 +8,7 @@ const indexRouter = require("./routes/indexRouter.js");
 
 //* MIDDLEWARES
 server.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "ecommerce-ropa-production.up.railway.app");
+	res.header("Access-Control-Allow-Origin", "https://ecommerce-ropa-production.up.railway.app");
 	res.header("Access-Control-Allow-Credentials", "true");
 	res.header(
 		"Access-Control-Allow-Headers",
