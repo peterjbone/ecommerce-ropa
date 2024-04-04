@@ -4,11 +4,11 @@
   left: 0;
   width: 20%;
   height: 90vh;
-  padding-left: 10px;
-  margin-top: 15vh;
-  padding-right: 10px;
+  padding: 0 10px;
+  margin-top: 10vh;
   overflow-y: scroll;
   scrollbar-color: white;
+  z-index: 0;
 }
 
 .filters-container::-webkit-scrollbar {
@@ -26,22 +26,23 @@
 
 .filters-container::-webkit-scrollbar-button {}
 
-
 .filter-titles {
   text-transform: capitalize;
 }
 
 .order-by-options-container,
 .filter-list-container {
-  overflow: auto;
-  /* max-height: 34vh; */
-  z-index: 5;
   margin-bottom: 5px;
+  overflow: hidden;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
 }
 
 .order-by-options-container {
   position: absolute;
   width: 79.5%;
+  z-index: 5;
 }
 
 .order-by-button-container,
@@ -51,50 +52,80 @@
   height: 25px;
 }
 
+.order-by-button-container{
+  overflow: hidden;
+}
+
+
 .order-by-button,
 .order-by-options-button,
 .filter-list-button {
-  border: 1px solid white;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  background-color: white;
-  color: rgb(168, 168, 168);
   text-transform: capitalize;
   cursor: pointer;
-}
-
-.order-by-options-button {
-  color: black;
+  transition: 0.3s ease-out;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(218, 218, 218);
+  color: rgb(163, 163, 163);
+  padding: 10px;
+  height: 50px;
+  font-family: Morn, Arial, Helvetica, sans-serif;
 }
 
 .order-by-button {
-  border-color: black;
-  background-color: black;
+  border-radius: 10px;
+  height: 25px;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+.order-by-options-button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+.filter-list-button-container:hover,
+.filter-list-button:hover {
+}
+
+.filter-list-button:hover,
+.order-by-options-button:hover {
+  transform: translateY(-4px);
+  position: relative;
+  background-color: rgb(0, 0, 0);
   color: white;
 }
 
-.order-by-options-button-div {
-  border: 1px solid white;
-}
-
-.order-by-options-button-div:hover {
-  border: 1px solid black;
-  border-color: black;
+.order-direction-button:hover,
+.filter-row button:hover,
+.filter-list-button:hover,
+.clear-all-button:hover {
+  /* background-color: rgb(255, 255, 255); */
 }
 
 .order-direction-button,
 .submit-prices-button {
   margin-left: 5px;
   height: 25px;
-  background-color: rgb(0, 0, 0);
-  border: none;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  border-radius: 10px;
   padding-bottom: 2px;
   cursor: pointer;
 }
 
+.order-direction-button:hover,
+.submit-prices-button:hover {
+  background-color: rgb(0, 0, 0);
+}
+
 .number-filters-container {
   margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .filter-row {
@@ -109,7 +140,7 @@
   width: 45%;
   height: 25px;
   background-color: rgb(255, 255, 255);
-  border-radius: 0;
+  border-radius: 10px;
   border: 1px solid white;
 }
 
@@ -121,42 +152,28 @@
   border-color: black;
   outline: none;
 }
+
 .filter-row label {
   margin-right: 5px;
   margin-top: 1px;
 }
 
-.filters-container label:hover {
-  background-color: white;
-}
-
-.filter-list-button-container:hover,
-.filter-list-button:hover {
-  border-color: black;
-}
-
-.order-direction-button:hover,
-.filter-row button:hover,
-.filter-list-button:hover,
-.clear-all-button:hover {
-  color: black;
-  /* background-color: rgb(255, 255, 255); */
-}
-
 .available {
   background-color: rgb(255, 255, 255);
-  color: black;
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
+}
+
+.available:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 .selected,
 .selected-order {
   background-color: rgb(0, 0, 0);
   color: white;
-}
-
-.available:hover {
-  background-color: rgb(0, 0, 0);
-  color: white;
+  transform: translateY(-4px);
 }
 
 .selected:hover {
