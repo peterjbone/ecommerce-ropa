@@ -32,8 +32,10 @@ export const useStore = create((set) => ({
     talla: [],
     ordenado: "precio",
     ascendente: false,
-    pagina: 1
+    pagina: 1,
+    productosPorPagina: 100,
   },
+  filtrosSeleccionados: [],
   marcasDisponibles: [],
   categoriasDisponibles: [],
   generosDisponibles: [],
@@ -41,14 +43,18 @@ export const useStore = create((set) => ({
   coloresDisponibles: [],
   tallasDisponibles: [],
   cantidadDeProductos: 0,
-  productosPorPagina: 20,
 
   getAllProducts: async () => {
     try {
       const { data } = await axios.post(`http://localhost:3001/productos`, useStore.getState().filtros);
       const { filteredProducts } = data;
-      set(() => ({
+      set((state) => ({
         products: filteredProducts,
+        productosFiltrados: filteredProducts.slice(0, 20),
+        filtros: {
+          ...state.filtros,
+          productosPorPagina: 20,
+        }
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
@@ -109,6 +115,7 @@ export const useStore = create((set) => ({
   },
   setFilters: (name, id) => {
     set((state) => ({
+      filtrosSeleccionados: updateSelectedFilters(state.filtrosSeleccionados, id, name),
       filtros: {
         ...state.filtros,
         [name]: toggleValue(state.filtros[name], id),
@@ -117,7 +124,6 @@ export const useStore = create((set) => ({
     }));
   },
   setPage: (page) => {
-    console.log(page);
     set((state) => ({
       filtros: {
         ...state.filtros,
@@ -125,8 +131,21 @@ export const useStore = create((set) => ({
       }
     }));
   },
-  resetFilters: async () => {
+  resetFilter: (name) => {
     set((state) => ({
+      filtrosSeleccionados: state.filtrosSeleccionados.filter(value => {
+        value.name === name
+      }),
+      filtros: {
+        ...state.filtros,
+        [name]: [],
+        pagina: 1
+      }
+    }));
+  },
+  resetFilters: () => {
+    set((state) => ({
+      filtrosSeleccionados: [],
       filtros: {
         ...state.filtros,
         busqueda: "",
@@ -142,7 +161,7 @@ export const useStore = create((set) => ({
         talla: [],
         ordenado: "precio",
         ascendente: false,
-        pagina: 1
+        pagina: 1,
       }
     }));
   },
@@ -276,4 +295,17 @@ const toggleValue = (array, value) => {
   } else {
     return [...array, value];
   }
+};
+
+const updateSelectedFilters = (prevSelectedFilters, id, name) => {
+  const updatedFilters = [...prevSelectedFilters];
+  const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
+
+  if (existingIndex !== -1) {
+    updatedFilters.splice(existingIndex, 1);
+  } else {
+    updatedFilters.push({ name, id });
+  }
+
+  return updatedFilters;
 };
