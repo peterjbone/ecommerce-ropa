@@ -124,6 +124,7 @@ export default function Nav() {
       await getFilteredProducts();
       setIsMenuDown(false);
       navigate('/tienda');
+      window.scrollTo(0, 0);
       const targetElement = document.querySelector('.categories-window');
       targetElement.classList.remove('move-down');
       targetElement.classList.remove('move-up');
