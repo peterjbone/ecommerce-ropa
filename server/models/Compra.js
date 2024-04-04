@@ -2,9 +2,19 @@ const { Schema, model, models } = require("mongoose");
 
 const orderSchema = new Schema(
 	{
-		userId: { type: String, required: true },
+		userId: { type: Schema.Types.ObjectId, ref: "Usuario", required: true },
+		customerId: { type: String },
+		paymentIntentId: { type: String },
 		products: [
-			{ productId: { type: String }, quantity: { type: Number, default: 1 } }
+			{
+				_id: false,
+				productId: {
+					type: Schema.Types.ObjectId,
+					ref: "Producto",
+					required: true
+				},
+				quantity: { type: Number, default: 1 }
+			}
 		],
 		subtotal: { type: Number, required: true },
 		total: { type: Number, required: true },
