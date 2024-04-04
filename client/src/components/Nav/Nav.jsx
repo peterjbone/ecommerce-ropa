@@ -1,5 +1,5 @@
 import './Nav.css';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import logo from '../../assets/images/nombre.png'
@@ -19,6 +19,10 @@ export default function Nav() {
   const [search, setSearch] = useState('');
   const [isMenuDown, setIsMenuDown] = useState(false);
   const navigate = useNavigate();
+  const cart = useStore((state) => state.cart);
+  const [totalItemsInCart, setTotalItemsInCart] = useState(0);
+
+
   const listas = [
     {
       lista: listaGeneros,
@@ -52,6 +56,15 @@ export default function Nav() {
     },
   ];
   let windowTimeout;
+
+  useEffect(() => {
+    let totalQuantity = 0;
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    storedCart.forEach(product => {
+      totalQuantity += product.quantity;
+    });
+  setTotalItemsInCart(totalQuantity);
+}, [cart]);
 
   const handleScroll = () => {
     setTimeout(() => {
@@ -172,8 +185,10 @@ export default function Nav() {
         </div>
         <div>
           <button className='nav-bar-button' >Ingresar / Perfil</button>
-          <NavLink to='/cart'>
-            <button className='nav-bar-button' >Carrito</button>
+          <NavLink to='/carrito'>
+            <button className='nav-bar-button' >
+              Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
+            </button>
           </NavLink>
           <NavLink to='/checkout'>
             <button className='nav-bar-button' >CheckOut</button>
