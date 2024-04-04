@@ -5,7 +5,8 @@ import styles from "./Detail.module.css";
 import HeroImagesBarDetail from '../../components/HeroImagesBar/HeroImagesBarDetail';
 import { useStore } from '../../store'; 
 
-const Detail = () => {
+export default function Detail() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(null);
@@ -202,9 +203,6 @@ const Detail = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
 }
-
-export default Detail;

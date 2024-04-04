@@ -2,7 +2,7 @@ const Producto = require("../models/Producto.js");
 
 const getProducts = async (request, response) => {
   try {
-    const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, marca, genero, categoria, subcategoria, color, talla, ordenado, ascendente, pagina } = request.body;
+    const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, marca, genero, categoria, subcategoria, color, talla, ordenado, ascendente, pagina, productosPorPagina } = request.body;
 
     let query = {};
     const searchTerms = busqueda.split(' ').map(term => `(?=.*${term})`).join('.*');
@@ -164,14 +164,13 @@ const getProducts = async (request, response) => {
       default:
         break;
     }
-    const pageSize = 20;
-    const skip = (pagina - 1) * pageSize;
+    const skip = (pagina - 1) * productosPorPagina;
 
     const count = await Producto.countDocuments(query);
     const filteredProducts = await Producto.find(query)
       .sort(sort)
       .skip(skip)
-      .limit(pageSize);
+      .limit(productosPorPagina);
 
     response.status(200).json({ count, productOptions, filteredProducts });
   } catch (error) {

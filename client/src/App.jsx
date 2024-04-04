@@ -1,17 +1,16 @@
-import { Route, Routes } from 'react-router-dom';
-import { Home, Form, FormEdit } from './views';
 import Nav from './components/Nav/Nav';
-import { useEffect, useState } from 'react';
-import { useStore } from './store.js';
 import Detail from "./views/Detail/Detail.jsx"
 import Tienda from "./views/Tienda/Tienda.jsx"
 import Footer from './components/Footer/Footer.jsx';
 import Carrito from "./components/Carrito/Carrito"
 
 
-function App() {
+import { Route, Routes } from 'react-router-dom';
+import { Home, Form, FormEdit } from './views';
+import { useEffect } from 'react';
+import { useStore } from './store.js';
 
-  // const [categories, setCategories] = useState([]);
+export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getProductInfo = useStore((state) => state.getProductInfo);
   const getDestacados = useStore((state) => state.getDestacados);
@@ -49,5 +48,3 @@ function App() {
     </>
   );
 }
-
-export default App;

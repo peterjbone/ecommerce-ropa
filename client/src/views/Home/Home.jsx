@@ -4,7 +4,7 @@ import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import CategoriesBar from "../../components/CategoriesBar/CategoriesBar";
 import { useStore } from "../../store.js";
 
-const Home = () => {
+export default function Home() {
   const products = useStore((state) => state.products);
   const nuevos = useStore((state) => state.nuevos);
   const destacados = useStore((state) => state.destacados);
@@ -40,13 +40,13 @@ const Home = () => {
     {
       lista: listaColores,
       title: 'Colores',
-      name: 'color',
+      name: 'colores',
     },
-    {
-      lista: listaTallas,
-      title: 'Tallas',
-      name: 'talla',
-    },
+    // {
+    //   lista: listaTallas,
+    //   title: 'Tallas',
+    //   name: 'talla',
+    // },
   ];
 
   return (
@@ -60,13 +60,11 @@ const Home = () => {
       {listas.map(lista => {
         return (
           <>
-            <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} />
+            <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} products={products} />
           </>
         )
       })}
       <br /><br /><br />
     </div>
   );
-};
-
-export default Home;
+}
