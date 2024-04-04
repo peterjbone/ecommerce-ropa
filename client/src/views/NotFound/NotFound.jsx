@@ -1,15 +1,9 @@
-import styles from "./Home.module.css";
-import HeroImagesBar from "../../components/HeroImagesBar/HeroImagesBar";
-import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import CategoriesBar from "../../components/CategoriesBar/CategoriesBar";
-import { useStore } from "../../store.js";
+import { useStore } from "../../store";
+import "./NotFound.css";
 
-export default function Home() {
+export default function NotFound() {
   const products = useStore((state) => state.products);
-  const nuevos = useStore((state) => state.nuevos);
-  const destacados = useStore((state) => state.destacados);
-  const ofertas = useStore((state) => state.ofertas);
-  const tendencia = useStore((state) => state.tendencia);
   const listaMarcas = useStore((state) => state.listaMarcas);
   const listaGeneros = useStore((state) => state.listaGeneros);
   const listaCategorias = useStore((state) => state.listaCategorias);
@@ -40,7 +34,7 @@ export default function Home() {
     {
       lista: listaColores,
       title: 'Colores',
-      name: 'color',
+      name: 'colores',
     },
     // {
     //   lista: listaTallas,
@@ -48,15 +42,12 @@ export default function Home() {
     //   name: 'talla',
     // },
   ];
-
   return (
-    <div className={styles["home-container"]} id="home">
-      <HeroImagesBar products={products} />
-      <ProductsBar title='Nuevos' products={nuevos} />
-      {/* <ProductsBar title='Destacados' products={destacados} /> */}
-      <ProductsBar title='Ofertas' products={ofertas} />
-      {/* <ProductsBar title='Tendencia' products={tendencia} /> */}
-      <ProductsBar title='Favoritos' products={products} />
+    <div>
+      <div className='not-found-message' >
+        <h2>Parece que la página que estas buscando no existe</h2>
+        <h3>Puedes seguir explorando desde la barra de navegación o seleccionando una categoría de aquí abajo</h3>
+      </div>
       {listas.map(lista => {
         return (
           <>
@@ -64,7 +55,6 @@ export default function Home() {
           </>
         )
       })}
-      <br /><br /><br />
     </div>
-  );
+  )
 }

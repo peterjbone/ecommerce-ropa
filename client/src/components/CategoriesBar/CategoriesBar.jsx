@@ -11,6 +11,7 @@ export default function CategoriesBar({ title, name, categories, products }) {
   const handleCategorySearch = async (event) => {
     try {
       const { name, id } = event.target;
+      console.log(name, id);
       setFilters(name, id);
       await getFilteredProducts();
       navigate('/tienda');
@@ -28,8 +29,8 @@ export default function CategoriesBar({ title, name, categories, products }) {
             <div className='category-image-container' >
               <img
                 className='image'
-                src={name === 'colores' 
-                ? products.find(product => product.opciones[0][name].nombres[0] === category)?.opciones[0]?.imagenes[0] 
+                src={name === 'color' 
+                ? products.find(product => product.opciones[0]['colores'].nombres[0] === category)?.opciones[0]?.imagenes[0] 
                 : products.find(product => product[name] === category)?.opciones[0]?.imagenes[0]}
                 alt={category}
                 id={category}

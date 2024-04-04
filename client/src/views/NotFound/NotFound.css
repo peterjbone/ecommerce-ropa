@@ -1,0 +1,13 @@
+.not-found-message {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 15vh auto 0 auto;
+  align-items: center;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.not-found-message h3 {
+  font-size: 16px;
+}
