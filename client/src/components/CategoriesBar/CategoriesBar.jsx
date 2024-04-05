@@ -3,7 +3,7 @@ import './CategoriesBar.css'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../../store.js';
 
-export default function CategoriesBar({ title, name, categories }) {
+export default function CategoriesBar({ title, name, categories, products }) {
   const navigate = useNavigate();
   const setFilters = useStore((state) => state.setFilters);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
@@ -11,6 +11,7 @@ export default function CategoriesBar({ title, name, categories }) {
   const handleCategorySearch = async (event) => {
     try {
       const { name, id } = event.target;
+      console.log(name, id);
       setFilters(name, id);
       await getFilteredProducts();
       navigate('/tienda');
@@ -28,7 +29,9 @@ export default function CategoriesBar({ title, name, categories }) {
             <div className='category-image-container' >
               <img
                 className='image'
-                src={category}
+                src={name === 'color' 
+                ? products.find(product => product.opciones[0]['colores'].nombres[0] === category)?.opciones[0]?.imagenes[0] 
+                : products.find(product => product[name] === category)?.opciones[0]?.imagenes[0]}
                 alt={category}
                 id={category}
                 name={name}

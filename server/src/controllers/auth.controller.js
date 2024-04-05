@@ -19,6 +19,7 @@ const register = async (req, res) => {
       id: userSaved._id,
       username: userSaved.username,
       email: userSaved.email,
+      token: token,
     });
   } catch (error) {
     console.log(error);
@@ -43,6 +44,7 @@ const login = async (req, res) => {
       id: userFind._id,
       username: userFind.username,
       email: userFind.email,
+      token: token,
       createdAt: userFind.createdAt,
       updateAt: userFind.updateAt,
     });
@@ -87,5 +89,10 @@ const deleteAccount = async (req, res) => {
 };
 
 
-
-module.exports = { register, login, deleteAccount, logout, profile };
+module.exports = {
+  register,
+  login,
+  logout,
+  profile,
+  deleteAccount,
+}

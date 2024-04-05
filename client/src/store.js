@@ -6,7 +6,7 @@ export const useStore = create((set) => ({
   products: [],
   productosFiltrados: [],
   favoritos: [1, 2, 3, 4, 5, 10, 15],
-  carrito: [],
+  cart: [],
   nuevos: [],
   destacados: [],
   ofertas: [],
@@ -17,7 +17,7 @@ export const useStore = create((set) => ({
   listaSubcategorias: [],
   listaColores: [],
   listaTallas: [],
-  productoDetail: '',
+  productoDetail: "",
   filtros: {
     busqueda: "",
     marca: [],
@@ -32,8 +32,10 @@ export const useStore = create((set) => ({
     talla: [],
     ordenado: "precio",
     ascendente: false,
-    pagina: 1
+    pagina: 1,
+    productosPorPagina: 100,
   },
+  filtrosSeleccionados: [],
   marcasDisponibles: [],
   categoriasDisponibles: [],
   generosDisponibles: [],
@@ -41,14 +43,21 @@ export const useStore = create((set) => ({
   coloresDisponibles: [],
   tallasDisponibles: [],
   cantidadDeProductos: 0,
-  productosPorPagina: 20,
 
   getAllProducts: async () => {
     try {
-      const { data } = await axios.post(`http://localhost:3001/productos`, useStore.getState().filtros);
+      const { data } = await axios.post(
+        `http://localhost:3001/productos`,
+        useStore.getState().filtros
+      );
       const { filteredProducts } = data;
-      set(() => ({
+      set((state) => ({
         products: filteredProducts,
+        productosFiltrados: filteredProducts.slice(0, 20),
+        filtros: {
+          ...state.filtros,
+          productosPorPagina: 20,
+        }
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
@@ -66,7 +75,7 @@ export const useStore = create((set) => ({
         listaGeneros: generos,
         listaSubcategorias: subcategorias,
         listaColores: colores,
-        listaTallas: talles
+        listaTallas: talles,
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
@@ -78,24 +87,24 @@ export const useStore = create((set) => ({
       filtros: {
         ...state.filtros,
         busqueda: search,
-        pagina: 1
-      }
+        pagina: 1,
+      },
     }));
   },
   setOrder: (value) => {
     set((state) => ({
       filtros: {
         ...state.filtros,
-        ordenado: value
-      }
+        ordenado: value,
+      },
     }));
   },
   setOrderDirection: () => {
     set((state) => ({
       filtros: {
         ...state.filtros,
-        ascendente: !state.filtros.ascendente
-      }
+        ascendente: !state.filtros.ascendente,
+      },
     }));
   },
   setPrices: (from, till) => {
@@ -103,30 +112,43 @@ export const useStore = create((set) => ({
       filtros: {
         ...state.filtros,
         precioDesde: Number(from),
-        precioHasta: Number(till)
-      }
+        precioHasta: Number(till),
+      },
     }));
   },
   setFilters: (name, id) => {
     set((state) => ({
+      filtrosSeleccionados: updateSelectedFilters(state.filtrosSeleccionados, id, name),
       filtros: {
         ...state.filtros,
         [name]: toggleValue(state.filtros[name], id),
+        pagina: 1,
+      },
+    }));
+  },
+  setPage: (page) => {
+    set((state) => ({
+      filtros: {
+        ...state.filtros,
+        pagina: page,
+      },
+    }));
+  },
+  resetFilter: (name) => {
+    set((state) => ({
+      filtrosSeleccionados: state.filtrosSeleccionados.filter(value => {
+        value.name === name
+      }),
+      filtros: {
+        ...state.filtros,
+        [name]: [],
         pagina: 1
       }
     }));
   },
-  setPage: (page) => {
-    console.log(page);
+  resetFilters: () => {
     set((state) => ({
-      filtros: {
-        ...state.filtros,
-        pagina: page
-      }
-    }));
-  },
-  resetFilters: async () => {
-    set((state) => ({
+      filtrosSeleccionados: [],
       filtros: {
         ...state.filtros,
         busqueda: "",
@@ -142,7 +164,7 @@ export const useStore = create((set) => ({
         talla: [],
         ordenado: "precio",
         ascendente: false,
-        pagina: 1
+        pagina: 1,
       }
     }));
   },
@@ -163,7 +185,7 @@ export const useStore = create((set) => ({
         subcategoriasDisponibles: subcategorias,
         coloresDisponibles: colores,
         tallasDisponibles: talles,
-        cantidadDeProductos: count
+        cantidadDeProductos: count,
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
@@ -174,7 +196,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/nuevos`);
       const data = [];
-      useStore.getState().products.map(producto => {
+      useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
           data.push(producto);
         }
@@ -189,8 +211,8 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/destacados`);
       const data = [];
-      useStore.getState().products.map(producto => {
-        if (producto.subcategoria === 'Destacado') {
+      useStore.getState().products.map((producto) => {
+        if (producto.subcategoria === "Destacado") {
           data.push(producto);
         }
       });
@@ -204,7 +226,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/ofertas`);
       const data = [];
-      useStore.getState().products.map(producto => {
+      useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
           data.push(producto);
         }
@@ -219,8 +241,8 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`http://localhost:3001/tendencia`);
       const data = [];
-      useStore.getState().products.map(producto => {
-        if (producto.subcategoria === 'Tendencia') {
+      useStore.getState().products.map((producto) => {
+        if (producto.subcategoria === "Tendencia") {
           data.push(producto);
         }
       });
@@ -267,7 +289,64 @@ export const useStore = create((set) => ({
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+
+  addToCart: (productToAdd) => {
+    set((state) => {
+      const existingProduct = state.cart.find(
+        (product) => product.variantId === productToAdd.variantId
+      );
+
+      if (existingProduct) {
+        const updatedCart = state.cart.map((product) =>
+          product.variantId === productToAdd.variantId
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        );
+
+        return { ...state, cart: updatedCart };
+      } else {
+        const updatedCart = [...state.cart, { ...productToAdd, quantity: 1 }];
+        return { ...state, cart: updatedCart };
+      }
+    });
+  },
+
+  removeFromCart: (productId) => {
+    set((state) => {
+      const updatedCart = state.cart.filter(
+        (product) => product.variantId !== productId
+      );
+      return { ...state, cart: updatedCart };
+    });
+  },
+
+  incrementQuantity: (productId) => {
+    set((state) => {
+      const updatedCart = state.cart.map((product) =>
+        product.variantId === productId
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      );
+      return { ...state, cart: updatedCart };
+    });
+  },
+
+  decrementQuantity: (productId) => {
+    set((state) => {
+      const updatedCart = state.cart.map((product) =>
+        product.variantId === productId && product.quantity > 1
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      );
+
+      return { ...state, cart: updatedCart };
+    });
+  },
+
+  setCart: (updatedCart) => {
+    set({ cart: updatedCart });
+  },
 }));
 
 const toggleValue = (array, value) => {
@@ -276,4 +355,17 @@ const toggleValue = (array, value) => {
   } else {
     return [...array, value];
   }
+};
+
+const updateSelectedFilters = (prevSelectedFilters, id, name) => {
+  const updatedFilters = [...prevSelectedFilters];
+  const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
+
+  if (existingIndex !== -1) {
+    updatedFilters.splice(existingIndex, 1);
+  } else {
+    updatedFilters.push({ name, id });
+  }
+
+  return updatedFilters;
 };
