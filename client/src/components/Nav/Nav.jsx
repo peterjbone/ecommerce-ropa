@@ -184,7 +184,9 @@ export default function Nav() {
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>
         </div>
         <div>
-          <button className='nav-bar-button' >Ingresar / Perfil</button>
+          <NavLink to='/login'>
+            <button className='nav-bar-button' >Ingresar / Perfil</button>
+          </NavLink>
           <NavLink to='/carrito'>
             <button className='nav-bar-button' >
               Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}

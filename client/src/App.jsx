@@ -6,7 +6,7 @@ import Carrito from "./components/Carrito/Carrito"
 
 
 import { Route, Routes } from 'react-router-dom';
-import { Home, Form, FormEdit } from './views';
+import { Home, Form, FormEdit, Login, Register } from './views';
 import { useEffect } from 'react';
 import { useStore } from './store.js';
 import NotFound from './views/NotFound/NotFound.jsx';
@@ -39,6 +39,8 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/form' element={<Form />} />
         <Route path='/editproduct/:id' element={<FormEdit />} />
         <Route path='/tienda' element={<Tienda />} />
