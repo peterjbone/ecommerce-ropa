@@ -1,14 +1,11 @@
 const express = require("express");
 const server = express();
 const morgan = require("morgan");
+const cookieParser = require('cookie-parser')	
 
-<<<<<<< HEAD
-const authRoutes = require("./src/routes/auth.routes");
-
-
-=======
 //? Importando routers
-const indexRouter = require("./routes/indexRouter.js");
+const indexRouter = require("./src/routes/indexRouter.js");
+const authRouter = require('./src/routes/authRouter.js')
 // const stripeRouter = require("./routes/stripeRouter.js");
 
 //* MIDDLEWARES
@@ -23,13 +20,12 @@ server.use((req, res, next) => {
 	next();
 });
 server.use(morgan("dev"));
->>>>>>> d402e9b1ef6af8e79d2ce9251c18d41763080d95
 server.use(express.json());
 server.use(morgan("dev"));
-server.use('/auth', authRoutes)
-
+server.use(cookieParser())
 //* ROUTES Y ROUTERS
 server.use("/", indexRouter);
+server.use('/auth', authRouter)
 // server.use("/api/stripe", stripeRouter);
 
 module.exports = server;

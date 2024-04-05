@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-const TOKEN_SECRET = require(proccess.env.TOKEN_SECRET)
+const TOKEN_SECRET = process.env.TOKEN_SECRET
+
 const authRequired = async (req,res) =>{
     const {token} = req.cookies
     if(!token){
@@ -12,3 +13,5 @@ const authRequired = async (req,res) =>{
         req.user = user
         next()
     })}
+
+module.exports = {authRequired}
