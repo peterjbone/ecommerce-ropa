@@ -1,13 +1,12 @@
 .product-bar-title {
-  width: 80%;
-  margin: 1% auto 0 auto;
+  width: 100%;
+  margin: 3% auto 1% auto;
 }
 
 .products-bar-container {
   display: flex;
   width: 100%;
   overflow-x: auto;
-  margin: 0 auto;
   position: relative;
   overflow: hidden;
   text-transform: capitalize;
@@ -15,7 +14,7 @@
 
 .product-arrow-button {
   position: absolute;
-  top: 50%;
+  top: 35%;
   z-index: 5;
   outline: none;
   border: none;

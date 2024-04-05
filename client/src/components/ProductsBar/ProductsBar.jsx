@@ -27,8 +27,6 @@ export default function ProductsBar({ title, products }) {
 			<div
 				style={{
 					display: "flex",
-					width: "80%",
-					margin: "auto",
 					alignItems: "center",
 					position: "relative"
 				}}>

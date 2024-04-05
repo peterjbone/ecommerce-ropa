@@ -5,7 +5,6 @@ export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
  
   const [imageIndex, setImageIndex] = useState(0);
   let autoScrollIntervalRef = useRef(null);
-  console.log(product)
   useEffect(() => {
    
     if (product && product.opciones && product.opciones[selectedColorIndex].imagenes.length > 0) {

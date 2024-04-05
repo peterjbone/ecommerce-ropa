@@ -3,6 +3,7 @@ import HeroImagesBar from "../../components/HeroImagesBar/HeroImagesBar";
 import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import CategoriesBar from "../../components/CategoriesBar/CategoriesBar";
 import { useStore } from "../../store.js";
+import { useEffect } from 'react';
 
 const Home = () => {
   const products = useStore((state) => state.products);
@@ -16,6 +17,14 @@ const Home = () => {
   const listaSubcategorias = useStore((state) => state.listaSubcategorias);
   const listaColores = useStore((state) => state.listaColores);
   const listaTallas = useStore((state) => state.listaTallas);
+  const getCart = useStore((state) => state.getCart);
+  
+  useEffect(() => {
+    const cartToken = localStorage.getItem('cartToken');
+    if (cartToken) {
+      getCart(cartToken);
+    }
+  }, []);
   const listas = [
     {
       lista: listaGeneros,
@@ -52,11 +61,17 @@ const Home = () => {
   return (
     <div className={styles["home-container"]} id="home">
       <HeroImagesBar products={products} />
-      <ProductsBar title='Nuevos' products={nuevos} />
+      <div className={styles["product-bar"]}>
+        <ProductsBar title='Nuevos' products={nuevos} />
+      </div>
       {/* <ProductsBar title='Destacados' products={destacados} /> */}
-      <ProductsBar title='Ofertas' products={ofertas} />
+      <div className={styles["product-bar"]}>
+        <ProductsBar title='Ofertas' products={products} />
+      </div>
       {/* <ProductsBar title='Tendencia' products={tendencia} /> */}
-      <ProductsBar title='Favoritos' products={products} />
+      <div className={styles["product-bar"]}>
+        <ProductsBar title='Favoritos' products={products} />
+      </div>
       {listas.map(lista => {
         return (
           <>
@@ -67,6 +82,7 @@ const Home = () => {
       <br /><br /><br />
     </div>
   );
+  
 };
 
 export default Home;

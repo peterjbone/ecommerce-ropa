@@ -69,44 +69,6 @@
   color: #fff;
 }
 
-.relatedProductsContainer {
-  overflow-x: auto;
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.relatedProducts {
-  display: flex;
-}
-
-.relatedProduct {
-  width: 250px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  text-align: center;
-}
-
-.relatedProductImageLarge {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-
-.relatedProductName {
-  margin-top: 10px;
-  font-size: 16px;
-}
-
-.relatedProductPrice {
-  font-weight: bold;
-  margin-top: 5px;
-}
-
-.productsRelacionados {
-  margin-top: 10px;
-}
 .buttonsContainer {
   margin-top: 20px;
 }
@@ -151,4 +113,20 @@
 
 .notFoundText {
   font-size: 40px;
+}
+
+.addToCartButton[disabled],
+.buyButton[disabled] {
+  padding: 10px 20px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: not-allowed;
+  background-color: #ccc;
+  opacity: 0.7;
+}
+
+.addToCartButton[disabled]:hover,
+.buyButton[disabled]:hover {
+  background-color: #ccc;
 }

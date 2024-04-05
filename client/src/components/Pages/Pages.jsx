@@ -12,6 +12,14 @@ export default function Pages() {
   const pagina = useStore((state) => state.filtros.pagina);
   const [currentPage, setCurrentPage] = useState(pagina);
   const nPages = Math.ceil(cantidadDeProductos / productosPorPagina);
+  const getCart = useStore((state) => state.getCart);
+  
+  useEffect(() => {
+    const cartToken = localStorage.getItem('cartToken');
+    if (cartToken) {
+      getCart(cartToken);
+    }
+  }, []);
 
   useEffect(() => {
     if (currentPage > nPages) {

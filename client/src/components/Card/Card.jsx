@@ -59,7 +59,7 @@ export default function Card({
 			</div>
 			<h4>{product.nombre}</h4>
 			<p>${product.precio}</p>
-			<button className="product-add-to-cart-button">Agregar Al Carrito</button>
+			
 		</div>
 	) : (
 		<div className="card-container">

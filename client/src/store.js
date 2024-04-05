@@ -251,57 +251,82 @@ export const useStore = create((set) => ({
     }
   },
 
-  addToCart: (productToAdd) => {
-    set((state) => {
-      const existingProduct = state.cart.find(
-        (product) => product.variantId === productToAdd.variantId
+  getCart: async (cartToken) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/carrito/${cartToken}`
       );
+      set((state) => ({
+        ...state,
+        cart: response.data.products,
+      }));
+    } catch (error) {
+      console.error("Error al obtener productos del carrito:", error);
+    }
+  },
 
-      if (existingProduct) {
-        const updatedCart = state.cart.map((product) =>
-          product.variantId === productToAdd.variantId
-            ? { ...product, quantity: product.quantity + 1 }
-            : product
-        );
-
-        return { ...state, cart: updatedCart };
+  addToCart: async (productToAdd, token) => {
+    try {
+      console.log(productToAdd);
+      const { data } = await axios.post(
+        "http://localhost:3001/agregarCarrito",
+        { ...productToAdd, token }
+      );
+      console.log(data);
+      if (data.carrito) {
+        set({ cart: data.carrito.products });
+        localStorage.setItem("cartToken", data.token);
       } else {
-        const updatedCart = [...state.cart, { ...productToAdd, quantity: 1 }];
-        return { ...state, cart: updatedCart };
+        console.log("No se pudo obtener el carrito actualizado del servidor");
       }
-    });
+    } catch (error) {
+      console.error("Error al agregar producto al carrito:", error);
+    }
   },
 
-  removeFromCart: (productId) => {
-    set((state) => {
-      const updatedCart = state.cart.filter(
-        (product) => product.variantId !== productId
+  removeFromCart: async (variantId, token) => {
+    try {
+      const { data } = await axios.delete(
+        "http://localhost:3001/removeFromCart",
+        {
+          data: { variantId, token },
+        }
       );
-      return { ...state, cart: updatedCart };
-    });
+      set({ cart: data.carrito.products });
+    } catch (error) {
+      console.error("Error al eliminar producto del carrito:", error);
+    }
   },
 
-  incrementQuantity: (productId) => {
-    set((state) => {
-      const updatedCart = state.cart.map((product) =>
-        product.variantId === productId
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
+  incrementQuantity: async (variantId, token) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/incrementQuantity",
+        { variantId, token }
       );
-      return { ...state, cart: updatedCart };
-    });
+      set({ cart: response.data.carrito.products });
+    } catch (error) {
+      console.error(
+        "Error al incrementar la cantidad del producto en el carrito:",
+        error
+      );
+    }
   },
 
-  decrementQuantity: (productId) => {
-    set((state) => {
-      const updatedCart = state.cart.map((product) =>
-        product.variantId === productId && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
+  decrementQuantity: async (variantId, token) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/decrementQuantity",
+        { variantId, token }
       );
 
-      return { ...state, cart: updatedCart };
-    });
+      set({ cart: response.data.carrito.products });
+    } catch (error) {
+      console.error(
+        "Error al decrementar la cantidad del producto en el carrito:",
+        error
+      );
+    }
   },
 
   setCart: (updatedCart) => {

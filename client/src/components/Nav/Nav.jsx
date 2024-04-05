@@ -19,6 +19,7 @@ export default function Nav() {
   const [isMenuDown, setIsMenuDown] = useState(false);
   const navigate = useNavigate();
   const cart = useStore((state) => state.cart);
+ 
   const [totalItemsInCart, setTotalItemsInCart] = useState(0);
 
 
@@ -58,12 +59,16 @@ export default function Nav() {
 
   useEffect(() => {
     let totalQuantity = 0;
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    storedCart.forEach(product => {
-      totalQuantity += product.quantity;
-    });
-  setTotalItemsInCart(totalQuantity);
-}, [cart]);
+    
+    if (cart) {
+      cart.forEach(product => {
+        totalQuantity += product.quantity;
+      });
+    }
+    
+    setTotalItemsInCart(totalQuantity);
+  }, [cart]);
+  
 
   const handleScroll = () => {
     setTimeout(() => {
