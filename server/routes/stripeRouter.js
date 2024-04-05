@@ -11,6 +11,7 @@ router.post("/create-checkout-session", async (req, res) => {
 	const products = req.body.cartItems.map((item) => {
 		return {
 			productId: item._id,
+			productColor: item.color,
 			quantity: item.cartQuantity
 		};
 	});
