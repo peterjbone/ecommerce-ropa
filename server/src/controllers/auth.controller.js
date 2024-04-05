@@ -59,14 +59,15 @@ const logout = async (req,res) =>{
 }
 
 const profile = async (req,res) =>{
-    const user = await Usuario.findById(req.userId)
+    const user = await Usuario.findById(req.user.id)
     if(!user) return res.status(404).json({message: 'User not found'})
     return res.json({
         id: user._id,
         username: user.username,
         email: user.email,
         createdAt: user.createdAt,
-        updateAt: user.updateAt
+        updateAt: user.updateAt,
+        profile: "this is the profile of the user"
     
     })
 }

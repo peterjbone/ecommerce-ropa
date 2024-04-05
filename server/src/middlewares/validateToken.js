@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const TOKEN_SECRET = process.env.TOKEN_SECRET
 
-const authRequired = async (req,res) =>{
+const authRequired = async (req,res, next) =>{
     const {token} = req.cookies
     if(!token){
         return res.status(401).json({message: "Unauthorized"})
