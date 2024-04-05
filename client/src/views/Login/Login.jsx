@@ -4,10 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import Cookies from 'universal-cookie'
 
 const Login = () => {
 
   const navigate = useNavigate()
+  const cookies = new Cookies();
 
   const [user, setUser] = useState({
     email: '',
@@ -23,8 +25,11 @@ const Login = () => {
     e.preventDefault()
     try {
       const response = await axios.post('http://localhost:3001/auth/login', user)
-      console.log(response.status);
+      console.log(response);
       if(response.status === 200) {
+
+        cookies.set("token", response.data.token)
+
         toast.success('Iniciaste sesión', {
           onClose: () => {
             navigate('/');
@@ -32,7 +37,7 @@ const Login = () => {
           autoClose: 1000,
         });
 
-        setUser({ // Clear the form
+        setUser({ //Limpia el form
           fullname: '',
           name: '',
           surname: '',
@@ -42,7 +47,6 @@ const Login = () => {
         });
 
       } else {
-        // Handle other response statuses
         toast.error('Error al iniciar sesión');
       }
     } catch (error) {
