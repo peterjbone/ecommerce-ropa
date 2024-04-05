@@ -8,6 +8,7 @@ export default function Filters() {
   const setOrderDirection = useStore((state) => state.setOrderDirection);
   const setPrices = useStore((state) => state.setPrices);
   const setFilters = useStore((state) => state.setFilters);
+  const resetFilter = useStore((state) => state.resetFilter);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const listaMarcas = useStore((state) => state.listaMarcas);
   const listaGeneros = useStore((state) => state.listaGeneros);
@@ -110,98 +111,121 @@ export default function Filters() {
       console.error(error);
     }
   }
+  const handleAnyOptionChange = async (event) => {
+    try {
+      const { id } = event.target;
+      resetFilter(id);
+      await getFilteredProducts();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
-    <div className='filters-container'>
-      <label
-        tabIndex={0}
-        onBlur={() => setTimeout(handleOrderBlur, 100)}
-        onClick={handleOrderFocus} >
-        {orderByOptions.title}
-      </label>
-      <div className='order-by-button-container' key='selectedOrder' >
-        <button
-          className='order-by-button'
-          key='selectedOrder'
-          id='selectedOrder'
+    <>
+      <div className='filters-container'>
+        <label
+          tabIndex={0}
           onBlur={() => setTimeout(handleOrderBlur, 100)}
           onClick={handleOrderFocus} >
-          {filtros.ordenado}
-        </button>
-        <button
-          className='order-direction-button'
-          id='orderButton'
-          onClick={handleOrderDirectionChange} >
-          {filtros.ascendente ? '🔼' : '🔽'}
-        </button>
-      </div>
-      <div className={`order-by-options-container ${isOrderFocused ? '' : 'invisible'}`} >
-        {orderByOptions.options.map((order) => {
-          return (
-            <div className='order-by-options-button-div' key={order} >
-              <button
-                key={order}
-                id={order}
-                name='ordenado'
-                className={`order-by-options-button ${order === filtros.ordenado ? 'selected-order' : ''}`}
-                onClick={handleOrderChange} >
-                {order}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-      <div className='number-filters-container' >
-        <label
-          className='filter-titles'
-          htmlFor='precioDesde' >
-          Precio
+          {orderByOptions.title}
         </label>
-        <div className='filter-row'>
-          <input
-            type='number'
-            id='precioDesde'
-            placeholder='Desde'
-            value={priceFrom}
-            onChange={(event) => { event.target.value >= 0 ? setPriceFrom(event.target.value) : null }}
-          />
-          <label>-</label>
-          <input
-            type='number'
-            id='precioHasta'
-            placeholder='Hasta'
-            value={priceTill}
-            onChange={(event) => { event.target.value >= 0 ? setPriceTill(event.target.value) : null }}
-          />
+        <div className='order-by-button-container' key='selectedOrder' >
           <button
-            className='submit-prices-button'
-            onClick={handlePricesSubmit}
-          >
-            ▶️
+            className='order-by-button'
+            key='selectedOrder'
+            id='selectedOrder'
+            onBlur={() => setTimeout(handleOrderBlur, 100)}
+            onClick={handleOrderFocus} >
+            {filtros.ordenado}
+          </button>
+          <button
+            className='order-direction-button'
+            id='orderButton'
+            onClick={handleOrderDirectionChange} >
+            {filtros.ascendente ? '🔼' : '🔽'}
           </button>
         </div>
-      </div>
-      {filters.map((type, index) => {
-        return (
-          <div className='filter-list-container' key={`${type.title} ${index}`} >
-            <label className='filter-titles' >{type.title}</label>
-            {type.completeList.map((value) => {
-              return (
-                <div className='filter-list-button-container' key={value} >
-                  <button
-                    id={value}
-                    name={type.title}
-                    className={`filter-list-button ${type.selected?.includes(value) ? 'selected' : type.available?.includes(value) ? 'available' : ''}`}
-                    value={value}
-                    onClick={handleOptionChange} >
-                    {value}
-                  </button>
-                </div>
-              );
-            })}
+        <div className={`order-by-options-container ${isOrderFocused ? '' : 'invisible'}`} >
+          {orderByOptions.options.map((order, index) => {
+            return (
+              <div className='order-by-options-button-div' key={order} >
+                <button
+                  key={order}
+                  id={order}
+                  name='ordenado'
+                  style={{ zIndex: index }}
+                  className={`order-by-options-button ${order === filtros.ordenado ? 'selected-order' : ''}`}
+                  onClick={handleOrderChange} >
+                  {order}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+        <div className='number-filters-container' >
+          <label
+            className='filter-titles'
+            htmlFor='precioDesde' >
+            Precio
+          </label>
+          <div className='filter-row'>
+            <input
+              type='number'
+              id='precioDesde'
+              placeholder='Desde'
+              value={priceFrom}
+              onChange={(event) => { event.target.value >= 0 ? setPriceFrom(event.target.value) : null }}
+            />
+            <label>-</label>
+            <input
+              type='number'
+              id='precioHasta'
+              placeholder='Hasta'
+              value={priceTill}
+              onChange={(event) => { event.target.value >= 0 ? setPriceTill(event.target.value) : null }}
+            />
+            <button
+              className='submit-prices-button'
+              onClick={handlePricesSubmit}
+            >
+              ▶️
+            </button>
           </div>
-        )
-      })}
-    </div>
+        </div>
+        {filters.map((type, index) => {
+          return (
+            <div className='filter-list-container' key={`${type.title} ${index}`} >
+              <label className='filter-titles' >{type.title}</label>
+              <div className='filter-list-button-container'>
+                    <button
+                      id={type.title}
+                      style={{zIndex: 0 }}
+                      className={`filter-list-button ${type.selected.length !== 0 ? 'available' : ''}`}
+                      onClick={handleAnyOptionChange} >
+                      Cualquiera
+                    </button>
+                  </div>
+              {type.completeList.map((value, index) => {
+                return (
+                  <div className='filter-list-button-container' key={value} >
+                    <button
+                      id={value}
+                      name={type.title}
+                      style={{ zIndex: index + 1 }}
+                      className={`filter-list-button ${type.selected?.includes(value) ? 'selected' : type.available?.includes(value) ? 'available' : ''}`}
+                      value={value}
+                      onClick={handleOptionChange} >
+                      {value}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )
+        })}
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      </div>
+    </>
   )
 }

@@ -6,7 +6,8 @@ import HeroImagesBarDetail from '../../components/HeroImagesBar/HeroImagesBarDet
 import ProductsBar from "../../components/ProductsBar/ProductsBar"
 import { useStore } from '../../store'; 
 
-const Detail = () => {
+export default function Detail() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(null);
@@ -18,6 +19,7 @@ const Detail = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const cart = useStore((state) => state.cart);
   const cartToken = localStorage.getItem('cartToken');
+  console.log(cartToken)
 
   useEffect(() => {
     const cartToken = localStorage.getItem('cartToken');
@@ -40,10 +42,9 @@ const Detail = () => {
     const fetchRelatedProducts = async () => {
       try {
         if (productoDetail && productoDetail.categoria) {
-          console.log("Fetching related products...");
           const response = await axios.post('http://localhost:3001/productos', {
             categoria: [productoDetail.categoria],
-            busqueda: '' 
+            busqueda: ''
           });
           const filteredProducts = response.data.filteredProducts;
           const randomProducts = getRandomItems(filteredProducts, 9, id); 
@@ -69,7 +70,7 @@ const Detail = () => {
   
   const handleAddToCart = () => {
     if (selectedSizeIndex !== null && selectedColorIndex !== null) {
-      const selectedColor = productoDetail.opciones[selectedColorIndex].colores.nombres[0];     
+      const selectedColor = productoDetail.opciones[selectedColorIndex].colores.nombres[0];
       const selectedSize = productoDetail.opciones[selectedColorIndex].tallas[selectedSizeIndex];
   
       if (selectedSize.stock > 0) {
@@ -95,7 +96,7 @@ const Detail = () => {
       console.log('Por favor selecciona color y talla');
     }
   };
-  
+
   const getRandomItems = (array, count, currentProductId) => {
     const shuffled = array
       .filter(product => product._id !== currentProductId)
@@ -194,5 +195,3 @@ const Detail = () => {
     );
   }
 }
-
-export default Detail;

@@ -1,4 +1,7 @@
 import './HeroImagesBar.css'
+import nextIcon from '../../assets/icons/next.svg';
+import perviousIcon from '../../assets/icons/previous.svg';
+
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -69,14 +72,14 @@ export default function HeroImagesBar({ products }) {
           className="hero-image-button"
           onClick={showPrevImage}
           style={{ left: 0 }} >
-          ⬅️
+          <img src={perviousIcon} alt='nextIcon' />
         </button>
       </div>
       <button
         onClick={showNextImage}
         className="hero-image-button"
         style={{ right: 0 }} >
-        ➡️
+        <img src={nextIcon} alt='nextIcon' />
       </button>
       <div
         style={{

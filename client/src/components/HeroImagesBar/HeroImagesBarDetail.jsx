@@ -2,20 +2,22 @@ import styles from './HeroImagesBarDetail.module.css';
 import { useEffect, useRef, useState } from 'react';
 
 export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
- 
+
+
   const [imageIndex, setImageIndex] = useState(0);
+ 
   let autoScrollIntervalRef = useRef(null);
+  
   useEffect(() => {
-   
+
     if (product && product.opciones && product.opciones[selectedColorIndex].imagenes.length > 0) {
-      
       autoScrollIntervalRef.current = setInterval(() => {
         showNextImage();
       }, 4000);
     }
   
     return () => {
-     
+      
       clearInterval(autoScrollIntervalRef.current);
     };
   }, [product, selectedColorIndex]);
@@ -30,6 +32,7 @@ export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
   };
 
   const resumeAutoScroll = () => {
+   
     if (product  && product.opciones[selectedColorIndex].imagenes.length > 1) {
       autoScrollIntervalRef.current = setInterval(() => {
         showNextImage();
@@ -39,8 +42,8 @@ export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
 
   const showNextImage = () => {
     setImageIndex((index) => {
-      if (product && index === product.opciones[selectedColorIndex].imagenes.length - 1) return 0; // Si llega al final, volver al principio
-      return index + 1;
+      const nextIndex = index === product.opciones[selectedColorIndex].imagenes.length - 1 ? 0 : index + 1;  
+      return nextIndex;
     });
   };
   
@@ -51,6 +54,7 @@ export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
       return index - 1;
     });
   };
+
 
   return (
     <div className={styles.heroImagesBarContainer}>

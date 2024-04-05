@@ -1,8 +1,8 @@
-.container {
-  margin-top: 70px; /* Adjust the top margin as needed */
+/* .container {
+  margin-top: 70px;
   margin-left: auto;
   margin-right: auto;
-  width: 80%; /* Adjust the width of the container */
+  width: 80%;
 }
 
 .container h1 {
@@ -12,8 +12,8 @@
 
 form {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Adjust the number of columns as needed */
-  grid-gap: 20px; /* Adjust the gap between grid items */
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 }
 
 label {
@@ -50,27 +50,25 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Optional: Style for the discount select dropdown */
 select[name='Descuento'] {
-  width: 100px; /* Adjust the width as needed */
+  width: 100px;
 }
 
-/* Optional: Style for the color grid */
 .color-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); /* Adjust grid columns as needed */
-  grid-gap: 10px; /* Adjust gap between grid items */
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-gap: 10px;
 }
 
 .color-grid-item {
-  width: 50px; /* Adjust the width of color grid items */
-  height: 50px; /* Adjust the height of color grid items */
-  border-radius: 50%; /* Ensures round shape for color circles */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .color-grid-item.selected {
-  border: 2px solid #007bff; /* Adjust border color and width for selected color */
+  border: 2px solid #007bff;
 }
 
 .container form div span {
@@ -79,4 +77,4 @@ select[name='Descuento'] {
   border-radius: 5px;
   padding: .2rem;
   font-size: small;
-}
+} */

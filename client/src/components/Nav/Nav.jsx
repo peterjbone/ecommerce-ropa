@@ -15,6 +15,7 @@ export default function Nav() {
   const searchFunction = useStore((state) => state.setSearch);
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const setFilters = useStore((state) => state.setFilters);
+  const resetFilters = useStore((state) => state.resetFilters);
   const [search, setSearch] = useState('');
   const [isMenuDown, setIsMenuDown] = useState(false);
   const navigate = useNavigate();
@@ -81,17 +82,15 @@ export default function Nav() {
       }
     }, 500);
   };
-
   const triggerAnimation = () => {
     if (!isMenuDown) {
       const targetElement = document.querySelector('.categories-window');
       windowTimeout = setTimeout(() => {
         targetElement.classList.add('move-down');
         setIsMenuDown(true);
-      }, 1000);
+      }, 500);
     }
   }
-
   const cancelAnimation = () => {
     if (!isMenuDown) {
       clearTimeout(windowTimeout);
@@ -99,24 +98,23 @@ export default function Nav() {
       setIsMenuDown(false);
     }
   }
-
   const resetAnimation = () => {
-    const targetElement = document.querySelector('.categories-window');
-    windowTimeout = setTimeout(() => {
-      targetElement.classList.remove('move-down');
-      targetElement.classList.add('move-up');
-      setTimeout(() => {
-        targetElement.classList.remove('move-up');
-        setIsMenuDown(false);
-      }, 500);
-    }, 3000);
+    if (isMenuDown) {
+      const targetElement = document.querySelector('.categories-window');
+      windowTimeout = setTimeout(() => {
+        targetElement.classList.remove('move-down');
+        targetElement.classList.add('move-up');
+        setTimeout(() => {
+          targetElement.classList.remove('move-up');
+          setIsMenuDown(false);
+        }, 500);
+      }, 1000);
+    }
   }
-
   const cancelMoveWindowUp = () => {
     clearTimeout(windowTimeout);
     windowTimeout = null;
   }
-
   const handleSearch = async () => {
     try {
       searchFunction(search);
@@ -126,9 +124,9 @@ export default function Nav() {
       console.error(error);
     }
   }
-
   const goToStore = async () => {
     try {
+      resetFilters();
       await getFilteredProducts();
       navigate('/tienda');
       window.scrollTo(0, 0);
@@ -136,23 +134,24 @@ export default function Nav() {
       console.error(error);
     }
   }
-
   const handleCategorySearch = async (event) => {
     try {
       const { id } = event.target;
       const name = event.target.getAttribute('name');
-      console.log(event.target);
-      console.log(name);
       setFilters(name, id);
       await getFilteredProducts();
+      setIsMenuDown(false);
       navigate('/tienda');
+      window.scrollTo(0, 0);
       const targetElement = document.querySelector('.categories-window');
       targetElement.classList.remove('move-down');
+      targetElement.classList.remove('move-up');
       targetElement.classList.add('dissapear');
       setTimeout(() => {
+        clearTimeout(windowTimeout);
         targetElement.classList.remove('dissapear');
         setIsMenuDown(false);
-      }, 100);
+      }, 500);
     } catch (error) {
       console.error(error);
     }
