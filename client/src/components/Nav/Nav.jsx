@@ -1,8 +1,10 @@
 import './Nav.css';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import logo from '../../assets/images/nombre.png'
+import sun from '../../assets/icons/sun-icon.svg'
+import moon from '../../assets/icons/moon-icon.svg'
 import { useStore } from '../../store.js';
 
 export default function Nav() {
@@ -17,6 +19,7 @@ export default function Nav() {
   const setFilters = useStore((state) => state.setFilters);
   const resetFilters = useStore((state) => state.resetFilters);
   const [search, setSearch] = useState('');
+  const [isDarkTheme, setIsDarkTheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
   const [isMenuDown, setIsMenuDown] = useState(false);
   const navigate = useNavigate();
   const cart = useStore((state) => state.cart);
@@ -63,8 +66,8 @@ export default function Nav() {
     storedCart.forEach(product => {
       totalQuantity += product.quantity;
     });
-  setTotalItemsInCart(totalQuantity);
-}, [cart]);
+    setTotalItemsInCart(totalQuantity);
+  }, [cart]);
 
   const handleScroll = () => {
     setTimeout(() => {
@@ -152,6 +155,11 @@ export default function Nav() {
     }
   }
 
+  const toggleTheme = () => {
+    document.body.classList.toggle('dark');
+    setIsDarkTheme(!isDarkTheme);
+  }
+
   return (
     <>
       <nav className='nav-bar' >
@@ -183,17 +191,21 @@ export default function Nav() {
             onChange={(event) => setSearch(event.target.value)} />
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>
         </div>
-        <div>
-          <button className='nav-bar-button' >Ingresar / Perfil</button>
-          <NavLink to='/carrito'>
-            <button className='nav-bar-button' >
-              Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
-            </button>
-          </NavLink>
-          <NavLink to='/checkout'>
-            <button className='nav-bar-button' >CheckOut</button>
-          </NavLink>
-        </div>
+        <button className='nav-bar-button' >Ingresar / Perfil</button>
+        <NavLink to='/carrito'>
+          <button className='nav-bar-button' >
+            Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
+          </button>
+        </NavLink>
+        <NavLink to='/checkout'>
+          <button className='nav-bar-button' >CheckOut</button>
+        </NavLink>
+        <button
+          className='nav-bar-button theme-button '
+          onClick={toggleTheme}
+        >
+          <img src={isDarkTheme ? moon : sun} alt='sun' />
+        </button>
       </nav>
       <div className='categories-window' key='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
         {listas.map((list, index) => (

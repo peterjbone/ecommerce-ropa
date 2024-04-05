@@ -50,14 +50,15 @@ export const useStore = create((set) => ({
         `http://localhost:3001/productos`,
         useStore.getState().filtros
       );
-      const { filteredProducts } = data;
+      const { count, filteredProducts } = data;
       set((state) => ({
         products: filteredProducts,
         productosFiltrados: filteredProducts.slice(0, 20),
         filtros: {
           ...state.filtros,
           productosPorPagina: 20,
-        }
+        },
+        cantidadDeProductos: count,
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
