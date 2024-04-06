@@ -41,13 +41,17 @@ const login = async (req, res) => {
     const token = await createAccesToken({ id: userFind._id });
 
     res.cookie("token", token);
+    // res.status(200).json({
+    //   id: userFind._id,
+    //   username: userFind.username,
+    //   email: userFind.email,
+    //   token: token,
+    //   createdAt: userFind.createdAt,
+    //   updateAt: userFind.updateAt,
+    // });
     res.status(200).json({
-      id: userFind._id,
-      username: userFind.username,
-      email: userFind.email,
+      data: userFind,
       token: token,
-      createdAt: userFind.createdAt,
-      updateAt: userFind.updateAt,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

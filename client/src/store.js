@@ -48,13 +48,16 @@ export const useStore = create((set) => ({
 
   getUserById: async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3001/productos/${userId}`)
+      const response = await axios.get(`http://localhost:3001/auth/${userId}`)
       const userData = response.data
       set({ user: userData })
     } catch (error) {
       console.error("Error al buscar usuario por Id:", error);
       throw error;
     }
+  },
+  setDataUser: (user) => {
+    set({ user: user });
   },
   getAllProducts: async () => {
     try {

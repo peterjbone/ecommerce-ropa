@@ -23,6 +23,11 @@ export default function App() {
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
 
+
+  const user = useStore((state) => state.user);
+  const getUserById = useStore((state) => state.getUserById);
+  const setDataUser = useStore((state) => state.setDataUser);
+
   useEffect(() => {
     (async function loadData() {
       try {
@@ -39,14 +44,21 @@ export default function App() {
   });
 
   useEffect(() => {
-   
-    const token = getCookie('token'); // Retrieve the token from the cookie
-    console.log(token);
-    const decode = jwtDecode(token)
-    console.log(decode);
-    
-  }, []);
-
+    (async function loadUserData() {
+      try {
+        if(!user) {
+          const token = getCookie('token'); // Retrieve the token from the cookie
+          if(token) {
+            const userId = jwtDecode(token).id
+            await getUserById(userId)
+          }
+        }
+      } catch (error) {
+        console.error('Auto-login failed:', error)
+      }
+    }())
+  });
+  
   return (
     <>
       <Nav />
