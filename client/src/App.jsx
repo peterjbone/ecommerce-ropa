@@ -1,14 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
+import { Home, Form, FormEdit, Login, Register } from './views';
 import Nav from './components/Nav/Nav';
+import { useEffect } from 'react';
+import { useStore } from './store.js';
 import Detail from "./views/Detail/Detail.jsx"
 import Tienda from "./views/Tienda/Tienda.jsx"
 import Footer from './components/Footer/Footer.jsx';
 import Carrito from "./components/Carrito/Carrito"
-
-
-import { Route, Routes } from 'react-router-dom';
-import { Home, Form, FormEdit, Login, Register } from './views';
-import { useEffect } from 'react';
-import { useStore } from './store.js';
+import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
 import NotFound from './views/NotFound/NotFound.jsx';
 import UserDashboard from './views/UserDashboard/UserDashboard.jsx';
 
@@ -48,6 +47,7 @@ export default function App() {
         <Route path='/:id' element={<Detail/>} />
         <Route path='/usuario' element={<UserDashboard />} />
         <Route path='/carrito' element={<Carrito />} />
+        <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
