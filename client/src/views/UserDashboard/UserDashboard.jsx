@@ -5,7 +5,16 @@ import { useState } from 'react';
 import { useStore } from '../../store';
 import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
 
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'universal-cookie';
+
 export default function UserDashboard() {
+
+  const setDataUser = useStore((state) => state.setDataUser);
+  const navigate = useNavigate()
+  const cookies = new Cookies();
+
   // const user = useStore((state) => state.user);
   // const changeEmail = useStore((state) => state.changeEmail);
   // const changePassword = useStore((state) => state.changePassword);
@@ -113,6 +122,19 @@ export default function UserDashboard() {
     }
   }
 
+  const logoutHandler =  () => {
+
+    setDataUser(null)
+    cookies.remove('token');
+
+    toast.success('Cerraste sesión', {
+      onClose: () => {
+        navigate('/login');
+      },
+      autoClose: 500,
+    })
+  }
+
   return (
     <div className='user-dashboard-container'>
       <aside className='user-options-container'>
@@ -146,6 +168,13 @@ export default function UserDashboard() {
           onClick={() => handleOptionClick('purchases')}
         >
           Mis Compras
+        </button>
+        <button
+          className={`nav-bar-button`}
+          id='logout-button'
+          onClick={logoutHandler}
+        >
+          Salir
         </button>
       </aside>
       <section className='user-dashboard-info'>
@@ -331,6 +360,8 @@ export default function UserDashboard() {
           }
         })()}
       </section>
+
+      <ToastContainer />
     </div>
   );
 }

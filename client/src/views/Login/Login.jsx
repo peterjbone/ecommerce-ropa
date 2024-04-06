@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault()
     try {
       const response = await axios.post('http://localhost:3001/auth/login', user)
-      console.log(response);
+      
       if(response.status === 200) {
 
         setDataUser(response.data.data)
@@ -53,7 +53,7 @@ const Login = () => {
         toast.error('Error al iniciar sesión');
       }
     } catch (error) {
-      toast.error('Error al iniciar sesión');
+      toast.error(`${error.response.data.message}`);
     }
   }
   return (

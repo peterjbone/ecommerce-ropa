@@ -80,3 +80,10 @@
   transform: scale(1.2);
   color: var(--categories-letter-hover-color);
 }
+
+#logout-button {
+  transition: transform 0.3s ease;
+}
+#logout-button:hover {
+  transform: scale(1.2) translateX(15%);
+}

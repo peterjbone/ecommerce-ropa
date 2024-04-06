@@ -31,12 +31,12 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const userFind = await Usuario.findOne({ email });
-    if (!userFind) return res.status(400).json({ message: "User not found" });
+    if (!userFind) return res.status(400).json({ message: "No existe el usuario" });
 
     const matchPassword = await bcrypt.compare(password, userFind.password);
 
     if (!matchPassword) {
-      return res.status(400).json({ message: "Invalid password" });
+      return res.status(400).json({ message: "Contraseña incorrecta" });
     }
     const token = await createAccesToken({ id: userFind._id });
 

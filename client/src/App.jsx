@@ -26,8 +26,7 @@ export default function App() {
 
   const user = useStore((state) => state.user);
   const getUserById = useStore((state) => state.getUserById);
-  const setDataUser = useStore((state) => state.setDataUser);
-
+  
   useEffect(() => {
     (async function loadData() {
       try {
