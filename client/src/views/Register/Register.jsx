@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import axios from 'axios'
 
 
 const Register = () => {
@@ -18,6 +19,7 @@ const Register = () => {
   })
 
   const [user, setUser] = useState({
+    fullname: '',
     name: '',
     surname: '',
     email: '',
@@ -36,21 +38,41 @@ const Register = () => {
     setUser({...user, address: {...direccion, [name]: value}})
   }
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
 
     if(validation(user, direccion)) {
 
       try {
         // throw Error
-      toast.success('Cuenta creada correctamente', {
-        onClose: () => {
-          navigate('/');
-        },
-        autoClose: 2000,
-      })
+
+        const response = await axios.post('http://localhost:3001/auth/register', user)
+        
+        if (response.status === 201) {
+          toast.success('Cuenta creada correctamente', {
+            onClose: () => {
+              navigate('/login');
+            },
+            autoClose: 2000,
+          });
+  
+          setUser({ // Clear the form
+            fullname: '',
+            name: '',
+            surname: '',
+            email: '',
+            password: '',
+            address: ''
+          });
+          setDireccion({});
+        } else {
+          // Handle other response statuses
+          toast.error('Error al crear cuenta');
+        }
+        
       } catch (error) {
         console.log(error);
+        toast.error('Error al crear cuenta')
       }
     }
     else {
@@ -71,16 +93,17 @@ const Register = () => {
       <h1 className={styles.title}>Crea tu cuenta</h1>
 
       <form className={styles.form} onSubmit={submitHandler}>
+        {/* <input className={styles.input} name='fullname' type="text" value={user.fullname} placeholder='Nombre completo'onChange={changeHandler} /> */}
         <input className={styles.input} name='name' type="text" value={user.name} placeholder='Nombre'onChange={changeHandler} />
-        <input className={styles.input} name='surname' type="text" value={user.surname} placeholder='Apellido'onChange={changeHandler} />
+        {/* <input className={styles.input} name='surname' type="text" value={user.surname} placeholder='Apellido'onChange={changeHandler} /> */}
         <input className={styles.input} name='email' type="email" value={user.email} placeholder='Email'onChange={changeHandler} />
         <input className={styles.input} name='password' value={user.password} type="password" placeholder='Contraseña'onChange={changeHandler} />
-        <label>Dirección:</label><br></br>
+        {/* <label>Dirección:</label><br></br>
         <input className={styles.inputAddress} type="text" name='calle' value={direccion.calle} onChange={direccionHandler} placeholder='Calle' />
         <input className={styles.inputAddress} type="text" name='altura' value={direccion.altura} onChange={direccionHandler} placeholder='Altura' />
         <input className={styles.inputAddress} type="text" name='provincia' value={direccion.provincia} onChange={direccionHandler} placeholder='Provincia' />
         <input className={styles.inputAddress} type="text" name='ciudad' value={direccion.ciudad} onChange={direccionHandler} placeholder='Ciudad' />
-        <input className={styles.inputAddress} type="text" name='cp' value={direccion.cp} onChange={direccionHandler} placeholder='Código postal' />
+        <input className={styles.inputAddress} type="text" name='cp' value={direccion.cp} onChange={direccionHandler} placeholder='Código postal' /> */}
         <button className={styles.button} type='submit'>Crear cuenta</button>
         <Link to='/login'><span className={styles.span}>¿Ya tienes cuenta? Inicia sesión</span></Link>
         <ToastContainer />
