@@ -53,6 +53,19 @@ const login = async (req, res) => {
   }
 };
 
+const getUserById = async (req,res) =>{
+  const {id} = req.params
+  if (!id) {
+    return res.status(404).json({ message: 'Usuario no encontrado' });
+  }
+  try{
+  const userFound = await Usuario.findById(id)
+  res.status(200).json(userFound)
+  }catch(err) {
+    res.status(500).json({message : err.message})
+  }
+}
+
 const logout = async (req,res) =>{
     res.cookie('token', '',{
         expires: new Date(0),
@@ -95,4 +108,5 @@ module.exports = {
   logout,
   profile,
   deleteAccount,
+  getUserById
 }
