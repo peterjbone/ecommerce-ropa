@@ -24,7 +24,7 @@ const getProductById = async (req, res) => {
         { $sample: { size: 10 } }
       ]);
       const averageReviews = await Resena.aggregate([
-        { $match: { producto_id: id } },
+        { $match: { producto_id: id, esAceptada: true } },
         {
           $group: {
             _id: null,

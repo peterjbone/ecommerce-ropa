@@ -12,7 +12,6 @@
   top: 10vh;
   left: 0;
   padding: 10px;
-  border: 1px solid red;
 }
 
 .user-options-container button {
@@ -20,9 +19,64 @@
   text-align: left;
 }
 
+.user-options-container button:hover {
+  color: var(--categories-letter-hover-color);
+}
+
+.activeUserTab {
+  transform: scale(1.2) translateX(15%);
+  font-weight: bold;
+}
+
 .user-dashboard-info {
   width: 75%;
   min-height: 90vh;
   margin: 0 auto 0 23%;
-  border: 1px solid red;
+  padding: 10px;
+}
+
+.user-dashboard-info input {
+  max-width: 30vw;
+  min-width: 25vw;
+  height: fit-content;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 1px var(--nav-search-shadow-color);
+  background-color: inherit;
+  color: inherit;
+  cursor: text;
+  transition: 200ms ease-out;
+}
+
+.user-dashboard-info input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.user-data-input-label-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.user-data-input-label-container input {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.user-submit-button {
+  font-size: 16px;
+}
+
+.user-submit-button:disabled {
+  transform: scale(0.9);
+  color: var(--disbled-button-color);
+  cursor: default;
+}
+
+.user-submit-button:hover:enabled {
+  transform: scale(1.2);
+  color: var(--categories-letter-hover-color);
 }

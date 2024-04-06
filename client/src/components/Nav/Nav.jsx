@@ -188,7 +188,7 @@ export default function Nav() {
           <input
             type="search"
             name="search"
-            placeholder="Search"
+            placeholder="Buscar"
             value={search}
             onChange={(event) => setSearch(event.target.value)} />
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>

@@ -32,17 +32,14 @@ export default function dataValidation(input) {
   if (input.currentEmail && (input.currentEmail !== '' && input.email !== '' && input.currentEmail === input.email)) {
     errors.email = 'Email must be different';
   }
+  if (input.emailPassword && (input.emailPassword.length < 8 || input.emailPassword.length > 128)) {
+    errors.emailPassword = 'Password must be between 8 and 128 characters';
+  }
   if (input.password && (input.password.length < 8 || input.password.length > 128)) {
     errors.password = 'Password must be between 8 and 128 characters';
   }
-  if (input.repeatPassword && (input.password !== '' && input.repeatPassword !== '' && input.password !== input.repeatPassword)) {
+  if (input.repeatPassword && (input.newPassword !== '' && input.repeatPassword !== '' && input.newPassword !== input.repeatPassword)) {
     errors.repeatPassword = 'Password don\'t match';
-  }
-  if (input.changeUserInfoPassword && (input.changeUserInfoPassword.length < 8 || input.changeUserInfoPassword.length > 128)) {
-    errors.changeUserInfoPassword = 'Password must be between 8 and 128 characters';
-  }
-  if (input.emailPassword && (input.emailPassword.length < 8 || input.emailPassword.length > 128)) {
-    errors.emailPassword = 'Password must be between 8 and 128 characters';
   }
   return errors;
 }

@@ -20,6 +20,10 @@ const ResenaSchema = new Schema({
   descripcion: {
     type: String,
     required: true
+  },
+  esAceptada: {
+    type: Boolean,
+    required: true
   }
 });
 
