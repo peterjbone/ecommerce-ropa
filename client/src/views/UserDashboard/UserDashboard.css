@@ -1,0 +1,28 @@
+.user-dashboard-container {
+  margin-top: 10vh;
+  min-height: 90vh;
+}
+
+.user-options-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 20%;
+  position: fixed;
+  top: 10vh;
+  left: 0;
+  padding: 10px;
+  border: 1px solid red;
+}
+
+.user-options-container button {
+  width: 100%;
+  text-align: left;
+}
+
+.user-dashboard-info {
+  width: 75%;
+  min-height: 90vh;
+  margin: 0 auto 0 23%;
+  border: 1px solid red;
+}

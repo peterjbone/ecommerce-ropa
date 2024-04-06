@@ -18,6 +18,7 @@ export const useStore = create((set) => ({
   listaColores: [],
   listaTallas: [],
   productoDetail: "",
+  productoReviews: "",
   filtros: {
     busqueda: "",
     marca: [],
@@ -265,7 +266,8 @@ export const useStore = create((set) => ({
   getProductById: async (id) => {
     try {
       const { data } = await axios(`http://localhost:3001/producto/${id}`);
-      set(() => ({ productoDetail: data }));
+      const { product, reviews } = data;
+      set(() => ({ productoDetail: product, productoReviews: reviews }));
     } catch (error) {
       console.log(error);
     }

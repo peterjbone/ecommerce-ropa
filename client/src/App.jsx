@@ -10,6 +10,7 @@ import { Home, Form, FormEdit } from './views';
 import { useEffect } from 'react';
 import { useStore } from './store.js';
 import NotFound from './views/NotFound/NotFound.jsx';
+import UserDashboard from './views/UserDashboard/UserDashboard.jsx';
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
@@ -43,6 +44,7 @@ export default function App() {
         <Route path='/editproduct/:id' element={<FormEdit />} />
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/:id' element={<Detail/>} />
+        <Route path='/usuario' element={<UserDashboard />} />
         <Route path='/carrito' element={<Carrito />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
