@@ -80,7 +80,7 @@
   height: 25px;
 }
 
-.order-by-button-container{
+.order-by-button-container {
   overflow: hidden;
 }
 
@@ -170,4 +170,4 @@
 
 .selected:hover {
   color: var(--filter-selected-letter-hover-color);
-} 
+}

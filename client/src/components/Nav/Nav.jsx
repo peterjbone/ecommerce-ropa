@@ -25,6 +25,7 @@ export default function Nav() {
   const [isMenuDown, setIsMenuDown] = useState(false);
   const navigate = useNavigate();
   const cart = useStore((state) => state.cart);
+ 
   const [totalItemsInCart, setTotalItemsInCart] = useState(0);
 
 
@@ -64,12 +65,16 @@ export default function Nav() {
 
   useEffect(() => {
     let totalQuantity = 0;
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    storedCart.forEach(product => {
-      totalQuantity += product.quantity;
-    });
+    
+    if (cart) {
+      cart.forEach(product => {
+        totalQuantity += product.quantity;
+      });
+    }
+    
     setTotalItemsInCart(totalQuantity);
   }, [cart]);
+  
 
   const handleScroll = () => {
     setTimeout(() => {
@@ -194,6 +199,9 @@ export default function Nav() {
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>
         </div>
         <NavLink to='/usuario'>
+          <button className='nav-bar-button' >Dashboard Usuario</button>
+        </NavLink>
+        <NavLink to='/login'>
           <button className='nav-bar-button' >Ingresar / Perfil</button>
         </NavLink>
         <NavLink to='/carrito'>
