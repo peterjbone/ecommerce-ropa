@@ -22,8 +22,8 @@ async function connectDB() {
 }
 
 //* -------------------- Insertar documentos necesarios en MongoDB ----------------------
-const productos = require("./utils/productos.js"); // Array de productos
-const Producto = require("./models/Producto.js"); // Colección de productos
+const productos = require("./src/utils/productos.js"); // Array de productos
+const Producto = require("./src/models/Producto.js"); // Colección de productos
 
 async function insertarDocumentos() {
 	try {

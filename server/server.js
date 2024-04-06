@@ -3,7 +3,7 @@ const server = express();
 const morgan = require("morgan");
 
 //? Importando routers
-const indexRouter = require("./routes/indexRouter.js");
+const indexRouter = require("./src/routes/indexRouter.js");
 // const stripeRouter = require("./routes/stripeRouter.js");
 
 //* MIDDLEWARES
