@@ -10,6 +10,7 @@ import { Home, Form, FormEdit, Login, Register } from './views';
 import { useEffect } from 'react';
 import { useStore } from './store.js';
 import NotFound from './views/NotFound/NotFound.jsx';
+import UserDashboard from './views/UserDashboard/UserDashboard.jsx';
 
 import { getCookie } from './utils/getCookie.js';
 import { jwtDecode } from 'jwt-decode'
@@ -57,6 +58,7 @@ export default function App() {
         <Route path='/editproduct/:id' element={<FormEdit />} />
         <Route path='/tienda' element={<Tienda />} />
         <Route path='/:id' element={<Detail/>} />
+        <Route path='/usuario' element={<UserDashboard />} />
         <Route path='/carrito' element={<Carrito />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
