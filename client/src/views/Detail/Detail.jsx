@@ -7,7 +7,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useStore } from '../../store';
 import HeroImagesBarDetail from '../../components/HeroImagesBar/HeroImagesBarDetail';
 import Reviews from "../../components/Reviews/Reviews";
-import CreateReview from "../../components/CreateReview/CreateReview";
 
 export default function Detail() {
   const navigate = useNavigate();
@@ -207,8 +206,7 @@ export default function Detail() {
             </div>
           </div>
         </div>
-        {/*<Reviews reviews={productoReviews} />  */}
-        <CreateReview />
+        <Reviews /* reviews={productoReviews} */ /> 
       </div>
     );
   }
