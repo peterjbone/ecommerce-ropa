@@ -20,7 +20,7 @@ const Carrito = () => {
 
   useEffect(() => {
     let totalPrice = 0;
-    console.log(cart)
+    // console.log(cart)
     if (cart) {
       for (const product of cart) {
         totalPrice += product.precio * product.quantity;

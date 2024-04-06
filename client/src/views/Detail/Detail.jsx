@@ -23,7 +23,7 @@ export default function Detail() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const cart = useStore((state) => state.cart);
   const cartToken = localStorage.getItem('cartToken');
-  console.log(cartToken)
+  // console.log(cartToken)
 
   useEffect(() => {
     const cartToken = localStorage.getItem('cartToken');
