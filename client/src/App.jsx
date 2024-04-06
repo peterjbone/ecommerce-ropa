@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import { Home, Form, FormEdit, Login, Register } from "./views";
 import Nav from "./components/Nav/Nav";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "./store.js";
-import Detail from "./views/Detail/Detail.jsx"
-import Tienda from "./views/Tienda/Tienda.jsx"
+import Detail from "./views/Detail/Detail.jsx";
+import Tienda from "./views/Tienda/Tienda.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Carrito from "./components/Carrito/Carrito"
 import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
@@ -33,24 +33,23 @@ export default function App() {
             }
         }())
     });
-
     return (
-        <>
-            <Nav />
-            <Routes>
-                <Route path="/" element={<Home />} />
+		<>
+			<Nav />
+			<Routes>
+				<Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/form" element={<Form />} />
-                <Route path="/editproduct/:id" element={<FormEdit />} />
-                <Route path="/tienda" element={<Tienda />} />
-                <Route path="/:id" element={<Detail />} />
+				<Route path="/form" element={<Form />} />
+				<Route path="/editproduct/:id" element={<FormEdit />} />
+				<Route path="/tienda" element={<Tienda />} />
+				<Route path="/checkout-success" element={<CheckoutSuccess />} />
+				<Route path="/:id" element={<Detail products={products} />} />
                 <Route path="/usuario" element={<UserDashboard />} />
                 <Route path="/carrito" element={<Carrito />} />
-                <Route path="/checkout-success" element={<CheckoutSuccess />} />
                 <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-        </>
-    );
+			</Routes>
+			<Footer />
+		</>
+	);
 }
