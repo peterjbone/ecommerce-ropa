@@ -18,6 +18,8 @@ export default function Home() {
   const listaColores = useStore((state) => state.listaColores);
   const listaTallas = useStore((state) => state.listaTallas);
   const getCart = useStore((state) => state.getCart);
+
+  console.log(products, nuevos, ofertas);
   
   useEffect(() => {
     const cartToken = localStorage.getItem('cartToken');
@@ -66,7 +68,7 @@ export default function Home() {
       </div>
       {/* <ProductsBar title='Destacados' products={destacados} /> */}
       <div className={styles["product-bar"]}>
-        <ProductsBar title='Ofertas' products={products} />
+        <ProductsBar title='Ofertas' products={ofertas} />
       </div>
       {/* <ProductsBar title='Tendencia' products={tendencia} /> */}
       <div className={styles["product-bar"]}>

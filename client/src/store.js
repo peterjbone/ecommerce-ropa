@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import axios from "axios";
-// import productos from './utils/arrayProductos.js';
 
 export const useStore = create((set) => ({
   products: [],
