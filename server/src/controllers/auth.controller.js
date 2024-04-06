@@ -41,18 +41,35 @@ const login = async (req, res) => {
     const token = await createAccesToken({ id: userFind._id });
 
     res.cookie("token", token);
+    // res.status(200).json({
+    //   id: userFind._id,
+    //   username: userFind.username,
+    //   email: userFind.email,
+    //   token: token,
+    //   createdAt: userFind.createdAt,
+    //   updateAt: userFind.updateAt,
+    // });
     res.status(200).json({
-      id: userFind._id,
-      username: userFind.username,
-      email: userFind.email,
+      data: userFind,
       token: token,
-      createdAt: userFind.createdAt,
-      updateAt: userFind.updateAt,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+const getUserById = async (req,res) =>{
+  const {id} = req.params
+  if (!id) {
+    return res.status(404).json({ message: 'Usuario no encontrado' });
+  }
+  try{
+  const userFound = await Usuario.findById(id)
+  res.status(200).json(userFound)
+  }catch(err) {
+    res.status(500).json({message : err.message})
+  }
+}
 
 const logout = async (req,res) =>{
     res.cookie('token', '',{
@@ -96,4 +113,5 @@ module.exports = {
   logout,
   profile,
   deleteAccount,
+  getUserById
 }

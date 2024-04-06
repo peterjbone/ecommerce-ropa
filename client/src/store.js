@@ -2,6 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 export const useStore = create((set) => ({
+  user: null,
   products: [],
   productosFiltrados: [],
   favoritos: [1, 2, 3, 4, 5, 10, 15],
@@ -44,6 +45,19 @@ export const useStore = create((set) => ({
   tallasDisponibles: [],
   cantidadDeProductos: 0,
 
+  getUserById: async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/auth/${userId}`)
+      const userData = response.data
+      set({ user: userData })
+    } catch (error) {
+      console.error("Error al buscar usuario por Id:", error);
+      throw error;
+    }
+  },
+  setDataUser: (user) => {
+    set({ user: user });
+  },
   getAllProducts: async () => {
     try {
       const { data } = await axios.post(

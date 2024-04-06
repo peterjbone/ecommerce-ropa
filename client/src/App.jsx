@@ -10,6 +10,8 @@ import Carrito from "./components/Carrito/Carrito"
 import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
+import { getCookie } from './utils/getCookie.js';
+import { jwtDecode } from 'jwt-decode'
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
@@ -18,6 +20,11 @@ export default function App() {
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
+
+
+  const user = useStore((state) => state.user);
+  const getUserById = useStore((state) => state.getUserById);
+  const setDataUser = useStore((state) => state.setDataUser);
 
   useEffect(() => {
     (async function loadData() {
@@ -33,6 +40,23 @@ export default function App() {
       }
     }())
   });
+
+  useEffect(() => {
+    (async function loadUserData() {
+      try {
+        if(!user) {
+          const token = getCookie('token'); // Retrieve the token from the cookie
+          if(token) {
+            const userId = jwtDecode(token).id
+            await getUserById(userId)
+          }
+        }
+      } catch (error) {
+        console.error('Auto-login failed:', error)
+      }
+    }())
+  });
+  
   return (
     <>
       <Nav />

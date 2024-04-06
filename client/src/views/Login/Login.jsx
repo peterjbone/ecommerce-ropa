@@ -5,11 +5,13 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import Cookies from 'universal-cookie'
+import { useStore } from '../../store';
 
 const Login = () => {
 
   const navigate = useNavigate()
   const cookies = new Cookies();
+  const setDataUser = useStore((state) => state.setDataUser);
 
   const [user, setUser] = useState({
     email: '',
@@ -28,6 +30,7 @@ const Login = () => {
       console.log(response);
       if(response.status === 200) {
 
+        setDataUser(response.data.data)
         cookies.set("token", response.data.token)
 
         toast.success('Iniciaste sesión', {
