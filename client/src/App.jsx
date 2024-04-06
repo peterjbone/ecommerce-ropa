@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Home, Form, FormEdit, Login, Register } from "./views";
 import Nav from "./components/Nav/Nav";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useStore } from "./store.js";
 import Detail from "./views/Detail/Detail.jsx";
 import Tienda from "./views/Tienda/Tienda.jsx";

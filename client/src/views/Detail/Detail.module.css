@@ -1,155 +1,155 @@
 .detailContainer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .loading {
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 .detailContainer h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .detailContainer p {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .detailContainer img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .detailContainer ul {
-    list-style-type: none;
-    padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .detailContainer li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .colorsList {
-    display: flex;
+  display: flex;
 }
 
 .colorCircle {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 8px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border: 2px solid #333;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border: 2px solid #333;
 }
 
 .selectedColor {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .selectedSize {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .sizeItem {
-    display: inline-block;
-    padding: 5px 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    cursor: pointer;
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 
 .selectedSize {
-    background-color: #007bff;
-    color: #fff;
+  background-color: #007bff;
+  color: #fff;
 }
 
 .relatedProductsContainer {
-    overflow-x: auto;
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
+  overflow-x: auto;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .relatedProducts {
-    display: flex;
+  display: flex;
 }
 
 .relatedProduct {
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
 }
 
 .relatedProductImageLarge {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 .relatedProductName {
-    margin-top: 10px;
-    font-size: 16px;
+  margin-top: 10px;
+  font-size: 16px;
 }
 
 .relatedProductPrice {
-    font-weight: bold;
-    margin-top: 5px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
 .productsRelacionados {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .buttonsContainer {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .addToCartButton,
 .buyButton {
-    padding: 10px 20px;
-    border: none;
-    margin-left: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .addToCartButton {
-    background-color: #007bff;
+  background-color: #007bff;
 }
 
 .buyButton {
-    background-color: #28a745;
+  background-color: #28a745;
 }
 
 .buyButton:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 .notFound {
-    max-width: 1200px;
-    margin: 200px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  max-width: 1200px;
+  margin: 200px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .notFoundError,
 .notFoundText {
-    margin-top: 90px;
+  margin-top: 90px;
 }
 
 .notFoundError {
-    font-size: 80px;
+  font-size: 80px;
 }
 
 .notFoundText {
-    font-size: 40px;
+  font-size: 40px;
 }
