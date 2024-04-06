@@ -1,26 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
-import styles from './Detail.module.css';
+import styles from "./Detail.module.css";
 
-const Detail = ({ products }) => {
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Link, useParams, useNavigate } from "react-router-dom";
+
+import { useStore } from '../../store';
+import HeroImagesBarDetail from '../../components/HeroImagesBar/HeroImagesBarDetail';
+import Reviews from "../../components/Reviews/Reviews";
+
+export default function Detail() {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const product = products.find((product) => product.id === parseInt(id));
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const productoDetail = useStore((state) => state.productoDetail);
+  const productoReviews = useStore((state) => state.productoReviews);
+  const getProductById = useStore((state) => state.getProductById);
+  const addToCart = useStore((state) => state.addToCart);
+  const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
 
   useEffect(() => {
-    const filteredRelatedProducts = products.filter((p) => p.id !== product.id);
-    filteredRelatedProducts.sort(() => Math.random() - 0.5);
-    const slicedRelatedProducts = filteredRelatedProducts.slice(0, 3);
-    setRelatedProducts(slicedRelatedProducts);
-  }, [id, products, product.id]);
+    (async function getProduct() {
+      try {
+        await getProductById(id);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [id]);
 
-  if (!product) {
-    return <div>Producto no encontrado</div>;
-  }
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
+      try {
+        if (productoDetail && productoDetail.categoria) {
+          const response = await axios.post('http://localhost:3001/productos', {
+            categoria: [productoDetail.categoria],
+            busqueda: ''
+          });
+          const filteredProducts = response.data.filteredProducts;
+          const randomProducts = getRandomItems(filteredProducts, 8, id);
+          setRelatedProducts(randomProducts);
+        }
+      } catch (error) {
+        console.error("Error al obtener productos relacionados:", error);
+      }
+    };
+
+    fetchRelatedProducts();
+  }, [id]);
+
 
   const handleColorChange = (index) => {
     setSelectedColorIndex(index);
@@ -31,88 +60,154 @@ const Detail = ({ products }) => {
     setSelectedSizeIndex(index);
   };
 
-  return (
-    <div>
+  const handleAddToCart = () => {
+    if (selectedSizeIndex !== null && selectedColorIndex !== null) {
+      const selectedColor = productoDetail.opciones[selectedColorIndex].colores.nombres[0];
+      const selectedSize = productoDetail.opciones[selectedColorIndex].tallas[selectedSizeIndex];
+
+      if (selectedSize.stock > 0) {
+        const variantId = `${productoDetail._id}-${selectedColor}-${selectedSize.talla}`;
+
+        const selectedProduct = {
+          id: productoDetail._id,
+          nombre: productoDetail.nombre,
+          descripcion: productoDetail.descripcion,
+          marca: productoDetail.marca,
+          categoria: productoDetail.categoria,
+          genero: productoDetail.genero,
+          subcategoria: productoDetail.subcategoria,
+          precio: productoDetail.precio,
+          imagen: productoDetail.opciones[selectedColorIndex].imagenes[0],
+          opcion: {
+            color: selectedColor,
+            talla: selectedSize.talla,
+            stock: selectedSize.stock
+          },
+          quantity: 1,
+          variantId: variantId
+        };
+
+        addToCart(selectedProduct);
+
+        const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingProduct = storedCart.find(item => item.variantId === variantId);
+
+        if (existingProduct) {
+          existingProduct.quantity += 1;
+        } else {
+          storedCart.push({ ...selectedProduct, variantId });
+        }
+        localStorage.setItem('cart', JSON.stringify(storedCart));
+
+      } else {
+        console.log('Esta talla está agotada');
+      }
+    } else {
+      console.log('Por favor selecciona color y talla');
+    }
+  };
+
+  const getRandomItems = (array, count, currentProductId) => {
+    const shuffled = array
+      .filter(product => product._id !== currentProductId)
+      .sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  };
+
+  const editHandler = () => {
+    navigate(`/editproduct/${id}`);
+  };
+  if (!productoDetail) {
+    return (
+      <div className={styles.notFound}>
+        <h1 className={styles.notFoundError}>ERROR 404</h1>
+        <p className={styles.notFoundText}>
+          Esta no es la pagina que estas buscando
+        </p>
+      </div>
+    );
+  } else {
+    return (
       <div className={styles.detailContainer}>
-        <div className={styles.carouselContainer}>
-          <AliceCarousel
-            mouseTracking
-            items={product.imagen.map((img, index) => (
-              <img key={index} src={img} alt={`Imagen ${index + 1}`} className={styles.productImage} />
-            ))}
-            autoPlay
-            autoPlayInterval={3000}
-            infinite
-          />
-        </div>
+        {productoDetail && (
+          <div className={styles.imagen}>
+            <HeroImagesBarDetail product={productoDetail} selectedColorIndex={selectedColorIndex} />
+          </div>
+        )}
+
         <div className={styles.containerDatos}>
-          <h2 className={styles.productName}>{product.nombre}</h2>
-          <p className={styles.description}><strong>Descripción:</strong> {product.descripcion}</p>
-          <p className={styles.price}><strong>Precio:</strong> ${product.precio}</p>
+          <h2 className={styles.productName}>{productoDetail && productoDetail.nombre}</h2>
+          <p><strong>Descripción:</strong> {productoDetail && productoDetail.descripcion}</p>
+          <p><strong>Marca:</strong> {productoDetail && productoDetail.marca}</p>
+          <p><strong>Género:</strong> {productoDetail && productoDetail.genero}</p>
+          <p><strong>Categoria:</strong>{productoDetail && productoDetail.categoria}</p>
+          <p><strong>SubCategoria:</strong> {productoDetail && productoDetail.subcategoria}</p>
+          <p><strong>Precio:</strong> ${productoDetail && productoDetail.precio}</p>
+          {productoDetail && productoDetail.oferta && (
+            <p><strong>Oferta: </strong> {productoDetail.oferta.Descuento}% de descuento</p>
+          )}
 
-          <div className={styles.buttonsAndDetailsContainer}>
-            <div className={styles.detailsContainer}>
-              <h3 className={styles.nameColores}>Colores disponibles:</h3>
-              <div className={styles.colorsList}>
-                {product.opcion.map((opcion, index) => {
-                  const { codHexadecimal } = opcion.color;
-                  const isSelected = index === selectedColorIndex;
-
-                  return (
+          <div>
+            <h3>Opciones:</h3>
+            {productoDetail && productoDetail.opciones && productoDetail.opciones.map((opcion, index) => (
+              <div key={index}>
+                <p>Color:</p>
+                <div className={styles.colorsList}>
+                  {opcion.colores.codigosHex.map((color, colorIndex) => (
                     <div
-                      key={index}
-                      className={`${styles.colorBox} ${isSelected ? styles.selectedColor : ''}`}
-                      style={{ backgroundColor: codHexadecimal }}
+                      key={colorIndex}
+                      className={`${styles.colorCircle} ${selectedColorIndex === index ? styles.selectedColor : ''}`}
+                      style={{ backgroundColor: color }}
                       onClick={() => handleColorChange(index)}
                     ></div>
-                  );
-                })}
-              </div>
 
-              <h3 className={styles.nameTallas}>Tallas disponibles:</h3>
-              <div className={styles.sizesList}>
-                {product.opcion[selectedColorIndex].talles.map((tallaData, index) => {
-                  const { talla, stock } = tallaData;
-                  const isOutOfStock = stock === 0;
-                  const isSelected = index === selectedSizeIndex;
-                  return (
-                    <div
-                      key={index}
-                      className={`${styles.sizeBox} ${isOutOfStock ? styles.outOfStock : ''} ${isSelected ? styles.selectedSize : ''}`}
-                      onClick={() => handleSizeChange(index)}
-                      disabled={isOutOfStock}
-                    >
-                      {talla}
-                      <br />
-                      (stock: {stock})
+                  ))}
+                </div>
+                {selectedColorIndex === index && (
+                  <div className={styles.sizeOptions}>
+                    <p>Tallas disponibles:</p>
+                    <div className={styles.sizeList}>
+                      {opcion.tallas.map((tallaData, sizeIndex) => (
+                        <div
+                          key={sizeIndex}
+                          className={`${styles.sizeItem} ${selectedSizeIndex === sizeIndex ? styles.selectedSize : ''}`}
+                          onClick={() => handleSizeChange(sizeIndex)}
+                        >
+                          {tallaData.talla} (Stock: {tallaData.stock})
+                        </div>
+                      ))}
                     </div>
-                  );
-                })}
+                  </div>
+                )}
               </div>
-
-            </div>
-            <div className={styles.buttonsContainer}>
-              <button className={styles.addToCartButton}>Agregar al carrito</button>
-              <button className={styles.buyButton}>Comprar</button>
+            ))}
+          </div>
+          <div className={styles.buttonsContainer}>
+            <button className={styles.addToCartButton} onClick={handleAddToCart}>Agregar al carrito</button>
+            {storedCart.length === 0 && <button className={styles.buyButton}>Comprar</button>}
+            <button className={styles.buyButton} onClick={editHandler}>
+              Editar producto
+            </button>
+          </div>
+        </div>
+        <h2 className={styles.productsRelacionados}>Productos relacionados</h2>
+        <div className={styles.relatedProductsContainer}>
+          <div className={styles.relatedProductsWrapper}>
+            <div className={styles.relatedProducts} >
+              {relatedProducts.map((relatedProduct) => (
+                <Link to={`/${relatedProduct._id}`} key={relatedProduct._id} className={styles.relatedProductLink}>
+                  <div className={styles.relatedProduct}>
+                    <img src={relatedProduct.opciones[0]?.imagenes[0]} alt={relatedProduct.nombre} className={styles.relatedProductImageLarge} />
+                    <h3 className={styles.relatedProductName}>{relatedProduct.nombre}</h3>
+                    <p className={styles.relatedProductPrice}>${relatedProduct.precio}</p>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
+        <Reviews /* reviews={productoReviews} */ /> 
       </div>
-
-      <h2 className={styles.productsRelacionados}>Productos relacionados</h2>
-      <div className={styles.relatedProductsContainer}>
-        {relatedProducts.map((relatedProduct) => (
-          <Link to={`/${relatedProduct.id}`} key={relatedProduct.id} className={styles.relatedProductLink}>
-            <div className={styles.relatedProduct}>
-              <img src={relatedProduct.imagen[0]} alt={relatedProduct.nombre} className={styles.relatedProductImage} />
-              <h3 className={styles.relatedProductName}>{relatedProduct.nombre}</h3>
-              <p className={styles.relatedProductPrice}>${relatedProduct.precio}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
+    );
+  }
 }
-
-export default Detail;

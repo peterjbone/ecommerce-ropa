@@ -1,4 +1,7 @@
 import './HeroImagesBar.css'
+import nextIcon from '../../assets/icons/next.svg';
+import perviousIcon from '../../assets/icons/previous.svg';
+
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -26,6 +29,9 @@ export default function HeroImagesBar({ products }) {
     autoScrollIntervalRef.current = setInterval(() => {
       showNextImage();
     }, 4000);
+    return () => {
+      clearInterval(autoScrollIntervalRef.current);
+    };
   }
 
   const showNextImage = () => {
@@ -51,29 +57,29 @@ export default function HeroImagesBar({ products }) {
       <div className='hero-images-container' >
         {products.slice(0, 10).map(product => (
           <img
-            key={product.id}
-            id={product.id}
-            src={product.imagen[0]}
-            alt={product.imagen[0]}
+            key={product._id}
+            id={product._id}
+            src={product.opciones[0].imagenes[0]}
+            alt={product.opciones[0].imagenes[0]}
             className='hero-image'
-            style={{ cursor:'pointer', translate: `${-100 * imageIndex}%` }}
+            style={{ cursor: 'pointer', translate: `${-100 * imageIndex}%` }}
             onClick={handleHeroImageClick}
             onMouseEnter={stopAutoScroll}
             onMouseLeave={resumeAutoScroll}
           />
         ))}
-      <button
-        className="hero-image-button"
-        onClick={showPrevImage}
-        style={{ left: 0 }} >
-        ⬅️
-      </button>
+        <button
+          className="hero-image-button"
+          onClick={showPrevImage}
+          style={{ left: 0 }} >
+          <img src={perviousIcon} alt='nextIcon' />
+        </button>
       </div>
       <button
         onClick={showNextImage}
         className="hero-image-button"
         style={{ right: 0 }} >
-        ➡️
+        <img src={nextIcon} alt='nextIcon' />
       </button>
       <div
         style={{

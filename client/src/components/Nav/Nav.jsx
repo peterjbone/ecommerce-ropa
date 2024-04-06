@@ -1,18 +1,75 @@
 import './Nav.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import logo from '../../assets/images/nombre.png'
+import sun from '../../assets/icons/sun-icon.svg'
+import moon from '../../assets/icons/moon-icon.svg'
 import { useStore } from '../../store.js';
+// import { useStore } from '../../userStore.js';
 
-export default function Nav({ categories }) {
+export default function Nav() {
+  const listaMarcas = useStore((state) => state.listaMarcas);
+  const listaGeneros = useStore((state) => state.listaGeneros);
+  const listaCategorias = useStore((state) => state.listaCategorias);
+  const listaSubcategorias = useStore((state) => state.listaSubcategorias);
+  const listaColores = useStore((state) => state.listaColores);
+  const listaTallas = useStore((state) => state.listaTallas);
+  const searchFunction = useStore((state) => state.setSearch);
+  const getFilteredProducts = useStore((state) => state.getFilteredProducts);
+  const setFilters = useStore((state) => state.setFilters);
+  const resetFilters = useStore((state) => state.resetFilters);
+  // const isAdmin = useStore((state) => state.isAdmin);
   const [search, setSearch] = useState('');
+  const [isDarkTheme, setIsDarkTheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
   const [isMenuDown, setIsMenuDown] = useState(false);
-  const searchFunction = useStore((state) => state.search);
-  const getAllProducts = useStore((state) => state.getAllProducts);
-  const getSubcategoria = useStore((state) => state.getSubcategoria);
   const navigate = useNavigate();
+  const cart = useStore((state) => state.cart);
+  const [totalItemsInCart, setTotalItemsInCart] = useState(0);
+
+
+  const listas = [
+    {
+      lista: listaGeneros,
+      title: 'Géneros',
+      name: 'genero',
+    },
+    {
+      lista: listaMarcas,
+      title: 'Marcas',
+      name: 'marca',
+    },
+    {
+      lista: listaCategorias,
+      title: 'Categorias',
+      name: 'categoria',
+    },
+    {
+      lista: listaSubcategorias,
+      title: 'Subcategorias',
+      name: 'subcategoria',
+    },
+    {
+      lista: listaColores,
+      title: 'Colores',
+      name: 'color',
+    },
+    {
+      lista: listaTallas,
+      title: 'Tallas',
+      name: 'talla',
+    },
+  ];
   let windowTimeout;
+
+  useEffect(() => {
+    let totalQuantity = 0;
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    storedCart.forEach(product => {
+      totalQuantity += product.quantity;
+    });
+    setTotalItemsInCart(totalQuantity);
+  }, [cart]);
 
   const handleScroll = () => {
     setTimeout(() => {
@@ -25,14 +82,25 @@ export default function Nav({ categories }) {
       }
     }, 500);
   };
-  
   const triggerAnimation = () => {
     if (!isMenuDown) {
       const targetElement = document.querySelector('.categories-window');
-      setTimeout(() => {
+      windowTimeout = setTimeout(() => {
         targetElement.classList.add('move-down');
         setIsMenuDown(true);
-      }, 1000);
+      }, 500);
+    }
+  }
+  const cancelAnimation = () => {
+    if (!isMenuDown) {
+      clearTimeout(windowTimeout);
+      windowTimeout = null;
+      setIsMenuDown(false);
+    }
+  }
+  const resetAnimation = () => {
+    if (isMenuDown) {
+      const targetElement = document.querySelector('.categories-window');
       windowTimeout = setTimeout(() => {
         targetElement.classList.remove('move-down');
         targetElement.classList.add('move-up');
@@ -40,53 +108,58 @@ export default function Nav({ categories }) {
           targetElement.classList.remove('move-up');
           setIsMenuDown(false);
         }, 500);
-      }, 4000);
+      }, 1000);
     }
   }
-
   const cancelMoveWindowUp = () => {
     clearTimeout(windowTimeout);
+    windowTimeout = null;
   }
-
-  const resetAnimation = () => {
-    const targetElement = document.querySelector('.categories-window');
-    setTimeout(() => {
-      targetElement.classList.remove('move-down');
-      targetElement.classList.add('move-up');
-      setTimeout(() => {
-        targetElement.classList.remove('move-up');
-        setIsMenuDown(false);
-      }, 500);
-    }, 1500);
-  }
-
   const handleSearch = async () => {
     try {
-      await searchFunction(search);
-      navigate('/')
+      searchFunction(search);
+      await getFilteredProducts();
+      navigate('/tienda')
     } catch (error) {
       console.error(error);
     }
   }
-
   const goToStore = async () => {
     try {
-      await getAllProducts();
+      resetFilters();
+      await getFilteredProducts();
       navigate('/tienda');
       window.scrollTo(0, 0);
     } catch (error) {
       console.error(error);
     }
   }
-
-  const handleSubcategorySearch = async (event) => {
+  const handleCategorySearch = async (event) => {
     try {
-      await getSubcategoria(event.target.id);
+      const { id } = event.target;
+      const name = event.target.getAttribute('name');
+      setFilters(name, id);
+      await getFilteredProducts();
+      setIsMenuDown(false);
       navigate('/tienda');
       window.scrollTo(0, 0);
+      const targetElement = document.querySelector('.categories-window');
+      targetElement.classList.remove('move-down');
+      targetElement.classList.remove('move-up');
+      targetElement.classList.add('dissapear');
+      setTimeout(() => {
+        clearTimeout(windowTimeout);
+        targetElement.classList.remove('dissapear');
+        setIsMenuDown(false);
+      }, 500);
     } catch (error) {
       console.error(error);
     }
+  }
+
+  const toggleTheme = () => {
+    document.body.classList.toggle('dark');
+    setIsDarkTheme(!isDarkTheme);
   }
 
   return (
@@ -107,7 +180,7 @@ export default function Nav({ categories }) {
           </NavLink>
         </ScrollLink>
         <NavLink to='/' >
-          <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation}
+          <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation} onMouseLeave={cancelAnimation}
           >Categorias</button>
         </NavLink>
         <button className='nav-bar-button' onClick={goToStore} >Tienda</button>
@@ -115,32 +188,51 @@ export default function Nav({ categories }) {
           <input
             type="search"
             name="search"
-            placeholder="Search"
+            placeholder="Buscar"
             value={search}
             onChange={(event) => setSearch(event.target.value)} />
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>
         </div>
-        <div>
+        <NavLink to='/usuario'>
           <button className='nav-bar-button' >Ingresar / Perfil</button>
-          <NavLink to='/cart'>
-            <button className='nav-bar-button' >Carrito</button>
-          </NavLink>
-          <NavLink to='/checkout'>
-            <button className='nav-bar-button' >CheckOut</button>
-          </NavLink>
-        </div>
+        </NavLink>
+        <NavLink to='/carrito'>
+          <button className='nav-bar-button' >
+            Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
+          </button>
+        </NavLink>
+        <NavLink to='/checkout'>
+          <button className='nav-bar-button' >CheckOut</button>
+        </NavLink>
+        {/* {isAdmin ?  */}
+        <NavLink to='/form'>
+          <button className='nav-bar-button' >Crear Producto</button>
+        </NavLink>
+        {/* : null } */}
+        <button
+          className='nav-bar-button theme-button '
+          onClick={toggleTheme}
+        >
+          <img src={isDarkTheme ? moon : sun} alt='sun' />
+        </button>
       </nav>
-      <div className='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
-        {categories.map(category =>
-          <p
-            key={category.id}
-            onMouseEnter={cancelMoveWindowUp}
-            id={category.subcategoria}
-            onClick={handleSubcategorySearch}
-          >
-            {category.subcategoria}
-          </p>
-        )}
+      <div className='categories-window' key='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
+        {listas.map((list, index) => (
+          <>
+            <label key={`${list.title} ${index}`} >{list.title}</label>
+            {list.lista.map((value, index) => (
+              <p
+                key={`${value} ${index}`}
+                onMouseEnter={cancelMoveWindowUp}
+                id={value}
+                name={list.name}
+                onClick={handleCategorySearch}
+              >
+                {value}
+              </p>
+            ))}
+          </>
+        ))}
       </div>
     </>
   );

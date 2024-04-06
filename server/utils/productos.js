@@ -3951,6 +3951,3234 @@ const productos = [
 				]
 			}
 		]
+	},
+	{
+		nombre: "Nike Tricot Set",
+		marca: "nike",
+		descripcion:
+			"Este conjunto de punto Nike Block Tricot del tamaño de una pinta para tu pequeño no falla con su atención al detalle y su estilo deportivo. Una chaqueta con cremallera completa y cuello alto mantiene a tu pequeño abrigado, mientras que los pantalones de tricot con dos bolsillos incluyen una cinturilla incorporada para mantenerlos en su lugar. Los tobillos y las mangas con puños aseguran que el ajuste sea perfecto, y las letras cónicas de Nike en las costuras agregan un toque moderno a este divertido conjunto de tricot.",
+		precio: 48.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "camisetas manga larga",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "4",
+						stock: 20
+					},
+					{
+						talla: "5",
+						stock: 20
+					},
+					{
+						talla: "6",
+						stock: 20
+					},
+					{
+						talla: "7",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/P796G684_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/P796G684_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/P796G684_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas Originals T-Shirt",
+		marca: "adidas",
+		descripcion:
+			"Prepare a sus niños en edad preescolar para sus citas de juego y diversión bajo el sol con el conjunto de camiseta y pantalones cortos adidas. Repleto de estilo deportivo y comodidad informal, este conjunto aporta estilo al estilo diario de tus pequeños. La confección íntegramente en algodón envuelve a tus niñas de una manera sencilla, manteniéndolas listas para lo que mejor saben hacer (divertirse).",
+		precio: 38.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD", "#ffffff"],
+					nombres: ["rosado", "blanco"]
+				},
+				tallas: [
+					{
+						talla: "4",
+						stock: 20
+					},
+					{
+						talla: "5",
+						stock: 20
+					},
+					{
+						talla: "6",
+						stock: 20
+					},
+					{
+						talla: "7",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/HK2944_a1?wid=500&hei=500&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/HK2944_a2?wid=500&hei=500&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/HK2944_a3?wid=500&hei=500&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Fleece Shorts",
+		marca: "nike",
+		descripcion:
+			"Deja que tus pequeñas se unan al club del estilo clásico de Nike con los pantalones cortos Nike Club Fleece. Confeccionados con una suave tela de felpa francesa, estos pantalones cortos mantienen un aspecto deportivo y elegante durante todo el día, todos los días. Los bolsillos funcionales mantienen sus elementos esenciales cerca, mientras que el cordón ofrece un ajuste perfecto para jugar. Observe cómo sus pequeñas se destacan con el estilo fresco de Nike con los pantalones cortos Nike Club Fleece.",
+		precio: 32.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "4",
+						stock: 20
+					},
+					{
+						talla: "5",
+						stock: 20
+					},
+					{
+						talla: "6",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/6I301A9Y_om1?wid=500&hei=500&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6I301A9Y_om3?wid=500&hei=500&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "4",
+						stock: 20
+					},
+					{
+						talla: "5",
+						stock: 20
+					},
+					{
+						talla: "6",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/6I301023_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6I301023_om3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Fleece High Low FZ Hoodie",
+		marca: "nike",
+		descripcion:
+			"Mantenga a sus niños en edad preescolar preparados para jugar durante todo el día incluso cuando hace frío afuera con la sudadera con capucha Nike Club Fleece High Low FZ. Diseñada para ser más larga, esta sudadera con capucha es fácil de peinar y ofrece amplia cobertura y comodidad. La capucha, los hombros caídos y las mangas largas mantienen a tus niñas abrigadas y listas para cualquier aventura. Perfecta para usar en capas, la sudadera con capucha Nike Club Fleece High Low FZ completa la rotación de temporada de tus pequeñas con una frescura elegante.",
+		precio: 44.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "4",
+						stock: 20
+					},
+					{
+						talla: "5",
+						stock: 20
+					},
+					{
+						talla: "6",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/6I254A9Y_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6I254A9Y_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6I254A9Y_om3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Zip Hoodie",
+		marca: "puma",
+		descripcion:
+			"¡Zip, zap, zoom! La sudadera con capucha con cremallera PUMA permite que tus niñas inicien su rutina diaria con estilo. Confeccionada con una mezcla de tejidos ligeros y suaves, esta sudadera con capucha es perfecta para combinarla con otras capas. Fácil de combinar con todos los conjuntos favoritos de tus niñas, la sudadera con capucha PUMA Zip es una incorporación versátil a su rotación diaria.",
+		precio: 44.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#EFBC9B"],
+					nombres: ["beige"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/PFAFM681_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/PFAFM681_a1?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Tech Fleece Full-Zip Hoodie",
+		marca: "nike",
+		descripcion:
+			"¡El invierno está cerca! Y será una batalla constante entre el clima frío y el tiempo de juego de tus niñas. Equipa a tus niñas con la sudadera con capucha Nike Tech Fleece Full-Zip y ayúdalas a conquistar el frío con estilo. Confeccionada con tejido polar técnico liviano y de primera calidad que es suave por dentro y por fuera, esta sudadera con capucha mantiene a sus hijos abrigados y listos para divertirse al aire libre sin agregar volumen. Diseñada para todas las formas y tamaños, el ajuste mejorado de esta sudadera con capucha permite libertad de movimiento, para que tus niñas puedan andar en bicicleta o jugar a la pelota con comodidad. Observe a sus hijas escapar de los vientos fríos con la sudadera con capucha Nike Tech Fleece con cremallera completa.",
+		precio: 105.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/D2979450_om1?wid=500&hei=500&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/D2979450_om2?wid=500&hei=500&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike International Hoops T-Shirt",
+		marca: "nike",
+		descripcion:
+			"Aventura sin fin en el ocio deportivo, la camiseta Nike International Hoops mantiene a tus jóvenes estrellas del baloncesto listas para el juego y más. Un clásico que nunca falla, esta camiseta amplifica los movimientos de tus hijos en la cancha y brinda vibraciones relajadas durante todas sus sesiones posteriores al partido. La camiseta Nike International Hoops, una camiseta clásica que celebra el baloncesto, permite a tus hijos hacerlo al estilo Nike.",
+		precio: 25.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/R9627697_om1?wid=500&hei=500&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/R9627697_om2?wid=500&hei=500&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike NSW Wash Shorts",
+		marca: "nike",
+		descripcion:
+			"Deja que tus chicas vivan en la nube nueve con la camiseta Nike NSW Wash Shorts. Confeccionados con un tejido de punto suave con un tacto ligeramente más grueso, estos pantalones cortos mantienen a sus hijos de primaria cómodos y relajados durante todo el día. Acentuada con nubes coloridas, la camiseta Nike NSW Wash Shorts permite que tus niñas luzcan como el sol en un día nublado.",
+		precio: 19.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X5072623_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X5072623_om3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X5072468_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X5072468_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike NSW Boxy Print T-Shirt",
+		marca: "nike",
+		descripcion:
+			"Deja que tus chicas mejoren su estilo con la camiseta Nike NSW Boxy Print. Confeccionada con un suave tejido de algodón de uso diario, esta camiseta mantiene a tus hijos de primaria frescos y relajados mientras andan todo el día. Con un ajuste cuadrado que se siente un poco holgado alrededor de las mangas y el cuerpo, la camiseta Nike NSW Boxy Print permite a tus hijos aprovechar el día con estilo sin esfuerzo.",
+		precio: 25.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Z3579100_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Z3579100_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Essential Boxy T-Shirt",
+		marca: "nike",
+		descripcion:
+			"La apariencia elegante, relajada y sencilla de la camiseta Nike Essential Boxy es perfecta para tus hijos. Increíblemente ligera y cómoda, esta camiseta es la mejor opción para usar durante todo el día. La construcción de tela transpirable totalmente natural significa que esta camiseta seguramente terminará en la lista de favoritas de sus hijos. Mantenga a sus hijos viéndose y sintiéndose como una superestrella con esta camiseta duradera y versátil que combina bien con cualquier prenda inferior y calzado.",
+		precio: 20.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/D5750100_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/D5750100_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike AOP Fleece Hoodie",
+		marca: "nike",
+		descripcion:
+			"Deja que tus hijas mantengan siempre su estilo con la sudadera con capucha Nike AOP Fleece. Confeccionada con un suave tejido afelpado, esta sudadera con capucha brinda una comodidad increíble e inigualable para tus niñas. El estampado especial en oro metálico brilla desde la mañana hasta la noche, garantizando un estilo inigualable. Diseñado para brindar cobertura adicional, el dobladillo trasero más largo brinda un soporte excelente. Los bolsillos delanteros ofrecen espacio para guardar lo esencial mientras tus hijas salen a pasar el día.",
+		precio: 55.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V3225698_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/V3225698_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike DW Club LBR LS Half-Zip Fleece Hoodie",
+		marca: "nike",
+		descripcion:
+			"Con clima fresco o cálido, tus hijas descansarán con total comodidad durante todo el año con la sudadera con capucha de polar con media cremallera Jordan DW Club LBR LS. Suave por fuera y suave por dentro, esta cómoda sudadera con capucha mantiene a tus hijos cómodos y cómodos con un tejido polar cepillado y ligero. El estiramiento extra en los puños proporciona comodidad duradera y un ajuste fácil de poner y quitar, mientras que el logotipo de Futura bordado eleva el cociente de estilo de tus niñas. Desde el patio de recreo hasta la práctica y la finalización de algunos deberes de último momento, la sudadera con capucha de tejido polar con media cremallera Jordan DW Club LBR LS mantiene a tus hijas en movimiento a pesar de todo.",
+		precio: 45.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/F2930010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/F2930010_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#EFBC9B"],
+					nombres: ["beige"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/D2930126_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/D2930126_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Cowboys Game Jersey",
+		marca: "nike",
+		descripcion: "N/A",
+		precio: 85.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "infantes",
+		genero: "femenino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/ZZ022904_a1?wid=500&hei=500&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas AE 1 Velocity Blue",
+		marca: "adidas",
+		descripcion:
+			"Hay muy pocos jugadores como Anthony Edwards. Al poseer una habilidad única para sobresalir en el juego de transición, Ant-Man ha irrumpido en escena y parece que llegó para quedarse. Es hora de celebrar su atletismo de alto nivel y sus habilidades depredadoras para cazar cubos con el adidas AE 1 Velocity Blue. Diseñados para jugadores certificados, estos zapatos de básquetbol combinan la exclusiva entresuela adidas Boost y la amortiguación Lightstrike para mantener tu paso firme, técnico y sumamente cómodo. Escribe tu propia leyenda en la cancha con las adidas AE 1 Velocity Blue.",
+		precio: 85.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/IF1864_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF1864_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF1864_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF1864_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Suede Shanks",
+		marca: "puma",
+		descripcion:
+			"El PUMA Suede, un revolucionario desde 1968, une fuerzas con el Jefe de los Piratas Pelirrojos para aventuras en alta mar y un estilo urbano icónico. La silueta vintage luce su exclusiva parte superior de gamuza en una apariencia atrevida que hace un guiño al arte y la caracterización de One Piece. Estas zapatillas cuentan con una combinación de comodidad y durabilidad que resiste los mares (o calles) impredecibles por los que vas a navegar.",
+		precio: 85.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/39652101_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39652101_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39652101_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39652101_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Suede",
+		marca: "puma",
+		descripcion:
+			"Deja tu huella en las calles con PUMA Suede. El Suede irrumpió en escena en 1968 y ha estado cambiando las reglas del juego desde entonces. Una obra maestra estética, estos zapatos han tenido un gran impacto en la sociedad y la cultura. Desde la protesta de Tommie Smith en el estrado de la victoria durante los Juegos Olímpicos de 1968 hasta los grupos de b-boys en Nueva York luciendo los zapatos en la década de 1980, estas zapatillas han sido un clásico inolvidable listo para la próxima gran novedad. Como parte de la franquicia 'Ain't Broke' del 75 aniversario de PUMA, PUMA Suede recupera los diseños vintage clásicos del pasado de PUMA mezclados con elementos modernos para una experiencia extraordinariamente elegante y cómoda.",
+		precio: 85.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffff00", "#ffffff"],
+					nombres: ["amarillo", "blanco"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/39158901_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39158901_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39158901_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Suede Beavis & Butthead",
+		marca: "puma",
+		descripcion:
+			"¡Ríe fuerte, camina orgulloso! Maximiza la comodidad y la diversión con las PUMA Suede Beavis & Butthead. Basados ​​en la popular serie animada estadounidense Beavis y Butt-Head, estos zapatos añaden un encanto peculiar a tu look diario. Estas siluetas icónicas, que forman parte de la historia de las Suede, aparecieron en escena en 1968 y han estado cambiando las reglas del juego desde entonces. Usadas por íconos de cada generación, estas zapatillas clásicas continúan creciendo y legitimándose al mismo tiempo que te permiten unirte a la liga de personas auténticas y expresivas. Atemporales, cómodas y muy divertidas, las PUMA Suede Beavis & Butthead añaden un estilo divertido a tus pasos.",
+		precio: 59.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#808080"],
+					nombres: ["gris"]
+				},
+				tallas: [
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/39671501_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39671501_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39671501_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/39671501_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Hoops x Cheetos Hoodie",
+		marca: "puma",
+		descripcion:
+			"¡Alerta de estilo snackable! Sumérgete en un mundo de sabor y estilo con la sudadera con capucha PUMA Hoops x Cheetos. Suave, deportiva y llamativa, esta sudadera con capucha eleva tu estilo urbano con la audaz alianza de PUMA Hoops y Cheetos. Con al menos un 20 % de algodón reciclado, esta sudadera con capucha te permite abrazar tu pasión por el juego y tu amor por el planeta con cada movimiento que haces. El ajuste relajado hace que cada movimiento sea un placer sin esfuerzo. Disfrute de estilos destacados y comodidad sostenible con la sudadera con capucha PUMA Hoops x Cheetos.",
+		precio: 80.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FB6D48"],
+					nombres: ["naranja"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/62586701_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/62586701_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Hoops X LaFrance Holiday Sherpa",
+		marca: "puma",
+		descripcion:
+			"Dispara al aro con estilo con el PUMA Hoops X LaFrance Holiday Sherpa. Diseñada en colaboración con la marca de moda de estilo de vida oficial de LaMelo Ball, LaFrance, esta sudadera con capucha hace alarde de un estilo atrevido y gráficos pop que elevan tu estilo. El logotipo de LaFrance muestra tu amor por el juego y por tu jugador favorito, mientras que los bolsillos delanteros brindan espacio de almacenamiento para guardar lo esencial. Fabricado con material 100% reciclado, excluyendo adornos y adornos, el PUMA Hoops X LaFrance Holiday Sherpa representa una de las soluciones de la marca hacia cero emisiones de carbono y cero residuos.",
+		precio: 100.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000", "#ff0000"],
+					nombres: ["negro", "rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/62283701_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/62283701_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Authentic Varsity Leather Jacket",
+		marca: "nike",
+		descripcion:
+			"Ya sea que vayas a ver un partido o pasees por el centro con temperaturas más frías, la chaqueta de cuero Nike Authentic Varsity es perfecta para usarla en todo momento. Esta chaqueta de corte amplio, que vuelve a poner en primer plano las cualidades atemporales de tu vieja chaqueta favorita, viene con hombros caídos que mantienen tu look impecable. Las mangas están hechas de cuero de plena flor de lujo que se siente flexible, se desgasta bien y envejece a la perfección, mientras que el forro de tafetán tiene un tacto suave para ponerse y quitarse fácilmente. El lado exterior es una mezcla de lana cepillada para brindar comodidad y el interior incluye un aislamiento sintético liviano que brinda calidez. Clásica y cómoda, la chaqueta de cuero Nike Authentic Varsity seguramente ganará un primer lugar en tu rotación.",
+		precio: 500.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/D7845010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/D7845010_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Jacket",
+		marca: "nike",
+		descripcion:
+			"Nada grita más icónico que Nike. Únete al club del estilo urbano icónico con la chaqueta Nike Club. Diseñada para ofrecer calidez ligera y versatilidad, esta chaqueta está confeccionada con mucha tela adicional en un ajuste espacioso y extragrande para ayudarte a vestirte con estilo. El diseño de cremallera completa te permite personalizar tu look, mientras que los bolsillos con cremallera mantienen tus elementos esenciales cerca. Acentuada con un patrón de puntos estampado por toda la prenda y un logotipo de Futura bordado en el pecho izquierdo, la chaqueta Nike Club causa una gran impresión de estilo.",
+		precio: 39.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X0531480_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X0531480_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Anorak Jacket",
+		marca: "nike",
+		descripcion:
+			"Es hora de aumentar las apuestas en la moda. Inspirada en la pista y moderna, la chaqueta Nike Anorak hace una declaración como ninguna otra. El ajuste extragrande te ayuda a ponerte capas con estilo, mientras que los detalles icónicos como el clásico ángulo de chevrón cosido y el logotipo de Futura bordado en el pecho izquierdo te hacen lucir con estilo. Detalles funcionales como la capucha plegable y el tejido repelente al agua hacen de esta chaqueta ligera la capa exterior definitiva. Mantente al tanto de tu moda todo el día, todos los días, con la chaqueta Nike Anorak.",
+		precio: 39.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910405_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910405_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910100_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910100_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffff00"],
+					nombres: ["amarillo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910706_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910706_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#FB6D48"],
+					nombres: ["naranja"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4910717_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4910717_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Electric Anorak Jacket",
+		marca: "nike",
+		descripcion:
+			"La chaqueta Nike Electric Anorak es todo lo que necesitas para lucir elegante y al mismo tiempo estar calentito. Confeccionada con un tejido ligero y de primera calidad, esta chaqueta te permite mantenerte abrigado y cómodo desde el amanecer hasta el anochecer con facilidad. Afronta los días fríos con comodidad y estilo superiores con la chaqueta Nike Electric Anorak.",
+		precio: 49.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/J1634662_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/J1634662_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Woven Jacket",
+		marca: "nike",
+		descripcion:
+			"Una elección fácil para el aire libre, la chaqueta Nike Club Woven ofrece comodidad suave y liviana y te mantiene protegido contra los elementos. El suave tejido de tafetán es repelente al viento y al agua, lo que te ayuda a mantenerte abrigado y seco, mientras que el forro de malla y el tejido elástico añaden comodidad y frescura a la mezcla. Nítida y limpia en el frente, atrevida y colorida en la parte posterior: la chaqueta tejida Nike Club agrega un estilo fresco y divertido a tu equipo para actividades al aire libre.",
+		precio: 95.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X0672010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X0672010_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/X0672030_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/X0672030_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Tech Woven Jacket",
+		marca: "nike",
+		descripcion:
+			"Sube el cierre y mantente seco con la chaqueta Nike Tech Woven. Confeccionada con tejido arrugado, esta chaqueta ligera se siente suave contra la piel y ofrece un acabado texturizado. El diseño de cremallera completa con capucha forrada de malla brinda cobertura transpirable y estilo versátil. La cremallera Aquaguard de dos direcciones te ayuda a mantenerte seco, mientras que los bolsillos laterales con cremallera Aquaguard de la chaqueta Nike Tech Woven te brindan un lugar seco para guardar tus elementos esenciales y calentar tus manos.",
+		precio: 89.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4340010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340010_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340010_om3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#00ff00"],
+					nombres: ["verde"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4340222_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340222_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q4340030_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q4340030_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike SPU Woven Jacket",
+		marca: "nike",
+		descripcion:
+			"Lleva tu entrenamiento al aire libre con la chaqueta tejida Nike SPU. Diseñado para mantenerse al día con sus actividades activas, este básico de rendimiento cuenta con comodidad liviana y durabilidad con facilidad de movimiento. Con un diseño multicolor con cierre de cremallera, la chaqueta tejida Nike SPU te mantendrá abrigado y llamará la atención en cualquier pista, calle o sendero.",
+		precio: 110.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#00ff00"],
+					nombres: ["verde"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/B2192325_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/B2192325_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Pro Standard NBA All Star 24 Wool Varsity Jacket",
+		marca: "NBA All Star",
+		descripcion:
+			"Los mates más llamativos, las monedas de diez centavos deslumbrantes y los bloqueos feroces. Experimenta cada momento del juego con comodidad con la chaqueta universitaria de lana Pro Standard NBA All Star 24. Con parches con el logo de Star sobre una base de fieltro con chenilla y bordado en 3D, esta chaqueta te permite atravesar partidos emocionantes y días difíciles mientras te ves y te sientes lo mejor posible. El parche principal en la manga derecha sobre una base de sarga con bordado en 3D y puntadas de satén ofrece una apariencia deportiva, mientras que el parche principal en la espalda en vinilo en relieve hace que tu atuendo se destaque el día del juego. Pon a prueba tus habilidades para animar y muestra el orgullo de tu equipo con la chaqueta universitaria de lana Pro Standard NBA All Star 24.",
+		precio: 189.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59023MNR_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59023MNR_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59023MNR_03?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Pro Standard NBA x HBCU All Star 23 Wool Varsity Jacket",
+		marca: "NBA All Star",
+		descripcion:
+			"¡Donde todos son alguien! Representa a tu universidad HBCU favorita con la chaqueta universitaria de lana Pro Standard NBA x HBCU All Star 23. Diseñada con tela suave y duradera, esta sudadera con capucha te mantiene cómodo y calentito durante cuatro cuartos y más. Con parches deportivos de Grambling University en bordados de puntada de satén en 3D sobre una base de sarga, la chaqueta universitaria de lana Pro Standard NBA x HBCU All Star 23 te permite representar a los Grambling Tigers con estilo.",
+		precio: 250.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "chaquetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/CHB67124_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/CHB67124_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/CHB67124_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Woven LND Flow Shorts",
+		marca: "Nike",
+		descripcion:
+			"Una opción fácil para aventuras de todo tipo: los pantalones cortos Nike Sportswear SPE Woven LND Flow tienen que ver con la comodidad y la movilidad. Confeccionados con tejido suave y liviano con un ajuste estándar y forrados con poliéster, estos pantalones cortos son imprescindibles en tu guardarropa de verano. Ya sea que estés relajándote en el sofá o preparándote para bucear, estos pantalones cortos Nike Sportswear SPE Woven LND Flow te mantienen cómodo en todo momento.",
+		precio: 50.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/M6829010_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/M6829010_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/M6829657_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/M6829657_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas Tiro Fleece Shorts",
+		marca: "adidas",
+		descripcion:
+			"Relájate, reagrupate, recupérate. Estos pantalones cortos adidas Tiro Fleece son perfectos para esos momentos en ambos lados de la acción. Póntelos cuando estés estirándote antes de un partido o cuando llegue el momento de regresar a casa. El acogedor forro polar de mezcla de algodón garantiza que estés cómodo. Los bolsillos con cremallera mantienen tus objetos de valor guardados de forma segura.",
+		precio: 14.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/HN3285_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/HN3285_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/GM7345_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/GM7345_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas Tiro AOP Shorts",
+		marca: "adidas",
+		descripcion:
+			"Mejora tu look diario con los pantalones cortos adidas Tiro AOP. Confeccionados con tejido de malla transpirable, estos pantalones cortos te mantienen fresco y cómodo durante todo el día y más allá. El corte estándar logra un equilibrio entre libertad de movimiento y una apariencia contemporánea, mientras que el diseño con estampado integral agrega un aire fresco y urbano. Inspirados en el icónico gráfico de adidas Football de los años 80 y 90, estos pantalones cortos cuentan con un logotipo mediano de adidas en la pierna izquierda, una insignia de silicona con estructura en relieve y un logotipo cosido para una apariencia única y un estilo sofisticado. Aprovecha al máximo tu estilo de vida con la comodidad de los pantalones cortos adidas Tiro AOP.",
+		precio: 45.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffff00", "#0000ff"],
+					nombres: ["amarillo", "azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/IS1533_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IS1533_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IS1533_05?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA PPE Shorts",
+		marca: "puma",
+		descripcion:
+			"Obtén un rendimiento profesional con una apariencia elegante con los pantalones cortos PUMA PPE. Confeccionados con tejido French terry de primera calidad, estos pantalones cortos ofrecen una sensación cálida y acogedora desde el primer momento. Ya sea que estés haciendo un movimiento en la cancha o descansando en tu sofá, los pantalones cortos PUMA PPE brindan comodidad total en todo momento.",
+		precio: 39.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53714301_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53714301_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Essential Shorts",
+		marca: "puma",
+		descripcion:
+			"Flexiona tus carreras con los pantalones cortos PUMA Essential. Diseñado con tela suave y cinturilla elástica, puedes obtener comodidad superior y dar pasos con facilidad.",
+		precio: 55.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59981001_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59981001_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#808080"],
+					nombres: ["gris"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59981004_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59981004_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Classics Woven Shorts",
+		marca: "puma",
+		descripcion:
+			"Mejora tu look casual con los pantalones cortos tejidos PUMA Classics. Confeccionados con tejido reciclado repelente al agua, estos pantalones cortos te mantienen fresco y cómodo durante todo el día. La cinturilla elástica con cordón interno proporciona un ajuste personalizado, mientras que los bolsillos laterales ofrecen espacio para guardar lo esencial. Con un logotipo Archive No.1 bordado, los pantalones cortos tejidos PUMA Classics combinan sin esfuerzo comodidad y estilo.",
+		precio: 29.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53806801_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53806801_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA X Coca Cola Regular Shorts 8'",
+		marca: "puma",
+		descripcion:
+			"Actualice su rotación con los pantalones cortos regulares PUMA X Coca Cola de 8'. Confeccionados con al menos un 20 % de materiales reciclados, estos pantalones cortos añaden un toque sustentable a su estilo informal. Diseñados en colaboración con Coca-Cola, estos pantalones cortos celebran la herencia de dos de las marcas más icónicas de la historia.",
+		precio: 55.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53616401_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53616401_om2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53616401_a1?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Iconic T7 Mesh Shorts",
+		marca: "puma",
+		descripcion:
+			"Coge el pantalón corto de malla PUMA Iconic T7 para un ajuste legendario que nunca pasará de moda. Diseñados con el estampado de goma del logotipo número 1 del archivo e inserciones del panel T7, estos pantalones cortos tienen las características de una pieza clásica. Para mantener las cosas seguras y cómodas, cuenta con una cinturilla elástica con cordones externos para que puedas personalizar tu comodidad.",
+		precio: 19.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ff0000"],
+					nombres: ["rojo"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/59990111_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59990111_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/59990111_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "PUMA Every Day Hussle Sweatshort",
+		marca: "puma",
+		descripcion:
+			"Sigue esforzándote pero con estilo con el pantalón corto PUMA Every Day Hussle. Confeccionados con una mezcla de materiales suaves y cómodos, estos pantalones cortos son perfectos para actividades cotidianas como hacer ejercicio en el gimnasio o ir de compras. Rinde homenaje al viaje empresarial de Nipsey Hussle con el pantalón corto PUMA Every Day Hussle.",
+		precio: 29.99,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53368701_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53368701_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#808080"],
+					nombres: ["gris"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/53368702_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/53368702_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Nike Club Game Day Short",
+		marca: "nike",
+		descripcion:
+			"Cómodos, elegantes y elegantes: los pantalones cortos Nike Club Game Day están listos para cualquier cosa. Confeccionados con tejidos de primera calidad, estos pantalones cortos combinan la comodidad clásica para un estilo urbano. Con bolsillos forrados de algodón, estos pantalones cortos te brindan un espacio cómodo para mantener tus manos calientes y tus elementos esenciales seguros. Ya sea que estés cambiando tu rutina de ejercicios o dando un paseo tranquilo, el pantalón corto Nike Club Game Day es la elección perfecta.",
+		precio: 70.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "shorts",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ECB159", "#00ff00"],
+					nombres: ["cafe", "verde"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XLT",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/Q6146256_om1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/Q6146256_om2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Running On Empty Short Sleeve T-Shirt",
+		marca: "vans",
+		descripcion:
+			"¿Quedarse sin nada? Potencia tu look y energiza tu día con la camiseta de manga corta Running On Vacuum de Vans. Esta camiseta de uso diario, realzada con gráficos serigrafiados, aporta energía audaz a tu conjunto. La suave tela cardada hilada en anillos brinda comodidad en la que puedes confiar en un ajuste que te permite moverte con facilidad.",
+		precio: 30.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V8RKBLK_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/V8RKBLK_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Soaring Eagle Short Sleeve T-Shirt",
+		marca: "vans",
+		descripcion:
+			"Colorida, informal e innegablemente moderna, la camiseta de manga corta Vans Soaring Eagle le da a tu armario una renovación divertida para el clima cálido que se avecina. Confeccionado con suave algodón hilado y acabado con un ajuste regular, este cuello redondo de manga corta ofrece la comodidad veraniega que anhelas en tu armario. Un gráfico serigrafiado realza el look con un estilo vintage. Adopta lo atrevido y luce de la vieja escuela con la camiseta de manga corta Vans Soaring Eagle.",
+		precio: 25.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V8RRFS8_a1?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans MIrada Multistripe Short Sleeve T-Shirt",
+		marca: "vans",
+		descripcion:
+			"Dale un descanso a tus básicos y apuesta por lo atrevido con la camiseta de manga corta Vans Mirada Multistripe. Confeccionada con un tejido ligero y transpirable, esta camiseta de manga corta con cuello redondo te permite disfrutar de una comodidad ultrasuave con un diseño divertido. Las rayas teñidas en hilo garantizan un ambiente colorido duradero durante años de lavado y uso. Elige y diseña la camiseta de manga corta Vans Mirada Multistripe y haz alarde de tu gusto ecléctico.",
+		precio: 40.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ECB159", "#000000"],
+					nombres: ["cafe", "negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V8SWCBU_a1?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Old Skool",
+		marca: "vans",
+		descripcion:
+			"Mejora tu look con Vans Old Skool. Lanzadas en 1977, estas icónicas zapatillas debutaron con las ahora famosas Vans Sidestripe. El primer modelo de Vans que utiliza paneles de cuero/gamuza para mayor durabilidad y estilo, estas siluetas te mantienen cómodo y seguro desde la pista hasta la calle. La clásica suela Waffle vulcanizada de estas siluetas ofrece un excelente agarre dentro o fuera de la tabla y un estilo sencillo.",
+		precio: 75.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff", "#000000"],
+					nombres: ["blanco", "negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A38G1NQR_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1NQR_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1NQR_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#00ff00", "#ffffff"],
+					nombres: ["verde", "blanco"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A38G1RIQ_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1RIQ_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A38G1RIQ_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Sk8 Hi",
+		marca: "vans",
+		descripcion:
+			"Estas zapatillas Vans Sk8-Hi con forro polar ofrecen un estilo sencillo y calidez durante todo el día con algunas actualizaciones del diseño legendario para el clima frío. A la altura de las expectativas, estas zapatillas incluyen una parte superior de ante Wolverine duradera que viene pretratada con Scotchgard resistente a la intemperie para los meses de invierno y la brisa fresca. Los tradicionales cuellos acolchados están forrados con un suave tejido polar para mayor calidez contra los elementos, y las suelas tipo waffle originales de Vans se diseñaron pensando en el agarre y el control. La durabilidad en forma de costuras estratégicas y una construcción de tela reforzada de una sola pieza, junto con cordones de cordón duraderos, completan estos clásicos actualizados para tus días de clima fresco.",
+		precio: 75.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/00D5IBKA_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffff00"],
+					nombres: ["amarillo"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A7Q5NF3X_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A2XSBODJ_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Authentic",
+		marca: "vans",
+		descripcion:
+			"En 1966, cuando Vans todavía era una marca incipiente, se arriesgaron y lanzaron su primer zapato: el Estilo #44. Este diseño fue el primero en proteger realmente a los patinadores mientras perfeccionaban sus habilidades a bordo. Ese zapato ha persistido a través del tiempo como uno de los modelos más vendidos de Vans y hoy en día se lo conoce con orgullo como Vans Authentic. Si bien esta versión moderna presenta muchos de los elementos de diseño clásicos de su antecesor, se ha actualizado completamente con nuevas tecnologías para mantener tus pies más seguros que nunca.",
+		precio: 55.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/6233067_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Knu Skool",
+		marca: "vans",
+		descripcion:
+			"¡La leyenda esta de vuelta! Más audaces y brillantes que nunca, Vans Knu Skool presenta un gran regreso. Familiares pero siempre frescas, estas zapatillas le dan un toque moderno a lo que más te gusta del clásico de los 90. Remasterizadas para reescribir la narrativa para pioneros como tú, estas siluetas vienen con una franja lateral hinchada moldeada en 3D, detalles de estilo dramáticos y cordones gruesos.",
+		precio: 80.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ECB159"],
+					nombres: ["cafe"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QC5QJ_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 20
+					},
+					{
+						talla: "5.5",
+						stock: 20
+					},
+					{
+						talla: "6.0",
+						stock: 20
+					},
+					{
+						talla: "6.5",
+						stock: 20
+					},
+					{
+						talla: "7.0",
+						stock: 20
+					},
+					{
+						talla: "7.5",
+						stock: 20
+					},
+					{
+						talla: "8.0",
+						stock: 15
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 15
+					},
+					{
+						talla: "9.5",
+						stock: 15
+					},
+					{
+						talla: "10.0",
+						stock: 15
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/N09QCBKA_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QCBKA_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/N09QCBKA_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans Classic Slip On",
+		marca: "vans",
+		descripcion:
+			"El Vans Classic Slip-On es uno de los modelos más icónicos de la famosa marca de zapatillas de skate de California. Limpio, sencillo, cómodo y, por supuesto, fácil de poner, el Slip-On ofrece un estilo versátil y sin esfuerzo. Su característico diseño sin cordones le da un aspecto relajado y atemporal, mientras que la construcción de lona lo hace liviano, transpirable y duradero. La parte superior de perfil bajo se asienta sobre la suela vulcanizada clásica de Vans con una suela exterior de goma con diseño tipo gofre para un máximo agarre dentro o fuera de la tabla. El reconocible Slip-On es sin duda la combinación de colores del tablero de ajedrez, que ha sido inmortalizado en la pantalla grande, en el escenario de los conciertos y en las calles desde su lanzamiento por primera vez en la década de 1970.",
+		precio: 60.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#ffffff", "#000000"],
+					nombres: ["blanco", "negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/0011999_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011999_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011999_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/0011299_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011299_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011299_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/0011299_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
 	}
 ];
 
