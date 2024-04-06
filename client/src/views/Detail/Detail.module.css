@@ -153,3 +153,19 @@
 .notFoundText {
   font-size: 40px;
 }
+
+.addToCartButton[disabled],
+.buyButton[disabled] {
+  padding: 10px 20px;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: not-allowed;
+  background-color: #ccc;
+  opacity: 0.7;
+}
+
+.addToCartButton[disabled]:hover,
+.buyButton[disabled]:hover {
+  background-color: #ccc;
+}

@@ -23,42 +23,41 @@ export default function ProductsBar({ title, products }) {
     });
   }
 
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <h3 className='product-bar-title'>{title}</h3>
-      <div
-        style={{
-          display: 'flex',
-          width: '80%',
-          margin: 'auto',
-          alignItems: 'center',
-          position: 'relative'
-        }}>
-        <button
-          className='product-arrow-button'
-          disabled={productPosition === 0}
-          onClick={showPrevImage}>
-          <img src={perviousIcon} alt='nextIcon' />
-        </button>
-        <div className='products-bar-container'>
-          {products?.map((product) => (
-            <Card
-              product={product}
-              isProductsBar={true}
-              title={title}
-              productPosition={productPosition}
-              key={product._id}
-            />
-          ))}
-        </div>
-        <button
-          disabled={productPosition + 1 >= products?.length / 5}
-          className='product-arrow-button'
-          onClick={showNextImage}
-          style={{ right: 0 }}>
+	return (
+		<div style={{ display: "flex", flexDirection: "column" }}>
+			<h3 className="product-bar-title">{title}</h3>
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					position: "relative"
+				}}>
+				<button
+					className="product-arrow-button"
+					disabled={productPosition === 0}
+					onClick={showPrevImage}>
+					<img src={perviousIcon} alt='nextIcon' />
+					
+				</button>
+				<div className="products-bar-container">
+					{products?.map((product) => (
+						<Card
+							product={product}
+							isProductsBar={true}
+							title={title}
+							productPosition={productPosition}
+							key={product._id}
+						/>
+					))}
+				</div>
+				<button
+					disabled={productPosition + 1 >= products?.length / 5}
+					className="product-arrow-button"
+					onClick={showNextImage}
+					style={{ right: 0 }}>
           <img src={nextIcon} alt='nextIcon' />
         </button>
-      </div>
-    </div>
-  );
+			</div>
+		</div>
+	);
 }

@@ -6,73 +6,68 @@ const Carrito = () => {
   const removeFromCart = useStore((state) => state.removeFromCart);
   const incrementQuantity = useStore((state) => state.incrementQuantity);
   const decrementQuantity = useStore((state) => state.decrementQuantity);
-  const setCart = useStore((state) => state.setCart);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const getCart = useStore((state) => state.getCart);
+  const [totalPrice, setTotalPrice] = useState(0); 
   const cart = useStore((state) => state.cart);
-  const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartToken = localStorage.getItem('cartToken');
+
+  useEffect(() => {
+    const cartToken = localStorage.getItem('cartToken');   
+    if (cartToken) {
+      getCart(cartToken);
+    }
+  }, []);
 
   useEffect(() => {
     let totalPrice = 0;
-    for (const product of cart) {
+    console.log(cart)
+    if (cart) {
+      for (const product of cart) {
         totalPrice += product.precio * product.quantity;
+      }
     }
     const roundedTotalPrice = totalPrice.toFixed(2);
     setTotalPrice(roundedTotalPrice);
-}, [cart]);
-
+  }, [cart]);
+  
 
   const handleRemoveFromCart = (variantId) => {
-    removeFromCart(variantId);
-    const updatedCart = cart.filter(product => product.variantId !== variantId);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    setCart(updatedCart);
+    const cartToken = localStorage.getItem('cartToken');
+    removeFromCart(variantId, cartToken); 
   };
-
+  
   const incrementQuantityAndSave = (variantId) => {
-    const product = cartData.find((item) => item.variantId === variantId);
+    const product = cart.find((item) => item.variantId === variantId);
     if (product) {
       const { opcion, quantity } = product;
-      const stock = opcion.stock; 
+      const stock = opcion.stock;
       if (quantity < stock) {
-        incrementQuantity(variantId);
-        const updatedCart = cartData.map((item) => {
-          if (item.variantId === variantId) {
-            return { ...item, quantity: item.quantity + 1 };
-          }
-          return item;
-        });
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        setCart(updatedCart);
+        incrementQuantity(variantId, cartToken); 
       } else {
         console.log('No hay stock');
       }
     }
   };
+  
 
   const decrementQuantityAndSave = (variantId) => {
-    const product = cartData.find((item) => item.variantId === variantId);
+    const product = cart.find((item) => item.variantId === variantId);
     if (product && product.quantity > 0) {
-      decrementQuantity(variantId);
-      const updatedCart = cartData.map((item) => {
-        if (item.variantId === variantId) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-        return item;
-      }).filter((item) => item.quantity > 0);
-
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-      setCart(updatedCart);
+      decrementQuantity(variantId, cartToken); 
+      if (product.quantity === 1) {
+        handleRemoveFromCart(variantId);
+      }
     }
   };
-
+  
   return (
     <div className={styles.cartContainer}>
       <h2 className={styles.title}>Carrito de Compras</h2>
-      {cartData.length === 0 ? (
+      {cart?.length === 0 ? (
         <p className={styles.emptyCart}>No hay productos en el carrito.</p>
       ) : (
         <div className={styles.productContainer}>
-          {cartData.map(product => (
+          {cart?.map(product => (
             <div key={product.variantId} className={styles.productItem}>
               <div className={styles.productDetails}>
                 <div>
@@ -104,7 +99,7 @@ const Carrito = () => {
       <div className={styles.totalPriceContainer}>
         <p className={styles.totalPriceLabel}>Precio Total:</p>
         <p className={styles.totalPrice}>${totalPrice}</p>
-        <button className={`${styles.buttonComprar} ${cartData.length === 0 && styles.disabled}`} disabled={cartData.length === 0}>Comprar</button>
+        <button className={`${styles.buttonComprar} ${cart?.length === 0 && styles.disabled}`} disabled={cart?.length === 0}>Comprar</button>
       </div>
     </div>
   );

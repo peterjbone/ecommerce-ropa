@@ -1,13 +1,12 @@
 .product-bar-title {
-  width: 80%;
-  margin: 1% auto 0 auto;
+  width: 100%;
+  margin: 3% auto 1% auto;
 }
 
 .products-bar-container {
   display: flex;
   width: 100%;
   overflow-x: auto;
-  margin: 0 auto;
   position: relative;
   overflow: hidden;
   text-transform: capitalize;
@@ -28,10 +27,9 @@
 .product-arrow-button img {
   width: 100%;
 }
-
 .product-arrow-button:hover,
 .product-arrow-button:focus-visible {
-  background-color: rgb(0, 0, 0, 0.3);
+  background-color: rgb(0, 0, 0, 0.2);
 }
 
 .product-arrow-button:hover:disabled {

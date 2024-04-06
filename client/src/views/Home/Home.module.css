@@ -1,3 +1,8 @@
 .home-container {
   margin-top: 8%;
 }
+
+.product-bar {
+  width: 80%;
+  margin: 0 auto -20px auto;
+}
