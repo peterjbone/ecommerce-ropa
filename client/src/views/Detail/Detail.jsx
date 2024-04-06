@@ -1,9 +1,12 @@
+import styles from "./Detail.module.css";
+
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import styles from "./Detail.module.css";
-import HeroImagesBarDetail from '../../components/HeroImagesBar/HeroImagesBarDetail';
+
 import { useStore } from '../../store';
+import HeroImagesBarDetail from '../../components/HeroImagesBar/HeroImagesBarDetail';
+import Reviews from "../../components/Reviews/Reviews";
 
 export default function Detail() {
   const navigate = useNavigate();
@@ -12,6 +15,7 @@ export default function Detail() {
   const [selectedSizeIndex, setSelectedSizeIndex] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const productoDetail = useStore((state) => state.productoDetail);
+  const productoReviews = useStore((state) => state.productoReviews);
   const getProductById = useStore((state) => state.getProductById);
   const addToCart = useStore((state) => state.addToCart);
   const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -110,7 +114,6 @@ export default function Detail() {
     return shuffled.slice(0, count);
   };
 
-
   const editHandler = () => {
     navigate(`/editproduct/${id}`);
   };
@@ -203,6 +206,7 @@ export default function Detail() {
             </div>
           </div>
         </div>
+        <Reviews /* reviews={productoReviews} */ /> 
       </div>
     );
   }

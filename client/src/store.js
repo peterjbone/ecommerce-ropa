@@ -3,6 +3,7 @@ import axios from "axios";
 // import productos from './utils/arrayProductos.js';
 
 export const useStore = create((set) => ({
+  user: null,
   products: [],
   productosFiltrados: [],
   favoritos: [1, 2, 3, 4, 5, 10, 15],
@@ -18,6 +19,7 @@ export const useStore = create((set) => ({
   listaColores: [],
   listaTallas: [],
   productoDetail: "",
+  productoReviews: "",
   filtros: {
     busqueda: "",
     marca: [],
@@ -44,20 +46,31 @@ export const useStore = create((set) => ({
   tallasDisponibles: [],
   cantidadDeProductos: 0,
 
+  getUserById: async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/productos/${userId}`)
+      const userData = response.data
+      set({ user: userData })
+    } catch (error) {
+      console.error("Error al buscar usuario por Id:", error);
+      throw error;
+    }
+  },
   getAllProducts: async () => {
     try {
       const { data } = await axios.post(
         `http://localhost:3001/productos`,
         useStore.getState().filtros
       );
-      const { filteredProducts } = data;
+      const { count, filteredProducts } = data;
       set((state) => ({
         products: filteredProducts,
         productosFiltrados: filteredProducts.slice(0, 20),
         filtros: {
           ...state.filtros,
           productosPorPagina: 20,
-        }
+        },
+        cantidadDeProductos: count,
       }));
     } catch (error) {
       console.error("Error al buscar Todo:", error);
@@ -264,9 +277,19 @@ export const useStore = create((set) => ({
   getProductById: async (id) => {
     try {
       const { data } = await axios(`http://localhost:3001/producto/${id}`);
-      set(() => ({ productoDetail: data }));
+      const { product, reviews } = data;
+      set(() => ({ productoDetail: product, productoReviews: reviews }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+    }
+  },
+  createReview: async (review) => {
+    try {
+      const { data } = await axios.post('http://localhost:3001/resena', review);
+      const { newReview } = data;
+      // set(() => ({  }));
+    } catch (error) {
+      console.error(error);
     }
   },
   addFav: async (id) => {
@@ -290,7 +313,6 @@ export const useStore = create((set) => ({
       console.log(error);
     }
   },
-
   addToCart: (productToAdd) => {
     set((state) => {
       const existingProduct = state.cart.find(
@@ -311,7 +333,6 @@ export const useStore = create((set) => ({
       }
     });
   },
-
   removeFromCart: (productId) => {
     set((state) => {
       const updatedCart = state.cart.filter(
@@ -320,7 +341,6 @@ export const useStore = create((set) => ({
       return { ...state, cart: updatedCart };
     });
   },
-
   incrementQuantity: (productId) => {
     set((state) => {
       const updatedCart = state.cart.map((product) =>
@@ -331,7 +351,6 @@ export const useStore = create((set) => ({
       return { ...state, cart: updatedCart };
     });
   },
-
   decrementQuantity: (productId) => {
     set((state) => {
       const updatedCart = state.cart.map((product) =>
@@ -343,10 +362,10 @@ export const useStore = create((set) => ({
       return { ...state, cart: updatedCart };
     });
   },
-
   setCart: (updatedCart) => {
     set({ cart: updatedCart });
   },
+
 }));
 
 const toggleValue = (array, value) => {
