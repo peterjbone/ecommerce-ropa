@@ -11,6 +11,9 @@ import { useEffect } from 'react';
 import { useStore } from './store.js';
 import NotFound from './views/NotFound/NotFound.jsx';
 
+import { getCookie } from './utils/getCookie.js';
+import { jwtDecode } from 'jwt-decode'
+
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getProductInfo = useStore((state) => state.getProductInfo);
@@ -33,6 +36,15 @@ export default function App() {
       }
     }())
   });
+
+  useEffect(() => {
+   
+    const token = getCookie('token'); // Retrieve the token from the cookie
+    console.log(token);
+    const decode = jwtDecode(token)
+    console.log(decode);
+    
+  }, []);
 
   return (
     <>
