@@ -14,6 +14,7 @@ export default function UserDashboard() {
     name: 'H',
     _id: 1,
     reviews: [],
+    purchases: [],
   }
 
   const [activeOption, setActiveOption] = useState('userData');
@@ -311,7 +312,7 @@ export default function UserDashboard() {
             case 'favorites':
               return (
                 <>
-                  {nuevos.map((product) => (
+                  {/* user.favorites */nuevos.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={false} />
                   ))}
                 </>
@@ -319,7 +320,7 @@ export default function UserDashboard() {
             case 'purchases':
               return (
                 <>
-                  {nuevos.map((product) => (
+                  {/* user.purchases */nuevos.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={true} />
                   ))}
                 </>

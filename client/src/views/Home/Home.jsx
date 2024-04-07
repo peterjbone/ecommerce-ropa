@@ -18,8 +18,6 @@ export default function Home() {
   const listaColores = useStore((state) => state.listaColores);
   const listaTallas = useStore((state) => state.listaTallas);
   const getCart = useStore((state) => state.getCart);
-
-  console.log(products, nuevos, ofertas);
   
   useEffect(() => {
     const cartToken = localStorage.getItem('cartToken');

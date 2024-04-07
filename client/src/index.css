@@ -20,7 +20,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body {
   --background-color: rgb(255, 255, 255);
   background-color: var(--background-color);
-  --letters-color: rgba(0, 0, 0, 0.7);
+  --letters-color: rgba(0, 0, 0, 0.75);
 
   --nav-color: rgba(255, 255, 255, 0.3);
   --nav-button-letter-hover-color: rgba(69, 69, 69, 0.7);
@@ -82,7 +82,19 @@ body {
   --footer-background-color: rgb(183, 183, 183);
   --footer-letter-color: rgba(0, 0, 0, 0.7);
   --footer-letter-hover-color: rgb(0, 0, 0);
-  --disbled-button-color: rgba(0, 0, 0, 0.2);
+  --disabled-button-color: rgba(0, 0, 0, 0.2);
+
+  --review-modal-overlay-background-color: rgba(255, 255, 255, 0.2);
+  --review-modal-background-color: rgba(255, 255, 255, 0.3);
+
+  --review-letter-color: rgb(0, 0, 0);
+  
+  --review-textarea-border-color: rgb(0, 0, 0);
+  
+  --review-stars-unselected-color: rgba(0, 0, 0, 0.5);
+
+  --close-modal-button-fill-color: rgba(0, 0, 0, 0.7);
+  --close-modal-button-hover-fill-color: rgb(0, 0, 0);
 }
 
 body.dark {
@@ -151,5 +163,16 @@ body.dark {
   --footer-letter-color: rgba(255, 255, 255, 0.7);
   --footer-letter-hover-color: rgb(255, 255, 255);
   
-  --disbled-button-color: rgba(255, 255, 255, 0.2);
+  --disabled-button-color: rgba(255, 255, 255, 0.2);
+
+  --review-modal-overlay-background-color: rgba(0, 0, 0, 0.2);
+  --review-modal-background-color: rgba(0, 0, 0, 0.3);
+  --review-letter-color: rgb(255, 255, 255);
+  
+  --review-textarea-border-color: rgb(255, 255, 255);
+  
+  --review-stars-unselected-color: rgba(255, 255, 255, 0.5);
+
+  --close-modal-button-fill-color: rgba(255, 255, 255, 0.7);
+  --close-modal-button-hover-fill-color: rgb(0, 0, 0);
 }
