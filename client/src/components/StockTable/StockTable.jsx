@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import styles from './StockTable.module.css'
 
 function StockTable({ sizes, stock, setStock, setForm }) {
   
@@ -29,6 +29,7 @@ function StockTable({ sizes, stock, setStock, setForm }) {
               <td>{size}</td>
               <td>
                 <input
+                  className={styles.inputStock}
                   type="number"
                   value={stock[size] || ''}
                   onChange={(e) => handleInputChange(e, size)}
