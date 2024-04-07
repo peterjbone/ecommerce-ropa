@@ -18,9 +18,10 @@ const Form = () => {
   const listaColores = useStore((state) => state.listaColores);
   const listaTallas = useStore((state) => state.listaTallas);
 
-
-  let tallesL = ['XS', 'S', 'L', 'M', 'XL', 'XXL', 'XXXL']
-  let tallesN = ['4', '6', '8', '10', '12', '14', '16', '34', '36', '38', '39', '40', '41', '42', '43', '44','45']
+  let tallesL = ['S', 'M', 'L', 'XL', 'XLT', 'XXL']
+  let tallesN = ['10.0', '10.5', '11.0', '11.5', '12.0', '12.5', '13.0', '13.5', '3.5', '4', '4.0',
+  '4.5', '5', '5.0', '5.5', '6', '6.0', '6.5', '7', '7.0', '7.5', '8.0', '8.5', '9.0',
+  '9.5'].sort((a, b) => a - b)
 
   let colores = [
     { codHexadecimal: '#FFFF00', nombreColor: 'amarillo' },
@@ -42,16 +43,18 @@ const Form = () => {
   const [images, setImages] = useState([])
 
   const [nameColors, setNameColors] = useState([]);
-  const [selectedColor, setSelectedColor] = useState([]);
-
+  const [selectedColor, setSelectedColor] = useState();
+  
   const [tipoTalle, setTipoTalle] = useState('')
   const tipoTalleHandler = (e) => {
     setForm({...form, tallas: {}})
-    setStock({})
+    setStock([])
     setTipoTalle(e.target.value)
   }
 
-  const [stock, setStock] = useState({});
+  const [stock, setStock] = useState([]);
+
+  const [opciones, setOpciones] = useState([])
 
   const [discount, setDiscount] = useState({
     offActiva: false,
@@ -68,7 +71,7 @@ const Form = () => {
     genero: '',
     oferta: discount,
     activo: false,
-    opciones: {},
+    opciones: opciones,
     colores: selectedColor,
     productoNuevo: false,
     tallas: stock
@@ -201,6 +204,40 @@ const Form = () => {
     } 
   }
 
+  //{ codHexadecimal: '#78288C', nombreColor: 'violeta' },
+
+  const buttonStockHandler = async () => {
+
+    let arr = []
+    for(let i = 0; i < images.length; i++) {
+      const data = await uploadCloudinary(images[i])
+      arr.push(data.url)
+    }
+
+    setOpciones([
+      ...opciones,
+      {
+        colores: {
+          nombres: [selectedColor.nombreColor],
+          codigosHex: [selectedColor.codHexadecimal]
+        },
+        tallas: stock,
+        imagenes: arr
+      }
+    ])
+    setForm({...form, opciones: [...opciones, {
+      colores: {
+        nombres: [selectedColor.nombreColor],
+        codigosHex: [selectedColor.codHexadecimal]
+      },
+      tallas: stock,
+      imagenes: arr
+    }]})
+    setSelectedColor([])
+    setStock([])
+    setImages([])
+  }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.containerTitle}>Nuevo producto</h1>
@@ -279,10 +316,6 @@ const Form = () => {
             </div>
           )}
         </div>
-        <div>
-          <label className={styles.labelFormContainer}>Opciones: </label>
-          <input name='opciones' className={styles.inputCheckboxForm} type="checkbox" />
-        </div>
 
         <ColorGrid nameColors={nameColors} setNameColors={setNameColors} colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
         
@@ -299,8 +332,11 @@ const Form = () => {
         </div>
 
         <div>
+          <label className={styles.labelFormContainer}>Imágenes: </label>
           <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
         </div>
+
+        <button onClick={buttonStockHandler} type='button'>Agregar stock</button>
 
         <button className={styles.submitButton} type='submit'>Crear</button>
       </form>
