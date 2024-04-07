@@ -11,6 +11,8 @@ node_modules
 **/node_modules
 /client/node_modules
 /server/node_modules
+#firebase config
+/server/src/firebase/serviceAccount.json
 
 dist
 dist-ssr
@@ -30,6 +32,3 @@ dist-ssr
 # Variables de entorno
 .env
 **/.env
-
-**/opciones_disponibles.txt
-**/productos.js

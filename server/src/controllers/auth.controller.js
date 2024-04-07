@@ -49,8 +49,26 @@ const login = async (req, res) => {
 			createdAt: userFind.createdAt,
 			updatedAt: userFind.updatedAt
 		});
+
+		/* res.status(200).json({
+      data: userFind,
+      token: token,
+    }); */
 	} catch (error) {
 		res.status(500).json({ message: error.message });
+	}
+};
+
+const getUserById = async (req, res) => {
+	const { id } = req.params;
+	if (!id) {
+		return res.status(404).json({ message: "Usuario no encontrado" });
+	}
+	try {
+		const userFound = await Usuario.findById(id);
+		res.status(200).json(userFound);
+	} catch (err) {
+		res.status(500).json({ message: err.message });
 	}
 };
 
@@ -93,5 +111,6 @@ module.exports = {
 	login,
 	logout,
 	profile,
-	deleteAccount
+	deleteAccount,
+	getUserById
 };

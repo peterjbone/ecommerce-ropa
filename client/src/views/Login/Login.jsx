@@ -5,7 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "universal-cookie";
-import { useStore } from "../../store.js";
+import { useStore } from "../../store";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -16,6 +16,11 @@ const Login = () => {
 		email: "",
 		password: ""
 	});
+
+	/*  const navigate = useNavigate()
+  const cookies = new Cookies();
+  const setDataUser = useStore((state) => state.setDataUser);
+ */
 
 	const changeHandler = (e) => {
 		const { name, value } = e.target;
@@ -38,6 +43,10 @@ const Login = () => {
 				name: response.data.name,
 				email: response.data.email
 			});
+
+			/*   setDataUser(response.data.data)
+        cookies.set("token", response.data.token)
+      */
 
 			if (response.status === 200) {
 				cookies.set("token", response.data.token);
