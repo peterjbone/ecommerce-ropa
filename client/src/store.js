@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 
 export const useStore = create((set) => ({
-  /* user: null, */
+  user: null,
   userInfo:
     typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo"))
@@ -58,12 +58,12 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  setDataUser: async (user) => {
+  setUserData: async (user) => {
     try {
       const response = await axios.post('http://localhost:3001/auth/login', user);
       console.log(response);
       if (response.status === 200) {
-        set({ user: response.data.foundUser });
+        set({ userInfo: response.data.foundUser });
         return response.data.token;
       } else {
         return null;
@@ -72,6 +72,20 @@ export const useStore = create((set) => ({
       console.error("Error al iniciar sesión:", error);
       throw error;
     }
+  },
+  setUserInfo: (data) => {
+    localStorage.setItem("userInfo", JSON.stringify({ ...data }));
+    set((state) => ({
+      ...state,
+      userInfo: { ...data }
+    }));
+  },
+  clearUserInfo: () => {
+    localStorage.removeItem("userInfo");
+    set((state) => ({
+      ...state,
+      userInfo: {}
+    }));
   },
   getAllProducts: async () => {
     try {

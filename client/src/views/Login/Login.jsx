@@ -10,7 +10,7 @@ import { useStore } from "../../store";
 const Login = () => {
 	const navigate = useNavigate();
 	const cookies = new Cookies();
-	const setUserInfo = useStore((state) => state.setUserInfo);
+	const setUserData = useStore((state) => state.setUserData);
 
 	const [user, setUser] = useState({
 		email: "",
@@ -19,7 +19,7 @@ const Login = () => {
 
 	/*  const navigate = useNavigate()
   const cookies = new Cookies();
-  const setDataUser = useStore((state) => state.setDataUser);
+  const setUserData = useStore((state) => state.setUserData);
  */
 
 	const changeHandler = (e) => {
@@ -30,7 +30,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
-      const token = await setDataUser(user);
+      const token = await setUserData(user);
       if(token) {
 
         cookies.set("token", token);
