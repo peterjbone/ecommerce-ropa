@@ -8,11 +8,11 @@ const stripe = Stripe(process.env.STRIPE_KEY);
 
 //* STRIPE CHECKOUT SESSION
 router.post("/create-checkout-session", async (req, res) => {
-	const products = req.body.cartItems.map((item) => {
+	const products = req.body.formatCart.map((item) => {
 		return {
 			productId: item._id,
 			productColor: item.color,
-			quantity: item.cartQuantity
+			quantity: item.quantity
 		};
 	});
 
@@ -23,7 +23,7 @@ router.post("/create-checkout-session", async (req, res) => {
 		}
 	});
 
-	const line_items = req.body.cartItems.map((item) => {
+	const line_items = req.body.formatCart.map((item) => {
 		return {
 			price_data: {
 				currency: "usd",
@@ -37,7 +37,7 @@ router.post("/create-checkout-session", async (req, res) => {
 				},
 				unit_amount: Math.round(item.precio * 100)
 			},
-			quantity: item.cartQuantity
+			quantity: item.quantity
 		};
 	});
 
@@ -95,14 +95,14 @@ router.post("/create-checkout-session", async (req, res) => {
 		line_items,
 		mode: "payment",
 		success_url: `${process.env.FRONT_URL}/checkout-success`,
-		cancel_url: `${process.env.FRONT_URL}/cart`
+		cancel_url: `${process.env.FRONT_URL}/carrito`
 	});
 
 	res.send({ url: session.url });
 });
 
 //* ------------------ CREANDO REGISTRO DE COMPRA (función) ---------------------
-const Compra = require("../models/Compras.js");
+const Compra = require("../models/Compra.js");
 
 const createOrder = async (customer, data) => {
 	const products = JSON.parse(customer.metadata.cart);
@@ -123,6 +123,7 @@ const createOrder = async (customer, data) => {
 		const savedOrder = await newOrder.save();
 		console.log("Compra procesada:", savedOrder);
 		//todo: aquí deberiamos enviar un email al usuario sobre la compra exitosa del producto
+		//todo: borra token de carrito
 	} catch (error) {
 		console.log(error);
 	}

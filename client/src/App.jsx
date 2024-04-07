@@ -6,40 +6,39 @@ import { useStore } from "./store.js";
 import Detail from "./views/Detail/Detail.jsx";
 import Tienda from "./views/Tienda/Tienda.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import Carrito from "./components/Carrito/Carrito"
+import Carrito from "./components/Carrito/Carrito";
 import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
-import { getCookie } from './utils/getCookie.js';
-import { jwtDecode } from 'jwt-decode'
+import { getCookie } from "./utils/getCookie.js";
+import { jwtDecode } from "jwt-decode";
 
 export default function App() {
-  const getAllProducts = useStore((state) => state.getAllProducts);
-  const getProductInfo = useStore((state) => state.getProductInfo);
-  const getDestacados = useStore((state) => state.getDestacados);
-  const getNuevos = useStore((state) => state.getNuevos);
-  const getOfertas = useStore((state) => state.getOfertas);
-  const getTendencia = useStore((state) => state.getTendencia);
+	const getAllProducts = useStore((state) => state.getAllProducts);
+	const getProductInfo = useStore((state) => state.getProductInfo);
+	const getDestacados = useStore((state) => state.getDestacados);
+	const getNuevos = useStore((state) => state.getNuevos);
+	const getOfertas = useStore((state) => state.getOfertas);
+	const getTendencia = useStore((state) => state.getTendencia);
 
-
-  const user = useStore((state) => state.user);
-  const getUserById = useStore((state) => state.getUserById);
-  const setDataUser = useStore((state) => state.setDataUser);
-
-  useEffect(() => {
-    (async function loadData() {
-      try {
-        await getAllProducts();
-        await getProductInfo();
-        await getDestacados();
-        await getNuevos();
-        await getOfertas();
-        await getTendencia();
-      } catch (error) {
-        console.error();
-      }
-    }())
-  });
+	/* 	const user = useStore((state) => state.user);
+	const getUserById = useStore((state) => state.getUserById);
+	const setDataUser = useStore((state) => state.setDataUser);
+ */
+	useEffect(() => {
+		(async function loadData() {
+			try {
+				await getAllProducts();
+				await getProductInfo();
+				await getDestacados();
+				await getNuevos();
+				await getOfertas();
+				await getTendencia();
+			} catch (error) {
+				console.error();
+			}
+		})();
+	});
 
   useEffect(() => {
     (async function loadUserData() {

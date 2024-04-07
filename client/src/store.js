@@ -2,7 +2,11 @@ import { create } from "zustand";
 import axios from "axios";
 
 export const useStore = create((set) => ({
-  user: null,
+  /* user: null, */
+  userInfo:
+    typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
+      ? JSON.parse(localStorage.getItem("userInfo"))
+      : {},
   products: [],
   productosFiltrados: [],
   favoritos: [1, 2, 3, 4, 5, 10, 15],
@@ -34,7 +38,7 @@ export const useStore = create((set) => ({
     ordenado: "precio",
     ascendente: false,
     pagina: 1,
-    productosPorPagina: 100,
+    productosPorPagina: 100
   },
   filtrosSeleccionados: [],
   marcasDisponibles: [],
@@ -58,7 +62,7 @@ export const useStore = create((set) => ({
     try {
       const response = await axios.post('http://localhost:3001/auth/login', user);
       console.log(response);
-      if(response.status === 200) {
+      if (response.status === 200) {
         set({ user: response.data.foundUser });
         return response.data.token;
       } else {
@@ -338,7 +342,7 @@ export const useStore = create((set) => ({
       );
       set((state) => ({
         ...state,
-        cart: response.data.products,
+        cart: response.data.products
       }));
     } catch (error) {
       console.error("Error al obtener productos del carrito:", error);
@@ -369,7 +373,7 @@ export const useStore = create((set) => ({
       const { data } = await axios.delete(
         "http://localhost:3001/removeFromCart",
         {
-          data: { variantId, token },
+          data: { variantId, token }
         }
       );
       set({ cart: data.carrito.products });
@@ -410,8 +414,7 @@ export const useStore = create((set) => ({
   },
   setCart: (updatedCart) => {
     set({ cart: updatedCart });
-  },
-
+  }
 }));
 
 const toggleValue = (array, value) => {
