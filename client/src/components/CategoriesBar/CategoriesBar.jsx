@@ -11,7 +11,6 @@ export default function CategoriesBar({ title, name, categories, products }) {
   const handleCategorySearch = async (event) => {
     try {
       const { name, id } = event.target;
-      // console.log(name, id);
       setFilters(name, id);
       await getFilteredProducts();
       navigate('/tienda');

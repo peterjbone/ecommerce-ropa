@@ -43,20 +43,31 @@ export const useStore = create((set) => ({
   subcategoriasDisponibles: [],
   coloresDisponibles: [],
   tallasDisponibles: [],
-  cantidadDeProductos: 0,
+  cantidadDeProductos: 100, // Momentáneamente para traer todo products y usarlo para fotos, nuevos, ofertas, etc
 
   getUserById: async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3001/auth/${userId}`)
-      const userData = response.data
-      set({ user: userData })
+      const { data } = await axios.get(`http://localhost:3001/auth/${userId}`)
+      set({ user: data })
     } catch (error) {
       console.error("Error al buscar usuario por Id:", error);
       throw error;
     }
   },
-  setDataUser: (user) => {
-    set({ user: user });
+  setDataUser: async (user) => {
+    try {
+      const response = await axios.post('http://localhost:3001/auth/login', user);
+      console.log(response);
+      if(response.status === 200) {
+        set({ user: response.data.foundUser });
+        return response.data.token;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      throw error;
+    }
   },
   getAllProducts: async () => {
     try {
@@ -70,7 +81,7 @@ export const useStore = create((set) => ({
         productosFiltrados: filteredProducts.slice(0, 20),
         filtros: {
           ...state.filtros,
-          productosPorPagina: 20,
+          productosPorPagina: 20, // Resetea a 20 por página luego de traer todo products
         },
         cantidadDeProductos: count,
       }));

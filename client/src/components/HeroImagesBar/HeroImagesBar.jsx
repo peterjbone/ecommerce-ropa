@@ -1,6 +1,6 @@
 import './HeroImagesBar.css'
-import nextIcon from '../../assets/icons/next.svg';
-import perviousIcon from '../../assets/icons/previous.svg';
+import nextIcon from '../../assets/icons/next-icon.svg';
+import perviousIcon from '../../assets/icons/previous-icon.svg';
 
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'

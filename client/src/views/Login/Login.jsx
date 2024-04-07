@@ -26,12 +26,10 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', user)
-      console.log(response);
-      if(response.status === 200) {
+      const token = await setDataUser(user);
+      if(token) {
 
-        setDataUser(response.data.data)
-        cookies.set("token", response.data.token)
+        cookies.set("token", token);
 
         toast.success('Iniciaste sesión', {
           onClose: () => {

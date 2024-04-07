@@ -47,8 +47,8 @@ export default function App() {
         if(!user) {
           const token = getCookie('token'); // Retrieve the token from the cookie
           if(token) {
-            const userId = jwtDecode(token).id
-            await getUserById(userId)
+            const userId = jwtDecode(token).id;
+            await getUserById(userId);
           }
         }
       } catch (error) {

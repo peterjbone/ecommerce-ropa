@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const Usuario = require("../models/Usuario");
+const Compra = require("../models/Compra");
+const Resena = require("../models/Resena");
 const { createAccesToken } = require("../libs/jwt");
 
 const register = async (req, res) => {
@@ -30,29 +32,32 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const userFind = await Usuario.findOne({ email });
-    if (!userFind) return res.status(400).json({ message: "User not found" });
+    const foundUser = await Usuario.findOne({ email });
+    if (!foundUser) return res.status(400).json({ message: "User not found" });
 
-    const matchPassword = await bcrypt.compare(password, userFind.password);
+    const matchPassword = await bcrypt.compare(password, foundUser.password);
 
     if (!matchPassword) {
       return res.status(400).json({ message: "Invalid password" });
     }
-    const token = await createAccesToken({ id: userFind._id });
+    const token = await createAccesToken({ id: foundUser._id });
 
     res.cookie("token", token);
     // res.status(200).json({
-    //   id: userFind._id,
-    //   username: userFind.username,
-    //   email: userFind.email,
+    //   id: foundUser._id,
+    //   username: foundUser.username,
+    //   email: foundUser.email,
     //   token: token,
-    //   createdAt: userFind.createdAt,
-    //   updateAt: userFind.updateAt,
+    //   createdAt: foundUser.createdAt,
+    //   updateAt: foundUser.updateAt,
     // });
-    res.status(200).json({
-      data: userFind,
-      token: token,
-    });
+    const purchases = await Compra.find({ userId: foundUser._id });
+    const reviews = await Resena.find({ usuario_id: foundUser._id });
+
+    foundUser.purchases = purchases || [];
+    foundUser.reviews = reviews || [];
+
+    res.status(200).json({ foundUser, token });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
