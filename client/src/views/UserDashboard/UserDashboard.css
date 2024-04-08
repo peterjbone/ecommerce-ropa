@@ -72,7 +72,7 @@
 
 .user-submit-button:disabled {
   transform: scale(0.9);
-  color: var(--disbled-button-color);
+  color: var(--disabled-button-color);
   cursor: default;
 }
 

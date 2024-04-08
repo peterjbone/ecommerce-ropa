@@ -44,6 +44,10 @@
   width: 40px;
 }
 
+.theme-button:hover {
+  transform: scale(1.2);
+}
+
 .nav-bar-button img {
   width: 100%;
 }

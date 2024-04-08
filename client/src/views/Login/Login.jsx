@@ -10,7 +10,7 @@ import { useStore } from "../../store";
 const Login = () => {
 	const navigate = useNavigate();
 	const cookies = new Cookies();
-	const setUserInfo = useStore((state) => state.setUserInfo);
+	const setUserData = useStore((state) => state.setUserData);
 
 	const [user, setUser] = useState({
 		email: "",
@@ -19,7 +19,7 @@ const Login = () => {
 
 	/*  const navigate = useNavigate()
   const cookies = new Cookies();
-  const setDataUser = useStore((state) => state.setDataUser);
+  const setUserData = useStore((state) => state.setUserData);
  */
 
 	const changeHandler = (e) => {
@@ -27,29 +27,13 @@ const Login = () => {
 		setUser({ ...user, [name]: value });
 	};
 
-	const submitHandler = async (e) => {
-		e.preventDefault();
+  const submitHandler = async (e) => {
+    e.preventDefault()
+    try {
+      const token = await setUserData(user);
+      if(token) {
 
-		try {
-			const response = await axios.post(
-				"http://localhost:3001/auth/login",
-				user
-			);
-			console.log("RESPONSE", response);
-
-			//? Guardando en el estado global la info del usuario
-			setUserInfo({
-				id: response.data.id,
-				name: response.data.name,
-				email: response.data.email
-			});
-
-			/*   setDataUser(response.data.data)
-        cookies.set("token", response.data.token)
-      */
-
-			if (response.status === 200) {
-				cookies.set("token", response.data.token);
+        cookies.set("token", token);
 
 				toast.success("Iniciaste sesión", {
 					onClose: () => {

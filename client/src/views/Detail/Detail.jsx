@@ -217,11 +217,6 @@ export default function Detail() {
 							disabled={isButtonDisabled}>
 							Agregar al carrito
 						</button>
-						{cart.length === 0 && (
-							<button className={styles.buyButton} disabled={isButtonDisabled}>
-								Comprar
-							</button>
-						)}
 						<button
 							className={styles.buyButton}
 							onClick={editHandler}

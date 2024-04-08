@@ -22,6 +22,7 @@ export default function Home() {
 
   console.log(products, nuevos, ofertas);
   
+  
   useEffect(() => {
     const cartToken = localStorage.getItem('cartToken');
     if (cartToken) {

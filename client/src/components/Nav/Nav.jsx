@@ -221,7 +221,7 @@ export default function Nav() {
         </NavLink>
         {/* : null } */}
         <button
-          className='nav-bar-button theme-button '
+          className='nav-bar-button theme-button'
           onClick={toggleTheme}
         >
           <img src={isDarkTheme ? moon : sun} alt='sun' />

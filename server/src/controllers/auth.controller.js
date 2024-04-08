@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const Usuario = require("../models/Usuario");
+const Compra = require("../models/Compra");
+const Resena = require("../models/Resena");
 const { createAccesToken } = require("../libs/jwt");
 
 const register = async (req, res) => {
@@ -28,35 +30,37 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-	const { email, password } = req.body;
-	try {
-		const userFind = await Usuario.findOne({ email });
-		if (!userFind) return res.status(400).json({ message: "User not found" });
+  const { email, password } = req.body;
+  try {
+    const foundUser = await Usuario.findOne({ email });
+    if (!foundUser) return res.status(400).json({ message: "User not found" });
 
-		const matchPassword = await bcrypt.compare(password, userFind.password);
-		if (!matchPassword) {
-			return res.status(400).json({ message: "Invalid password" });
-		}
+    const matchPassword = await bcrypt.compare(password, foundUser.password);
 
-		const token = await createAccesToken({ id: userFind._id });
-		res.cookie("token", token);
+    if (!matchPassword) {
+      return res.status(400).json({ message: "Invalid password" });
+    }
+    const token = await createAccesToken({ id: foundUser._id });
 
-		res.status(200).json({
-			id: userFind._id,
-			name: userFind.name,
-			email: userFind.email,
-			token: token,
-			createdAt: userFind.createdAt,
-			updatedAt: userFind.updatedAt
-		});
+    res.cookie("token", token);
+    // res.status(200).json({
+    //   id: foundUser._id,
+    //   username: foundUser.username,
+    //   email: foundUser.email,
+    //   token: token,
+    //   createdAt: foundUser.createdAt,
+    //   updateAt: foundUser.updateAt,
+    // });
+    const purchases = await Compra.find({ userId: foundUser._id });
+    const reviews = await Resena.find({ usuario_id: foundUser._id });
 
-		/* res.status(200).json({
-      data: userFind,
-      token: token,
-    }); */
-	} catch (error) {
-		res.status(500).json({ message: error.message });
-	}
+    foundUser.purchases = purchases || [];
+    foundUser.reviews = reviews || [];
+
+    res.status(200).json({ foundUser, token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 const getUserById = async (req, res) => {

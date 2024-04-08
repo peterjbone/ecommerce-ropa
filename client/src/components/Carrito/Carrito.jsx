@@ -33,9 +33,13 @@ const Carrito = () => {
 	}, [cart]);
 
 	const handleRemoveFromCart = (variantId) => {
-		const cartToken = localStorage.getItem("cartToken");
-		removeFromCart(variantId, cartToken);
-	};
+    const cartToken = localStorage.getItem("cartToken");
+    const confirmDelete = window.confirm("¿Está seguro de que desea eliminar este producto?");
+      if (confirmDelete) {
+        removeFromCart(variantId, cartToken);
+     }
+    };
+
 
 	const incrementQuantityAndSave = (variantId) => {
 		const product = cart.find((item) => item.variantId === variantId);
@@ -53,12 +57,17 @@ const Carrito = () => {
 	const decrementQuantityAndSave = (variantId) => {
 		const product = cart.find((item) => item.variantId === variantId);
 		if (product && product.quantity > 0) {
-			decrementQuantity(variantId, cartToken);
-			if (product.quantity === 1) {
-				handleRemoveFromCart(variantId);
+		  if (product.quantity === 1) {
+			const confirmDelete = window.confirm("¿Está seguro de que desea eliminar este producto?");
+			if (confirmDelete) {
+			  handleRemoveFromCart(variantId);
 			}
+		  } else {
+			decrementQuantity(variantId, cartToken);
+		  }
 		}
-	};
+	  };
+	  
 
 	console.log("CARRITO");
 	console.log(cart);
