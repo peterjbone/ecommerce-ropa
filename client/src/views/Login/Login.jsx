@@ -39,7 +39,7 @@ export default function Login() {
         address: ""
       });
     } catch (error) {
-      toast.error("Error al iniciar sesión");
+      toast.error(`${error.response.data.message}`);
     }
   }
 

@@ -6,55 +6,80 @@ import axios from 'axios';
 import { uploadCloudinary } from '../../utils/upload';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { useStore } from '../../store.js';
-
 
 const Form = () => {
 
-  const marcas = useStore((state) => state.listaMarcas);
-  const genero = useStore((state) => state.listaGeneros);
-  const categorias = useStore((state) => state.listaCategorias);
-  const subcategorias = useStore((state) => state.listaSubcategorias);
-  const listaColores = useStore((state) => state.listaColores);
-  const listaTallas = useStore((state) => state.listaTallas);
-
-  let tallesL = ['S', 'M', 'L', 'XL', 'XLT', 'XXL']
-  let tallesN = ['10.0', '10.5', '11.0', '11.5', '12.0', '12.5', '13.0', '13.5', '3.5', '4', '4.0',
-  '4.5', '5', '5.0', '5.5', '6', '6.0', '6.5', '7', '7.0', '7.5', '8.0', '8.5', '9.0',
-  '9.5'].sort((a, b) => a - b)
+  let categorias = [ 'Adulto', 'Infante' ]
+  let subcategorias = ['Camisetas y Polos','Chaquetas y Abrigos','Sudaderas y Hoodies','Chalecos','Jeans','Shorts','Short','Zapatillas Casuales','Botin','Botas','Sandalias','Camisas','Pantalones','Botas Cortas','Leggings y Pantalones Deportivos','Zapatos','Blusas y Tops','Faldas','Pantalones de Pijama','Pantalones Formales','Pantalones Cortos de Ciclismo','Zapatillas de Casa','Zapatillas Deportivas','Camisetas de Deporte','Cardigans y Suéteres','Destacado','Tendencia']
+  let genero = [ 'masculino', 'unisex', 'femenino']
+  let tallesL = ['XS', 'S', 'L', 'M', 'XL', 'XXL', 'XXXL']
+  let tallesN = ['4', '6', '8', '10', '12', '14', '16', '34', '36', '38', '39', '40', '41', '42', '43', '44','45']
+  let marcas = [
+    "Nike",
+    "Adidas",
+    "Gucci",
+    "H&M",
+    "Zara",
+    "Levi's",
+    "Calvin Klein",
+    "Tommy Hilfiger",
+    "Under Armour",
+    "Puma",
+    "Ralph Lauren",
+    "Victoria's Secret",
+    "Versace",
+    "Prada",
+    "Burberry",
+    "Chanel",
+    "Louis Vuitton",
+    "Fendi",
+    "Balenciaga",
+    "Dior",
+    "Armani",
+    "Gap",
+    "Forever 21",
+    "Guess",
+    "Diesel",
+    "Abercrombie & Fitch",
+    "Superdry",
+    "American Eagle",
+    "The North Face",
+    "Columbia",
+    "Patagonia",
+    "Lululemon",
+    "Vans",
+    "Converse",
+    "New Balance",
+    "Reebok"]
 
   let colores = [
-    { codHexadecimal: '#FFFF00', nombreColor: 'amarillo' },
-    { codHexadecimal: '#0000FF', nombreColor: 'azul' },
-    { codHexadecimal: '#8ecae6', nombreColor: 'azul-marino' },
-    { codHexadecimal: '#F5F5DC', nombreColor: 'beige' },
-    { codHexadecimal: '#FFFFFF', nombreColor: 'blanco' },
-    { codHexadecimal: '#808080', nombreColor: 'gris' },
     { codHexadecimal: '#000000', nombreColor: 'negro' },
+    { codHexadecimal: '#FFFFFF', nombreColor: 'blanco' },
     { codHexadecimal: '#FF0000', nombreColor: 'rojo' },
-    { codHexadecimal: '#FFC0CB', nombreColor: 'rosa' },
+    { codHexadecimal: '#0000FF', nombreColor: 'azul' },
+    { codHexadecimal: '#808080', nombreColor: 'gris' },
     { codHexadecimal: '#8B4513', nombreColor: 'marron' },
+    { codHexadecimal: '#FFFF00', nombreColor: 'amarillo' },
     { codHexadecimal: '#008000', nombreColor: 'verde' },
     { codHexadecimal: '#007FFF', nombreColor: 'francia' },
     { codHexadecimal: '#fa8072', nombreColor: 'salmon' },
+    { codHexadecimal: '#FFC0CB', nombreColor: 'rosa' },
     { codHexadecimal: '#78288C', nombreColor: 'violeta' },
   ]
 
   const [images, setImages] = useState([])
 
   const [nameColors, setNameColors] = useState([]);
-  const [selectedColor, setSelectedColor] = useState();
-  
+  const [selectedColor, setSelectedColor] = useState([]);
+
   const [tipoTalle, setTipoTalle] = useState('')
   const tipoTalleHandler = (e) => {
     setForm({...form, tallas: {}})
-    setStock([])
+    setStock({})
     setTipoTalle(e.target.value)
   }
 
-  const [stock, setStock] = useState([]);
-
-  const [opciones, setOpciones] = useState([])
+  const [stock, setStock] = useState({});
 
   const [discount, setDiscount] = useState({
     offActiva: false,
@@ -71,7 +96,7 @@ const Form = () => {
     genero: '',
     oferta: discount,
     activo: false,
-    opciones: opciones,
+    opciones: {},
     colores: selectedColor,
     productoNuevo: false,
     tallas: stock
@@ -204,106 +229,72 @@ const Form = () => {
     } 
   }
 
-  //{ codHexadecimal: '#78288C', nombreColor: 'violeta' },
-
-  const buttonStockHandler = async () => {
-
-    let arr = []
-    for(let i = 0; i < images.length; i++) {
-      const data = await uploadCloudinary(images[i])
-      arr.push(data.url)
-    }
-
-    setOpciones([
-      ...opciones,
-      {
-        colores: {
-          nombres: [selectedColor.nombreColor],
-          codigosHex: [selectedColor.codHexadecimal]
-        },
-        tallas: stock,
-        imagenes: arr
-      }
-    ])
-    setForm({...form, opciones: [...opciones, {
-      colores: {
-        nombres: [selectedColor.nombreColor],
-        codigosHex: [selectedColor.codHexadecimal]
-      },
-      tallas: stock,
-      imagenes: arr
-    }]})
-    setSelectedColor([])
-    setStock([])
-    setImages([])
-  }
-
   return (
     <div className={styles.container}>
-      <h1 className={styles.containerTitle}>Nuevo producto</h1>
-      <form className={styles.formContainer} onSubmit={submitHandler}>
+      <h1>Nuevo producto</h1>
+      <form onSubmit={submitHandler}>
         <div>
-          <label className={styles.labelFormContainer}>Nombre: </label><br></br>
-          <input className={styles.inputFormContainer} type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} />
-          {errors.nombre && <span className={styles.spanErrorNotification}>{errors.nombre}</span>}
+          <label>Nombre: </label>
+          <input type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} />
+          {errors.nombre && <span>{errors.nombre}</span>}
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Marca: </label><br></br>
-          <select className={styles.inputFormContainer} name="marca" value={form.marca} onChange={changeHandler}>
+          <label>Marca: </label>
+          <select name="marca" value={form.marca} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
             {marcas.map(marca => <option key={marca}>{marca}</option>)}
           </select>
-          {errors.marca && <span className={styles.spanErrorNotification}>{errors.marca}</span>}
+          {errors.marca && <span>{errors.marca}</span>}
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Precio: </label><br></br>
-          <input className={styles.inputFormContainer} type="text" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} />
-          {errors.precio && <span className={styles.spanErrorNotification}>{errors.precio}</span>}
+          <label>Precio: </label>
+          <input type="text" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} />
+          {errors.precio && <span>{errors.precio}</span>}
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Categoria: </label><br></br>
-          <select className={styles.inputFormContainer} name="categoria" value={form.categoria} onChange={changeHandler}>
+          <label>Categoria: </label>
+          <select name="categoria" value={form.categoria} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
             {categorias.map(categoria => <option key={categoria}>{categoria}</option>)}
           </select>
-          {errors.categoria && <span className={styles.spanErrorNotification}>{errors.categoria}</span>}
+          {errors.categoria && <span>{errors.categoria}</span>}
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Sub-categoria: </label><br></br>
-          <select className={styles.inputFormContainer} name="subcategoria" value={form.subcategoria} onChange={changeHandler}>
+          <label>Sub-categoria: </label>
+          <select name="subcategoria" value={form.subcategoria} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
             {subcategorias.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
           </select>
-          {errors.subcategoria && <span className={styles.spanErrorNotification}>{errors.subcategoria}</span>}
+          {errors.subcategoria && <span>{errors.subcategoria}</span>}
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Género: </label><br></br>
-          <select className={styles.inputFormContainer} name="genero" value={form.genero} onChange={changeHandler}>
+          <label>Género: </label>
+          <select name="genero" value={form.genero} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
             {genero.map(genero => <option key={genero}>{genero}</option>)}
           </select>
-          {errors.genero && <span className={styles.spanErrorNotification}>{errors.genero}</span>}
+          {errors.genero && <span>{errors.genero}</span>}
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Descripción: </label><br></br>
-          <textarea className={styles.inputFormContainer} name="descripcion" value={form.descripcion} id="" cols="30" rows="5" onChange={changeHandler}></textarea>
-          {errors.descripcion && <span className={styles.spanErrorNotification}>{errors.descripcion}</span>}
+          <label>Descripción: </label>
+          <textarea name="descripcion" value={form.descripcion} id="" cols="30" rows="5" onChange={changeHandler}></textarea>
+          {errors.descripcion && <span>{errors.descripcion}</span>}
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Activo: </label>
-          <input name='activo' className={styles.inputCheckboxForm} type="checkbox" checked={form.activo} onChange={changeHandler} />
+          <label>Activo: </label>
+          <input name='activo' type="checkbox" checked={form.activo} onChange={changeHandler} />
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Producto nuevo: </label>
-          <input name='productoNuevo' className={styles.inputCheckboxForm} type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
+          <label>Producto nuevo: </label>
+          <input name='productoNuevo' type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
         </div>
         <div>
-          <label className={styles.labelFormContainer}>Oferta: </label>
-          <input name='oferta' className={styles.inputCheckboxForm} type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
+          <label>Oferta: </label>
+          <input name='oferta' type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
           {form.oferta.offActiva && (
             <div>
-              <label className={styles.labelFormContainer}>% Descuento</label>
-              <select className={styles.selectDiscount} name='Descuento' value={discount.Descuento} onChange={changeDiscountHandler}>
+              <label>% Descuento</label>
+              <select name='Descuento' value={discount.Descuento} onChange={changeDiscountHandler}>
                 <option value="">%%</option>
                 <option value="5">5%</option>
                 <option value="10">10%</option>
@@ -316,11 +307,15 @@ const Form = () => {
             </div>
           )}
         </div>
+        <div>
+          <label>Opciones: </label>
+          <input name='opciones' type="checkbox" />
+        </div>
 
         <ColorGrid nameColors={nameColors} setNameColors={setNameColors} colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
-        
+
         <div>
-          <label className={styles.labelFormContainer}>Tipo de talle</label>
+          <label>Tipo de talle</label>
           <select name="tipoTalle" value={tipoTalle} onChange={tipoTalleHandler}>
             <option value=''>--Seleccionar--</option>
             <option value='L'>Letras</option>
@@ -332,13 +327,10 @@ const Form = () => {
         </div>
 
         <div>
-          <label className={styles.labelFormContainer}>Imágenes: </label>
           <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
         </div>
 
-        <button onClick={buttonStockHandler} type='button'>Agregar stock</button>
-
-        <button className={styles.submitButton} type='submit'>Crear</button>
+        <button type='submit'>Crear</button>
       </form>
       <ToastContainer />
     </div>
