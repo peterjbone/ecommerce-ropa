@@ -299,8 +299,10 @@ export const useStore = create((set) => ({
   createReview: async (review) => {
     try {
       const { data } = await axios.post('http://localhost:3001/resena', review);
-      const { newReview } = data;
-      // set(() => ({  }));
+      set((state) => ({
+        ...state.userInfo,
+        reviews: data
+      }));
     } catch (error) {
       console.error(error);
     }

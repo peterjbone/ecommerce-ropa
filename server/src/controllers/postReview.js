@@ -22,7 +22,6 @@ async function postReview(request, response) {
           existingReview.valoracion = valoracion;
           existingReview.descripcion = descripcion;
           await existingReview.save();
-          response.status(200).json(existingReview);
         } else {
           const newReview = await Resena.create({
             producto_id: producto_id,
@@ -32,13 +31,15 @@ async function postReview(request, response) {
             descripcion: descripcion,
             esAceptada: false
           });
-          response.status(201).json(newReview);
         }
+        const reviews = await Resena.find({ usuario_id: usuario_id });
+
+        return response.status(201).json(reviews);
       } else {
-        response.status(404).send('No se encontró el usuario');
+        return response.status(404).send('No se encontró el usuario');
       }
     } else {
-      response.status(404).send('No se encontró el producto');
+      return response.status(404).send('No se encontró el producto');
     }
   } catch (error) {
     console.error(error);
