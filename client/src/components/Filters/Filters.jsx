@@ -114,7 +114,6 @@ export default function Filters() {
   const handleAnyOptionChange = async (event) => {
     try {
       const { id } = event.target;
-      console.log(id);
       resetFilter(id);
       await getFilteredProducts();
     } catch (error) {
