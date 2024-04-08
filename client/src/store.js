@@ -8,10 +8,10 @@ export const useStore = create((set) => ({
   userInfo:
     typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo"))
-      : {},
+      : null,
   products: [],
   productosFiltrados: [],
-  favoritos: [1, 2, 3, 4, 5, 10, 15],
+  favoritos: [],
   cart: [],
   nuevos: [],
   destacados: [],
@@ -71,7 +71,7 @@ export const useStore = create((set) => ({
     localStorage.removeItem("userInfo");
     set((state) => ({
       ...state,
-      userInfo: {}
+      userInfo: null
     }));
   },
   register: async (name, email, password) => {
@@ -113,6 +113,10 @@ export const useStore = create((set) => ({
   logOut: async () => {
     try {
       await axios('http://localhost:3001/user/logout');
+      set((state) => ({
+        ...state,
+        userInfo: null
+      }));
     } catch (error) {
       console.error("Error al cerrar sesión", error);
       throw error;
@@ -121,6 +125,10 @@ export const useStore = create((set) => ({
   deleteAccount: async () => {
     try {
       await axios.delete('http://localhost:3001/user');
+      set((state) => ({
+        ...state,
+        userInfo: null
+      }));
     } catch (error) {
       console.error("Error al borrar cuenta", error);
       throw error;
@@ -224,7 +232,7 @@ export const useStore = create((set) => ({
   resetFilter: (name) => {
     set((state) => ({
       filtrosSeleccionados: state.filtrosSeleccionados.filter((value) => {
-        value.name === name;
+        return value.name !== name;
       }),
       filtros: {
         ...state.filtros,
@@ -297,19 +305,34 @@ export const useStore = create((set) => ({
       console.error(error);
     }
   },
-  addFav: async (id) => {
+  updateFavorite: async (id) => {
     try {
-      // const { data } = await axios.put('http://localhost:3001/agregarFavorito', id);
-      // set(() => ({ favoritos: data }));
+      const { data } = await axios.put('http://localhost:3001/updateFavorite ', { userId: useStore.getState().userInfo._id, productId: id });
+      set((state) => ({
+        ...state.userInfo,
+        favorites: data
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getFavorites: async () => {
+    try {
+      const { data } = await axios.post('http://localhost:3001/getFavorites', useStore.getState().userInfo.favorites);
+      set(() => ({ favoritos: data }));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  addFav: (id) => {
+    try {
       set((state) => ({ favoritos: [...state.favoritos, id] }));
     } catch (error) {
       console.log(error);
     }
   },
-  removeFav: async (id) => {
+  removeFav: (id) => {
     try {
-      // const { data } = await axios.put('http://localhost:3001/removerFavorito', id);
-      // set(() => ({ favoritos: data }));
       set((state) => {
         const updatedFavoritos = state.favoritos.filter((item) => item !== id);
         return { favoritos: updatedFavoritos };
