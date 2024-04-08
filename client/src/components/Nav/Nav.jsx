@@ -28,8 +28,7 @@ export default function Nav() {
  
   const [totalItemsInCart, setTotalItemsInCart] = useState(0);
 
-  //user logueado
-  const user = useStore((state) => state.user)
+  const userInfo = useStore((state) => state.userInfo)
 
 
   const listas = [
@@ -201,12 +200,14 @@ export default function Nav() {
             onChange={(event) => setSearch(event.target.value)} />
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>
         </div>
-        {user && <NavLink to='/usuario'>
+        {userInfo && <NavLink to='/usuario'>
           <button className='nav-bar-button' >Mi Perfil</button>
         </NavLink>}
-        {!user && <NavLink to='/login'>
+        {/* {!userInfo &&  */}
+        <NavLink to='/login'>
           <button className='nav-bar-button' >Ingresar</button>
-        </NavLink>}
+        </NavLink>
+        {/* } */}
         <NavLink to='/carrito'>
           <button className='nav-bar-button' >
             Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
