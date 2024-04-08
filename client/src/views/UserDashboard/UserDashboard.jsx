@@ -6,9 +6,9 @@ import { useStore } from '../../store';
 import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
 
 export default function UserDashboard() {
-  // const user = useStore((state) => state.user);
-  // const changeEmail = useStore((state) => state.changeEmail);
-  // const changePassword = useStore((state) => state.changePassword);
+  const userInfo = useStore((state) => state.userInfo);
+  const changeEmail = useStore((state) => state.changeEmail);
+  const changePassword = useStore((state) => state.changePassword);
   const nuevos = useStore((state) => state.nuevos);
   const user = {
     name: 'H',
@@ -19,12 +19,35 @@ export default function UserDashboard() {
 
   const [activeOption, setActiveOption] = useState('userData');
   const [isUserDataChanged, setIsUserDataChanged] = useState(false);
-  const [changeData, setChangeData] = useState({ name: '', surName: '', userName: '', dateOfBirth: '', currentEmail: '', email: '', emailPassword: '', password: '', newPassword: '', repeatPassword: '' });
-  const [changeDataErrors, setChangeDataErrors] = useState({ name: '', surName: '', userName: '', dateOfBirth: '', changeEmail: '', currentEmail: '', email: '', emailPassword: '', password: '', newPassword: '', repeatPassword: '' });
+  const [changeData, setChangeData] = useState({
+    name: '',
+    surName: '',
+    userName: '',
+    dateOfBirth: '',
+    currentEmail: '',
+    email: '',
+    emailPassword: '',
+    password: '',
+    newPassword: '',
+    repeatPassword: ''
+  });
+  const [changeDataErrors, setChangeDataErrors] = useState({
+    name: '',
+    surName: '',
+    userName: '',
+    dateOfBirth: '',
+    changeEmail: '',
+    currentEmail: '',
+    email: '',
+    emailPassword: '',
+    password: '',
+    newPassword: '',
+    repeatPassword: ''
+  });
 
   const handleOptionClick = (id) => {
     setActiveOption(id);
-  };
+  }
 
   const handleUserDataChange = (event) => {
     const { name, value } = event.target;
@@ -49,7 +72,7 @@ export default function UserDashboard() {
         name: changeData.name,
         surName: changeData.surName,
         userName: changeData.userName,
-        dateOfBirth: changeData.dateOfBirth
+        // dateOfBirth: changeData.dateOfBirth
       }
       // await changeUserData(userData);
       setIsUserDataChanged(false);
@@ -69,7 +92,7 @@ export default function UserDashboard() {
   const handleUserEmailChangeSubmit = async (event) => {
     event.preventDefault();
     try {
-      // await changeEmail(changeData.email, changeData.emailPassword);
+      await changeEmail(changeData.email, changeData.emailPassword);
       setChangeData({
         ...changeData,
         email: '',
@@ -89,11 +112,10 @@ export default function UserDashboard() {
       });
     }
   }
-
   const handleUserPasswordChangeSubmit = async (event) => {
     event.preventDefault();
     try {
-      // await changePassword(changeData.password, changeData.newPassword, changeData.repeatPassword);
+      await changePassword(changeData.password, changeData.newPassword);
       setChangeData({
         ...changeData,
         password: '',
@@ -147,6 +169,12 @@ export default function UserDashboard() {
           onClick={() => handleOptionClick('purchases')}
         >
           Mis Compras
+        </button>
+        <button
+          className={`nav-bar-button ${activeOption === 'reviews' ? 'activeUserTab' : ''}`}
+          onClick={() => handleOptionClick('reviews')}
+        >
+          Mis Reseñas
         </button>
       </aside>
       <section className='user-dashboard-info'>
@@ -312,7 +340,7 @@ export default function UserDashboard() {
             case 'favorites':
               return (
                 <>
-                  {/* user.favorites */nuevos.map((product) => (
+                  {/* userInfo.favorites */nuevos.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={false} />
                   ))}
                 </>
@@ -320,7 +348,15 @@ export default function UserDashboard() {
             case 'purchases':
               return (
                 <>
-                  {/* user.purchases */nuevos.map((product) => (
+                  {/* userInfo.purchases */nuevos.map((product) => (
+                    <UserDashboardCard key={product._id} product={product} isPurchase={true} />
+                  ))}
+                </>
+              );
+            case 'reviews':
+              return (
+                <>
+                  {/* userInfo.reviews */nuevos.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={true} />
                   ))}
                 </>

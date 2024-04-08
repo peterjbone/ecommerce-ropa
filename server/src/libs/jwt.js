@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const jwt = require('jsonwebtoken')
 const TOKEN_SECRET = process.env.TOKEN_SECRET
-const createAccesToken = (payload) => {
+const createAccessToken = (payload) => {
     return new Promise((resolve, reject) => {
         jwt.sign(
             payload,
@@ -17,4 +17,4 @@ const createAccesToken = (payload) => {
     })
 }
 
-module.exports = { createAccesToken }
+module.exports = { createAccessToken }

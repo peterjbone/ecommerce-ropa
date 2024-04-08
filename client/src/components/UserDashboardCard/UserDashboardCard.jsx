@@ -5,15 +5,17 @@ import { useStore } from '../../store';
 import { useEffect, useState } from 'react';
 
 export default function UserDashboardCard({ product, isPurchase }) {
-  // const user = useStore((state) => state.user);
   const user = {
     name: 'H',
     _id: 1,
     reviews: [],
   }
+  const userInfo = useStore((state) => state.userInfo);
+  const favoritos = useStore((state) => state.favoritos);
+  const updateFavorite = useStore((state) => state.updateFavorite);
+  const createReview = useStore((state) => state.createReview);
   const addFav = useStore((state) => state.addFav);
   const removeFav = useStore((state) => state.removeFav);
-  const createReview = useStore((state) => state.createReview);
   const [isFav, setIsFav] = useState(false);
   const [isReviewed, setIsReviewed] = useState(false);
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
@@ -24,29 +26,48 @@ export default function UserDashboardCard({ product, isPurchase }) {
   const [wordCount, setWordCount] = useState(0);
 
   useEffect(() => {
-    user.reviews.map((review) => {
+    userInfo.reviews.map((review) => {
       if (review.producto_id === product._id) {
         setRating(review.valoracion);
         setDescription(review.descripcion);
         setIsReviewed(true);
         return;
       }
-    })
-  }, [user]);
+    });
+  }, [userInfo, product._id]);
+
+  useEffect(() => {
+    let tempFavorites;
+    if (userInfo) {
+      tempFavorites = [...userInfo.favorites];
+    } else {
+      tempFavorites = [...favoritos];
+    }
+    tempFavorites?.forEach((fav) => {
+      if (fav === product._id) {
+        setIsFav(true);
+      }
+    });
+  }, [userInfo, favoritos, product._id]);
 
   const handleFavorite = async () => {
     try {
-      if (isFav) {
-        setIsFav(false);
-        await removeFav(product._id);
+      if (userInfo) {
+        await updateFavorite(product._id);
       } else {
-        setIsFav(true);
-        await addFav(product._id);
+        if (isFav) {
+          setIsFav(false);
+          removeFav(product._id);
+        } else {
+          setIsFav(true);
+          addFav(product._id);
+        }
       }
     } catch (error) {
       console.error(error);
     }
   }
+
   const handleReview = (event) => {
     event.preventDefault();
     setIsRatingModalOpen(true);

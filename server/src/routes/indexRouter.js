@@ -13,12 +13,13 @@ const getCarrito = require("../controllers/getCarrito.js");
 const deleteCarrito = require("../controllers/deletecarrito.js");
 const incrementoCarrito = require("../controllers/incrementoCarrito.js");
 const decrementoCarrito = require("../controllers/decrementoCarrito.js");
+const updateFavorite = require("../controllers/updateFavorites.js");
+const getFavorites = require("../controllers/getFavorites.js");
 
 //* Router
 const router = Router();
 
 //* Rutas
-
 router.get("/infoProductos", getProductsInfo);
 router.get("/producto/:id", getProductById);
 router.get("/carrito/:cartToken", getCarrito);
@@ -28,7 +29,9 @@ router.post("/agregarCarrito", addProductToCart);
 router.post("/incrementQuantity", incrementoCarrito);
 router.post("/decrementQuantity", decrementoCarrito);
 router.post("/resena", postReview);
-router.put("/updateproduct/:id", updateProduct);
+router.put("/updateFavorite", updateFavorite);
+router.post("/getFavorites", getFavorites);
+router.put("/updateProduct/:id", updateProduct);
 router.delete("/removeproduct/:id", removeProduct);
 router.delete("/removeFromCart", deleteCarrito);
 
