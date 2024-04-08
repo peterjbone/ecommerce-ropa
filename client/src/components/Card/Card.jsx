@@ -50,11 +50,11 @@ export default function Card({
 			</button>
 			<div className="product-image-container">
 				<Link to={`/${product._id}`}>
-					{/* <img
+					 <img
             src={product.opciones[0].imagenes[0]}
             alt={product.opciones[0].imagenes[0]}
             className="image"
-          /> */}
+          /> 
 				</Link>
 			</div>
 			<h4>{product.nombre}</h4>

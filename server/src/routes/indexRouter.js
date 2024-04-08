@@ -10,9 +10,10 @@ const updateProduct = require("../controllers/updateProduct.js");
 const postReview = require("../controllers/postReview.js");
 const addProductToCart = require("../controllers/addProductToCart.js");
 const getCarrito = require("../controllers/getCarrito.js");
-const deleteCarrito = require("../controllers/deletecarrito.js");
+const deleteProductCarrito = require("../controllers/deleteProductCarrito.js");
 const incrementoCarrito = require("../controllers/incrementoCarrito.js");
 const decrementoCarrito = require("../controllers/decrementoCarrito.js");
+const deleteCarrito = require("../controllers/deleteCarrito.js");
 
 //* Router
 const router = Router();
@@ -30,6 +31,7 @@ router.post("/decrementQuantity", decrementoCarrito);
 router.post("/resena", postReview);
 router.put("/updateproduct/:id", updateProduct);
 router.delete("/removeproduct/:id", removeProduct);
-router.delete("/removeFromCart", deleteCarrito);
+router.delete("/removeFromCart", deleteProductCarrito);
+router.delete("/deleteCarrito/:cartToken", deleteCarrito);
 
 module.exports = router;

@@ -1,36 +1,14 @@
 const Carrito = require("../models/Carrito");
 
 const deleteCarrito = async (req, res) => {
+  const { cartToken } = req.params;
   try {
-    const { variantId, token } = req.body;
-
-    let carrito;
-    if (!token) {
-      return res
-        .status(400)
-        .json({ message: "Token de carrito no proporcionado" });
-    }
-
-    carrito = await Carrito.findOne({ token });
-    if (!carrito) {
-      return res.status(404).json({ message: "Carrito no encontrado" });
-    }
-
-    carrito.products = carrito.products.filter(
-      (product) => product.variantId !== variantId
-    );
-
-    await carrito.save();
-
-    res.status(200).json({
-      message: "Producto eliminado del carrito correctamente",
-      carrito,
-    });
+    await Carrito.findOneAndDelete({ token: cartToken });
+    console.log("Carrito eliminado correctamente");
+    res.status(200).json({ message: "Carrito eliminado correctamente" });
   } catch (error) {
-    console.error("Error al eliminar producto del carrito:", error);
-    res.status(500).json({
-      message: "Hubo un error al eliminar el producto del carrito",
-    });
+    console.error("Error al eliminar el carrito:", error);
+    res.status(500).json({ error: "Error al eliminar el carrito" });
   }
 };
 
