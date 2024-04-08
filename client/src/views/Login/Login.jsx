@@ -21,7 +21,7 @@ export default function Login() {
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
-      await login(user);
+      await login(user.email, user.password);
 
       toast.success("Iniciaste sesión", {
         onClose: () => {
