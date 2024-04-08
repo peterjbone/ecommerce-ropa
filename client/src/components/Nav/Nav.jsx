@@ -19,17 +19,16 @@ export default function Nav() {
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const setFilters = useStore((state) => state.setFilters);
   const resetFilters = useStore((state) => state.resetFilters);
+  const cart = useStore((state) => state.cart);
+  const userInfo = useStore((state) => state.userInfo)
   // const isAdmin = useStore((state) => state.isAdmin);
   const [search, setSearch] = useState('');
   const [isDarkTheme, setIsDarkTheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
   const [isMenuDown, setIsMenuDown] = useState(false);
-  const navigate = useNavigate();
-  const cart = useStore((state) => state.cart);
- 
   const [totalItemsInCart, setTotalItemsInCart] = useState(0);
-
-  //user logueado
-  const user = useStore((state) => state.user)
+  
+  const navigate = useNavigate();
+  console.log(userInfo);
 
 
   const listas = [
@@ -201,10 +200,10 @@ export default function Nav() {
             onChange={(event) => setSearch(event.target.value)} />
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>
         </div>
-        {user && <NavLink to='/usuario'>
+        {userInfo && <NavLink to='/usuario'>
           <button className='nav-bar-button' >Mi Perfil</button>
         </NavLink>}
-        {!user && <NavLink to='/login'>
+        {!userInfo && <NavLink to='/login'>
           <button className='nav-bar-button' >Ingresar</button>
         </NavLink>}
         <NavLink to='/carrito'>

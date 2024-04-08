@@ -1,6 +1,7 @@
 import './UserDashboard.css';
 
 import dataValidation from './dataValidation.js';
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { useStore } from '../../store';
 import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
@@ -9,6 +10,7 @@ export default function UserDashboard() {
   const userInfo = useStore((state) => state.userInfo);
   const changeEmail = useStore((state) => state.changeEmail);
   const changePassword = useStore((state) => state.changePassword);
+  const logOut = useStore((state) => state.logOut);
   const nuevos = useStore((state) => state.nuevos);
   const user = {
     name: 'H',
@@ -44,6 +46,7 @@ export default function UserDashboard() {
     newPassword: '',
     repeatPassword: ''
   });
+  const navigate = useNavigate();
 
   const handleOptionClick = (id) => {
     setActiveOption(id);
@@ -136,6 +139,15 @@ export default function UserDashboard() {
     }
   }
 
+  const handlelogOut = async () => {
+    try {
+      await logOut();
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className='user-dashboard-container'>
       <aside className='user-options-container'>
@@ -175,6 +187,18 @@ export default function UserDashboard() {
           onClick={() => handleOptionClick('reviews')}
         >
           Mis Reseñas
+        </button>
+        <button
+          className={`nav-bar-button ${activeOption === 'deleteAccount' ? 'activeUserTab' : ''}`}
+          onClick={() => handleOptionClick('deleteAccount')}
+        >
+          Borrar Cuenta
+        </button>
+        <button
+          className={`nav-bar-button ${activeOption === 'logout' ? 'activeUserTab' : ''}`}
+          onClick={() => handlelogOut()}
+        >
+          Cerrar Sesión
         </button>
       </aside>
       <section className='user-dashboard-info'>

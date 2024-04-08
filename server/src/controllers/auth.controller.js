@@ -60,17 +60,17 @@ const login = async (request, response) => {
   }
 }
 const getUserById = async (req, res) => {
-  const { id } = req.params;
-  if (!id) {
-    return res.status(404).json({ message: "Usuario no encontrado" });
-  }
-  try {
-    const userFound = await Usuario.findById(id);
-    res.status(200).json(userFound);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
-  }
+  // const { id } = req.params;
+  // if (!id) {
+  //   return res.status(404).json({ message: "Usuario no encontrado" });
+  // }
+  // try {
+  //   const userFound = await Usuario.findById(id);
+  //   res.status(200).json(userFound);
+  // } catch (err) {
+  //   console.error(err);
+  //   res.status(500).json({ message: err.message });
+  // }
 }
 const getPasswordAuth = async (request, response) => {
   try {

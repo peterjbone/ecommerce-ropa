@@ -20,6 +20,7 @@ export default function App() {
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
+  const userInfo = useStore((state) => state.userInfo);
 
   const user = useStore((state) => state.user);
   const getUserById = useStore((state) => state.getUserById);
@@ -46,7 +47,7 @@ export default function App() {
           const token = getCookie('token'); // Retrieve the token from the cookie
           if (token) {
             const userId = jwtDecode(token).id;
-            await getUserById(userId);
+            // await getUserById(userId);
           }
         }
       } catch (error) {
@@ -67,7 +68,7 @@ export default function App() {
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/:id" element={<Detail />} />
-        <Route path="/usuario" element={<UserDashboard />} />
+        {userInfo && <Route path="/usuario" element={<UserDashboard />} />}
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

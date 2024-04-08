@@ -10,7 +10,7 @@ router.get('/:id', getUserById);
 router.post('/reauthenticate', getPasswordAuth);
 router.post('/changeEmail', changeEmail);
 router.post('/changePassword', changePassword);
-router.post('/logout', logout);
+router.get('/logout', logout);
 router.delete('/delete/:id', deleteAccount);
 router.get('/profile', authRequired, profile);
 

@@ -112,7 +112,7 @@ export const useStore = create((set) => ({
   },
   logOut: async () => {
     try {
-      await axios('http://localhost:3001/user/logout');
+      await axios('http://localhost:3001/auth/logout');
       set((state) => ({
         ...state,
         userInfo: null
