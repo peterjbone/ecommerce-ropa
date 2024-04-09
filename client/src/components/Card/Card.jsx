@@ -26,7 +26,8 @@ export default function Card({ product, isProductsBar, title, productPosition })
     });
   }, [userInfo, favoritos, product._id]);
 
-  const handleFavorite = async () => {
+  const handleFavorite = async (event) => {
+    event.preventDefault();
     try {
       if (userInfo) {
         await updateFavorite(product._id);

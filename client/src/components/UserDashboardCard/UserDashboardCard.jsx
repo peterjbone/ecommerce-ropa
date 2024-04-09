@@ -5,18 +5,10 @@ import { useStore } from '../../store';
 import { useEffect, useState } from 'react';
 
 export default function UserDashboardCard({ product, isPurchase }) {
-  const user = {
-    name: 'H',
-    _id: 1,
-    reviews: [],
-  }
   const userInfo = useStore((state) => state.userInfo);
-  const favoritos = useStore((state) => state.favoritos);
   const updateFavorite = useStore((state) => state.updateFavorite);
+  const getFavorites = useStore((state) => state.getFavorites);
   const createReview = useStore((state) => state.createReview);
-  const addFav = useStore((state) => state.addFav);
-  const removeFav = useStore((state) => state.removeFav);
-  const [isFav, setIsFav] = useState(false);
   const [isReviewed, setIsReviewed] = useState(false);
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
   const [rating, setRating] = useState(0.5);
@@ -36,38 +28,15 @@ export default function UserDashboardCard({ product, isPurchase }) {
     });
   }, [userInfo, product._id]);
 
-  useEffect(() => {
-    let tempFavorites;
-    if (userInfo) {
-      tempFavorites = [...userInfo.favorites];
-    } else {
-      tempFavorites = [...favoritos];
-    }
-    tempFavorites?.forEach((fav) => {
-      if (fav === product._id) {
-        setIsFav(true);
-      }
-    });
-  }, [userInfo, favoritos, product._id]);
-
-  const handleFavorite = async () => {
+  const handleFavorite = async (event) => {
+    event.preventDefault();
     try {
-      if (userInfo) {
-        await updateFavorite(product._id);
-      } else {
-        if (isFav) {
-          setIsFav(false);
-          removeFav(product._id);
-        } else {
-          setIsFav(true);
-          addFav(product._id);
-        }
-      }
+      await updateFavorite(product._id);
+      await getFavorites();
     } catch (error) {
       console.error(error);
     }
   }
-
   const handleReview = (event) => {
     event.preventDefault();
     setIsRatingModalOpen(true);
@@ -99,8 +68,8 @@ export default function UserDashboardCard({ product, isPurchase }) {
     try {
       const review = {
         producto_id: product._id,
-        nombreUsuario: user.name,
-        usuario_id: user._id,
+        nombreUsuario: userInfo.name,
+        usuario_id: userInfo._id,
         valoracion: rating,
         descripcion: description
       }
@@ -122,9 +91,6 @@ export default function UserDashboardCard({ product, isPurchase }) {
     <>
       <Link to={`/${product._id}`} key={product._id}>
         <div className='user-card-container'>
-          <button className='user-card-favorite-button' onClick={handleFavorite}>
-            {isFav ? '❤️' : '🤍'}
-          </button>
           <div className='user-card-image-container'>
             <img
               src={product?.opciones[0]?.imagenes[0]}
@@ -170,6 +136,16 @@ export default function UserDashboardCard({ product, isPurchase }) {
                 {isReviewed
                   ? 'Editar Valoración'
                   : 'Valorar Producto'}
+              </button>
+            </>
+          }
+          {!isPurchase &&
+            <>
+              <button
+                className='nav-bar-button user-card-rating-button'
+                onClick={handleFavorite}
+              >
+                Quitar Favorito
               </button>
             </>
           }
@@ -248,7 +224,7 @@ export default function UserDashboardCard({ product, isPurchase }) {
                     onChange={handleReviewDescriptionChange}
                   />
                 </div>
-                <label style={{ alignSelf: 'flex-end'}} >{wordCount} / 500 </label>
+                <label style={{ alignSelf: 'flex-end' }} >{wordCount} / 500 </label>
                 <p className={descriptionError ? '' : 'invisible'} >{descriptionError ? `${descriptionError}` : 'invisible'}</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }} >
                   <button
