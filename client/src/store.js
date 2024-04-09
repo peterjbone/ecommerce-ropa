@@ -62,15 +62,13 @@ export const useStore = create((set) => ({
   },
   setUserInfo: (data) => {
     localStorage.setItem("userInfo", JSON.stringify({ ...data }));
-    set((state) => ({
-      ...state,
+    set(() => ({
       userInfo: { ...data }
     }));
   },
   clearUserInfo: () => {
     localStorage.removeItem("userInfo");
-    set((state) => ({
-      ...state,
+    set(() => ({
       userInfo: null
     }));
   },
@@ -87,6 +85,14 @@ export const useStore = create((set) => ({
       const { data } = await axios.post('http://localhost:3001/auth/login', { email, password });
       set(() => ({
         userInfo: data.foundUser
+      }));
+      set((prevState) => ({
+        ...prevState,
+        userInfo: {
+          ...prevState.userInfo,
+          purchases: data.purchases,
+          reviews: data.reviews,
+        },
       }));
       // cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
     } catch (error) {
@@ -122,9 +128,17 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  deleteAccount: async () => {
+  reauthenticate: async (password) => {
     try {
-      await axios.delete('http://localhost:3001/user');
+      await axios.post('http://localhost:3001/auth/reauthenticate', { password });
+    } catch (error) {
+      console.error("Error al reatenticar usuario", error);
+      throw error;
+    }
+  },
+  deleteAccount: async (id) => {
+    try {
+      await axios.delete('http://localhost:3001/auth/delete', { id });
       set((state) => ({
         ...state,
         userInfo: null
@@ -298,7 +312,7 @@ export const useStore = create((set) => ({
   },
   createReview: async (review) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/resena', review);
+      const { data } = await axios.post('http://localhost:3001/resena', { review });
       set((state) => ({
         ...state.userInfo,
         reviews: data
@@ -309,13 +323,17 @@ export const useStore = create((set) => ({
   },
   updateFavorite: async (id) => {
     try {
-      const { data } = await axios.put('http://localhost:3001/updateFavorite ', { userId: useStore.getState().userInfo._id, productId: id });
+      const { data } = await axios.put('http://localhost:3001/updateFavorite', { userId: useStore.getState().userInfo._id, productId: id });
       set((state) => ({
-        ...state.userInfo,
-        favorites: data
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          favorites: data
+        }
       }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      throw error;
     }
   },
   getFavorites: async () => {
@@ -323,14 +341,16 @@ export const useStore = create((set) => ({
       const { data } = await axios.post('http://localhost:3001/getFavorites', useStore.getState().userInfo.favorites);
       set(() => ({ favoritos: data }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      throw error;
     }
   },
   addFav: (id) => {
     try {
       set((state) => ({ favoritos: [...state.favoritos, id] }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      throw error;
     }
   },
   removeFav: (id) => {
@@ -340,7 +360,8 @@ export const useStore = create((set) => ({
         return { favoritos: updatedFavoritos };
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      throw error;
     }
   },
   getCart: async (cartToken) => {
@@ -348,8 +369,7 @@ export const useStore = create((set) => ({
       const response = await axios.get(
         `http://localhost:3001/carrito/${cartToken}`
       );
-      set((state) => ({
-        ...state,
+      set(() => ({
         cart: response.data.products
       }));
     } catch (error) {
