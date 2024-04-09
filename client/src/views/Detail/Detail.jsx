@@ -235,7 +235,7 @@ export default function Detail() {
 						products={relatedProducts}
 					/>
 				</div>
-				<Reviews /* reviews={productoReviews} */ />
+				<Reviews reviews={productoReviews} />
 			</div>
 		);
 	}
