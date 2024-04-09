@@ -5,12 +5,14 @@ import { useStore } from "../../store.js";
 
 export default function CategoriesBar({ title, name, categories, products }) {
 	const navigate = useNavigate();
+	const resetFilters = useStore((state) => state.resetFilters);
 	const setFilters = useStore((state) => state.setFilters);
 	const getFilteredProducts = useStore((state) => state.getFilteredProducts);
 
   const handleCategorySearch = async (event) => {
     try {
       const { name, id } = event.target;
+      resetFilters();
       setFilters(name, id);
       await getFilteredProducts();
       navigate('/tienda');
