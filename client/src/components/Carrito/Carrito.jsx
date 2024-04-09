@@ -136,7 +136,7 @@ const Carrito = () => {
 					))}
 				</div>
 			)}
-			{userInfo.id ? (
+			{userInfo && userInfo._id ? (
 				<div className={styles.totalPriceContainer}>
 					<p className={styles.totalPriceLabel}>Precio Total:</p>
 					<p className={styles.totalPrice}>${totalPrice}</p>

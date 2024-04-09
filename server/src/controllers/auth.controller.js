@@ -43,11 +43,8 @@ const login = async (request, response) => {
 
         const purchases = await Compra.find({ userId: foundUser._id });
         const reviews = await Resena.find({ usuario_id: foundUser._id });
-  
-        foundUser.purchases = purchases || [];
-        foundUser.reviews = reviews || [];
-  
-        return response.status(200).json({ foundUser/* , token */ });
+
+        return response.status(200).json({ foundUser, purchases, reviews/* , token */ });
       } else {
         return request.status(400).json({ message: 'Contraseña inválida' });
       }
@@ -60,17 +57,17 @@ const login = async (request, response) => {
   }
 }
 const getUserById = async (req, res) => {
-  const { id } = req.params;
-  if (!id) {
-    return res.status(404).json({ message: "Usuario no encontrado" });
-  }
-  try {
-    const userFound = await Usuario.findById(id);
-    res.status(200).json(userFound);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: err.message });
-  }
+  // const { id } = req.params;
+  // if (!id) {
+  //   return res.status(404).json({ message: "Usuario no encontrado" });
+  // }
+  // try {
+  //   const userFound = await Usuario.findById(id);
+  //   res.status(200).json(userFound);
+  // } catch (err) {
+  //   console.error(err);
+  //   res.status(500).json({ message: err.message });
+  // }
 }
 const getPasswordAuth = async (request, response) => {
   try {
@@ -85,7 +82,7 @@ const getPasswordAuth = async (request, response) => {
     }
     const credential = EmailAuthProvider.credential(email, password);
     await reauthenticateWithCredential(auth.currentUser, credential);
-    response.status(204).send(); // No content response
+    response.status(204).send();
   } catch (error) {
     console.error(error);
     response.status(500).send({ error, message: 'Error reautenticando usuario' });
@@ -132,6 +129,7 @@ const changePassword = async (request, response) => {
   }
 }
 const logout = async (request, response) => {
+  console.log('here');
   try {
     // request.cookie("token", "", {
     //   expires: new Date(0)
@@ -145,14 +143,14 @@ const logout = async (request, response) => {
 }
 const deleteAccount = async (request, response) => {
   try {
-    const { id } = request.params;
+    const { id } = request.body;
     const user = auth.currentUser;
     if (user) {
       await user.delete();
-      const deletedUser = await Usuario.findByIdAndDelete(id);
-      response.status(200).json({ message: 'Usuario borrado exitosamente' });
+      await Usuario.findByIdAndDelete(id);
+      return response.status(200).json({ message: 'Usuario borrado exitosamente' });
     } else {
-      response.status(401).json({ message: 'No hay ningún usuario ingresado' });
+      return response.status(401).json({ message: 'No hay ningún usuario ingresado' });
     }
   } catch (error) {
     console.error(error);

@@ -40,21 +40,21 @@ export default function App() {
     })();
   });
 
-  useEffect(() => {
-    (async function loadUserData() {
-      try {
-        if (!user) {
-          const token = getCookie('token'); // Retrieve the token from the cookie
-          if (token) {
-            const userId = jwtDecode(token).id;
-            await getUserById(userId);
-          }
-        }
-      } catch (error) {
-        console.error('Auto-login failed:', error)
-      }
-    }())
-  });
+  // useEffect(() => {
+  //   (async function loadUserData() {
+  //     try {
+  //       if (!user) {
+  //         const token = getCookie('token'); // Retrieve the token from the cookie
+  //         if (token) {
+  //           const userId = jwtDecode(token).id;
+  //           // await getUserById(userId);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error('Auto-login failed:', error)
+  //     }
+  //   }())
+  // });
 
   return (
     <>
