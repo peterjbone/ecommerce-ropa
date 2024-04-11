@@ -1,0 +1,44 @@
+.reviews-container {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10vh;
+}
+
+.review-container {
+  padding: 10px;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.rating-container h3 {
+  font-size: 30px;
+  min-width: 40px;
+  padding: 5px;
+  margin-right: 10px;
+  font-family: Morn;
+}
+
+.rating-container img {
+  align-self: center;
+  justify-self: center;
+  width: 20px;
+}
+
+
+.review-container h4 {
+  font-size: 20px;
+  font-family: Morn;
+}
+
+.review-container p {
+  font-size: 16px;
+}
+
+.activeTab {
+  transform: scale(1.2);
+  font-family: MornBold;
+}

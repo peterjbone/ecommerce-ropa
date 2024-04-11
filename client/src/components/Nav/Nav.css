@@ -1,6 +1,6 @@
 .nav-bar {
   font-family: Morn, Arial, Helvetica, sans-serif;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--nav-color);
   backdrop-filter: blur(3px);
   position: fixed;
   top: 0;
@@ -35,16 +35,32 @@
   cursor: pointer;
   border: none;
   font-family: inherit;
-  font-weight: bold;
+  color: var(--letters-color);
+  transition: 0.2s ease-out;
+}
+
+.theme-button {
+  width: 40px;
+}
+
+.theme-button:hover {
+  transform: scale(1.2);
+}
+
+.nav-bar-button img {
+  width: 100%;
 }
 
 .nav-bar input[type="search"] {
-  width: 30vw;
+  max-width: 30vw;
+  min-width: 25vw;
   padding: 8px;
   margin-right: 5px;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 3px 1px rgb(99, 99, 99);
+  box-shadow: 0 0 3px 1px var(--nav-search-shadow-color);
+  background-color: inherit;
+  color: inherit;
   cursor: text;
   transition: 200ms ease-out;
 }
@@ -62,7 +78,8 @@
 }
 
 .nav-bar-button:hover {
-  color: rgba(69, 69, 69, 0.7);
+  color: var(--nav-button-letter-hover-color);
+  font-family: MornBold;
 }
 
 .categories-window {
@@ -76,7 +93,7 @@
   position: fixed;
   top: -100vh;
   left: 5%;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--categories-background-color);
   backdrop-filter: blur(3px);
   z-index: 15;
   border-radius: 0 0px 10px 10px;
@@ -86,7 +103,7 @@
 .categories-window label {
   grid-column: span 6;
   font-size: 14px;
-  font-weight: bold;
+  font-family: MornBold;
   color: black;
 }
 
@@ -99,7 +116,7 @@
 
 .categories-window p:hover {
   transform: scale(1.2);
-  color: rgb(0, 0, 0);
+  color: var(--categories-letter-hover-color);
 }
 
 .move-down {
@@ -115,7 +132,7 @@
   100% {
     transform: translateY(100vh);
   }
-  
+
 }
 
 .move-up {
@@ -131,7 +148,7 @@
   100% {
     transform: translateY(0);
   }
-  
+
 }
 
 .dissapear {
@@ -148,5 +165,5 @@
   100% {
     transform: translateY(0);
   }
-  
+
 }

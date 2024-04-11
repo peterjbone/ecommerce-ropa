@@ -75,13 +75,13 @@ const FormEdit = () => {
 
   // const product = useSelector(state => state.product);
 
-  let product;
-  axios(`http://localhost:3001/producto/6601f9026241f448c75032f7`)
-    .then((data) => {
-      console.log(data.data);
-      product = data.data
-    })
-  console.log(product);
+  // let product;
+  // axios(`http://localhost:3001/producto/6601f9026241f448c75032f7`)
+  //   .then((data) => {
+  //     console.log(data.data);
+  //     product = data.data
+  //   })
+  // console.log(product);
 
   const [selectedColor, setSelectedColor] = useState([]);
 

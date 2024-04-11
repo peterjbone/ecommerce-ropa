@@ -1,0 +1,64 @@
+**********CATEGORIA*************
+- adultos
+- infantes
+
+**********GENERO*************
+- masculino
+- femenino
+
+**********SUBCATEGORIA*************
+- camisetas
+- camisetas manga larga
+- chaquetas
+- hoodies
+- shorts
+- zapatos
+
+**********MARCAS*************
+- new-balance
+- converse
+- nike
+- vans
+- adidas
+- puma
+- off-white
+- jordan
+- NBA All Star
+
+**********COLORES**************
+
+codigosHex: ["#808080", "#000000"],
+nombres: ["gris", "negro"]
+
+codigosHex: ["#ffffff", "#000000", "#ff0000"],
+nombres: ["blanco", "negro", "rojo"]
+
+codigosHex: ["#00ff00", "#000000"],
+nombres: ["verde", "negro"]
+
+codigosHex: ["#000000"],
+nombres: ["negro"]
+
+codigosHex: ["#ddbea9"],
+nombres: ["bronceado"]
+
+codigosHex: ["#0000ff"],
+nombres: ["azul"]
+
+codigosHex: ["#EFBC9B"],
+nombres: ["beige"]
+
+codigosHex: ["#FF71CD"],
+nombres: ["rosado"]
+
+codigosHex: ["#ECB159"],
+nombres: ["cafe"]
+
+codigosHex: ["#ffff00"],
+nombres: ["amarillo"]
+
+codigosHex: ["#FB6D48"],
+nombres: ["naranja"]
+
+codigosHex: ["#ECB159"],
+nombres: ["cafe"]

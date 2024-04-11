@@ -4,38 +4,46 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "../../store.js";
 
-export default function Card({
-  product,
-  isProductsBar,
-  title,
-  productPosition
-}) {
+export default function Card({ product, isProductsBar, title, productPosition }) {
   const favoritos = useStore((state) => state.favoritos);
+  const userInfo = useStore((state) => state.userInfo);
+  const updateFavorite = useStore((state) => state.updateFavorite);
   const addFav = useStore((state) => state.addFav);
   const removeFav = useStore((state) => state.removeFav);
   const [isFav, setIsFav] = useState(false);
 
-  const handleFavorite = async () => {
-    try {
-      if (isFav) {
-        setIsFav(false);
-        await removeFav(product._id);
-      } else {
-        setIsFav(true);
-        await addFav(product._id);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    favoritos?.forEach((fav) => {
+    let tempFavorites;
+    if (userInfo) {
+      tempFavorites = [...userInfo.favorites];
+    } else {
+      tempFavorites = [...favoritos];
+    }
+    tempFavorites?.forEach((fav) => {
       if (fav === product._id) {
         setIsFav(true);
       }
     });
-  }, [favoritos, product._id]);
+  }, [userInfo, favoritos, product._id]);
+
+  const handleFavorite = async (event) => {
+    event.preventDefault();
+    try {
+      if (userInfo) {
+        await updateFavorite(product._id);
+      } else {
+        if (isFav) {
+          setIsFav(false);
+          removeFav(product._id);
+        } else {
+          setIsFav(true);
+          addFav(product._id);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return isProductsBar ? (
     <div
@@ -91,7 +99,9 @@ export default function Card({
                 <div
                   key={`${opcion.colores?.codigosHex[0]} ${index}`}
                   className="colorBox"
-                  style={{ backgroundColor: opcion.colores?.codigosHex[0] }}></div>
+                  style={{
+                    backgroundColor: opcion.colores?.codigosHex[0]
+                  }}></div>
               );
             })}
           </div>
@@ -104,6 +114,6 @@ export default function Card({
           </p>
         </div>
       </Link>
-    </div >
+    </div>
   );
 }

@@ -1,0 +1,29 @@
+.checkoutContainer {
+	width: 100%;
+	min-height: 80vh;
+	max-width: 800px;
+	margin: 0 auto;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+
+.title {
+	margin-bottom: 1rem;
+	font-weight: 700;
+	font-size: 2rem;
+	color: #29d863ee;
+}
+
+.button {
+	margin: 0 auto;
+	padding: 0.8rem 1rem;
+	border: medium solid #000;
+	color: #000;
+	background-color: #fff;
+	text-align: center;
+	font-weight: 600;
+}

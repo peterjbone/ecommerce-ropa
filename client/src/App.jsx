@@ -1,24 +1,32 @@
-import Nav from './components/Nav/Nav';
-import Detail from "./views/Detail/Detail.jsx"
-import Tienda from "./views/Tienda/Tienda.jsx"
-import Footer from './components/Footer/Footer.jsx';
-import Carrito from "./components/Carrito/Carrito"
-
-
-import { Route, Routes } from 'react-router-dom';
-import { Home, Form, FormEdit } from './views';
-import { useEffect } from 'react';
-import { useStore } from './store.js';
-import NotFound from './views/NotFound/NotFound.jsx';
+import { Route, Routes } from "react-router-dom";
+import { Home, Form, FormEdit, Login, Register } from "./views";
+import Nav from "./components/Nav/Nav";
+import { useEffect } from "react";
+import { useStore } from "./store.js";
+import Detail from "./views/Detail/Detail.jsx";
+import Tienda from "./views/Tienda/Tienda.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+import Carrito from "./components/Carrito/Carrito";
+import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
+import NotFound from "./views/NotFound/NotFound.jsx";
+import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
+import { getCookie } from "./utils/getCookie.js";
+import { jwtDecode } from "jwt-decode";
+import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getProductInfo = useStore((state) => state.getProductInfo);
   const getDestacados = useStore((state) => state.getDestacados);
+  const getAllReviews = useStore((state) => state.getAllReviews);
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
+  const userInfo = useStore((state) => state.userInfo);
 
+  const user = useStore((state) => state.user);
+  const getUserById = useStore((state) => state.getUserById);
+  
   useEffect(() => {
     (async function loadData() {
       try {
@@ -28,23 +36,45 @@ export default function App() {
         await getNuevos();
         await getOfertas();
         await getTendencia();
+        await getAllReviews();
       } catch (error) {
         console.error();
       }
-    }())
+    })();
   });
+
+  // useEffect(() => {
+  //   (async function loadUserData() {
+  //     try {
+  //       if (!user) {
+  //         const token = getCookie('token'); // Retrieve the token from the cookie
+  //         if (token) {
+  //           const userId = jwtDecode(token).id;
+  //           // await getUserById(userId);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error('Auto-login failed:', error)
+  //     }
+  //   }())
+  // });
 
   return (
     <>
       <Nav />
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/form' element={<Form />} />
-        <Route path='/editproduct/:id' element={<FormEdit />} />
-        <Route path='/tienda' element={<Tienda />} />
-        <Route path='/:id' element={<Detail/>} />
-        <Route path='/carrito' element={<Carrito />} />
-        <Route path='*' element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/editproduct/:id" element={<FormEdit />} />
+        <Route path="/tienda" element={<Tienda />} />
+        <Route path="/checkout-success" element={<CheckoutSuccess />} />
+        <Route path="/:id" element={<Detail />} />
+        {userInfo && <Route path="/usuario" element={<UserDashboard />} />}
+        <Route path="/reviews" element={<ReviewsAcceptance />} />
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

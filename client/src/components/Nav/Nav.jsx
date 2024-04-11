@@ -1,8 +1,12 @@
 import './Nav.css';
-import { useState,useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Link as ScrollLink } from 'react-scroll';
+
 import logo from '../../assets/images/nombre.png'
+import sun from '../../assets/icons/sun-icon.svg'
+import moon from '../../assets/icons/moon-icon.svg'
+
+import { useState, useEffect } from "react";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link as ScrollLink } from 'react-scroll';
 import { useStore } from '../../store.js';
 
 export default function Nav() {
@@ -16,13 +20,15 @@ export default function Nav() {
   const getFilteredProducts = useStore((state) => state.getFilteredProducts);
   const setFilters = useStore((state) => state.setFilters);
   const resetFilters = useStore((state) => state.resetFilters);
-  const [search, setSearch] = useState('');
-  const [isMenuDown, setIsMenuDown] = useState(false);
-  const navigate = useNavigate();
   const cart = useStore((state) => state.cart);
+  const userInfo = useStore((state) => state.userInfo);
+  const [search, setSearch] = useState('');
+  const [isDarkTheme, setIsDarkTheme] = useState(window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const [isMenuDown, setIsMenuDown] = useState(false);
   const [totalItemsInCart, setTotalItemsInCart] = useState(0);
-
-
+  const location = useLocation();
+  const navigate = useNavigate();
+    
   const listas = [
     {
       lista: listaGeneros,
@@ -59,12 +65,16 @@ export default function Nav() {
 
   useEffect(() => {
     let totalQuantity = 0;
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    storedCart.forEach(product => {
-      totalQuantity += product.quantity;
-    });
-  setTotalItemsInCart(totalQuantity);
-}, [cart]);
+
+    if (cart) {
+      cart.forEach(product => {
+        totalQuantity += product.quantity;
+      });
+    }
+
+    setTotalItemsInCart(totalQuantity);
+  }, [cart]);
+
 
   const handleScroll = () => {
     setTimeout(() => {
@@ -133,6 +143,9 @@ export default function Nav() {
     try {
       const { id } = event.target;
       const name = event.target.getAttribute('name');
+      if (location.path !== '/tienda') {
+        resetFilters();
+      }
       setFilters(name, id);
       await getFilteredProducts();
       setIsMenuDown(false);
@@ -150,6 +163,10 @@ export default function Nav() {
     } catch (error) {
       console.error(error);
     }
+  }
+  const toggleTheme = () => {
+    document.body.classList.toggle('dark');
+    setIsDarkTheme(!isDarkTheme);
   }
 
   return (
@@ -178,22 +195,34 @@ export default function Nav() {
           <input
             type="search"
             name="search"
-            placeholder="Search"
+            placeholder="Buscar"
             value={search}
             onChange={(event) => setSearch(event.target.value)} />
           <button className='nav-bar-search-button' onClick={handleSearch} >🔍</button>
         </div>
-        <div>
-          <button className='nav-bar-button' >Ingresar / Perfil</button>
-          <NavLink to='/carrito'>
-            <button className='nav-bar-button' >
-              Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
-            </button>
-          </NavLink>
-          <NavLink to='/checkout'>
-            <button className='nav-bar-button' >CheckOut</button>
-          </NavLink>
-        </div>
+        {userInfo && <NavLink to='/usuario'>
+          <button className='nav-bar-button' >Mi Perfil</button>
+        </NavLink>}
+        {!userInfo && <NavLink to='/login'>
+          <button className='nav-bar-button' >Ingresar</button>
+        </NavLink>
+        }
+        <NavLink to='/carrito'>
+          <button className='nav-bar-button' >
+            Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
+          </button>
+        </NavLink>
+        {/* {userInfo && userInfo.isAdmin ?  */}
+        <NavLink to='/form'>
+          <button className='nav-bar-button' >Crear Producto</button>
+        </NavLink>
+        {/* : null } */}
+        <button
+          className='nav-bar-button theme-button'
+          onClick={toggleTheme}
+        >
+          <img src={isDarkTheme ? moon : sun} alt='sun' />
+        </button>
       </nav>
       <div className='categories-window' key='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
         {listas.map((list, index) => (

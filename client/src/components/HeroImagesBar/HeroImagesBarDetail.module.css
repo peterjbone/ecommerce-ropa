@@ -15,6 +15,7 @@
 .heroImage {
   width: 100%;
   flex-shrink: 0;
+  transition: transform 500ms ease-in-out;
 }
 
 .heroImageButton {

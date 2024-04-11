@@ -1,0 +1,16 @@
+.buttonComprar {
+	padding: 12px;
+	margin-left: 20px;
+	font-size: 16px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	margin-top: -10px;
+	cursor: pointer;
+}
+
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
