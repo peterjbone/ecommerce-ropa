@@ -20,10 +20,9 @@ export default function Detail() {
   const getCart = useStore((state) => state.getCart);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const cartToken = localStorage.getItem("cartToken");
-  const cart = useStore((state)=> state.cart)
-   console.log(cart)
-  console.log(productoDetail);
+  const cart = useStore((state)=> state.cart);
 
+  console.log(productoDetail)
   useEffect(() => {
     const cartToken = localStorage.getItem("cartToken");
     if (cartToken) {
@@ -80,16 +79,13 @@ export default function Detail() {
         productoDetail.opciones[selectedColorIndex].tallas[selectedSizeIndex];
   
       if (selectedSize.stock > 0) {
-   
         const productInCart = cart.find(product => (
           product.opcion.color === selectedColor &&
           product.opcion.talla === selectedSize.talla
         ));
-  
         
         const totalQuantityInCart = productInCart ? productInCart.quantity : 0;
   
-       
         if (totalQuantityInCart < selectedSize.stock) {
           const selectedProduct = {
             nombre: productoDetail.nombre,
@@ -176,28 +172,27 @@ export default function Detail() {
             {productoDetail && productoDetail.subcategoria}
           </p>
 
-		  <p>
-  {productoDetail.precioOriginal === null ? (
-    <span className={styles.precioContainer}>
-      Precio: ${productoDetail.precio}
-    </span>
-  ) : (
-    <>
-      <div className={styles.precioOriginal}>
-        <span>
-          Precio original: ${productoDetail.precioOriginal}
-        </span>{" "}
-        <span className={styles.redSquare}>
-          -{productoDetail.oferta.Descuento}%
-        </span>
-      </div>
-      <div className={styles.precioDescuento}>
-        Precio con descuento: ${productoDetail.precio}
-      </div>
-    </>
-  )}
-</p>
-
+          <p>
+            {productoDetail.precioOriginal === null ? (
+              <span className={styles.precioContainer}>
+                Precio: ${productoDetail.precio}
+              </span>
+            ) : (
+              <>
+                <div className={styles.precioOriginal}>
+                  <span>
+                    Precio original: ${productoDetail.precioOriginal}
+                  </span>{" "}
+                  <span className={styles.redSquare}>
+                    -{productoDetail.oferta.Descuento}%
+                  </span>
+                </div>
+                <div className={styles.precioDescuento}>
+                  Precio con descuento: ${productoDetail.precio.toFixed(2)}
+                </div>
+              </>
+            )}
+          </p>
 
           <div>
             <h3>Opciones:</h3>
@@ -228,11 +223,13 @@ export default function Detail() {
                           <div
                             key={sizeIndex}
                             className={`${styles.sizeItem} ${
-                              selectedSizeIndex === sizeIndex
-                                ? styles.selectedSize
-                                : ""
+                              selectedSizeIndex === sizeIndex && tallaData.stock > 0 ? styles.selectedSize : tallaData.stock === 0 ? styles.disabledSize : ""
                             }`}
-                            onClick={() => handleSizeChange(sizeIndex)}
+                            onClick={() => {
+                              if (tallaData.stock > 0) {
+                                handleSizeChange(sizeIndex);
+                              }
+                            }}
                           >
                             {tallaData.talla} (Stock: {tallaData.stock})
                           </div>

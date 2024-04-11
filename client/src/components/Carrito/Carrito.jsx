@@ -10,12 +10,12 @@ const Carrito = () => {
     const incrementQuantity = useStore((state) => state.incrementQuantity);
     const decrementQuantity = useStore((state) => state.decrementQuantity);
     const getCart = useStore((state) => state.getCart);
+    const setCart = useStore((state)=> state.setCart)
     const [totalPrice, setTotalPrice] = useState(0);
     const cart = useStore((state) => state.cart);
-    const setCart = useStore((state)=> state.setCart)
     const cartToken = localStorage.getItem("cartToken");
     const userInfo = useStore((state) => state.userInfo);
-    console.log(cart)
+
     useEffect(() => {
         const cartToken = localStorage.getItem("cartToken");
         if (cartToken) {
@@ -34,14 +34,12 @@ const Carrito = () => {
         setTotalPrice(roundedTotalPrice);
     }, [cart]);
 
-  
     const VaciarCarrito = async () => {
         try {
             const confirm = window.confirm("¿Está seguro de que desea vaciar el carrito?")
             if (cartToken && confirm) {
                 await axios.put(`http://localhost:3001/vaciarCarrito/${cartToken}`);
                 console.log("Carrito eliminado correctamente");
-               
                 setCart([]); 
             } else {
                 console.error("No se encontró un token de carrito en el almacenamiento local");
@@ -51,8 +49,6 @@ const Carrito = () => {
         }
     };
     
-    
-        
     const handleRemoveFromCart = (variantId) => {
         const cartToken = localStorage.getItem("cartToken");
         const confirmDelete = window.confirm("¿Está seguro de que desea eliminar este producto?");
@@ -88,9 +84,6 @@ const Carrito = () => {
             }
         }
     };
-
-    console.log("USERINFO");
-    console.log(userInfo);
 
     return (
         <div className={styles.cartContainer}>
@@ -134,7 +127,7 @@ const Carrito = () => {
                                                     <span className={styles.discountPercentage}>-{product.oferta.Descuento}%</span>
                                                     <br />
                                                     <strong>Precio Final: </strong>
-                                                    <span className={styles.finalPrice}>${product.precio}</span>
+                                                    <span className={styles.finalPrice}>${product.precio.toFixed(2)}</span>
                                                 </span>
                                             ) : (
                                                 <span className={styles.price}>
@@ -171,29 +164,28 @@ const Carrito = () => {
                     ))}
                 </div>
             )}
-          {cart && cart.length > 1 && userInfo.id ? (
-    <div className={styles.totalPriceContainer}>
-        <button onClick={VaciarCarrito} className={styles.vaciarCarrito}>Vaciar Carrito</button>
-        <p className={styles.totalPriceLabel}>Precio Total:</p>
-        <p className={styles.totalPrice}>${totalPrice}</p>
-        <PayButton cartItems={cart} userId={userInfo.id}/>
-    </div>
-) : (
-    userInfo.id ? (
-        <div className={styles.totalPriceContainer}>
-            <p className={styles.totalPriceLabel}>Precio Total:</p>
-            <p className={styles.totalPrice}>${totalPrice}</p>
-            <PayButton cartItems={cart} userId={userInfo.id}/>
-        </div>
-    ) : (
-        <Link to={"/login"}>
-            <button className={`${styles.buttonLogin}`}>
-                Iniciar sesión para Comprar
-            </button>
-        </Link>
-    )
-)}
-
+            {cart && cart.length > 1 && userInfo.id ? (
+                <div className={styles.totalPriceContainer}>
+                    <button onClick={VaciarCarrito} className={styles.vaciarCarrito}>Vaciar Carrito</button>
+                    <p className={styles.totalPriceLabel}>Precio Total:</p>
+                    <p className={styles.totalPrice}>${totalPrice}</p>
+                    <PayButton cartItems={cart} userId={userInfo.id}/>
+                </div>
+            ) : (
+                userInfo.id ? (
+                    <div className={styles.totalPriceContainer}>
+                        <p className={styles.totalPriceLabel}>Precio Total:</p>
+                        <p className={styles.totalPrice}>${totalPrice}</p>
+                        <PayButton cartItems={cart} userId={userInfo.id}/>
+                    </div>
+                ) : (
+                    <Link to={"/login"}>
+                        <button className={`${styles.buttonLogin}`}>
+                            Iniciar sesión para Comprar
+                        </button>
+                    </Link>
+                )
+            )}
         </div>
     );
 };

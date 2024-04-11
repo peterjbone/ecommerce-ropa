@@ -186,3 +186,9 @@
 .precioDescuento {
   margin-top: 8px;
 }
+
+.disabledSize {
+  color: black;
+  cursor: not-allowed;
+  background-color: #999;
+}
