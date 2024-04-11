@@ -38,13 +38,13 @@ const login = async (request, response) => {
       // const matchPassword = await bcrypt.compare(password, foundUser.password);
       // if (matchPassword) {
 
-        // const token = await createAccessToken({ id: foundUser._id });
-        // request.cookie("token", token);
+        const token = await createAccessToken({ id: foundUser._id });
+        response.cookie("token", token);
 
         const purchases = await Compra.find({ userId: foundUser._id });
         const reviews = await Resena.find({ usuario_id: foundUser._id });
 
-        return response.status(200).json({ foundUser, purchases, reviews/* , token */ });
+        return response.status(200).json({ foundUser, purchases, reviews , token });
       } else {
         return request.status(400).json({ message: 'Contraseña inválida' });
       }
@@ -57,17 +57,17 @@ const login = async (request, response) => {
   }
 }
 const getUserById = async (req, res) => {
-  // const { id } = req.params;
-  // if (!id) {
-  //   return res.status(404).json({ message: "Usuario no encontrado" });
-  // }
-  // try {
-  //   const userFound = await Usuario.findById(id);
-  //   res.status(200).json(userFound);
-  // } catch (err) {
-  //   console.error(err);
-  //   res.status(500).json({ message: err.message });
-  // }
+  const { id } = req.params;
+  if (!id) {
+    return res.status(404).json({ message: "Usuario no encontrado" });
+  }
+  try {
+    const userFound = await Usuario.findById(id);
+    res.status(200).json(userFound);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
 }
 const getPasswordAuth = async (request, response) => {
   try {

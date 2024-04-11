@@ -54,7 +54,7 @@ export const useStore = create((set) => ({
   getUserById: async (userId) => {
     try {
       const { data } = await axios.get(`http://localhost:3001/auth/${userId}`)
-      set({ user: data })
+      set({ userInfo: data })
     } catch (error) {
       console.error("Error al buscar usuario por Id:", error);
       throw error;
@@ -94,7 +94,7 @@ export const useStore = create((set) => ({
           reviews: data.reviews,
         },
       }));
-      // cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
+      cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
     } catch (error) {
       console.error("Error al iniciar sesión", error);
       throw error;
@@ -119,6 +119,7 @@ export const useStore = create((set) => ({
   logOut: async () => {
     try {
       await axios('http://localhost:3001/auth/logout');
+      cookies.remove('token');
       set((state) => ({
         ...state,
         userInfo: null

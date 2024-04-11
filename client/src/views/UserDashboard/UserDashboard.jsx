@@ -7,7 +7,6 @@ import { useStore } from '../../store';
 import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
 
 import { ToastContainer, toast } from 'react-toastify';
-import Cookies from 'universal-cookie';
 
 export default function UserDashboard() {
   const userInfo = useStore((state) => state.userInfo);
