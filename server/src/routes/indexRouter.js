@@ -34,7 +34,7 @@ router.post("/decrementQuantity", decrementoCarrito);
 router.get("/resena", getReviews);
 router.get("/resena/:id", updateReview);
 router.post("/resena", postReview);
-router.delete("/resena", deleteReview);
+router.delete("/resena/:id", deleteReview);
 router.put("/updateFavorite", updateFavorite);
 router.post("/getFavorites", getFavorites);
 router.put("/updateProduct/:id", updateProduct);

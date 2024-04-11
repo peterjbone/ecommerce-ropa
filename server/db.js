@@ -57,7 +57,6 @@ async function insertarResenas() {
       reviewsIndex = reviewsEndIndex;
       productsIndex++;
     }
-    console.log(modifiedReviews);
 
     await Resena.insertMany(modifiedReviews);
     console.log("Reseñas insertadas correctamente");
