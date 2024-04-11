@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const router = express.Router();
-const Carrito = require("../models/Carrito.js");
+const Producto = require("../models/Producto.js");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_KEY);
 
@@ -11,8 +11,10 @@ router.post("/create-checkout-session", async (req, res) => {
   const products = req.body.formatCart.map((item) => {
     return {
       productId: item._id,
+      idProductOriginal: item.idProductOriginal,
       productColor: item.color,
       quantity: item.quantity,
+      productSize: item.talla,
     };
   });
 
@@ -106,24 +108,61 @@ const Compra = require("../models/Compra.js");
 
 const createOrder = async (customer, data) => {
   const products = JSON.parse(customer.metadata.cart);
-
-  //? Nueva orden de compra en la BD
-  const newOrder = new Compra({
-    userId: customer.metadata.userId,
-    customerId: data.customer,
-    paymentIntentId: data.payment_intent,
-    products,
-    subtotal: data.amount_subtotal,
-    total: data.amount_total,
-    shipping: data.customer_details,
-    payment_status: data.payment_status,
-  });
+  console.log("products", products);
 
   try {
+    for (const product of products) {
+      const productIdOriginal = product.idProductOriginal;
+
+      const selectedColor = product.productColor;
+      const quantity = product.quantity;
+
+      const dbProduct = await Producto.findById(productIdOriginal);
+
+      if (!dbProduct) {
+        throw new Error("Producto no encontrado");
+      }
+
+      const selectedOptionIndex = dbProduct.opciones.findIndex((option) =>
+        option.colores.nombres.includes(selectedColor)
+      );
+      if (selectedOptionIndex === -1) {
+        throw new Error("Opción de color no encontrada para el producto");
+      }
+
+      const selectedSize = product.productSize;
+
+      const selectedSizeIndex = dbProduct.opciones[
+        selectedOptionIndex
+      ].tallas.findIndex((size) => size.talla === selectedSize);
+
+      if (selectedSizeIndex === -1) {
+        throw new Error("Talla seleccionada no encontrada en las opciones");
+      }
+
+      dbProduct.opciones[selectedOptionIndex].tallas[selectedSizeIndex].stock -=
+        quantity;
+
+      dbProduct.markModified("opciones");
+      await dbProduct.save();
+    }
+
+    // Crear y guardar la orden de compra en la BD
+    const newOrder = new Compra({
+      userId: customer.metadata.userId,
+      customerId: data.customer,
+      paymentIntentId: data.payment_intent,
+      products,
+      subtotal: data.amount_subtotal,
+      total: data.amount_total,
+      shipping: data.customer_details,
+      payment_status: data.payment_status,
+    });
+
     const savedOrder = await newOrder.save();
     console.log("Compra procesada:", savedOrder);
-    //todo: aquí deberiamos enviar un email al usuario sobre la compra exitosa del producto
-    //todo: borra token de carrito
+
+    //todo: aquí deberíamos enviar un email al usuario sobre la compra exitosa del producto
   } catch (error) {
     console.log(error);
   }

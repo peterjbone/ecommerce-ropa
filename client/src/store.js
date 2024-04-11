@@ -316,11 +316,20 @@ export const useStore = create((set) => ({
     try {
       const { data } = await axios(`http://localhost:3001/producto/${id}`);
       const { product, reviews } = data;
-      set(() => ({ productoDetail: product, productoReviews: reviews }));
+
+      if (product) {
+        set(() => ({
+          productoDetail: product,
+          productoReviews: reviews || [],
+        }));
+      } else {
+        console.log("No se encontró el producto.");
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error al obtener el producto:", error);
     }
   },
+
   createReview: async (review) => {
     try {
       const { data } = await axios.post("http://localhost:3001/resena", review);
@@ -357,6 +366,7 @@ export const useStore = create((set) => ({
       const response = await axios.get(
         `http://localhost:3001/carrito/${cartToken}`
       );
+      console.log(response);
       set((state) => ({
         ...state,
         cart: response.data.products,
