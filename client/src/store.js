@@ -25,6 +25,7 @@ export const useStore = create((set) => ({
   listaTallas: [],
   productoDetail: "",
   productoReviews: "",
+  resenas: [],
   filtros: {
     busqueda: "",
     marca: [],
@@ -308,6 +309,34 @@ export const useStore = create((set) => ({
       set(() => ({ productoDetail: product, productoReviews: reviews }));
     } catch (error) {
       console.error(error);
+      throw error;
+    }
+  },
+  getAllReviews: async () => {
+    try {
+      const { data } = await axios('http://localhost:3001/resena');
+      set(() => ({
+        resenas: data
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  updateReview: async (id) => {
+    try {
+      await axios(`http://localhost:3001/resena/${id}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  deleteReview: async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/resena/${id}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   },
   createReview: async (review) => {
@@ -319,6 +348,7 @@ export const useStore = create((set) => ({
       }));
     } catch (error) {
       console.error(error);
+      throw error;
     }
   },
   updateFavorite: async (id) => {

@@ -30,7 +30,7 @@
 .activeUserTab,
 .activeUserTab:hover {
   transform: scale(1.2) translateX(15%);
-  font-weight: bold;
+  font-family: MornMedium;
 }
 
 .logout-button {

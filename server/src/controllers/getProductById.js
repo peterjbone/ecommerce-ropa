@@ -85,7 +85,7 @@ const getProductById = async (request, response) => {
       response.status(404).send("No se encontró el producto.");
     }
   } catch (error) {
-    console.log("Error interno de ruta /getProductById", error);
+    console.error("Error interno de ruta /getProductById", error);
     response.status(500).json({ message: error.message });
   }
 };

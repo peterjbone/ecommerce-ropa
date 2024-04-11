@@ -26,7 +26,12 @@ const ResenaSchema = new Schema({
   esAceptada: {
     type: Boolean,
     required: true
-  }
+  },
+  creadoEn: {
+		type: Date,
+		immutable: true,
+		default: () => Date.now()
+	},
 });
 
 const Resena = models.Resena || model("Resena", ResenaSchema);

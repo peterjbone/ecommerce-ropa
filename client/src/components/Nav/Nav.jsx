@@ -212,9 +212,6 @@ export default function Nav() {
             Carrito {totalItemsInCart > 0 && <span>{totalItemsInCart}</span>}
           </button>
         </NavLink>
-        <NavLink to='/checkout'>
-          <button className='nav-bar-button' >CheckOut</button>
-        </NavLink>
         {/* {userInfo && userInfo.isAdmin ?  */}
         <NavLink to='/form'>
           <button className='nav-bar-button' >Crear Producto</button>

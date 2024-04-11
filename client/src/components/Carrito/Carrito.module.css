@@ -104,7 +104,7 @@
 }
 
 .totalPriceLabel {
-	font-weight: bold;
+  font-family: MornBold;
 	font-size: 20px;
 	margin-right: 10px;
 }

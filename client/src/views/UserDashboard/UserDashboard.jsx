@@ -160,7 +160,6 @@ export default function UserDashboard() {
   const handleReauthentication = async (event) => {
     event.preventDefault();
     try {
-      console.log(changeData.deletePassword);
       await reauthenticate(changeData.deletePassword);
       setChangeData({
         ...changeData,
