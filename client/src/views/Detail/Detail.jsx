@@ -9,6 +9,8 @@ import HeroImagesBarDetail from "../../components/HeroImagesBar/HeroImagesBarDet
 import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import Reviews from "../../components/Reviews/Reviews";
 
+import { ToastContainer, toast } from "react-toastify";
+
 export default function Detail() {
 	const navigate = useNavigate();
 	const { id } = useParams();
@@ -97,6 +99,9 @@ export default function Detail() {
 					quantity: 1
 				};
 				addToCart(selectedProduct, cartToken);
+				toast.success("Agregado al carrito", {
+					autoClose: 500
+				});
 			} else {
 				console.log("Esta talla está agotada");
 			}
@@ -236,6 +241,18 @@ export default function Detail() {
 					/>
 				</div>
 				<Reviews reviews={productoReviews} />
+				<ToastContainer 
+					position="top-center"
+					hideProgressBar={true}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="colored"
+					transition: Bounce
+				/>
 			</div>
 		);
 	}
