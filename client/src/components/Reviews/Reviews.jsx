@@ -99,7 +99,6 @@ export default function Reviews({ reviews }) {
           ) : null}
           {reviewsToShow.map((review, index) => (
             <div className='review-container' key={index}>
-              {console.log(review)}
               <div className='rating-container'>
                 <h3>{review.valoracion.toFixed(1)}</h3>
                 <div>{renderStars(review.valoracion)}</div>

@@ -9,6 +9,7 @@
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid var(--filter-border-color);
+  background-color: var(--review-acceptance-card-background-color);
   text-transform: capitalize;
   padding: 10px;
 }
@@ -51,7 +52,6 @@
   cursor: pointer;
   border: none;
   font-family: inherit;
-  font-weight: bold;
   color: var(--letters-color);
   transition: 0.2s ease-out;
 }
@@ -62,6 +62,10 @@
 
 .review-acceptance-accept-button:hover {
   color: green;
+}
+
+.review-acceptance-cancel-button:hover {
+  color: orange;
 }
 
 .review-acceptance-delete-button:hover {

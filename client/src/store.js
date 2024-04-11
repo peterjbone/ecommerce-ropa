@@ -25,7 +25,7 @@ export const useStore = create((set) => ({
   listaTallas: [],
   productoDetail: "",
   productoReviews: "",
-  resenas: "",
+  resenas: [],
   filtros: {
     busqueda: "",
     marca: [],

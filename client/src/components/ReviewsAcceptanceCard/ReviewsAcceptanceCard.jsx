@@ -4,14 +4,12 @@ import { useStore } from "../../store";
 import starIcon from '../../assets/icons/star-icon.svg';
 import halfStarIcon from '../../assets/icons/half-star-icon.svg';
 
-export default function ReviewsAcceptanceCard({ review, isAccepted }) {
+export default function ReviewsAcceptanceCard({ review }) {
   const getAllReviews = useStore(state => state.getAllReviews);
   const updateReview = useStore(state => state.updateReview);
   const deleteReview = useStore(state => state.deleteReview);
 
-  console.log(review);
-
-  console.log(review);
+  console.log(review.esAceptada);
 
   const handleAcceptReview = async (id) => {
     try {
@@ -42,7 +40,7 @@ export default function ReviewsAcceptanceCard({ review, isAccepted }) {
       <p>{review.descripcion}</p>
       <div className='review-acceptance-button-container' >
         <button
-          className={`review-acceptance-button ${review.esAceptada ? 'review-acceptance-accept-button' : 'review-acceptance-delete-button'}`}
+          className={`review-acceptance-button ${review.esAceptada ? 'review-acceptance-accept-button' : 'review-acceptance-cancel-button'}`}
           onClick={() => handleAcceptReview(review._id)}
         >
           {review.esAceptada ? 'Aceptar' : 'Cancelar'}
