@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+// import Cookies from "universal-cookie";
+// const cookies = new Cookies();
 
 export const useStore = create((set) => ({
   user: null,
