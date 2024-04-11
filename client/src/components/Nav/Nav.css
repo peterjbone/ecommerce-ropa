@@ -35,7 +35,6 @@
   cursor: pointer;
   border: none;
   font-family: inherit;
-  font-weight: bold;
   color: var(--letters-color);
   transition: 0.2s ease-out;
 }
@@ -80,6 +79,7 @@
 
 .nav-bar-button:hover {
   color: var(--nav-button-letter-hover-color);
+  font-family: MornBold;
 }
 
 .categories-window {
@@ -103,7 +103,7 @@
 .categories-window label {
   grid-column: span 6;
   font-size: 14px;
-  font-weight: bold;
+  font-family: MornBold;
   color: black;
 }
 

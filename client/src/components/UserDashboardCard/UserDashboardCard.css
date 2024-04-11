@@ -59,7 +59,6 @@
 
 .user-card-rating-button:hover {
   transform: scale(1.2);
-  font-weight: bold;
   color: var(--categories-letter-hover-color);
 }
 
