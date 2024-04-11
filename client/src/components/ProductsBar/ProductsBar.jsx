@@ -13,7 +13,6 @@ export default function ProductsBar({ title, products }) {
       if (index === products?.length - 1) return 0;
       return index + 1;
     });
-    // console.log(productPosition, products.length / 5);
   }
 
   function showPrevImage() {

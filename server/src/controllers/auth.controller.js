@@ -129,7 +129,6 @@ const changePassword = async (request, response) => {
   }
 }
 const logout = async (request, response) => {
-  console.log('here');
   try {
     // request.cookie("token", "", {
     //   expires: new Date(0)

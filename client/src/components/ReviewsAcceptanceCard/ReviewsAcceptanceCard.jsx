@@ -9,8 +9,6 @@ export default function ReviewsAcceptanceCard({ review }) {
   const updateReview = useStore(state => state.updateReview);
   const deleteReview = useStore(state => state.deleteReview);
 
-  console.log(review.esAceptada);
-
   const handleAcceptReview = async (id) => {
     try {
       await updateReview(id);
