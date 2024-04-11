@@ -1,47 +1,55 @@
 .container {
-  margin-top: 8%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	margin-top: 8%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 .title {
-  font-size: 2.5rem;
-  font-weight: bolder;
+	font-size: 2.5rem;
+	font-weight: bolder;
 }
 
 .form {
-  margin-top: 2rem;
-  display: block;
-  align-items: center;
-  width: 25%;
+	margin-top: 2rem;
+	display: block;
+	align-items: center;
+	width: 25%;
 }
 
 .input {
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 1rem;
-  border: 1px solid black;
-  padding: 1rem;
-  border-radius: 5px;
-  font-size: large;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+	border: 1px solid black;
+	border-radius: 5px;
+	font-size: 1.2rem;
 }
 
 .container .form .span {
-  font-size: small;
-  font-style: italic;
-  float: right;
+	display: block;
+	font-size: 1rem;
+	font-style: italic;
+	text-align: right;
 }
 
 .button {
-  margin-top: 3rem;
-  width: 100%;
-  padding: .5rem;
-  border-radius: 5px;
-  border: 1px solid black;
-  margin-bottom: 1rem;
+	box-sizing: border-box;
+	margin: 1.5rem 0 1rem;
+	width: 60%;
+	padding: 0.8rem 0.5rem;
+	border-radius: 5px;
+	border: 1px solid black;
+	font-weight: 700;
+	font-size: 1.2rem;
+
+	color: #fff;
+	background-color: #4f46e5;
 }
 
 .button:hover {
-  cursor: pointer;
+	transition: 0.5s;
+	cursor: pointer;
+	filter: brightness(1.2);
 }

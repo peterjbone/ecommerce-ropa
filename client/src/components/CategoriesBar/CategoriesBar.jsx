@@ -9,17 +9,17 @@ export default function CategoriesBar({ title, name, categories, products }) {
 	const setFilters = useStore((state) => state.setFilters);
 	const getFilteredProducts = useStore((state) => state.getFilteredProducts);
 
-  const handleCategorySearch = async (event) => {
-    try {
-      const { name, id } = event.target;
-      resetFilters();
-      setFilters(name, id);
-      await getFilteredProducts();
-      navigate('/tienda');
-    } catch (error) {
-      console.error(error);
-    }
-  }
+	const handleCategorySearch = async (event) => {
+		try {
+			const { name, id } = event.target;
+			resetFilters();
+			setFilters(name, id);
+			await getFilteredProducts();
+			navigate("/tienda");
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	return (
 		<div style={{ display: "flex", flexDirection: "column" }} id="categories">
@@ -28,7 +28,7 @@ export default function CategoriesBar({ title, name, categories, products }) {
 				{categories.map((category) => (
 					<div key={category} className="category-container">
 						<div className="category-image-container">
-							<img
+							{/* <img
                 className='image'
                 src={name === 'color' 
                 ? products.find(product => product.opciones[0]['colores'].nombres[0] === category)?.opciones[0]?.imagenes[0] 
@@ -36,7 +36,7 @@ export default function CategoriesBar({ title, name, categories, products }) {
                 alt={category}
                 id={category}
                 name={name}
-                onClick={handleCategorySearch} />
+                onClick={handleCategorySearch} /> */}
 						</div>
 						<h2>{category}</h2>
 					</div>
