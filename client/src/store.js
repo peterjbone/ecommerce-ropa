@@ -54,7 +54,7 @@ export const useStore = create((set) => ({
 
   getUserById: async (userId) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/auth/${userId}`)
+      const { data } = await axios.get(`https://ecommerce-ropa-production.up.railway.app/auth/${userId}`)
       set({ user: data })
     } catch (error) {
       console.error("Error al buscar usuario por Id:", error);
@@ -75,7 +75,7 @@ export const useStore = create((set) => ({
   },
   register: async (name, email, password) => {
     try {
-      await axios.post('http://localhost:3001/auth/register', { name, email, password });
+      await axios.post('https://ecommerce-ropa-production.up.railway.app/auth/register', { name, email, password });
     } catch (error) {
       console.error("Error al registrar usuario", error);
       throw error;
@@ -83,7 +83,7 @@ export const useStore = create((set) => ({
   },
   login: async (email, password) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/auth/login', { email, password });
+      const { data } = await axios.post('https://ecommerce-ropa-production.up.railway.app/auth/login', { email, password });
       set(() => ({
         userInfo: data.foundUser
       }));
@@ -103,7 +103,7 @@ export const useStore = create((set) => ({
   },
   changeEmail: async (email, password) => {
     try {
-      await axios.post('http://localhost:3001/auth/changeEmail', { email, password });
+      await axios.post('https://ecommerce-ropa-production.up.railway.app/auth/changeEmail', { email, password });
     } catch (error) {
       console.error("Error al cambiar email", error);
       throw error;
@@ -111,7 +111,7 @@ export const useStore = create((set) => ({
   },
   changePassword: async (currentPassword, newPassword) => {
     try {
-      await axios.post('http://localhost:3001/auth/changePassword', { currentPassword, newPassword });
+      await axios.post('https://ecommerce-ropa-production.up.railway.app/auth/changePassword', { currentPassword, newPassword });
     } catch (error) {
       console.error("Error al cambiar contraseña", error);
       throw error;
@@ -119,7 +119,7 @@ export const useStore = create((set) => ({
   },
   logOut: async () => {
     try {
-      await axios('http://localhost:3001/auth/logout');
+      await axios('https://ecommerce-ropa-production.up.railway.app/auth/logout');
       set((state) => ({
         ...state,
         userInfo: null
@@ -131,7 +131,7 @@ export const useStore = create((set) => ({
   },
   reauthenticate: async (password) => {
     try {
-      await axios.post('http://localhost:3001/auth/reauthenticate', { password });
+      await axios.post('https://ecommerce-ropa-production.up.railway.app/auth/reauthenticate', { password });
     } catch (error) {
       console.error("Error al reatenticar usuario", error);
       throw error;
@@ -139,7 +139,7 @@ export const useStore = create((set) => ({
   },
   deleteAccount: async (id) => {
     try {
-      await axios.delete('http://localhost:3001/auth/delete', { id });
+      await axios.delete('https://ecommerce-ropa-production.up.railway.app/auth/delete', { id });
       set((state) => ({
         ...state,
         userInfo: null
@@ -304,7 +304,7 @@ export const useStore = create((set) => ({
   },
   getProductById: async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/producto/${id}`);
+      const { data } = await axios(`https://ecommerce-ropa-production.up.railway.app/producto/${id}`);
       const { product, reviews } = data;
       set(() => ({ productoDetail: product, productoReviews: reviews }));
     } catch (error) {
@@ -314,7 +314,7 @@ export const useStore = create((set) => ({
   },
   getAllReviews: async () => {
     try {
-      const { data } = await axios('http://localhost:3001/resena');
+      const { data } = await axios('https://ecommerce-ropa-production.up.railway.app/resena');
       set(() => ({
         resenas: data
       }));
@@ -325,7 +325,7 @@ export const useStore = create((set) => ({
   },
   updateReview: async (id) => {
     try {
-      await axios(`http://localhost:3001/resena/${id}`);
+      await axios(`https://ecommerce-ropa-production.up.railway.app/resena/${id}`);
     } catch (error) {
       console.error(error);
       throw error;
@@ -333,7 +333,7 @@ export const useStore = create((set) => ({
   },
   deleteReview: async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/resena/${id}`);
+      await axios.delete(`https://ecommerce-ropa-production.up.railway.app/resena/${id}`);
     } catch (error) {
       console.error(error);
       throw error;
@@ -341,7 +341,7 @@ export const useStore = create((set) => ({
   },
   createReview: async (review) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/resena', { review });
+      const { data } = await axios.post('https://ecommerce-ropa-production.up.railway.app/resena', { review });
       set((state) => ({
         ...state.userInfo,
         reviews: data
@@ -353,7 +353,7 @@ export const useStore = create((set) => ({
   },
   updateFavorite: async (id) => {
     try {
-      const { data } = await axios.put('http://localhost:3001/updateFavorite', { userId: useStore.getState().userInfo._id, productId: id });
+      const { data } = await axios.put('https://ecommerce-ropa-production.up.railway.app/updateFavorite', { userId: useStore.getState().userInfo._id, productId: id });
       set((state) => ({
         ...state,
         userInfo: {
@@ -368,7 +368,7 @@ export const useStore = create((set) => ({
   },
   getFavorites: async () => {
     try {
-      const { data } = await axios.post('http://localhost:3001/getFavorites', useStore.getState().userInfo.favorites);
+      const { data } = await axios.post('https://ecommerce-ropa-production.up.railway.app/getFavorites', useStore.getState().userInfo.favorites);
       set(() => ({ favoritos: data }));
     } catch (error) {
       console.error(error);
@@ -397,7 +397,7 @@ export const useStore = create((set) => ({
   getCart: async (cartToken) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/carrito/${cartToken}`
+        `https://ecommerce-ropa-production.up.railway.app/carrito/${cartToken}`
       );
       set(() => ({
         cart: response.data.products
@@ -410,7 +410,7 @@ export const useStore = create((set) => ({
     try {
       console.log(productToAdd);
       const { data } = await axios.post(
-        "http://localhost:3001/agregarCarrito",
+        "https://ecommerce-ropa-production.up.railway.app/agregarCarrito",
         { ...productToAdd, token }
       );
       console.log(data);
@@ -427,7 +427,7 @@ export const useStore = create((set) => ({
   removeFromCart: async (variantId, token) => {
     try {
       const { data } = await axios.delete(
-        "http://localhost:3001/removeFromCart",
+        "https://ecommerce-ropa-production.up.railway.app/removeFromCart",
         {
           data: { variantId, token }
         }
@@ -440,7 +440,7 @@ export const useStore = create((set) => ({
   incrementQuantity: async (variantId, token) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/incrementQuantity",
+        "https://ecommerce-ropa-production.up.railway.app/incrementQuantity",
         { variantId, token }
       );
       set({ cart: response.data.carrito.products });
@@ -454,7 +454,7 @@ export const useStore = create((set) => ({
   decrementQuantity: async (variantId, token) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/decrementQuantity",
+        "https://ecommerce-ropa-production.up.railway.app/decrementQuantity",
         { variantId, token }
       );
 
