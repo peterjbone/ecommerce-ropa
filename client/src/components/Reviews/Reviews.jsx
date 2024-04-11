@@ -1,7 +1,9 @@
+import './Reviews.css';
+
 import { useState } from 'react';
+
 import starIcon from '../../assets/icons/star-icon.svg';
 import halfStarIcon from '../../assets/icons/half-star-icon.svg';
-import './Reviews.css';
 
 export default function Reviews({ reviews }) {
   const { allReviews, topReviews, bottomReviews, averageReviews, randomReviews } = reviews;
@@ -99,7 +101,7 @@ export default function Reviews({ reviews }) {
             <div className='review-container' key={index}>
               {console.log(review)}
               <div className='rating-container'>
-                <h3>{review.valoracion}</h3>
+                <h3>{review.valoracion.toFixed(1)}</h3>
                 <div>{renderStars(review.valoracion)}</div>
               </div>
               <h4>{review.nombreUsuario}</h4>

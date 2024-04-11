@@ -1,0 +1,69 @@
+.review-card-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--filter-border-color);
+  text-transform: capitalize;
+  padding: 10px;
+}
+
+.acceptance-rating-container {
+  width: 100%;
+  align-items: flex-start;
+}
+
+.acceptance-rating-container h4 {
+  margin-right: 10px;
+}
+
+.acceptance-rating-container h3 {
+  justify-self: flex-end;
+  margin-left: auto;
+}
+
+.acceptance-rating-container div {
+  width: 110px;
+  align-self: center;
+  justify-self: flex-end;
+}
+
+.review-card-container p {
+  font-size: 15px;
+}
+
+.review-acceptance-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.review-acceptance-button {
+  background: transparent;
+  width: 100px;
+  height: 8vh;
+  padding: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-weight: bold;
+  color: var(--letters-color);
+  transition: 0.2s ease-out;
+}
+
+.review-acceptance-button:hover {
+  transform: scale(1.2);
+}
+
+.review-acceptance-accept-button:hover {
+  color: green;
+}
+
+.review-acceptance-delete-button:hover {
+  color: red;
+}

@@ -12,11 +12,13 @@ import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
 import { getCookie } from "./utils/getCookie.js";
 import { jwtDecode } from "jwt-decode";
+import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getProductInfo = useStore((state) => state.getProductInfo);
   const getDestacados = useStore((state) => state.getDestacados);
+  const getAllReviews = useStore((state) => state.getAllReviews);
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
@@ -34,6 +36,7 @@ export default function App() {
         await getNuevos();
         await getOfertas();
         await getTendencia();
+        await getAllReviews();
       } catch (error) {
         console.error();
       }
@@ -69,6 +72,7 @@ export default function App() {
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/:id" element={<Detail />} />
         {userInfo && <Route path="/usuario" element={<UserDashboard />} />}
+        <Route path="/reviews" element={<ReviewsAcceptance />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
