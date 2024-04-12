@@ -136,20 +136,12 @@ const Carrito = () => {
 					))}
 				</div>
 			)}
-			{userInfo.id ? (
-				<div className={styles.totalPriceContainer}>
+			<div className={styles.totalPriceContainer}>
 					<p className={styles.totalPriceLabel}>Precio Total:</p>
 					<p className={styles.totalPrice}>${totalPrice}</p>
 					<PayButton cartItems={cart} userId={userInfo.id} />
 				</div>
-			) : (
-				<Link to={"/login"}>
-					<button className={`${styles.buttonLogin}`}>
-						Iniciar sesión para Comprar
-					</button>
-				</Link>
-			)}
-		</div>
+			</div>
 	);
 };
 
