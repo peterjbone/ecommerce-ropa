@@ -9,9 +9,12 @@ const addProductToCart = async (req, res) => {
       descripcion,
       marca,
       precio,
+      oferta,
+      precioOriginal,
       imagen,
       opcion,
       quantity,
+      idProductOriginal,
     } = req.body;
 
     const variantId = `${nombre}-${opcion.color}-${opcion.talla}`;
@@ -39,6 +42,8 @@ const addProductToCart = async (req, res) => {
         marca,
         genero,
         precio,
+        precioOriginal,
+        oferta,
         imagen,
         opcion: {
           color: opcion.color,
@@ -47,6 +52,7 @@ const addProductToCart = async (req, res) => {
         },
         quantity: +quantity,
         variantId,
+        idProductOriginal,
       });
     }
 

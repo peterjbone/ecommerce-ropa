@@ -41,7 +41,7 @@ export const useStore = create((set) => ({
     ordenado: "precio",
     ascendente: false,
     pagina: 1,
-    productosPorPagina: 100
+    productosPorPagina: 100,
   },
   filtrosSeleccionados: [],
   marcasDisponibles: [],
@@ -54,8 +54,8 @@ export const useStore = create((set) => ({
 
   getUserById: async (userId) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/auth/${userId}`)
-      set({ user: data })
+      const { data } = await axios.get(`http://localhost:3001/auth/${userId}`);
+      set({ user: data });
     } catch (error) {
       console.error("Error al buscar usuario por Id:", error);
       throw error;
@@ -429,7 +429,7 @@ export const useStore = create((set) => ({
       const { data } = await axios.delete(
         "http://localhost:3001/removeFromCart",
         {
-          data: { variantId, token }
+          data: { variantId, token },
         }
       );
       set({ cart: data.carrito.products });
@@ -468,6 +468,9 @@ export const useStore = create((set) => ({
   },
   setCart: (updatedCart) => {
     set({ cart: updatedCart });
+  },
+  clearCart: () => {
+    set({ cart: [] });
   },
   getNuevos: async () => {
     try {

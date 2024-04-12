@@ -3,20 +3,21 @@ const { Schema, model, models } = require("mongoose");
 const ProductSchema = new Schema({
   nombre: {
     type: String,
-    index: 'text'
+    index: "text",
   },
   marca: {
     type: String,
-    index: 'text'
+    index: "text",
   },
   descripcion: {
     type: String,
-    index: 'text'
+    index: "text",
   },
   precio: Number,
+  precioOriginal: { type: Number, default: null },
   oferta: {
     type: Schema.Types.Mixed,
-    default: {}
+    default: {},
   },
   activo: Boolean,
   productoNuevo: Boolean,
@@ -25,8 +26,8 @@ const ProductSchema = new Schema({
   subcategoria: String,
   opciones: {
     type: Schema.Types.Mixed,
-    default: []
-  }
+    default: [],
+  },
 });
 
 const Producto = models.Producto || model("Producto", ProductSchema);

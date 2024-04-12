@@ -11,7 +11,12 @@ const CartSchema = new Schema({
       descripcion: String,
       marca: String,
       genero: String,
+      oferta: {
+        type: Schema.Types.Mixed,
+        default: {},
+      },
       precio: Number,
+      precioOriginal: { type: Number, default: null },
       imagen: String,
       opcion: {
         color: String,
@@ -20,6 +25,7 @@ const CartSchema = new Schema({
       },
       quantity: Number,
       variantId: String,
+      idProductOriginal: String,
     },
   ],
   createdAt: {
