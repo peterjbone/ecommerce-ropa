@@ -536,22 +536,22 @@ export const useStore = create((set) => ({
 }));
 
 const toggleValue = (array, value) => {
-  if (array.includes(value)) {
-    return array.filter((item) => item !== value);
-  } else {
-    return [...array, value];
-  }
+	if (array.includes(value)) {
+		return array.filter((item) => item !== value);
+	} else {
+		return [...array, value];
+	}
 };
 
 const updateSelectedFilters = (prevSelectedFilters, id, name) => {
-  const updatedFilters = [...prevSelectedFilters];
-  const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
+	const updatedFilters = [...prevSelectedFilters];
+	const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
 
-  if (existingIndex !== -1) {
-    updatedFilters.splice(existingIndex, 1);
-  } else {
-    updatedFilters.push({ name, id });
-  }
+	if (existingIndex !== -1) {
+		updatedFilters.splice(existingIndex, 1);
+	} else {
+		updatedFilters.push({ name, id });
+	}
 
-  return updatedFilters;
+	return updatedFilters;
 };

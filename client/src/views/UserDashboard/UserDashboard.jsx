@@ -1,13 +1,13 @@
-import './UserDashboard.css';
+import "./UserDashboard.css";
 
-import dataValidation from '../../dataValidation.js';
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react';
-import { useStore } from '../../store';
-import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
+import dataValidation from "../../dataValidation.js";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useStore } from "../../store";
+import UserDashboardCard from "../../components/UserDashboardCard/UserDashboardCard.jsx";
 
-import { ToastContainer, toast } from 'react-toastify';
-import Cookies from 'universal-cookie';
+import { ToastContainer, toast } from "react-toastify";
+import Cookies from "universal-cookie";
 
 export default function UserDashboard() {
   const userInfo = useStore((state) => state.userInfo);
