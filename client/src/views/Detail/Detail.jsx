@@ -7,6 +7,8 @@ import HeroImagesBarDetail from "../../components/HeroImagesBar/HeroImagesBarDet
 import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import Reviews from "../../components/Reviews/Reviews";
 
+import { ToastContainer, toast } from "react-toastify";
+
 export default function Detail() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -105,6 +107,9 @@ export default function Detail() {
             idProductOriginal: productoDetail._id
           };
           addToCart(selectedProduct, cartToken);
+          toast.success("Agregado al carrito", {
+            autoClose: 500
+          });
         } else {
           console.log("No se puede agregar más de este producto al carrito");
         }
@@ -257,6 +262,18 @@ export default function Detail() {
           />
         </div>
         <Reviews reviews={productoReviews} />
+        <ToastContainer
+          position="top-center"
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition:Bounce
+        />
       </div>
     );
   }

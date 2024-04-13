@@ -10,8 +10,7 @@ import Carrito from "./components/Carrito/Carrito";
 import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
-import { getCookie } from "./utils/getCookie.js";
-import { jwtDecode } from "jwt-decode";
+import { autoLogin } from './utils/autoLogin.js'
 import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 
 export default function App() {
@@ -24,7 +23,6 @@ export default function App() {
   const getTendencia = useStore((state) => state.getTendencia);
   const userInfo = useStore((state) => state.userInfo);
 
-  const user = useStore((state) => state.user);
   const getUserById = useStore((state) => state.getUserById);
   
   useEffect(() => {
@@ -43,21 +41,11 @@ export default function App() {
     })();
   });
 
-  // useEffect(() => {
-  //   (async function loadUserData() {
-  //     try {
-  //       if (!user) {
-  //         const token = getCookie('token'); // Retrieve the token from the cookie
-  //         if (token) {
-  //           const userId = jwtDecode(token).id;
-  //           // await getUserById(userId);
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error('Auto-login failed:', error)
-  //     }
-  //   }())
-  // });
+  useEffect(() => {
+    (async function loadUserData() {
+      await autoLogin(userInfo, getUserById)
+    }())
+  });
 
   return (
     <>
@@ -72,7 +60,7 @@ export default function App() {
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/:id" element={<Detail />} />
         {userInfo && <Route path="/usuario" element={<UserDashboard />} />}
-        <Route path="/reviews" element={<ReviewsAcceptance />} />
+        <Route path="/reviews" element={<ReviewsAcceptance />} /> {/* Va En Dashboard Admin */}
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
