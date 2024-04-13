@@ -4,7 +4,7 @@ import logo from '../../assets/images/nombre.png'
 import sun from '../../assets/icons/sun-icon.svg'
 import moon from '../../assets/icons/moon-icon.svg'
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import { useStore } from '../../store.js';
@@ -28,7 +28,7 @@ export default function Nav() {
   const [totalItemsInCart, setTotalItemsInCart] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
-    
+
   const listas = [
     {
       lista: listaGeneros,
@@ -172,25 +172,15 @@ export default function Nav() {
   return (
     <>
       <nav className='nav-bar' >
-        <ScrollLink
-          to="home"
-          smooth={true}
-          duration={500}
-          offset={-100}
-          spy={true}
-          exact="true"
-          activeClass="active" >
-          <NavLink to='/'>
-            <div className='logo-container' >
-              <img src={logo} alt='logo' className='logo' />
-            </div>
-          </NavLink>
-        </ScrollLink>
         <NavLink to='/' >
-          <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation} onMouseLeave={cancelAnimation}
-          >Categorias</button>
+          <div className='logo-container' >
+            <img src={logo} alt='logo' className='logo' onClick={() => navigate('/')} />
+          </div>
         </NavLink>
-        <button className='nav-bar-button' onClick={goToStore} >Tienda</button>
+        <NavLink to='/' >
+          <button className='nav-bar-button' onClick={handleScroll} onMouseEnter={triggerAnimation} onMouseLeave={cancelAnimation}>Categorias</button>
+        </NavLink>
+        <button className='nav-bar-button' onClick={goToStore}>Tienda</button>
         <div>
           <input
             type="search"
@@ -226,11 +216,11 @@ export default function Nav() {
       </nav>
       <div className='categories-window' key='categories-window' onMouseEnter={cancelMoveWindowUp} onMouseLeave={resetAnimation} >
         {listas.map((list, index) => (
-          <>
-            <label key={`${list.title} ${index}`} >{list.title}</label>
-            {list.lista.map((value, index) => (
+          <React.Fragment key={`${list.title}-${index}`}>
+            <label>{list.title}</label>
+            {list.lista.map((value, subIndex) => (
               <p
-                key={`${value} ${index}`}
+                key={`${value}-${subIndex}`}
                 onMouseEnter={cancelMoveWindowUp}
                 id={value}
                 name={list.name}
@@ -239,7 +229,7 @@ export default function Nav() {
                 {value}
               </p>
             ))}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </>

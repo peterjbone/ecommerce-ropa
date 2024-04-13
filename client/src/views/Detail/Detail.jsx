@@ -22,13 +22,11 @@ export default function Detail() {
   const cartToken = localStorage.getItem("cartToken");
   const cart = useStore((state) => state.cart);
 
-  console.log(productoDetail)
   useEffect(() => {
-    const cartToken = localStorage.getItem("cartToken");
     if (cartToken) {
       getCart(cartToken);
     }
-  }, []);
+  });
 
   useEffect(() => {
     (async function getProduct() {
@@ -132,10 +130,7 @@ export default function Detail() {
   if (!productoDetail) {
     return (
       <div className={styles.notFound}>
-        <h1 className={styles.notFoundError}>ERROR 404</h1>
-        <p className={styles.notFoundText}>
-          Esta no es la página que estás buscando
-        </p>
+        Loading ...
       </div>
     );
   } else {
@@ -206,8 +201,8 @@ export default function Detail() {
                       <div
                         key={colorIndex}
                         className={`${styles.colorCircle} ${selectedColorIndex === index
-                            ? styles.selectedColor
-                            : ""
+                          ? styles.selectedColor
+                          : ""
                           }`}
                         style={{ backgroundColor: color }}
                         onClick={() => handleColorChange(index)}

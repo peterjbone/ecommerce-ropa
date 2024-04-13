@@ -164,19 +164,19 @@ const Carrito = () => {
           ))}
         </div>
       )}
-      {cart && cart.length > 1 && userInfo.id ? (
+      {cart && cart.length > 1 && userInfo ? (
         <div className={styles.totalPriceContainer}>
           <button onClick={VaciarCarrito} className={styles.vaciarCarrito}>Vaciar Carrito</button>
           <p className={styles.totalPriceLabel}>Precio Total:</p>
           <p className={styles.totalPrice}>${totalPrice}</p>
-          <PayButton cartItems={cart} userId={userInfo.id} />
+          <PayButton cartItems={cart} userId={userInfo._id} />
         </div>
       ) : (
-        userInfo.id ? (
+        userInfo ? (
           <div className={styles.totalPriceContainer}>
             <p className={styles.totalPriceLabel}>Precio Total:</p>
             <p className={styles.totalPrice}>${totalPrice}</p>
-            <PayButton cartItems={cart} userId={userInfo.id} />
+            <PayButton cartItems={cart} userId={userInfo._id} />
           </div>
         ) : (
           <Link to={"/login"}>
