@@ -17,16 +17,16 @@ export default function UserDashboardCard({ product, isPurchase }) {
   const [hoverIndex, setHoverIndex] = useState(null);
   const [wordCount, setWordCount] = useState(0);
 
-  // useEffect(() => {
-  //   userInfo.reviews.map((review) => {
-  //     if (review.producto_id === product._id) {
-  //       setRating(review.valoracion);
-  //       setDescription(review.descripcion);
-  //       setIsReviewed(true);
-  //       return;
-  //     }
-  //   });
-  // }, [userInfo, product._id]);
+  useEffect(() => {
+    userInfo.reviews.map((review) => {
+      if (review.producto_id === product._id) {
+        setRating(review.valoracion);
+        setDescription(review.descripcion);
+        setIsReviewed(true);
+        return;
+      }
+    });
+  }, [userInfo, product._id]);
 
   const handleFavorite = async (event) => {
     event.preventDefault();

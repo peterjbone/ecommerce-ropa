@@ -11,7 +11,6 @@ export const useStore = create((set) => ({
       : null,
   products: [],
   productosFiltrados: [],
-  favoritos: [],
   cart: [],
   nuevos: [],
   destacados: [],
@@ -351,6 +350,21 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
+  getFavorites: async () => {
+    try {
+      const { data } = await axios.post('http://localhost:3001/getFavorites', useStore.getState().userInfo.favorites);
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          favorites: data
+        }
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
   updateFavorite: async (id) => {
     try {
       const { data } = await axios.put('http://localhost:3001/updateFavorite', { userId: useStore.getState().userInfo._id, productId: id });
@@ -366,29 +380,16 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  getFavorites: async () => {
+  getPurchases: async () => {
     try {
-      const { data } = await axios.post('http://localhost:3001/getFavorites', useStore.getState().userInfo.favorites);
-      set(() => ({ favoritos: data }));
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  },
-  addFav: (id) => {
-    try {
-      set((state) => ({ favoritos: [...state.favoritos, id] }));
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  },
-  removeFav: (id) => {
-    try {
-      set((state) => {
-        const updatedFavoritos = state.favoritos.filter((item) => item !== id);
-        return { favoritos: updatedFavoritos };
-      });
+      const { data } = await axios.post('http://localhost:3001/getPurchases', useStore.getState().userInfo.purchases);
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          purchases: data
+        }
+      }));
     } catch (error) {
       console.error(error);
       throw error;

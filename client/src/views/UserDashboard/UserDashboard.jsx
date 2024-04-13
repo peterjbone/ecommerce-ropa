@@ -11,9 +11,9 @@ import Cookies from 'universal-cookie';
 
 export default function UserDashboard() {
   const userInfo = useStore((state) => state.userInfo);
-  const favoritos = useStore((state) => state.favoritos);
   const changeEmail = useStore((state) => state.changeEmail);
   const getFavorites = useStore((state) => state.getFavorites);
+  const getPurchases = useStore((state) => state.getPurchases);
   const changePassword = useStore((state) => state.changePassword);
   const logOut = useStore((state) => state.logOut);
   const reauthenticate = useStore((state) => state.reauthenticate);
@@ -149,6 +149,16 @@ export default function UserDashboard() {
     }
     handleOptionClick('favorites');
   }
+  const handleGetPurchases = async () => {
+    if (userInfo) {
+      try {
+        await getPurchases();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    handleOptionClick('purchases');
+  }
   const handlelogOut = async () => {
     try {
       await logOut();
@@ -178,6 +188,8 @@ export default function UserDashboard() {
       console.error(error);
     }
   }
+
+  console.log(userInfo.purchases);
 
   return (
     <div className='user-dashboard-container'>
@@ -209,7 +221,7 @@ export default function UserDashboard() {
         </button>
         <button
           className={`nav-bar-button dashboard-button ${activeOption === 'purchases' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('purchases')}
+          onClick={handleGetPurchases}
         >
           Mis Compras
         </button>
@@ -372,7 +384,7 @@ export default function UserDashboard() {
             case 'favorites':
               return (
                 <>
-                  {favoritos.map((product) => (
+                  {userInfo.favorites.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={false} />
                   ))}
                 </>
@@ -380,9 +392,9 @@ export default function UserDashboard() {
             case 'purchases':
               return (
                 <>
-                  {userInfo.purchases.map((product) => (
+                  {/* {userInfo.purchases.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={true} />
-                  ))}
+                  ))} */}
                 </>
               );
             case 'reviews':
@@ -444,7 +456,6 @@ export default function UserDashboard() {
           }
         })()}
       </section>
-
       <ToastContainer />
     </div>
   );
