@@ -7,7 +7,7 @@ function PayButton({ cartItems, userId }) {
 	//* formateando el cartItems para Stripe
 	const formatCart = cartItems.map((item) => {
 		return {
-			_id: item._id,
+			id: item._id,
 			nombre: item.nombre,
 			marca: item.marca,
 			descripcion: item.descripcion,
@@ -21,6 +21,8 @@ function PayButton({ cartItems, userId }) {
 
 	//* Función que maneja el pago
 	async function handleCheckout() {
+		//console.log(formatCart);
+
 		axios
 			.post(`${BACK_URL}/api/stripe/create-checkout-session`, {
 				formatCart,

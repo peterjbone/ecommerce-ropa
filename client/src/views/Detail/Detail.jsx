@@ -81,6 +81,7 @@ export default function Detail() {
 
 			if (selectedSize.stock > 0) {
 				const selectedProduct = {
+					id: productoDetail._id,
 					nombre: productoDetail.nombre,
 					descripcion: productoDetail.descripcion,
 					marca: productoDetail.marca,

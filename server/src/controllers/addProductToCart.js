@@ -4,6 +4,7 @@ const addProductToCart = async (req, res) => {
 	try {
 		const {
 			token,
+			id,
 			nombre,
 			genero,
 			descripcion,
@@ -34,6 +35,7 @@ const addProductToCart = async (req, res) => {
 			existingProduct.quantity += +quantity;
 		} else {
 			carrito.products.push({
+				_id: id,
 				nombre,
 				descripcion,
 				marca,
