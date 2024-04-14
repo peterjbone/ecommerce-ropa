@@ -72,6 +72,12 @@ const Carrito = () => {
 			{cart?.length === 0 ? (
 				<div className={styles.cartEmpty}>
 					<p>Tu carrito esta vacío por el momento.</p>
+					<img
+						src="https://bakestudio.in/assets/images/cart/empty-cart.gif"
+						alt="carrito vacío"
+						width={400}
+						style={{ margin: "2rem 0" }}
+					/>
 					<div className={styles.startShopping}>
 						<Link to={"/tienda"}>
 							<FaArrowLeft size={30} />

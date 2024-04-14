@@ -14,6 +14,7 @@ const orderSchema = new Schema(
 					required: true
 				},
 				color: { type: String },
+				talla: { type: String },
 				quantity: { type: Number, default: 1 }
 			}
 		],
