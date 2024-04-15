@@ -35,10 +35,10 @@ export default function Register() {
   const changeHandler = (e) => {
     const { name, value } = e.target
     setUser({ ...user, [name]: value });
-    setErrors(validation({
-      ...user,
-      [name]: value,
-    }));
+    // setErrors(validation({
+    //   ...user,
+    //   [name]: value,
+    // }));
   }
   const validation = (user/* , direccion */) => {
     const errors = {};
@@ -51,14 +51,23 @@ export default function Register() {
     if (user.email && !emailRegex.test(user.email)) {
       errors.email = 'Debe ser un Email válido';
     }
-    if (user.password && (user.password.length < 8 || user.password.length > 128)) {
-      errors.password = 'La contraseña debe tener entre 8 y 128 caracteres';
+    if (user.password && (user.password.length < 8 || user.password.length > 16)) {
+      errors.password = 'La contraseña debe tener entre 8 y 16 caracteres';
     }
     if (user.repeatPassword && (user.password !== '' && user.repeatPassword !== '' && user.password !== user.repeatPassword)) {
       errors.repeatPassword = 'Las contraseñas deben ser iguales';
     }
 
     return errors
+  }
+
+  const handleInputBlur = (e) => {
+    const { name, value } = e.target
+
+    setErrors(validation({
+      ...user,
+      [name]: value,
+    }));
   }
   // const direccionHandler = (e) => {
   //   const {name, value} = e.target
@@ -95,24 +104,24 @@ export default function Register() {
       <h1 className={styles.title}>Crea tu cuenta</h1>
       <form className={styles.form} onSubmit={submitHandler}>
         {/* <input className={styles.input} name='fullname' type="text" value={user.fullname} placeholder='Nombre completo'onChange={changeHandler} /> */}
-        <input className={styles.input} name='name' type="text" value={user.name} placeholder='Nombre' onChange={changeHandler} /> 
+        <input className={styles.input} name='name' type="text" value={user.name} placeholder='Nombre' onChange={changeHandler} onBlur={handleInputBlur} /> 
 
         {/* Así me gusta agregar los errores a mi porq así ya ocupan el espacio html y se hace visible cuando existe Requiere invisible { visibility: hidden; } o style={{ visibility: `${errors.name ? 'hidden' : ''}` }}*/}
 
-        {/* <{p
+        <p
           className={errors.name ? '' : 'invisible'} >
           {errors.name ? `${errors.name}` : 'invisible'}
-        </p>} */}
+        </p>
 
         {/* <input className={styles.input} name='surname' type="text" value={user.surname} placeholder='Apellido'onChange={changeHandler} /> */}
         
-        <input className={styles.input} name='email' type="email" value={user.email} placeholder='Email' onChange={changeHandler} />
+        <input className={styles.input} name='email' type="email" value={user.email} placeholder='Email' onChange={changeHandler} onBlur={handleInputBlur} />
 
-        {/* <p className={errors.email ? '' : 'invisible'} >{errors.email ? `${errors.email}` : 'invisible'}</p> */}
+        <p className={errors.email ? '' : 'invisible'} >{errors.email ? `${errors.email}` : 'invisible'}</p>
 
-        <input className={styles.input} name='password' value={user.password} type="password" placeholder='Contraseña' onChange={changeHandler} />
+        <input className={styles.input} name='password' value={user.password} type="password" placeholder='Contraseña' onChange={changeHandler} onBlur={handleInputBlur} />
 
-        {/* <p className={errors.password ? '' : 'invisible'} >{errors.password ? `${errors.password}` : 'invisible'}</p> */}
+        <p className={errors.password ? '' : 'invisible'} >{errors.password ? `${errors.password}` : 'invisible'}</p>
 
         {/* <input className={styles.input} name='password' value={user.repeatPassword} type="password" placeholder='Repetir Contraseña' onChange={changeHandler} /> */}
 

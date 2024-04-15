@@ -77,3 +77,7 @@
   padding: .2rem;
   font-size: small;
 }
+
+.thumbnailOpciones {
+  border: 1px solid black;
+}
