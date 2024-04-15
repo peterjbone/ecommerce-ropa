@@ -1,31 +1,59 @@
 import './UserDashboard.css';
 
-import dataValidation from './dataValidation.js';
+import dataValidation from '../../dataValidation.js';
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { useStore } from '../../store';
 import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
 
-export default function UserDashboard() {
-  // const user = useStore((state) => state.user);
-  // const changeEmail = useStore((state) => state.changeEmail);
-  // const changePassword = useStore((state) => state.changePassword);
-  const nuevos = useStore((state) => state.nuevos);
-  const user = {
-    name: 'H',
-    _id: 1,
-    reviews: [],
-    purchases: [],
-  }
+import { ToastContainer, toast } from 'react-toastify';
+import Cookies from 'universal-cookie';
 
+export default function UserDashboard() {
+  const userInfo = useStore((state) => state.userInfo);
+  const favoritos = useStore((state) => state.favoritos);
+  const changeEmail = useStore((state) => state.changeEmail);
+  const getFavorites = useStore((state) => state.getFavorites);
+  const changePassword = useStore((state) => state.changePassword);
+  const logOut = useStore((state) => state.logOut);
+  const reauthenticate = useStore((state) => state.reauthenticate);
+  const deleteAccount = useStore((state) => state.deleteAccount);
   const [activeOption, setActiveOption] = useState('userData');
   const [isUserDataChanged, setIsUserDataChanged] = useState(false);
-  const [changeData, setChangeData] = useState({ name: '', surName: '', userName: '', dateOfBirth: '', currentEmail: '', email: '', emailPassword: '', password: '', newPassword: '', repeatPassword: '' });
-  const [changeDataErrors, setChangeDataErrors] = useState({ name: '', surName: '', userName: '', dateOfBirth: '', changeEmail: '', currentEmail: '', email: '', emailPassword: '', password: '', newPassword: '', repeatPassword: '' });
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
+  const [changeData, setChangeData] = useState({
+    name: userInfo.name,
+    surName: '',
+    userName: '',
+    dateOfBirth: '',
+    email: '',
+    newEmail: '',
+    emailPassword: '',
+    password: '',
+    newPassword: '',
+    repeatPassword: '',
+    deletePassword: '',
+  });
+  const [changeDataErrors, setChangeDataErrors] = useState({
+    name: '',
+    surName: '',
+    userName: '',
+    dateOfBirth: '',
+    changeEmail: '',
+    currentEmail: '',
+    email: '',
+    newEmail: '',
+    emailPassword: '',
+    password: '',
+    newPassword: '',
+    repeatPassword: '',
+    deletePassword: '',
+  });
+  const navigate = useNavigate();
 
   const handleOptionClick = (id) => {
     setActiveOption(id);
-  };
-
+  }
   const handleUserDataChange = (event) => {
     const { name, value } = event.target;
     if (!isUserDataChanged && (event.target.type !== 'email' || event.target.type !== 'password')) {
@@ -41,7 +69,6 @@ export default function UserDashboard() {
         [name]: value
       }));
   }
-
   const handleUserDataChangeSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -49,7 +76,7 @@ export default function UserDashboard() {
         name: changeData.name,
         surName: changeData.surName,
         userName: changeData.userName,
-        dateOfBirth: changeData.dateOfBirth
+        // dateOfBirth: changeData.dateOfBirth
       }
       // await changeUserData(userData);
       setIsUserDataChanged(false);
@@ -69,7 +96,7 @@ export default function UserDashboard() {
   const handleUserEmailChangeSubmit = async (event) => {
     event.preventDefault();
     try {
-      // await changeEmail(changeData.email, changeData.emailPassword);
+      await changeEmail(changeData.email, changeData.emailPassword);
       setChangeData({
         ...changeData,
         email: '',
@@ -89,11 +116,10 @@ export default function UserDashboard() {
       });
     }
   }
-
   const handleUserPasswordChangeSubmit = async (event) => {
     event.preventDefault();
     try {
-      // await changePassword(changeData.password, changeData.newPassword, changeData.repeatPassword);
+      await changePassword(changeData.password, changeData.newPassword);
       setChangeData({
         ...changeData,
         password: '',
@@ -113,6 +139,45 @@ export default function UserDashboard() {
       });
     }
   }
+  const handleGetFavorites = async () => {
+    if (userInfo) {
+      try {
+        await getFavorites();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    handleOptionClick('favorites');
+  }
+  const handlelogOut = async () => {
+    try {
+      await logOut();
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handleReauthentication = async (event) => {
+    event.preventDefault();
+    try {
+      await reauthenticate(changeData.deletePassword);
+      setChangeData({
+        ...changeData,
+        deletePassword: '',
+      })
+      setIsDeleteAccountModalOpen(true);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handleDeleteAccount = async () => {
+    try {
+      await deleteAccount(userInfo._id);
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className='user-dashboard-container'>
@@ -125,28 +190,46 @@ export default function UserDashboard() {
           Información personal
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'email' ? 'activeUserTab' : ''}`}
+          className={`nav-bar-button dashboard-button ${activeOption === 'email' ? 'activeUserTab' : ''}`}
           onClick={() => handleOptionClick('email')}
         >
           Cambiar Email
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'password' ? 'activeUserTab' : ''}`}
+          className={`nav-bar-button dashboard-button ${activeOption === 'password' ? 'activeUserTab' : ''}`}
           onClick={() => handleOptionClick('password')}
         >
           Cambiar Contraseña
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'favorites' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('favorites')}
+          className={`nav-bar-button dashboard-button ${activeOption === 'favorites' ? 'activeUserTab' : ''}`}
+          onClick={handleGetFavorites}
         >
           Mis Favoritos
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'purchases' ? 'activeUserTab' : ''}`}
+          className={`nav-bar-button dashboard-button ${activeOption === 'purchases' ? 'activeUserTab' : ''}`}
           onClick={() => handleOptionClick('purchases')}
         >
           Mis Compras
+        </button>
+        <button
+          className={`nav-bar-button dashboard-button ${activeOption === 'reviews' ? 'activeUserTab' : ''}`}
+          onClick={() => handleOptionClick('reviews')}
+        >
+          Mis Reseñas
+        </button>
+        <button
+          className={`nav-bar-button dashboard-button ${activeOption === 'deleteAccount' ? 'activeUserTab' : ''}`}
+          onClick={() => handleOptionClick('deleteAccount')}
+        >
+          Eliminar Cuenta
+        </button>
+        <button
+          className={`nav-bar-button dashboard-button logout-button ${activeOption === 'logout' ? 'activeUserTab' : ''}`}
+          onClick={handlelogOut}
+        >
+          Cerrar Sesión
         </button>
       </aside>
       <section className='user-dashboard-info'>
@@ -159,8 +242,6 @@ export default function UserDashboard() {
                     <label htmlFor='changeName' >Nombre</label>
                     <input
                       type='text'
-                      key='changeName'
-                      id='changeName'
                       name='name'
                       value={changeData.name}
                       onChange={handleUserDataChange} />
@@ -170,8 +251,6 @@ export default function UserDashboard() {
                     <label htmlFor='changeSurName' >Apellido</label>
                     <input
                       type='text'
-                      key='changeSurName'
-                      id='changeSurName'
                       name='surName'
                       value={changeData.surName}
                       onChange={handleUserDataChange} />
@@ -181,8 +260,6 @@ export default function UserDashboard() {
                     <label htmlFor='changeUserName' >Nombre De Usuario</label>
                     <input
                       type='text'
-                      key='changeUserName'
-                      id='changeUserName'
                       name='userName'
                       value={changeData.userName}
                       onChange={handleUserDataChange} />
@@ -192,8 +269,6 @@ export default function UserDashboard() {
                     <label htmlFor='changeUserName' >Teléfono</label>
                     <input
                       type='tel'
-                      key='changeUserName'
-                      id='changeUserName'
                       name='userName'
                       value={changeData.userName}
                       onChange={handleUserDataChange} />
@@ -203,8 +278,6 @@ export default function UserDashboard() {
                     <label htmlFor='changeDateOfBirth' >Fecha De Nacimiento</label>
                     <input
                       type='date'
-                      key='changeDateOfBirth'
-                      id='changeDateOfBirth'
                       name='dateOfBirth'
                       value={changeData.dateOfBirth}
                       onChange={handleUserDataChange} />
@@ -226,41 +299,34 @@ export default function UserDashboard() {
                     <label>E-mail Actual</label>
                     <input
                       type='email'
-                      key='changeEmailEmail'
-                      id='changeEmailEmail'
-                      name='currentEmail'
-                      value={changeData.currentEmail}
-                      autoComplete="off"
-                      onChange={handleUserDataChange} />
-                  </div>
-                  <div className='user-data-input-label-container' >
-                    <label>Nuevo E-mail</label>
-                    <input
-                      type='email'
-                      key='changeEmailNew'
-                      id='changeEmailNew'
                       name='email'
                       value={changeData.email}
+                      autoComplete="off"
                       onChange={handleUserDataChange} />
                   </div>
                   <p className={changeDataErrors.email ? '' : 'invisible'} >{changeDataErrors.email ? `${changeDataErrors.email}` : 'invisible'}</p>
                   <div className='user-data-input-label-container' >
+                    <label>Nuevo E-mail</label>
+                    <input
+                      type='email'
+                      name='newEmail'
+                      value={changeData.newEmail}
+                      onChange={handleUserDataChange} />
+                  </div>
+                  <p className={changeDataErrors.newEmail ? '' : 'invisible'} >{changeDataErrors.newEmail ? `${changeDataErrors.newEmail}` : 'invisible'}</p>
+                  <div className='user-data-input-label-container' >
                     <label>Contraseña</label>
                     <input
                       type='password'
-                      key='emailPassword'
-                      id='emailPassword'
                       name='emailPassword'
                       value={changeData.emailPassword}
                       onChange={handleUserDataChange} />
                   </div>
                   <p className={changeDataErrors.emailPassword ? '' : 'invisible'} >{changeDataErrors.emailPassword ? `${changeDataErrors.emailPassword}` : 'invisible'}</p>
-                  <p className={changeDataErrors.changeEmail ? '' : 'invisible'} >{changeDataErrors.changeEmail ? `${changeDataErrors.changeEmail}` : 'invisible'}</p>
                   <button
                     type='submit'
                     className='nav-bar-button user-submit-button'
-                    onClick={handleUserEmailChangeSubmit}
-                    disabled={!changeData.currentEmail || !changeData.email || !changeData.emailPassword || changeDataErrors.currentEmail || changeDataErrors.email || changeDataErrors.emailPassword} >
+                    disabled={!changeData.email || !changeData.newEmail || !changeData.emailPassword || changeDataErrors.email || changeDataErrors.newEmail || changeDataErrors.emailPassword} >
                     Modificar
                   </button>
                 </form>
@@ -272,8 +338,6 @@ export default function UserDashboard() {
                     <label>Contraseña Actual</label>
                     <input
                       type='password'
-                      key='password'
-                      id='password'
                       name='password'
                       value={changeData.password}
                       onChange={handleUserDataChange} />
@@ -283,8 +347,6 @@ export default function UserDashboard() {
                     <label>Nueva Contraseña</label>
                     <input
                       type='password'
-                      key='changePasswordNew'
-                      id='changePasswordNew'
                       name='newPassword'
                       value={changeData.newPassword}
                       onChange={handleUserDataChange} />
@@ -294,8 +356,6 @@ export default function UserDashboard() {
                     <label>Repetir Nueva Contraseña</label>
                     <input
                       type='password'
-                      key='changePasswordNewRepeat'
-                      id='changePasswordNewRepeat'
                       name='repeatPassword'
                       value={changeData.repeatPassword}
                       onChange={handleUserDataChange} />
@@ -312,7 +372,7 @@ export default function UserDashboard() {
             case 'favorites':
               return (
                 <>
-                  {/* user.favorites */nuevos.map((product) => (
+                  {favoritos.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={false} />
                   ))}
                 </>
@@ -320,9 +380,61 @@ export default function UserDashboard() {
             case 'purchases':
               return (
                 <>
-                  {/* user.purchases */nuevos.map((product) => (
+                  {userInfo.purchases.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={true} />
                   ))}
+                </>
+              );
+            case 'reviews':
+              return (
+                <>
+                  {userInfo.reviews.map((product) => (
+                    <UserDashboardCard key={product._id} product={product} isPurchase={true} />
+                  ))}
+                </>
+              );
+            case 'deleteAccount':
+              return (
+                <>
+                  <form onSubmit={handleReauthentication} >
+                    <div className='user-data-input-label-container' >
+                      <label>Eliminar cuenta requiere contraseña</label>
+                      <input
+                        type='password'
+                        name='deletePassword'
+                        value={changeData.deletePassword}
+                        onChange={handleUserDataChange} />
+                    </div>
+                    <p className={changeDataErrors.deletePassword ? '' : 'invisible'} >{changeDataErrors.deletePassword ? `${changeDataErrors.deletePassword}` : 'invisible'}</p>
+                    <button
+                      type='submit'
+                      className='nav-bar-button user-submit-button'
+                      disabled={!changeData.deletePassword || changeDataErrors.deletePassword} >
+                      Autenticar
+                    </button>
+                  </form>
+                  {isDeleteAccountModalOpen && (
+                    <div className='modal-overlay' >
+                      <div className='delete-account-modal'>
+                        <h3>Confirmar eliminación de cuenta</h3>
+                        <p>Esta acción es irreversible. ¿Está seguro de que desea eliminar permanentemente su cuenta?</p>
+                        <div>
+                          <button
+                            className='delete-account-button'
+                            onClick={handleDeleteAccount}
+                          >
+                            Eliminar Cuenta
+                          </button>
+                          <button
+                            className='delete-account-cancel-button'
+                            onClick={() => setIsDeleteAccountModalOpen(false)}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </>
               );
             default:
@@ -332,6 +444,8 @@ export default function UserDashboard() {
           }
         })()}
       </section>
+
+      <ToastContainer />
     </div>
   );
 }

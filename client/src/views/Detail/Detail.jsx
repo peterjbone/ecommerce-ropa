@@ -22,7 +22,6 @@ export default function Detail() {
   const cartToken = localStorage.getItem("cartToken");
   const cart = useStore((state)=> state.cart);
 
-  console.log(productoDetail)
   useEffect(() => {
     const cartToken = localStorage.getItem("cartToken");
     if (cartToken) {
@@ -263,7 +262,7 @@ export default function Detail() {
             products={relatedProducts}
           />
         </div>
-        <Reviews /* reviews={productoReviews} */ />
+        <Reviews  reviews={productoReviews} />
       </div>
     );
   }

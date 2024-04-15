@@ -1,15 +1,17 @@
 import { create } from "zustand";
 import axios from "axios";
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export const useStore = create((set) => ({
   user: null,
   userInfo:
     typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo"))
-      : {},
+      : null,
   products: [],
   productosFiltrados: [],
-  favoritos: [1, 2, 3, 4, 5, 10, 15],
+  favoritos: [],
   cart: [],
   nuevos: [],
   destacados: [],
@@ -23,6 +25,7 @@ export const useStore = create((set) => ({
   listaTallas: [],
   productoDetail: "",
   productoReviews: "",
+  resenas: [],
   filtros: {
     busqueda: "",
     marca: [],
@@ -58,37 +61,108 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  setUserData: async (user) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/auth/login",
-        user
-      );
-      console.log(response);
-      if (response.status === 200) {
-        set({ userInfo: response.data.foundUser });
-        return response.data.token;
-      } else {
-        return null;
-      }
-    } catch (error) {
-      console.error("Error al iniciar sesión:", error);
-      throw error;
-    }
-  },
   setUserInfo: (data) => {
     localStorage.setItem("userInfo", JSON.stringify({ ...data }));
-    set((state) => ({
-      ...state,
+    set(() => ({
       userInfo: { ...data },
     }));
   },
   clearUserInfo: () => {
     localStorage.removeItem("userInfo");
-    set((state) => ({
-      ...state,
-      userInfo: {},
+    set(() => ({
+      userInfo: null,
     }));
+  },
+  register: async (name, email, password) => {
+    try {
+      await axios.post("http://localhost:3001/auth/register", {
+        name,
+        email,
+        password,
+      });
+    } catch (error) {
+      console.error("Error al registrar usuario", error);
+      throw error;
+    }
+  },
+  login: async (email, password) => {
+    try {
+      const { data } = await axios.post("http://localhost:3001/auth/login", {
+        email,
+        password,
+      });
+      set(() => ({
+        userInfo: data.foundUser,
+      }));
+      set((prevState) => ({
+        ...prevState,
+        userInfo: {
+          ...prevState.userInfo,
+          purchases: data.purchases,
+          reviews: data.reviews,
+        },
+      }));
+      // cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
+    } catch (error) {
+      console.error("Error al iniciar sesión", error);
+      throw error;
+    }
+  },
+  changeEmail: async (email, password) => {
+    try {
+      await axios.post("http://localhost:3001/auth/changeEmail", {
+        email,
+        password,
+      });
+    } catch (error) {
+      console.error("Error al cambiar email", error);
+      throw error;
+    }
+  },
+  changePassword: async (currentPassword, newPassword) => {
+    try {
+      await axios.post("http://localhost:3001/auth/changePassword", {
+        currentPassword,
+        newPassword,
+      });
+    } catch (error) {
+      console.error("Error al cambiar contraseña", error);
+      throw error;
+    }
+  },
+  logOut: async () => {
+    try {
+      await axios("http://localhost:3001/auth/logout");
+      set((state) => ({
+        ...state,
+        userInfo: null,
+      }));
+    } catch (error) {
+      console.error("Error al cerrar sesión", error);
+      throw error;
+    }
+  },
+  reauthenticate: async (password) => {
+    try {
+      await axios.post("http://localhost:3001/auth/reauthenticate", {
+        password,
+      });
+    } catch (error) {
+      console.error("Error al reatenticar usuario", error);
+      throw error;
+    }
+  },
+  deleteAccount: async (id) => {
+    try {
+      await axios.delete("http://localhost:3001/auth/delete", { id });
+      set((state) => ({
+        ...state,
+        userInfo: null,
+      }));
+    } catch (error) {
+      console.error("Error al borrar cuenta", error);
+      throw error;
+    }
   },
   getAllProducts: async () => {
     try {
@@ -188,7 +262,7 @@ export const useStore = create((set) => ({
   resetFilter: (name) => {
     set((state) => ({
       filtrosSeleccionados: state.filtrosSeleccionados.filter((value) => {
-        value.name === name;
+        return value.name !== name;
       }),
       filtros: {
         ...state.filtros,
@@ -242,6 +316,192 @@ export const useStore = create((set) => ({
       console.error("Error al buscar Todo:", error);
       throw error;
     }
+  },
+  getProductById: async (id) => {
+    try {
+      const { data } = await axios(`http://localhost:3001/producto/${id}`);
+      const { product, reviews } = data;
+
+      if (product) {
+        set(() => ({
+          productoDetail: product,
+          productoReviews: reviews || [],
+        }));
+      } else {
+        console.log("No se encontró el producto.");
+      }
+    } catch (error) {
+      console.error("Error al obtener el producto:", error);
+    }
+  },
+
+  getAllReviews: async () => {
+    try {
+      const { data } = await axios("http://localhost:3001/resena");
+      set(() => ({
+        resenas: data,
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  updateReview: async (id) => {
+    try {
+      await axios(`http://localhost:3001/resena/${id}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  deleteReview: async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/resena/${id}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  createReview: async (review) => {
+    try {
+      const { data } = await axios.post("http://localhost:3001/resena", {
+        review,
+      });
+      set((state) => ({
+        ...state.userInfo,
+        reviews: data,
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  updateFavorite: async (id) => {
+    try {
+      const { data } = await axios.put("http://localhost:3001/updateFavorite", {
+        userId: useStore.getState().userInfo._id,
+        productId: id,
+      });
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          favorites: data,
+        },
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  getFavorites: async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/getFavorites",
+        useStore.getState().userInfo.favorites
+      );
+      set(() => ({ favoritos: data }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  addFav: (id) => {
+    try {
+      set((state) => ({ favoritos: [...state.favoritos, id] }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  removeFav: (id) => {
+    try {
+      set((state) => {
+        const updatedFavoritos = state.favoritos.filter((item) => item !== id);
+        return { favoritos: updatedFavoritos };
+      });
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  getCart: async (cartToken) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/carrito/${cartToken}`
+      );
+      set(() => ({
+        cart: response.data.products,
+      }));
+    } catch (error) {
+      console.error("Error al obtener productos del carrito:", error);
+    }
+  },
+  addToCart: async (productToAdd, token) => {
+    try {
+      console.log(productToAdd);
+      const { data } = await axios.post(
+        "http://localhost:3001/agregarCarrito",
+        { ...productToAdd, token }
+      );
+      console.log(data);
+      if (data.carrito) {
+        set({ cart: data.carrito.products });
+        localStorage.setItem("cartToken", data.token);
+      } else {
+        console.log("No se pudo obtener el carrito actualizado del servidor");
+      }
+    } catch (error) {
+      console.error("Error al agregar producto al carrito:", error);
+    }
+  },
+  removeFromCart: async (variantId, token) => {
+    try {
+      const { data } = await axios.delete(
+        "http://localhost:3001/removeFromCart",
+        {
+          data: { variantId, token },
+        }
+      );
+      set({ cart: data.carrito.products });
+    } catch (error) {
+      console.error("Error al eliminar producto del carrito:", error);
+    }
+  },
+  incrementQuantity: async (variantId, token) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/incrementQuantity",
+        { variantId, token }
+      );
+      set({ cart: response.data.carrito.products });
+    } catch (error) {
+      console.error(
+        "Error al incrementar la cantidad del producto en el carrito:",
+        error
+      );
+    }
+  },
+  decrementQuantity: async (variantId, token) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/decrementQuantity",
+        { variantId, token }
+      );
+
+      set({ cart: response.data.carrito.products });
+    } catch (error) {
+      console.error(
+        "Error al decrementar la cantidad del producto en el carrito:",
+        error
+      );
+    }
+  },
+  setCart: (updatedCart) => {
+    set({ cart: updatedCart });
+  },
+  clearCart: () => {
+    set({ cart: [] });
   },
   getNuevos: async () => {
     try {
@@ -302,148 +562,6 @@ export const useStore = create((set) => ({
       console.error("Error al buscar Tendencia:", error);
       throw error;
     }
-  },
-  // getFavoritos: async () => {
-  //   try {
-  //     const { data } = await axios(`http://localhost:3001/favoritos`);
-  //     set(() => ({ favoritos: data }));
-  //   } catch (error) {
-  //     console.error("Error al buscar Favoritos:", error);
-  //     throw error;
-  //   }
-  // },
-  getProductById: async (id) => {
-    try {
-      const { data } = await axios(`http://localhost:3001/producto/${id}`);
-      const { product, reviews } = data;
-
-      if (product) {
-        set(() => ({
-          productoDetail: product,
-          productoReviews: reviews || [],
-        }));
-      } else {
-        console.log("No se encontró el producto.");
-      }
-    } catch (error) {
-      console.error("Error al obtener el producto:", error);
-    }
-  },
-
-  createReview: async (review) => {
-    try {
-      const { data } = await axios.post("http://localhost:3001/resena", review);
-      const { newReview } = data;
-      // set(() => ({  }));
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  addFav: async (id) => {
-    try {
-      // const { data } = await axios.put('http://localhost:3001/agregarFavorito', id);
-      // set(() => ({ favoritos: data }));
-      set((state) => ({ favoritos: [...state.favoritos, id] }));
-    } catch (error) {
-      console.log(error);
-    }
-  },
-  removeFav: async (id) => {
-    try {
-      // const { data } = await axios.put('http://localhost:3001/removerFavorito', id);
-      // set(() => ({ favoritos: data }));
-      set((state) => {
-        const updatedFavoritos = state.favoritos.filter((item) => item !== id);
-        return { favoritos: updatedFavoritos };
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
-  getCart: async (cartToken) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/carrito/${cartToken}`
-      );
-      console.log(response);
-      set((state) => ({
-        ...state,
-        cart: response.data.products,
-      }));
-    } catch (error) {
-      console.error("Error al obtener productos del carrito:", error);
-    }
-  },
-
-  addToCart: async (productToAdd, token) => {
-    try {
-      console.log(productToAdd);
-      const { data } = await axios.post(
-        "http://localhost:3001/agregarCarrito",
-        { ...productToAdd, token }
-      );
-      console.log(data);
-      if (data.carrito) {
-        set({ cart: data.carrito.products });
-        localStorage.setItem("cartToken", data.token);
-      } else {
-        console.log("No se pudo obtener el carrito actualizado del servidor");
-      }
-    } catch (error) {
-      console.error("Error al agregar producto al carrito:", error);
-    }
-  },
-
-  removeFromCart: async (variantId, token) => {
-    try {
-      const { data } = await axios.delete(
-        "http://localhost:3001/removeFromCart",
-        {
-          data: { variantId, token },
-        }
-      );
-      set({ cart: data.carrito.products });
-    } catch (error) {
-      console.error("Error al eliminar producto del carrito:", error);
-    }
-  },
-
-  incrementQuantity: async (variantId, token) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/incrementQuantity",
-        { variantId, token }
-      );
-      set({ cart: response.data.carrito.products });
-    } catch (error) {
-      console.error(
-        "Error al incrementar la cantidad del producto en el carrito:",
-        error
-      );
-    }
-  },
-
-  decrementQuantity: async (variantId, token) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/decrementQuantity",
-        { variantId, token }
-      );
-
-      set({ cart: response.data.carrito.products });
-    } catch (error) {
-      console.error(
-        "Error al decrementar la cantidad del producto en el carrito:",
-        error
-      );
-    }
-  },
-  setCart: (updatedCart) => {
-    set({ cart: updatedCart });
-  },
-  clearCart: () => {
-    set({ cart: [] });
   },
 }));
 

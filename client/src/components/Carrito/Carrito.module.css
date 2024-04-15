@@ -104,7 +104,7 @@
 }
 
 .totalPriceLabel {
-  font-weight: bold;
+  font-family: MornBold;
   font-size: 20px;
   margin-right: 10px;
 }
@@ -144,25 +144,6 @@
   font-weight: 600;
 
   cursor: pointer;
-}
-
-.discountPrice {
-  display: block;
-}
-
-.originalPrice {
-  text-decoration: line-through;
-  color: #888;
-}
-
-.discountPercentage {
-  color: #f00;
-  margin-left: 5px;
-}
-
-.finalPrice {
-  font-weight: bold;
-  color: #007bff;
 }
 
 .vaciarCarrito {

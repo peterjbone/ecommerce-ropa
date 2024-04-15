@@ -1,6 +1,6 @@
 .user-dashboard-container {
   margin-top: 10vh;
-  min-height: 90vh;
+  display: flex;
 }
 
 .user-options-container {
@@ -8,7 +8,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   width: 20%;
-  position: fixed;
+  position: sticky;
   top: 10vh;
   left: 0;
   padding: 10px;
@@ -23,14 +23,22 @@
   color: var(--categories-letter-hover-color);
 }
 
-.activeUserTab {
+.dashboard-button:hover {
+  transform: scale(1.05);
+}
+
+.activeUserTab,
+.activeUserTab:hover {
   transform: scale(1.2) translateX(15%);
-  font-weight: bold;
+  font-family: MornMedium;
+}
+
+.logout-button {
+
 }
 
 .user-dashboard-info {
   width: 75%;
-  min-height: 90vh;
   margin: 0 auto 0 23%;
   padding: 10px;
 }
@@ -79,4 +87,57 @@
 .user-submit-button:hover:enabled {
   transform: scale(1.2);
   color: var(--categories-letter-hover-color);
+}
+
+.delete-account-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: var(--review-modal-background-color);
+  backdrop-filter: blur(3px);
+  border-radius: 30px;
+  padding: 10px;
+  width: 50vw;
+  height: 25vh;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.delete-account-modal h3 {
+  font-size: 20px;
+  color: black;
+  padding: 10px;
+}
+
+.delete-account-modal p {
+  padding: 10px;
+}
+.delete-account-modal div {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.delete-account-modal button {
+  padding: 8px;
+  width: 130px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: none;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+}
+
+.delete-account-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.delete-account-cancel-button:hover {
+  background-color: rgb(160, 160, 160);
+  color: black;
 }

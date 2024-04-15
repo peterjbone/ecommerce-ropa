@@ -12,18 +12,21 @@ import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
 import { getCookie } from "./utils/getCookie.js";
 import { jwtDecode } from "jwt-decode";
+import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getProductInfo = useStore((state) => state.getProductInfo);
   const getDestacados = useStore((state) => state.getDestacados);
+  const getAllReviews = useStore((state) => state.getAllReviews);
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
+  const userInfo = useStore((state) => state.userInfo);
 
   const user = useStore((state) => state.user);
   const getUserById = useStore((state) => state.getUserById);
-
+  
   useEffect(() => {
     (async function loadData() {
       try {
@@ -33,27 +36,28 @@ export default function App() {
         await getNuevos();
         await getOfertas();
         await getTendencia();
+        await getAllReviews();
       } catch (error) {
         console.error();
       }
     })();
   });
 
-  useEffect(() => {
-    (async function loadUserData() {
-      try {
-        if (!user) {
-          const token = getCookie('token'); // Retrieve the token from the cookie
-          if (token) {
-            const userId = jwtDecode(token).id;
-            await getUserById(userId);
-          }
-        }
-      } catch (error) {
-        console.error('Auto-login failed:', error)
-      }
-    }())
-  });
+  // useEffect(() => {
+  //   (async function loadUserData() {
+  //     try {
+  //       if (!user) {
+  //         const token = getCookie('token'); // Retrieve the token from the cookie
+  //         if (token) {
+  //           const userId = jwtDecode(token).id;
+  //           // await getUserById(userId);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error('Auto-login failed:', error)
+  //     }
+  //   }())
+  // });
 
   return (
     <>
@@ -67,7 +71,8 @@ export default function App() {
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/:id" element={<Detail />} />
-        <Route path="/usuario" element={<UserDashboard />} />
+        {userInfo && <Route path="/usuario" element={<UserDashboard />} />}
+        <Route path="/reviews" element={<ReviewsAcceptance />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

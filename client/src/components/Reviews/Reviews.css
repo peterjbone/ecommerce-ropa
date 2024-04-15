@@ -18,6 +18,8 @@
   font-size: 30px;
   min-width: 40px;
   padding: 5px;
+  margin-right: 10px;
+  font-family: Morn;
 }
 
 .rating-container img {
@@ -29,6 +31,7 @@
 
 .review-container h4 {
   font-size: 20px;
+  font-family: Morn;
 }
 
 .review-container p {
@@ -37,4 +40,5 @@
 
 .activeTab {
   transform: scale(1.2);
+  font-family: MornBold;
 }

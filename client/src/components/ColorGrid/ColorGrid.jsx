@@ -5,26 +5,24 @@ const ColorGrid = ({ nameColors, setNameColors, colores, selectedColor, setSelec
   // const [nameColors, setNameColors] = useState([]);
 
   const handleColorClick = (color) => {
-    if(nameColors.includes(color.nombreColor)) {
-      let newColors = nameColors.filter(elem => elem !== color.nombreColor);
-      setNameColors(newColors)
-      let newSelectedColors = selectedColor.filter(elem => elem.nombreColor !== color.nombreColor);
-      setSelectedColor(newSelectedColors)
-      setForm(prevForm => {
-        return {...prevForm, colores: newSelectedColors}
-      })
-    } else {
-      setNameColors([...nameColors, color.nombreColor]);
-      setSelectedColor([...selectedColor, color])
-      setForm(prevForm => {
-        return {...prevForm, colores: [...prevForm.colores, color]}
-      })
-    }
+    setNameColors([color.nombreColor]); // Select only the clicked color
+    setSelectedColor(color);
+    setForm((prevForm) => ({
+      ...prevForm,
+      opciones: [
+        {
+          color: color.nombreColor,
+          tallas: {},
+          imagenes: [],
+        },
+      ],
+    }));
   };
+  
 
   return (
     <div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 40px)', gap: '10px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 40px)', gap: '10px' }}>
           {colores.map(color => (
             <div
               key={color.codHexadecimal}

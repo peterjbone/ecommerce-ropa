@@ -3,6 +3,7 @@ const { Schema, model, models } = require("mongoose");
 const ResenaSchema = new Schema({
   producto_id: {
     type: String,
+    ref: "Producto",
     required: true
   },
   nombreUsuario: {
@@ -11,6 +12,7 @@ const ResenaSchema = new Schema({
   },
   usuario_id: {
     type: String,
+    ref: "Usuario",
     required: true
   },
   valoracion: {
@@ -24,7 +26,12 @@ const ResenaSchema = new Schema({
   esAceptada: {
     type: Boolean,
     required: true
-  }
+  },
+  creadoEn: {
+		type: Date,
+		immutable: true,
+		default: () => Date.now()
+	},
 });
 
 const Resena = models.Resena || model("Resena", ResenaSchema);

@@ -1,3 +1,7 @@
+.user-card-outer-container {
+  position: relative;
+}
+
 .user-card-container {
   display: flex;
   flex-direction: row;
@@ -19,6 +23,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  z-index: 1;
 }
 
 .user-card-image-container {
@@ -54,7 +59,6 @@
 
 .user-card-rating-button:hover {
   transform: scale(1.2);
-  font-weight: bold;
   color: var(--categories-letter-hover-color);
 }
 

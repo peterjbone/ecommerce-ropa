@@ -119,14 +119,14 @@ const getProducts = async (request, response) => {
     let productOptions = {};
     if (result) {
       const { marcas, categorias, generos, subcategorias, colores, talles } = result;
-      productOptions = {
-        marcas,
-        categorias,
-        generos,
-        subcategorias,
-        colores,
-        talles
-      }
+      const productOptions = {
+        marcas: marcas.sort(),
+        categorias: categorias.sort(),
+        generos: generos.sort(),
+        subcategorias: subcategorias.sort(),
+        colores: colores.sort(),
+        talles: talles.sort()
+      };
     } else {
       productOptions = {
         marcas: [],
