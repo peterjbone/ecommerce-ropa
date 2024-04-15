@@ -66,7 +66,6 @@ export const useStore = create((set) => ({
   login: async (email, password, isAuto) => {
     try {
       const { data } = await axios.post('http://localhost:3001/auth/login', { email, password, isAuto });
-      console.log(data);
       set(() => ({
         userInfo: data.foundUser
       }));
