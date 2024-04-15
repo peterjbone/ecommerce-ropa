@@ -218,7 +218,7 @@ const Carrito = () => {
               </p>
 
               {userInfo?.email ? (
-                <PayButton cartItems={cart} userId={userInfo?.id} />
+                <PayButton cartItems={cart} userId={userInfo?._id} />
               ) : (
                 <button
                   className={styles.cartLogin}

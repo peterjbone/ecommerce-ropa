@@ -31,6 +31,7 @@ export default function Detail() {
   });
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async function getProduct() {
       try {
         await getProductById(id);
@@ -38,7 +39,7 @@ export default function Detail() {
         console.error(error);
       }
     })();
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     const fetchRelatedProducts = async () => {
