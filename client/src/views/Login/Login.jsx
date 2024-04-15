@@ -22,7 +22,7 @@ export default function Login() {
 	const submitHandler = async (e) => {
 		e.preventDefault();
 		try {
-			await login(user.email, user.password);
+			await login(user.email, user.password, false);
 
 			toast.success("Iniciaste sesión", {
 				onClose: () => {

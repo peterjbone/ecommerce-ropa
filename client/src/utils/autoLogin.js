@@ -8,13 +8,14 @@ export function getCookie(name) {
   return cookieValue ? cookieValue.split('=')[1] : null;
 }
 
-export const autoLogin = async (userInfo, getUserById) => {
+export const autoLogin = async (userInfo, login) => {
   try {
     if (!userInfo) {
       const token = getCookie('token'); // Retrieve the token from the cookie
       if (token) {
-        const userId = jwtDecode(token).id;
-        await getUserById(userId);
+        const email = jwtDecode(token).email;
+        const id = jwtDecode(token).id;
+        await login(email, id, true);
       }
     }
   } catch (error) {

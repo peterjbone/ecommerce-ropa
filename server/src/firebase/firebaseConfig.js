@@ -1,5 +1,5 @@
 const { initializeApp } = require('firebase/app');
-const { getAuth, setPersistence } = require('firebase/auth');
+const { getAuth, setPersistence, browserLocalPersistence } = require('firebase/auth');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -20,13 +20,13 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-setPersistence(auth, 'local') // No me acuerdo para que servía esto exactamente pero tengo miedo de borrarlo
+setPersistence(auth, browserLocalPersistence)
   .then(() => {
-    // Continue with other Firebase operations
+    // Continuar con otras operaciones de Firebase
   })
   .catch((error) => {
-    // Handle persistence enablement error
-    console.error('Error enabling persistence:', error);
+    // Manejar el error de habilitación de persistencia
+    console.error("Error enabling persistence:", error);
   });
 
 module.exports = auth;

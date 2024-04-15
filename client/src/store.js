@@ -4,11 +4,7 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 export const useStore = create((set) => ({
-  user: null,
-  userInfo:
-    typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo"))
-      : null,
+  userInfo: null,
   products: [],
   productosFiltrados: [],
   cart: [],
@@ -51,26 +47,13 @@ export const useStore = create((set) => ({
   tallasDisponibles: [],
   cantidadDeProductos: 100, // Momentáneamente para traer todo products y usarlo para fotos, nuevos, ofertas, etc
 
-  getUserById: async (userId) => {
+  restoreSession: async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/auth/${userId}`)
-      set({ userInfo: data })
+      await axios('http://localhost:3001/auth/restore');
     } catch (error) {
-      console.error("Error al buscar usuario por Id:", error);
+      console.error("Error al restaurar la sesión", error);
       throw error;
     }
-  },
-  setUserInfo: (data) => {
-    localStorage.setItem("userInfo", JSON.stringify({ ...data }));
-    set(() => ({
-      userInfo: { ...data }
-    }));
-  },
-  clearUserInfo: () => {
-    localStorage.removeItem("userInfo");
-    set(() => ({
-      userInfo: null
-    }));
   },
   register: async (name, email, password) => {
     try {
@@ -80,9 +63,10 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  login: async (email, password) => {
+  login: async (email, password, isAuto) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/auth/login', { email, password });
+      const { data } = await axios.post('http://localhost:3001/auth/login', { email, password, isAuto });
+      console.log(data);
       set(() => ({
         userInfo: data.foundUser
       }));
@@ -94,7 +78,7 @@ export const useStore = create((set) => ({
           reviews: data.reviews,
         },
       }));
-      cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
+      // cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
     } catch (error) {
       console.error("Error al iniciar sesión", error);
       throw error;

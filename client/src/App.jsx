@@ -22,8 +22,8 @@ export default function App() {
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
   const userInfo = useStore((state) => state.userInfo);
-
-  const getUserById = useStore((state) => state.getUserById);
+  const login = useStore((state) => state.login);
+  const restoreSession = useStore((state) => state.restoreSession);
   
   useEffect(() => {
     (async function loadData() {
@@ -43,9 +43,20 @@ export default function App() {
 
   useEffect(() => {
     (async function loadUserData() {
-      await autoLogin(userInfo, getUserById)
+      // await autoLogin(userInfo, login);
     }())
   });
+
+  useEffect(() => {
+    (async function restore() {
+      try {
+        await restoreSession();
+        await login('', '', true);
+      } catch (error) {
+        console.error('Error fetching userData:', error);
+      }
+    })();
+  }, []);
 
   return (
     <>
