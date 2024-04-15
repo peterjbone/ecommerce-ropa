@@ -3,7 +3,7 @@ import HeroImagesBar from "../../components/HeroImagesBar/HeroImagesBar";
 import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import CategoriesBar from "../../components/CategoriesBar/CategoriesBar";
 import { useStore } from "../../store.js";
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 export default function Home() {
   const products = useStore((state) => state.products);
@@ -19,16 +19,14 @@ export default function Home() {
   const listaTallas = useStore((state) => state.listaTallas);
   const getCart = useStore((state) => state.getCart);
 
-
-  console.log(products, nuevos, ofertas);
-  
-  
   useEffect(() => {
+    window.scrollTo(0, 0);
     const cartToken = localStorage.getItem('cartToken');
     if (cartToken) {
       getCart(cartToken);
     }
   }, []);
+
   const listas = [
     {
       lista: listaGeneros,
@@ -76,16 +74,15 @@ export default function Home() {
       <div className={styles["product-bar"]}>
         <ProductsBar title='Favoritos' products={products} />
       </div>
-      {listas.map(lista => {
+      {listas.map((lista, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} products={products} />
-          </>
-        )
+          </React.Fragment>
+        );
       })}
       <br /><br /><br />
     </div>
   );
-  
-};
+}
 

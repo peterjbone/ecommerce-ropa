@@ -17,18 +17,18 @@ const addProductToCart = async (req, res) => {
       idProductOriginal,
     } = req.body;
 
-    const variantId = `${nombre}-${opcion.color}-${opcion.talla}`;
+		const variantId = `${nombre}-${opcion.color}-${opcion.talla}`;
 
-    let carrito;
-    if (token) {
-      carrito = await Carrito.findOne({ token });
-      if (!carrito) {
-        carrito = new Carrito({ token, products: [] });
-      }
-    } else {
-      const randomToken = Math.random().toString(36).substring(7);
-      carrito = new Carrito({ token: randomToken, products: [] });
-    }
+		let carrito;
+		if (token) {
+			carrito = await Carrito.findOne({ token });
+			if (!carrito) {
+				carrito = new Carrito({ token, products: [] });
+			}
+		} else {
+			const randomToken = Math.random().toString(36).substring(7);
+			carrito = new Carrito({ token: randomToken, products: [] });
+		}
 
     const existingProduct = carrito.products.find(
       (product) => product.variantId === variantId
@@ -56,19 +56,19 @@ const addProductToCart = async (req, res) => {
       });
     }
 
-    await carrito.save();
+		await carrito.save();
 
-    res.status(200).json({
-      message: "Producto agregado al carrito correctamente",
-      carrito,
-      token: carrito.token,
-    });
-  } catch (error) {
-    console.error("Error al agregar producto al carrito:", error);
-    res.status(500).json({
-      message: "Hubo un error al agregar el producto al carrito ",
-    });
-  }
+		res.status(200).json({
+			message: "Producto agregado al carrito correctamente",
+			carrito,
+			token: carrito.token
+		});
+	} catch (error) {
+		console.error("Error al agregar producto al carrito:", error);
+		res.status(500).json({
+			message: "Hubo un error al agregar el producto al carrito "
+		});
+	}
 };
 
 module.exports = addProductToCart;

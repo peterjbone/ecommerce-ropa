@@ -7,11 +7,9 @@ import { useStore } from '../../store';
 import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
 
 import { ToastContainer, toast } from 'react-toastify';
-import Cookies from 'universal-cookie';
 
 export default function UserDashboard() {
   const userInfo = useStore((state) => state.userInfo);
-  const favoritos = useStore((state) => state.favoritos);
   const changeEmail = useStore((state) => state.changeEmail);
   const getFavorites = useStore((state) => state.getFavorites);
   const changePassword = useStore((state) => state.changePassword);
@@ -372,7 +370,7 @@ export default function UserDashboard() {
             case 'favorites':
               return (
                 <>
-                  {favoritos.map((product) => (
+                  {userInfo.favorites.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={false} />
                   ))}
                 </>
@@ -444,7 +442,6 @@ export default function UserDashboard() {
           }
         })()}
       </section>
-
       <ToastContainer />
     </div>
   );

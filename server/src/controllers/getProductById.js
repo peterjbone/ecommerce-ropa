@@ -1,18 +1,24 @@
 const Producto = require("../models/Producto.js");
 const Resena = require("../models/Resena.js");
 
-const getProductById = async (req, res) => {
-  const { id } = req.params;
+const getProductById = async (request, response) => {
+  const { id } = request.params;
 
   try {
-    let product = await Producto.findOne({ _id: id });
+    const product = await Producto.findOne({
+      _id: id,
+    });
     if (!product) {
-      return res.status(404).send("No se encontró el producto.");
+      return response.status(404).send("No se encontró el producto.");
     }
-
-    // Buscar reseñas del producto
-    const allReviews = await Resena.find({ producto_id: id, esAceptada: true });
-    const topReviews = await Resena.find({ producto_id: id, esAceptada: true })
+    const allReviews = await Resena.find({
+      producto_id: id,
+      esAceptada: true,
+    });
+    const topReviews = await Resena.find({
+      producto_id: id,
+      esAceptada: true,
+    })
       .sort({ valoracion: -1 })
       .limit(5);
     const bottomReviews = await Resena.find({
@@ -90,7 +96,7 @@ const getProductById = async (req, res) => {
 
     if (product.oferta && product.oferta.offActiva) {
       if (product.oferta.aplicado) {
-        return res.status(200).json({
+        return response.status(200).json({
           message: "El descuento ya ha sido aplicado anteriormente",
           product,
           reviews,
@@ -107,7 +113,7 @@ const getProductById = async (req, res) => {
 
         await product.save();
 
-        return res.status(200).json({
+        return response.status(200).json({
           message: "Precio actualizado exitosamente",
           product,
           reviews,
@@ -115,12 +121,12 @@ const getProductById = async (req, res) => {
       }
     }
 
-    return res
+    return response
       .status(200)
       .json({ message: "Producto y reseñas", product, reviews });
   } catch (error) {
     console.log("Error interno de ruta /getProductById", error);
-    return res.status(500).json({ message: error.message });
+    return response.status(500).json({ message: error.message });
   }
 };
 

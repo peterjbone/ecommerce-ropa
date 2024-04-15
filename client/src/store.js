@@ -4,14 +4,9 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
 export const useStore = create((set) => ({
-  user: null,
-  userInfo:
-    typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo"))
-      : null,
+  userInfo: null,
   products: [],
   productosFiltrados: [],
-  favoritos: [],
   cart: [],
   nuevos: [],
   destacados: [],
@@ -52,26 +47,13 @@ export const useStore = create((set) => ({
   tallasDisponibles: [],
   cantidadDeProductos: 100, // Momentáneamente para traer todo products y usarlo para fotos, nuevos, ofertas, etc
 
-  getUserById: async (userId) => {
+  restoreSession: async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/auth/${userId}`);
-      set({ user: data });
+      await axios("http://localhost:3001/auth/restore");
     } catch (error) {
-      console.error("Error al buscar usuario por Id:", error);
+      console.error("Error al restaurar la sesión", error);
       throw error;
     }
-  },
-  setUserInfo: (data) => {
-    localStorage.setItem("userInfo", JSON.stringify({ ...data }));
-    set(() => ({
-      userInfo: { ...data },
-    }));
-  },
-  clearUserInfo: () => {
-    localStorage.removeItem("userInfo");
-    set(() => ({
-      userInfo: null,
-    }));
   },
   register: async (name, email, password) => {
     try {
@@ -85,11 +67,12 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  login: async (email, password) => {
+  login: async (email, password, isAuto) => {
     try {
       const { data } = await axios.post("http://localhost:3001/auth/login", {
         email,
         password,
+        isAuto,
       });
       set(() => ({
         userInfo: data.foundUser,
@@ -133,6 +116,7 @@ export const useStore = create((set) => ({
   logOut: async () => {
     try {
       await axios("http://localhost:3001/auth/logout");
+      cookies.remove("token");
       set((state) => ({
         ...state,
         userInfo: null,
@@ -321,20 +305,12 @@ export const useStore = create((set) => ({
     try {
       const { data } = await axios(`http://localhost:3001/producto/${id}`);
       const { product, reviews } = data;
-
-      if (product) {
-        set(() => ({
-          productoDetail: product,
-          productoReviews: reviews || [],
-        }));
-      } else {
-        console.log("No se encontró el producto.");
-      }
+      set(() => ({ productoDetail: product, productoReviews: reviews }));
     } catch (error) {
-      console.error("Error al obtener el producto:", error);
+      console.error(error);
+      throw error;
     }
   },
-
   getAllReviews: async () => {
     try {
       const { data } = await axios("http://localhost:3001/resena");
@@ -376,6 +352,24 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
+  getFavorites: async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/getFavorites",
+        useStore.getState().userInfo.favorites
+      );
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          favorites: data,
+        },
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
   updateFavorite: async (id) => {
     try {
       const { data } = await axios.put("http://localhost:3001/updateFavorite", {
@@ -394,32 +388,19 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  getFavorites: async () => {
+  getPurchases: async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/getFavorites",
-        useStore.getState().userInfo.favorites
+        "http://localhost:3001/getPurchases",
+        useStore.getState().userInfo.purchases
       );
-      set(() => ({ favoritos: data }));
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  },
-  addFav: (id) => {
-    try {
-      set((state) => ({ favoritos: [...state.favoritos, id] }));
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
-  },
-  removeFav: (id) => {
-    try {
-      set((state) => {
-        const updatedFavoritos = state.favoritos.filter((item) => item !== id);
-        return { favoritos: updatedFavoritos };
-      });
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          purchases: data,
+        },
+      }));
     } catch (error) {
       console.error(error);
       throw error;

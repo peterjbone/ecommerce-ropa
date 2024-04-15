@@ -12,7 +12,7 @@ const {
 server.listen(PORT, async () => {
   console.log(`Servidor levantado en el puerto: ${PORT} (backend)`);
   await connectDB(); // Descomentar lo q sea necesario
-  //await insertarTodo();
+  // await insertarTodo();
   // await insertarProductos();
   // await insertarResenas();
 });

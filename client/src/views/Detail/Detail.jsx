@@ -7,6 +7,8 @@ import HeroImagesBarDetail from "../../components/HeroImagesBar/HeroImagesBarDet
 import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import Reviews from "../../components/Reviews/Reviews";
 
+import { ToastContainer, toast } from "react-toastify";
+
 export default function Detail() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -20,18 +22,19 @@ export default function Detail() {
   const getCart = useStore((state) => state.getCart);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const cartToken = localStorage.getItem("cartToken");
-  const cart = useStore((state)=> state.cart);
+  const cart = useStore((state) => state.cart);
 
   useEffect(() => {
-    const cartToken = localStorage.getItem("cartToken");
     if (cartToken) {
       getCart(cartToken);
     }
-  }, []);
+  },[]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     (async function getProduct() {
       try {
+        
         await getProductById(id);
       } catch (error) {
         console.error(error);
@@ -43,6 +46,7 @@ export default function Detail() {
     const fetchRelatedProducts = async () => {
       try {
         if (productoDetail && productoDetail.categoria) {
+         
           const response = await axios.post("http://localhost:3001/productos", {
             categoria: [productoDetail.categoria],
             busqueda: ""
@@ -53,7 +57,7 @@ export default function Detail() {
           setRelatedProducts(randomProducts);
         }
       } catch (error) {
-        console.error("Error al obtener productos relacionados:", error);
+        console.error("Error fetching related products:", error);
       }
     };
     fetchRelatedProducts();
@@ -76,15 +80,15 @@ export default function Detail() {
         productoDetail.opciones[selectedColorIndex].colores.nombres[0];
       const selectedSize =
         productoDetail.opciones[selectedColorIndex].tallas[selectedSizeIndex];
-  
+
       if (selectedSize.stock > 0) {
         const productInCart = cart.find(product => (
           product.opcion.color === selectedColor &&
           product.opcion.talla === selectedSize.talla
         ));
-        
+
         const totalQuantityInCart = productInCart ? productInCart.quantity : 0;
-  
+
         if (totalQuantityInCart < selectedSize.stock) {
           const selectedProduct = {
             nombre: productoDetail.nombre,
@@ -106,6 +110,9 @@ export default function Detail() {
             idProductOriginal: productoDetail._id
           };
           addToCart(selectedProduct, cartToken);
+          toast.success("Agregado al carrito", {
+            autoClose: 500
+          });
         } else {
           console.log("No se puede agregar más de este producto al carrito");
         }
@@ -116,7 +123,7 @@ export default function Detail() {
       console.log("Por favor selecciona color y talla");
     }
   };
-  
+
   const getRandomItems = (array, count, currentProductId) => {
     const shuffled = array
       .filter((product) => product._id !== currentProductId)
@@ -131,10 +138,7 @@ export default function Detail() {
   if (!productoDetail) {
     return (
       <div className={styles.notFound}>
-        <h1 className={styles.notFoundError}>ERROR 404</h1>
-        <p className={styles.notFoundText}>
-          Esta no es la página que estás buscando
-        </p>
+        Loading ...
       </div>
     );
   } else {
@@ -204,11 +208,10 @@ export default function Detail() {
                     {opcion.colores.codigosHex.map((color, colorIndex) => (
                       <div
                         key={colorIndex}
-                        className={`${styles.colorCircle} ${
-                          selectedColorIndex === index
-                            ? styles.selectedColor
-                            : ""
-                        }`}
+                        className={`${styles.colorCircle} ${selectedColorIndex === index
+                          ? styles.selectedColor
+                          : ""
+                          }`}
                         style={{ backgroundColor: color }}
                         onClick={() => handleColorChange(index)}
                       ></div>
@@ -221,9 +224,8 @@ export default function Detail() {
                         {opcion.tallas.map((tallaData, sizeIndex) => (
                           <div
                             key={sizeIndex}
-                            className={`${styles.sizeItem} ${
-                              selectedSizeIndex === sizeIndex && tallaData.stock > 0 ? styles.selectedSize : tallaData.stock === 0 ? styles.disabledSize : ""
-                            }`}
+                            className={`${styles.sizeItem} ${selectedSizeIndex === sizeIndex && tallaData.stock > 0 ? styles.selectedSize : tallaData.stock === 0 ? styles.disabledSize : ""
+                              }`}
                             onClick={() => {
                               if (tallaData.stock > 0) {
                                 handleSizeChange(sizeIndex);
@@ -257,12 +259,25 @@ export default function Detail() {
           </div>
         </div>
         <div className={styles.productosRelacionados}>
+          
           <ProductsBar
             title="Productos Relacionados"
             products={relatedProducts}
           />
         </div>
-        <Reviews  reviews={productoReviews} />
+        <Reviews reviews={productoReviews} />
+        <ToastContainer
+          position="top-center"
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          transition:Bounce
+        />
       </div>
     );
   }

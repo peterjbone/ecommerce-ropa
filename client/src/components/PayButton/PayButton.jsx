@@ -19,7 +19,6 @@ function PayButton({ cartItems, userId }) {
 			quantity: item.quantity
 		};
 	});
-   console.log(formatCart)
 	//* Función que maneja el pago
 	async function handleCheckout() {
 		axios

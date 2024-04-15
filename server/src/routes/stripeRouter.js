@@ -168,7 +168,7 @@ const createOrder = async (customer, data) => {
   }
 };
 
-//* STRIPE WEEBHOOK
+//* STRIPE WEBHOOK
 let endpointSecret;
 
 router.post(
