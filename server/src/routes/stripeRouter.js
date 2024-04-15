@@ -46,7 +46,39 @@ router.post("/create-checkout-session", async (req, res) => {
 	const session = await stripe.checkout.sessions.create({
 		payment_method_types: ["card"],
 		shipping_address_collection: {
-			allowed_countries: ["US", "CA", "EC", "BR", "CL", "AR"]
+			allowed_countries: [
+				"AF",
+				"AL",
+				"DZ",
+				"AD",
+				"AR",
+				"AM",
+				"AU",
+				"AT",
+				"BS",
+				"BH",
+				"BD",
+				"BB",
+				"BY",
+				"BE",
+				"BO",
+				"BR",
+				"CA",
+				"CL",
+				"CN",
+				"CO",
+				"DK",
+				"DO",
+				"EC",
+				"EG",
+				"SV",
+				"FK",
+				"FO",
+				"FI",
+				"FR",
+				"DE",
+				"GR"
+			]
 		},
 		shipping_options: [
 			{
@@ -56,7 +88,7 @@ router.post("/create-checkout-session", async (req, res) => {
 						amount: 0,
 						currency: "usd"
 					},
-					display_name: "Free shipping",
+					display_name: "Envío gratis",
 					delivery_estimate: {
 						minimum: {
 							unit: "business_day",
@@ -76,7 +108,7 @@ router.post("/create-checkout-session", async (req, res) => {
 						amount: 1500,
 						currency: "usd"
 					},
-					display_name: "Next day air",
+					display_name: "Siguiente día",
 					delivery_estimate: {
 						minimum: {
 							unit: "business_day",
@@ -97,7 +129,8 @@ router.post("/create-checkout-session", async (req, res) => {
 		line_items,
 		mode: "payment",
 		success_url: `${process.env.FRONT_URL}/checkout-success`,
-		cancel_url: `${process.env.FRONT_URL}/carrito`
+		cancel_url: `${process.env.FRONT_URL}/carrito`,
+		locale: "es"
 	});
 
 	res.send({ url: session.url });
@@ -650,16 +683,20 @@ router.post(
 			stripe.customers
 				.retrieve(data.customer)
 				.then(async (customer) => {
-					console.log("DATA", data);
-					console.log("COSTUMER", customer);
+					//* console.log("DATA", data);
+					//* console.log("COSTUMER", customer);
 
-					const orderId = await createOrder(customer, data); //se crea y se guarda el registro de compra en la BD
+					//se crea y se guarda el registro de compra en la BD
+					const orderId = await createOrder(customer, data);
+
 					const { transporter, mailOptions } = await settingEmail(
 						customer,
 						data,
 						orderId
-					); //configurando el envio a email
-					await sendMail(transporter, mailOptions); //enviar email al usuario
+					);
+
+					//enviar email al usuario
+					await sendMail(transporter, mailOptions);
 				})
 				.catch((err) => console.log(err.message));
 		}
