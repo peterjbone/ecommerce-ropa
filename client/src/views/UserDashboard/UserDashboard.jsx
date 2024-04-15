@@ -1,10 +1,10 @@
-import "./UserDashboard.css";
+import './UserDashboard.css';
 
-import dataValidation from "../../dataValidation.js";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useStore } from "../../store";
-import UserDashboardCard from "../../components/UserDashboardCard/UserDashboardCard.jsx";
+import dataValidation from '../../dataValidation.js';
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { useStore } from '../../store';
+import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
 
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -12,7 +12,6 @@ export default function UserDashboard() {
   const userInfo = useStore((state) => state.userInfo);
   const changeEmail = useStore((state) => state.changeEmail);
   const getFavorites = useStore((state) => state.getFavorites);
-  const getPurchases = useStore((state) => state.getPurchases);
   const changePassword = useStore((state) => state.changePassword);
   const logOut = useStore((state) => state.logOut);
   const reauthenticate = useStore((state) => state.reauthenticate);
@@ -148,16 +147,6 @@ export default function UserDashboard() {
     }
     handleOptionClick('favorites');
   }
-  const handleGetPurchases = async () => {
-    if (userInfo) {
-      try {
-        await getPurchases();
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    handleOptionClick('purchases');
-  }
   const handlelogOut = async () => {
     try {
       await logOut();
@@ -187,8 +176,6 @@ export default function UserDashboard() {
       console.error(error);
     }
   }
-
-  console.log(userInfo.purchases);
 
   return (
     <div className='user-dashboard-container'>
@@ -220,7 +207,7 @@ export default function UserDashboard() {
         </button>
         <button
           className={`nav-bar-button dashboard-button ${activeOption === 'purchases' ? 'activeUserTab' : ''}`}
-          onClick={handleGetPurchases}
+          onClick={() => handleOptionClick('purchases')}
         >
           Mis Compras
         </button>
@@ -391,9 +378,9 @@ export default function UserDashboard() {
             case 'purchases':
               return (
                 <>
-                  {/* {userInfo.purchases.map((product) => (
+                  {userInfo.purchases.map((product) => (
                     <UserDashboardCard key={product._id} product={product} isPurchase={true} />
-                  ))} */}
+                  ))}
                 </>
               );
             case 'reviews':
