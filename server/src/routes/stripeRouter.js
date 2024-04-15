@@ -483,13 +483,13 @@ async function settingEmail(customer, data, orderId) {
 					<!-- primero fila -->
 					<div style="width: 100%; margin-bottom: 1rem">
 						<div style="display: inline-block; width: 49%">
-							<p style="color: #888; margin: 0 0 10px; font-size: 16px">
+							<p style="color: #888; margin: 0 0 10px; font-size: 16px; font-weight: 700">
 								Nombre
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">${data.customer_details.name} </p>
 						</div>
 						<div style="display: inline-block; width: 49%">
-							<p style="color: #888; margin: 0 0 10px; font-size: 16px">
+							<p style="color: #888; margin: 0 0 10px; font-size: 16px; font-weight: 700">
 								Email
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">${customer.email} </p>
@@ -498,13 +498,13 @@ async function settingEmail(customer, data, orderId) {
 					<!-- segunda fila -->
 					<div style="width: 100%; margin-bottom: 1rem">
 						<div style="display: inline-block; width: 49%">
-							<p style="color: #888; margin: 0 0 10px; font-size: 16px">
+							<p style="color: #888; margin: 0 0 10px; font-size: 16px; font-weight: 700">
 								Teléfono
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">${customer.phone} </p>
 						</div>
 						<div style="display: inline-block; width: 49%">
-							<p style="color: #888; margin: 0 0 10px; font-size: 16px">
+							<p style="color: #888; margin: 0 0 10px; font-size: 16px; font-weight: 700">
 								Número de pedido
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">${purchaseRecord._id} </p>
@@ -513,7 +513,7 @@ async function settingEmail(customer, data, orderId) {
 					<!-- tercera fila -->
 					<div style="width: 100%; margin-bottom: 1rem">
 						<div style="display: inline-block; width: 49%">
-							<p style="color: #888; margin: 0 0 10px; font-size: 16px">
+							<p style="color: #888; margin: 0 0 10px; font-size: 16px; font-weight: 700">
 								Dirección de envío
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">
@@ -526,7 +526,7 @@ async function settingEmail(customer, data, orderId) {
               </p>
 						</div>
 						<div style="display: inline-block; width: 49%">
-							<p style="color: #888; margin: 0 0 10px; font-size: 16px">
+							<p style="color: #888; margin: 0 0 10px; font-size: 16px; font-weight: 700">
 								Fecha de pedido
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()} </p>
@@ -535,7 +535,7 @@ async function settingEmail(customer, data, orderId) {
 					<!-- cuarta fila -->
 					<div style="width: 100%; margin-bottom: 16px">
 						<div>
-							<p style="color: #888; margin: 0 0 10px; font-size: 16px">
+							<p style="color: #888; margin: 0 0 10px; font-size: 16px; font-weight: 700">
 								Tipo / Método de envío
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">
