@@ -75,10 +75,10 @@ textarea {
 	font-size: 100%;
 	vertical-align: baseline;
 	background: transparent;
-	/* font-family: Morn, Arial, Helvetica, sans-serif; */
-	font-family: "Poppins", sans-serif;
-	font-weight: 500;
-	font-size: 1.15rem;
+	font-family: Morn, Arial, Helvetica, sans-serif;
+	/* font-family: "Poppins", sans-serif; */
+	/* font-weight: 500; */
+	/* font-size: 1.15rem; */
 	text-decoration: none;
 	color: var(--letters-color);
 }

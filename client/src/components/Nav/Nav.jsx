@@ -6,8 +6,6 @@ import moon from "../../assets/icons/moon-icon.svg";
 
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { Link as ScrollLink } from "react-scroll";
-import { Link } from "react-router-dom";
 import { useStore } from "../../store.js";
 
 import { FaSearch } from "react-icons/fa";
@@ -245,11 +243,11 @@ export default function Nav() {
           onClick={goToStore}>
           Tienda
         </button>
-        <div>
+        <div className="search-bar-container" >
           <button
             className="nav-bar-search-button"
             onClick={handleSearch}>
-            <FaSearch size={35} />
+            <FaSearch size={25} />
           </button>
           <input
             type="search"
@@ -276,7 +274,7 @@ export default function Nav() {
           {userInfo?.name && (
             <p
               style={{
-                fontSize: "1.25rem",
+                fontSize: "1.1rem",
                 lineHeight: "1.75rem",
                 marginLeft: "-10px"
               }}>
@@ -318,13 +316,13 @@ export default function Nav() {
           {/* Favoritos */}
           <NavLink to="/favoritos">
             <button className="nav-bar-button">
-              <FaHeart size={30} className="icon-favorito" />
+              <FaHeart size={25} className="icon-favorito" />
             </button>
           </NavLink>
           {/* Carrito */}
           <NavLink to="/carrito">
             <button className="nav-bar-button">
-              <FaCartShopping size={30} />
+              <FaCartShopping size={25} />
               <span className="cart-number">{totalItemsInCart}</span>
             </button>
           </NavLink>

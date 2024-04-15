@@ -34,17 +34,62 @@
 .nav-bar-button {
 	position: relative;
 	background: transparent;
-  /* height: 8vh; */
+  height: 8vh;
 	padding: 5px;
 	margin-right: 5px;
 	cursor: pointer;
 	border: none;
-	font-family: inherit;
-	font-weight: bold;
-	font-size: 1rem;
+	font-family: MornMedium;
+	font-size: 0.9rem;
 	color: var(--letters-color);
 	transition: 0.2s ease-out;
 }
+
+.nav-bar-button img {
+	width: 100%;
+}
+
+.nav-bar-button:hover {
+	color: var(--nav-button-letter-hover-color);
+  font-family: MornBold;
+}
+
+.search-bar-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-bar input[type="search"] {
+	max-width: 30vw;
+	min-width: 25vw;
+	padding: 8px;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0 0 3px 1px var(--nav-search-shadow-color);
+	background-color: inherit;
+	color: inherit;
+	cursor: text;
+	transition: 200ms ease-out;
+}
+
+.nav-bar input[type="search"]:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.nav-bar-search-button {
+	padding: 8px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+.nav-bar svg,
+.nav-bar-search-button svg {
+	fill: #888;
+}
+
 
 .icon-favorito:hover {
 	transition: 0.5s;
@@ -56,8 +101,8 @@
 	z-index: 10;
 	top: 1.2rem;
 	left: 1.5rem;
-	width: 15px;
-	height: 15px;
+	width: 10px;
+	height: 10px;
 	padding: 6px;
 	color: #000;
 	background-color: orangered;
@@ -76,53 +121,6 @@
 
 .theme-button:hover {
 	transform: scale(1.2);
-}
-
-.nav-bar-button img {
-	width: 100%;
-}
-
-.nav-bar input[type="search"] {
-	max-width: 30vw;
-	min-width: 25vw;
-	padding: 8px;
-	margin-right: 5px;
-	border: none;
-	border-radius: 5px;
-	box-shadow: 0 0 3px 1px var(--nav-search-shadow-color);
-	background-color: inherit;
-	color: inherit;
-	cursor: text;
-	transition: 200ms ease-out;
-}
-
-.nav-bar input[type="search"]:focus {
-	outline: none;
-	box-shadow: none;
-}
-
-.nav-bar-search-button {
-	padding: 8px;
-	border: none;
-	background: transparent;
-	cursor: pointer;
-
-	position: relative;
-	top: 10px;
-	left: -5px;
-}
-
-.nav-bar svg,
-.nav-bar-search-button svg {
-	width: unset;
-	height: unset;
-	fill: #888;
-}
-
-.nav-bar-button:hover {
-	color: var(--nav-button-letter-hover-color);
-  font-family: MornBold;
-  font-weight: bold;
 }
 
 .categories-window {
