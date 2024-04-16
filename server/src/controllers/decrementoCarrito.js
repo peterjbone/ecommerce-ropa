@@ -18,13 +18,7 @@ const decrementoCarrito = async (req, res) => {
         .json({ message: "Producto no encontrado en el carrito" });
     }
 
-    if (productToUpdate.quantity === 1) {
-      carrito.products = carrito.products.filter(
-        (product) => product.variantId !== variantId
-      );
-    } else {
-      productToUpdate.quantity -= 1;
-    }
+    productToUpdate.quantity -= 1;
 
     await carrito.save();
 

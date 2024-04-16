@@ -1,29 +1,27 @@
-/* .container {
+.container {
   margin-top: 70px;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
 }
 
-.container h1 {
+.containerTitle {
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-form {
+.formContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
 
-label {
-  font-weight: bold;
+.labelFormContainer {
+  font-family: MornBold;
 }
 
-input[type="text"],
-select,
-textarea {
-  width: 100%;
+.inputFormContainer {
+  width: 80%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -31,12 +29,12 @@ textarea {
   margin-bottom: 5px;
 }
 
-input[type="checkbox"] {
+.inputCheckboxForm {
   margin-right: 5px;
   vertical-align: middle;
 }
 
-button {
+.submitButton {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -46,12 +44,13 @@ button {
   height: 40px;
 }
 
-button:hover {
+.submitButton:hover {
   background-color: #0056b3;
 }
 
-select[name='Descuento'] {
-  width: 100px;
+.selectDiscount {
+  width: 80px;
+  text-align: center;
 }
 
 .color-grid {
@@ -71,10 +70,10 @@ select[name='Descuento'] {
   border: 2px solid #007bff;
 }
 
-.container form div span {
+.spanErrorNotification {
   color: rgb(44, 13, 13);
   background-color: rgb(238, 167, 167);
   border-radius: 5px;
   padding: .2rem;
   font-size: small;
-} */
+}

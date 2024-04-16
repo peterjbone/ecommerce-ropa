@@ -1,0 +1,20 @@
+.menuItem {
+	box-sizing: border-box;
+	width: 130px;
+	padding: 0.5rem;
+	border-bottom: 3px solid #555;
+
+	font-weight: 600;
+	font-size: 1rem;
+	text-align: center;
+
+	color: #000;
+	background-color: #fff;
+
+	cursor: pointer;
+	transition: background-color 1s ease-in-out;
+}
+
+.menuItem:hover {
+	background-color: #ccc;
+}

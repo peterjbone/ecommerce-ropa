@@ -1,17 +1,17 @@
-const { Router } = require('express')
+const { Router } = require("express")
 
-const { register, login, getUserById, getPasswordAuth, changeEmail, changePassword, logout, deleteAccount, profile } = require('../controllers/auth.controller.js')
-const { authRequired } = require('../middlewares/validateToken.js')
+const { register, login, restoreSession, getUserChange, getPasswordAuth, changeEmail, changePassword, logout, deleteAccount } = require("../controllers/auth.controller.js")
+const { authRequired } = require("../middlewares/validateToken.js")
 const router = Router()
 
-router.post('/register', register);
-router.post('/login', login);
-router.get('/:id', getUserById);
-router.post('/reauthenticate', getPasswordAuth);
-router.post('/changeEmail', changeEmail);
-router.post('/changePassword', changePassword);
-router.post('/logout', logout);
-router.delete('/delete/:id', deleteAccount);
-router.get('/profile', authRequired, profile);
+router.get("/logout", logout); // De no estar acá arriba por jerarquía no funciona, tal vez habría q hacerlo post
+
+router.post("/register", register);
+router.post("/login", login);
+router.get("/restore", restoreSession);
+router.post("/reauthenticate", getPasswordAuth);
+router.post("/changeEmail", changeEmail);
+router.post("/changePassword", changePassword);
+router.delete("/delete", deleteAccount);
 
 module.exports = router

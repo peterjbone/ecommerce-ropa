@@ -8,6 +8,7 @@ function PayButton({ cartItems, userId }) {
 	const formatCart = cartItems.map((item) => {
 		return {
 			_id: item._id,
+			idProductOriginal:item.idProductOriginal,
 			nombre: item.nombre,
 			marca: item.marca,
 			descripcion: item.descripcion,
@@ -18,13 +19,13 @@ function PayButton({ cartItems, userId }) {
 			quantity: item.quantity
 		};
 	});
-
 	//* Función que maneja el pago
 	async function handleCheckout() {
 		axios
 			.post(`${BACK_URL}/api/stripe/create-checkout-session`, {
 				formatCart,
-				userId
+				userId,
+				
 			})
 			.then((res) => {
 				if (res.data.url) {

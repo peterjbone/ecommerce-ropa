@@ -1,57 +1,64 @@
-import './UserDashboard.css';
+import "./UserDashboard.css";
 
-import dataValidation from './dataValidation.js';
-import { useState } from 'react';
-import { useStore } from '../../store';
-import UserDashboardCard from '../../components/UserDashboardCard/UserDashboardCard.jsx';
+import dataValidation from "../../dataValidation.js";
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { useStore } from "../../store";
+
+import { ToastContainer, toast } from "react-toastify";
+import FavoriteCard from "../../components/FavoriteCard/FavoriteCard.jsx";
+import PurchaseCard from "../../components/PurchaseCard/PurchaseCard.jsx";
+import ReviewCard from "../../components/ReviewCard/ReviewCard.jsx";
 
 export default function UserDashboard() {
   const userInfo = useStore((state) => state.userInfo);
   const changeEmail = useStore((state) => state.changeEmail);
+  const getFavorites = useStore((state) => state.getFavorites);
+  const getPurchases = useStore((state) => state.getPurchases);
+  const getReviewedProducts = useStore((state) => state.getReviewedProducts);
   const changePassword = useStore((state) => state.changePassword);
-  const nuevos = useStore((state) => state.nuevos);
-  const user = {
-    name: 'H',
-    _id: 1,
-    reviews: [],
-    purchases: [],
-  }
-
-  const [activeOption, setActiveOption] = useState('userData');
+  const logOut = useStore((state) => state.logOut);
+  const reauthenticate = useStore((state) => state.reauthenticate);
+  const deleteAccount = useStore((state) => state.deleteAccount);
+  const [activeOption, setActiveOption] = useState("userData");
   const [isUserDataChanged, setIsUserDataChanged] = useState(false);
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
   const [changeData, setChangeData] = useState({
-    name: '',
-    surName: '',
-    userName: '',
-    dateOfBirth: '',
-    currentEmail: '',
-    email: '',
-    emailPassword: '',
-    password: '',
-    newPassword: '',
-    repeatPassword: ''
+    name: userInfo.name,
+    surName: "",
+    userName: "",
+    dateOfBirth: "",
+    email: "",
+    newEmail: "",
+    emailPassword: "",
+    password: "",
+    newPassword: "",
+    repeatPassword: "",
+    deletePassword: "",
   });
   const [changeDataErrors, setChangeDataErrors] = useState({
-    name: '',
-    surName: '',
-    userName: '',
-    dateOfBirth: '',
-    changeEmail: '',
-    currentEmail: '',
-    email: '',
-    emailPassword: '',
-    password: '',
-    newPassword: '',
-    repeatPassword: ''
+    name: "",
+    surName: "",
+    userName: "",
+    dateOfBirth: "",
+    changeEmail: "",
+    currentEmail: "",
+    email: "",
+    newEmail: "",
+    emailPassword: "",
+    password: "",
+    newPassword: "",
+    repeatPassword: "",
+    deletePassword: "",
   });
+  const navigate = useNavigate();
 
   const handleOptionClick = (id) => {
     setActiveOption(id);
   }
-
   const handleUserDataChange = (event) => {
     const { name, value } = event.target;
-    if (!isUserDataChanged && (event.target.type !== 'email' || event.target.type !== 'password')) {
+    if (!isUserDataChanged && (event.target.type !== "email" || event.target.type !== "password")) {
       setIsUserDataChanged(true);
     }
     setChangeData({
@@ -64,7 +71,6 @@ export default function UserDashboard() {
         [name]: value
       }));
   }
-
   const handleUserDataChangeSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -78,8 +84,8 @@ export default function UserDashboard() {
       setIsUserDataChanged(false);
       // setModalMessage({
       //   ...modalMessage,
-      //   title: 'Success',
-      //   message: 'User Data Updated Succesfully'
+      //   title: "Success",
+      //   message: "User Data Updated Succesfully"
       // });
       // setIsNotificationModalOpen(true);
     } catch (error) {
@@ -95,14 +101,14 @@ export default function UserDashboard() {
       await changeEmail(changeData.email, changeData.emailPassword);
       setChangeData({
         ...changeData,
-        email: '',
-        emailPassword: '',
-        password: ''
+        email: "",
+        emailPassword: "",
+        password: ""
       });
       // setModalMessage({
       //   ...modalMessage,
-      //   title: 'Success',
-      //   message: 'Email Updated Succesfully'
+      //   title: "Success",
+      //   message: "Email Updated Succesfully"
       // });
       // setIsNotificationModalOpen(true);
     } catch (error) {
@@ -118,14 +124,14 @@ export default function UserDashboard() {
       await changePassword(changeData.password, changeData.newPassword);
       setChangeData({
         ...changeData,
-        password: '',
-        newPassword: '',
-        repeatPassword: ''
+        password: "",
+        newPassword: "",
+        repeatPassword: ""
       });
       // setModalMessage({
       //   ...modalMessage,
-      //   title: 'Success',
-      //   message: 'Password Updated Succesfully'
+      //   title: "Success",
+      //   message: "Password Updated Succesfully"
       // });
       // setIsNotificationModalOpen(true);
     } catch (error) {
@@ -135,230 +141,322 @@ export default function UserDashboard() {
       });
     }
   }
+  const handleGetFavorites = async () => {
+    if (userInfo) {
+      try {
+        await getFavorites();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    handleOptionClick("favorites");
+  }
+  const handleGetPurchases = async () => {
+    if (userInfo) {
+      try {
+        await getPurchases();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    handleOptionClick("purchases");
+  }
+  const handleGetReviewedProducts = async () => {
+    if (userInfo) {
+      try {
+        await getReviewedProducts();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    handleOptionClick("reviews");
+  }
+  const handlelogOut = async () => {
+    try {
+      await logOut();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handleReauthentication = async (event) => {
+    event.preventDefault();
+    try {
+      await reauthenticate(changeData.deletePassword);
+      setChangeData({
+        ...changeData,
+        deletePassword: "",
+      })
+      setIsDeleteAccountModalOpen(true);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handleDeleteAccount = async () => {
+    try {
+      await deleteAccount(userInfo._id);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
-    <div className='user-dashboard-container'>
-      <aside className='user-options-container'>
+    <div className="user-dashboard-container">
+      <aside className="user-options-container">
         <h2>Panel de Usuario</h2>
         <button
-          className={`nav-bar-button ${activeOption === 'userData' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('userData')}
+          className={`nav-bar-button ${activeOption === "userData" ? "activeUserTab" : ""}`}
+          onClick={() => handleOptionClick("userData")}
         >
           Información personal
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'email' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('email')}
+          className={`nav-bar-button dashboard-button ${activeOption === "email" ? "activeUserTab" : ""}`}
+          onClick={() => handleOptionClick("email")}
         >
           Cambiar Email
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'password' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('password')}
+          className={`nav-bar-button dashboard-button ${activeOption === "password" ? "activeUserTab" : ""}`}
+          onClick={() => handleOptionClick("password")}
         >
           Cambiar Contraseña
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'favorites' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('favorites')}
+          className={`nav-bar-button dashboard-button ${activeOption === "favorites" ? "activeUserTab" : ""}`}
+          onClick={handleGetFavorites}
         >
           Mis Favoritos
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'purchases' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('purchases')}
+          className={`nav-bar-button dashboard-button ${activeOption === "purchases" ? "activeUserTab" : ""}`}
+          onClick={handleGetPurchases}
         >
           Mis Compras
         </button>
         <button
-          className={`nav-bar-button ${activeOption === 'reviews' ? 'activeUserTab' : ''}`}
-          onClick={() => handleOptionClick('reviews')}
+          className={`nav-bar-button dashboard-button ${activeOption === "reviews" ? "activeUserTab" : ""}`}
+          onClick={handleGetReviewedProducts}
         >
           Mis Reseñas
         </button>
+        <button
+          className={`nav-bar-button dashboard-button ${activeOption === "deleteAccount" ? "activeUserTab" : ""}`}
+          onClick={() => handleOptionClick("deleteAccount")}
+        >
+          Eliminar Cuenta
+        </button>
+        <button
+          className={`nav-bar-button dashboard-button logout-button ${activeOption === "logout" ? "activeUserTab" : ""}`}
+          onClick={handlelogOut}
+        >
+          Cerrar Sesión
+        </button>
       </aside>
-      <section className='user-dashboard-info'>
+      <section className="user-dashboard-info">
         {(() => {
           switch (activeOption) {
-            case 'userData':
+            case "userData":
               return (
                 <form onSubmit={handleUserDataChangeSubmit} >
-                  <div className='user-data-input-label-container' >
-                    <label htmlFor='changeName' >Nombre</label>
+                  <div className="user-data-input-label-container" >
+                    <label htmlFor="changeName" >Nombre</label>
                     <input
-                      type='text'
-                      key='changeName'
-                      id='changeName'
-                      name='name'
+                      type="text"
+                      name="name"
                       value={changeData.name}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.name ? '' : 'invisible'} >{changeDataErrors.name ? `${changeDataErrors.name}` : 'invisible'}</p>
-                  <div className='user-data-input-label-container' >
-                    <label htmlFor='changeSurName' >Apellido</label>
+                  <p className={changeDataErrors.name ? "" : "invisible"} >{changeDataErrors.name ? `${changeDataErrors.name}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
+                    <label htmlFor="changeSurName" >Apellido</label>
                     <input
-                      type='text'
-                      key='changeSurName'
-                      id='changeSurName'
-                      name='surName'
+                      type="text"
+                      name="surName"
                       value={changeData.surName}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.surName ? '' : 'invisible'} >{changeDataErrors.surName ? `${changeDataErrors.surName}` : 'invisible'}</p>
-                  <div className='user-data-input-label-container' >
-                    <label htmlFor='changeUserName' >Nombre De Usuario</label>
+                  <p className={changeDataErrors.surName ? "" : "invisible"} >{changeDataErrors.surName ? `${changeDataErrors.surName}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
+                    <label htmlFor="changeUserName" >Nombre De Usuario</label>
                     <input
-                      type='text'
-                      key='changeUserName'
-                      id='changeUserName'
-                      name='userName'
+                      type="text"
+                      name="userName"
                       value={changeData.userName}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.userName ? '' : 'invisible'} >{changeDataErrors.userName ? `${changeDataErrors.userName}` : 'invisible'}</p>
-                  <div className='user-data-input-label-container' >
-                    <label htmlFor='changeUserName' >Teléfono</label>
+                  <p className={changeDataErrors.userName ? "" : "invisible"} >{changeDataErrors.userName ? `${changeDataErrors.userName}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
+                    <label htmlFor="changeUserName" >Teléfono</label>
                     <input
-                      type='tel'
-                      key='changeUserName'
-                      id='changeUserName'
-                      name='userName'
+                      type="tel"
+                      name="userName"
                       value={changeData.userName}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.userName ? '' : 'invisible'} >{changeDataErrors.userName ? `${changeDataErrors.userName}` : 'invisible'}</p>
-                  <div className='user-data-input-label-container' >
-                    <label htmlFor='changeDateOfBirth' >Fecha De Nacimiento</label>
+                  <p className={changeDataErrors.userName ? "" : "invisible"} >{changeDataErrors.userName ? `${changeDataErrors.userName}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
+                    <label htmlFor="changeDateOfBirth" >Fecha De Nacimiento</label>
                     <input
-                      type='date'
-                      key='changeDateOfBirth'
-                      id='changeDateOfBirth'
-                      name='dateOfBirth'
+                      type="date"
+                      name="dateOfBirth"
                       value={changeData.dateOfBirth}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.dateOfBirth ? '' : 'invisible'} >{changeDataErrors.dateOfBirth ? `${changeDataErrors.dateOfBirth}` : 'invisible'}</p>
-                  <p className={changeDataErrors.userData ? '' : 'invisible'} >{changeDataErrors.userData ? `${changeDataErrors.userData}` : 'invisible'}</p>
+                  <p className={changeDataErrors.dateOfBirth ? "" : "invisible"} >{changeDataErrors.dateOfBirth ? `${changeDataErrors.dateOfBirth}` : "invisible"}</p>
+                  <p className={changeDataErrors.userData ? "" : "invisible"} >{changeDataErrors.userData ? `${changeDataErrors.userData}` : "invisible"}</p>
                   <button
-                    type='submit'
-                    className='nav-bar-button user-submit-button'
+                    type="submit"
+                    className="nav-bar-button user-submit-button"
                     disabled={!isUserDataChanged || (!changeData.name && !changeData.surName && !changeData.userName && !changeData.dateOfBirth) || (changeDataErrors.name || changeDataErrors.surName || changeDataErrors.userName || changeDataErrors.dateOfBirth)} >
                     Modificar
                   </button>
                 </form>
               );
-            case 'email':
+            case "email":
               return (
                 <form onSubmit={handleUserEmailChangeSubmit}  >
-                  <div className='user-data-input-label-container' >
+                  <div className="user-data-input-label-container" >
                     <label>E-mail Actual</label>
                     <input
-                      type='email'
-                      key='changeEmailEmail'
-                      id='changeEmailEmail'
-                      name='currentEmail'
-                      value={changeData.currentEmail}
+                      type="email"
+                      name="email"
+                      value={changeData.email}
                       autoComplete="off"
                       onChange={handleUserDataChange} />
                   </div>
-                  <div className='user-data-input-label-container' >
+                  <p className={changeDataErrors.email ? "" : "invisible"} >{changeDataErrors.email ? `${changeDataErrors.email}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
                     <label>Nuevo E-mail</label>
                     <input
-                      type='email'
-                      key='changeEmailNew'
-                      id='changeEmailNew'
-                      name='email'
-                      value={changeData.email}
+                      type="email"
+                      name="newEmail"
+                      value={changeData.newEmail}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.email ? '' : 'invisible'} >{changeDataErrors.email ? `${changeDataErrors.email}` : 'invisible'}</p>
-                  <div className='user-data-input-label-container' >
+                  <p className={changeDataErrors.newEmail ? "" : "invisible"} >{changeDataErrors.newEmail ? `${changeDataErrors.newEmail}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
                     <label>Contraseña</label>
                     <input
-                      type='password'
-                      key='emailPassword'
-                      id='emailPassword'
-                      name='emailPassword'
+                      type="password"
+                      name="emailPassword"
                       value={changeData.emailPassword}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.emailPassword ? '' : 'invisible'} >{changeDataErrors.emailPassword ? `${changeDataErrors.emailPassword}` : 'invisible'}</p>
-                  <p className={changeDataErrors.changeEmail ? '' : 'invisible'} >{changeDataErrors.changeEmail ? `${changeDataErrors.changeEmail}` : 'invisible'}</p>
+                  <p className={changeDataErrors.emailPassword ? "" : "invisible"} >{changeDataErrors.emailPassword ? `${changeDataErrors.emailPassword}` : "invisible"}</p>
                   <button
-                    type='submit'
-                    className='nav-bar-button user-submit-button'
-                    onClick={handleUserEmailChangeSubmit}
-                    disabled={!changeData.currentEmail || !changeData.email || !changeData.emailPassword || changeDataErrors.currentEmail || changeDataErrors.email || changeDataErrors.emailPassword} >
+                    type="submit"
+                    className="nav-bar-button user-submit-button"
+                    disabled={!changeData.email || !changeData.newEmail || !changeData.emailPassword || changeDataErrors.email || changeDataErrors.newEmail || changeDataErrors.emailPassword} >
                     Modificar
                   </button>
                 </form>
               );
-            case 'password':
+            case "password":
               return (
                 <form onSubmit={handleUserPasswordChangeSubmit} >
-                  <div className='user-data-input-label-container' >
+                  <div className="user-data-input-label-container" >
                     <label>Contraseña Actual</label>
                     <input
-                      type='password'
-                      key='password'
-                      id='password'
-                      name='password'
+                      type="password"
+                      name="password"
                       value={changeData.password}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.password ? '' : 'invisible'} >{changeDataErrors.password ? `${changeDataErrors.password}` : 'invisible'}</p>
-                  <div className='user-data-input-label-container' >
+                  <p className={changeDataErrors.password ? "" : "invisible"} >{changeDataErrors.password ? `${changeDataErrors.password}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
                     <label>Nueva Contraseña</label>
                     <input
-                      type='password'
-                      key='changePasswordNew'
-                      id='changePasswordNew'
-                      name='newPassword'
+                      type="password"
+                      name="newPassword"
                       value={changeData.newPassword}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.newPassword ? '' : 'invisible'} >{changeDataErrors.newPassword ? `${changeDataErrors.newPassword}` : 'invisible'}</p>
-                  <div className='user-data-input-label-container' >
+                  <p className={changeDataErrors.newPassword ? "" : "invisible"} >{changeDataErrors.newPassword ? `${changeDataErrors.newPassword}` : "invisible"}</p>
+                  <div className="user-data-input-label-container" >
                     <label>Repetir Nueva Contraseña</label>
                     <input
-                      type='password'
-                      key='changePasswordNewRepeat'
-                      id='changePasswordNewRepeat'
-                      name='repeatPassword'
+                      type="password"
+                      name="repeatPassword"
                       value={changeData.repeatPassword}
                       onChange={handleUserDataChange} />
                   </div>
-                  <p className={changeDataErrors.repeatPassword ? '' : 'invisible'} >{changeDataErrors.repeatPassword ? `${changeDataErrors.repeatPassword}` : 'invisible'}</p>
+                  <p className={changeDataErrors.repeatPassword ? "" : "invisible"} >{changeDataErrors.repeatPassword ? `${changeDataErrors.repeatPassword}` : "invisible"}</p>
                   <button
-                    type='submit'
-                    className='nav-bar-button user-submit-button'
+                    type="submit"
+                    className="nav-bar-button user-submit-button"
                     disabled={!changeData.password || !changeData.newPassword || !changeData.repeatPassword || changeDataErrors.password || changeDataErrors.newPassword || changeDataErrors.repeatPassword} >
                     Modificar
                   </button>
                 </form>
               );
-            case 'favorites':
+            case "favorites":
               return (
                 <>
-                  {/* userInfo.favorites */nuevos.map((product) => (
-                    <UserDashboardCard key={product._id} product={product} isPurchase={false} />
+                  {userInfo.favorites.map((product) => (
+                    <FavoriteCard key={product._id} product={product} />
                   ))}
                 </>
               );
-            case 'purchases':
+            case "purchases":
               return (
                 <>
-                  {/* userInfo.purchases */nuevos.map((product) => (
-                    <UserDashboardCard key={product._id} product={product} isPurchase={true} />
+                  {userInfo.purchases.map((purchase) => (
+                    <PurchaseCard key={purchase._id} purchase={purchase} />
                   ))}
                 </>
               );
-            case 'reviews':
+            case "reviews":
               return (
                 <>
-                  {/* userInfo.reviews */nuevos.map((product) => (
-                    <UserDashboardCard key={product._id} product={product} isPurchase={true} />
+                  {userInfo.reviews.map((review) => (
+                    <ReviewCard key={review._id} review={review} handleGetReviewedProducts={handleGetReviewedProducts} />
                   ))}
+                </>
+              );
+            case "deleteAccount":
+              return (
+                <>
+                  <form onSubmit={handleReauthentication} >
+                    <div className="user-data-input-label-container" >
+                      <label>Eliminar cuenta requiere contraseña</label>
+                      <input
+                        type="password"
+                        name="deletePassword"
+                        value={changeData.deletePassword}
+                        onChange={handleUserDataChange} />
+                    </div>
+                    <p className={changeDataErrors.deletePassword ? "" : "invisible"} >{changeDataErrors.deletePassword ? `${changeDataErrors.deletePassword}` : "invisible"}</p>
+                    <button
+                      type="submit"
+                      className="nav-bar-button user-submit-button"
+                      disabled={!changeData.deletePassword || changeDataErrors.deletePassword} >
+                      Autenticar
+                    </button>
+                  </form>
+                  {isDeleteAccountModalOpen && (
+                    <div className="modal-overlay" >
+                      <div className="delete-account-modal">
+                        <h3>Confirmar eliminación de cuenta</h3>
+                        <p>Esta acción es irreversible. ¿Está seguro de que desea eliminar permanentemente su cuenta?</p>
+                        <div>
+                          <button
+                            className="delete-account-button"
+                            onClick={handleDeleteAccount}
+                          >
+                            Eliminar Cuenta
+                          </button>
+                          <button
+                            className="delete-account-cancel-button"
+                            onClick={() => setIsDeleteAccountModalOpen(false)}
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </>
               );
             default:
@@ -368,6 +466,7 @@ export default function UserDashboard() {
           }
         })()}
       </section>
+      <ToastContainer />
     </div>
   );
 }

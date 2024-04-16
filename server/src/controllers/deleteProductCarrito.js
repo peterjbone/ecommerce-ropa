@@ -1,6 +1,6 @@
 const Carrito = require("../models/Carrito");
 
-const deleteCarrito = async (req, res) => {
+const deleteProductCarrito = async (req, res) => {
   try {
     const { variantId, token } = req.body;
 
@@ -34,4 +34,4 @@ const deleteCarrito = async (req, res) => {
   }
 };
 
-module.exports = deleteCarrito;
+module.exports = deleteProductCarrito;

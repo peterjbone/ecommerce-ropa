@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import styles from './FormEdit.module.css'
+import styles from "./FormEdit.module.css"
 import { useParams } from "react-router-dom"
 import ColorGrid from "../../components/ColorGrid/ColorGrid"
 import StockTable from "../../components/StockTable/StockTable"
@@ -7,18 +7,18 @@ import axios from "axios"
 
 const FormEdit = () => {
 
-  let categorias = [ 'Adulto', 'Infante' ]
-  let subcategorias = ['Camisetas y Polos','Chaquetas y Abrigos','Sudaderas y Hoodies','Chalecos','Jeans','Shorts','Short','Zapatillas Casuales','Botin','Botas','Sandalias','Camisas','Pantalones','Botas Cortas','Leggings y Pantalones Deportivos','Zapatos','Blusas y Tops','Faldas','Pantalones de Pijama','Pantalones Formales','Pantalones Cortos de Ciclismo','Zapatillas de Casa','Zapatillas Deportivas','Camisetas de Deporte','Cardigans y Suéteres','Destacado','Tendencia']
-  let genero = [ 'masculino', 'unisex', 'femenino']
-  let tallesL = ['XS', 'S', 'L', 'M', 'XL', 'XXL', 'XXXL']
-  let tallesN = ['4', '6', '8', '10', '12', '14', '16', '34', '36', '38', '39', '40', '41', '42', '43', '44','45']
+  let categorias = [ "Adulto", "Infante" ]
+  let subcategorias = ["Camisetas y Polos","Chaquetas y Abrigos","Sudaderas y Hoodies","Chalecos","Jeans","Shorts","Short","Zapatillas Casuales","Botin","Botas","Sandalias","Camisas","Pantalones","Botas Cortas","Leggings y Pantalones Deportivos","Zapatos","Blusas y Tops","Faldas","Pantalones de Pijama","Pantalones Formales","Pantalones Cortos de Ciclismo","Zapatillas de Casa","Zapatillas Deportivas","Camisetas de Deporte","Cardigans y Suéteres","Destacado","Tendencia"]
+  let genero = [ "masculino", "unisex", "femenino"]
+  let tallesL = ["XS", "S", "L", "M", "XL", "XXL", "XXXL"]
+  let tallesN = ["4", "6", "8", "10", "12", "14", "16", "34", "36", "38", "39", "40", "41", "42", "43", "44","45"]
   let marcas = [
     "Nike",
     "Adidas",
     "Gucci",
     "H&M",
     "Zara",
-    "Levi's",
+    "Levis",
     "Calvin Klein",
     "Tommy Hilfiger",
     "Under Armour",
@@ -51,18 +51,18 @@ const FormEdit = () => {
     "Reebok"]
 
   let colores = [
-    { codHexadecimal: '#000000', nombreColor: 'negro' },
-    { codHexadecimal: '#FFFFFF', nombreColor: 'blanco' },
-    { codHexadecimal: '#FF0000', nombreColor: 'rojo' },
-    { codHexadecimal: '#0000FF', nombreColor: 'azul' },
-    { codHexadecimal: '#808080', nombreColor: 'gris' },
-    { codHexadecimal: '#8B4513', nombreColor: 'marron' },
-    { codHexadecimal: '#FFFF00', nombreColor: 'amarillo' },
-    { codHexadecimal: '#008000', nombreColor: 'verde' },
-    { codHexadecimal: '#007FFF', nombreColor: 'francia' },
-    { codHexadecimal: '#fa8072', nombreColor: 'salmon' },
-    { codHexadecimal: '#FFC0CB', nombreColor: 'rosa' },
-    { codHexadecimal: '#78288C', nombreColor: 'violeta' },
+    { codHexadecimal: "#000000", nombreColor: "negro" },
+    { codHexadecimal: "#FFFFFF", nombreColor: "blanco" },
+    { codHexadecimal: "#FF0000", nombreColor: "rojo" },
+    { codHexadecimal: "#0000FF", nombreColor: "azul" },
+    { codHexadecimal: "#808080", nombreColor: "gris" },
+    { codHexadecimal: "#8B4513", nombreColor: "marron" },
+    { codHexadecimal: "#FFFF00", nombreColor: "amarillo" },
+    { codHexadecimal: "#008000", nombreColor: "verde" },
+    { codHexadecimal: "#007FFF", nombreColor: "francia" },
+    { codHexadecimal: "#fa8072", nombreColor: "salmon" },
+    { codHexadecimal: "#FFC0CB", nombreColor: "rosa" },
+    { codHexadecimal: "#78288C", nombreColor: "violeta" },
   ]
 
   const { id } = useParams();
@@ -85,7 +85,7 @@ const FormEdit = () => {
 
   const [selectedColor, setSelectedColor] = useState([]);
 
-  const [tipoTalle, setTipoTalle] = useState('')
+  const [tipoTalle, setTipoTalle] = useState("")
   const tipoTalleHandler = (e) => {
     setForm({...form, tallas: {}})
     setStock({})
@@ -100,13 +100,13 @@ const FormEdit = () => {
   })
 
   const [form, setForm] = useState({
-    nombre: '',
-    marca: '',
-    precio: '',
-    categoria: '',
-    subcategoria: '',
-    descripcion: '',
-    genero: '',
+    nombre: "",
+    marca: "",
+    precio: "",
+    categoria: "",
+    subcategoria: "",
+    descripcion: "",
+    genero: "",
     oferta: discount,
     activo: false,
     opciones: {},
@@ -116,23 +116,23 @@ const FormEdit = () => {
   })
 
   let idUser = {
-    nombre: 'Campera Nike',
-    marca: 'Nike',
-    precio: '300',
-    categoria: 'Adulto',
-    subcategoria: 'Chaquetas y Abrigos',
-    descripcion: 'Campera mara Nike',
-    genero: 'masculino',
-    oferta: { offActiva: true, Descuento: '20' },
+    nombre: "Campera Nike",
+    marca: "Nike",
+    precio: "300",
+    categoria: "Adulto",
+    subcategoria: "Chaquetas y Abrigos",
+    descripcion: "Campera mara Nike",
+    genero: "masculino",
+    oferta: { offActiva: true, Descuento: "20" },
     activo: true,
     opciones: {},
     colores: [
-      { codHexadecimal: '#FFFFFF', nombreColor: 'blanco' },
-      { codHexadecimal: '#FF0000', nombreColor: 'rojo' },
-      { codHexadecimal: '#007FFF', nombreColor: 'francia' }
+      { codHexadecimal: "#FFFFFF", nombreColor: "blanco" },
+      { codHexadecimal: "#FF0000", nombreColor: "rojo" },
+      { codHexadecimal: "#007FFF", nombreColor: "francia" }
     ],
     productoNuevo: true,
-    tallas: { S: '2', L: '4', M: '4', XL: '4', XXL: '3' }
+    tallas: { S: "2", L: "4", M: "4", XL: "4", XXL: "3" }
   }
 
   if(idUser)
@@ -140,7 +140,7 @@ const FormEdit = () => {
   console.log(form);
   const changeDiscountHandler = (e) => {
     const { checked, name, value } = e.target;
-    if(name === 'Descuento') {
+    if(name === "Descuento") {
       setDiscount({...discount, Descuento: value})
       setForm({...form, oferta: {...discount, Descuento: value}})
     } else {
@@ -151,7 +151,7 @@ const FormEdit = () => {
 
   const changeHandler = (e) => {
     const { name, value } = e.target
-    if(name === 'activo' || name === 'productoNuevo') {
+    if(name === "activo" || name === "productoNuevo") {
       const { checked } = e.target;
       setForm({...form, [name]: checked})
     } else {
@@ -160,7 +160,7 @@ const FormEdit = () => {
   }
 
   const submitHandler = () => {
-    axios.post('http://localhost:3001/createproduct', form)
+    axios.post("http://localhost:3001/createproduct", form)
   }
 
   return (
@@ -169,7 +169,7 @@ const FormEdit = () => {
       <form onSubmit={submitHandler}>
         <div>
           <label>Nombre: </label>
-          <input type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} />
+          <input type="text" name="nombre" value={form.nombre} placeholder="Nombre del producto" onChange={changeHandler} />
         </div>
         <div>
           <label>Marca: </label>
@@ -180,7 +180,7 @@ const FormEdit = () => {
         </div>
         <div>
           <label>Precio: </label>
-          <input type="text" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} />
+          <input type="text" name="precio" value={form.precio} placeholder="Precio del producto" onChange={changeHandler} />
         </div>
         <div>
           <label>Categoria: </label>
@@ -209,19 +209,19 @@ const FormEdit = () => {
         </div>
         <div>
           <label>Activo: </label>
-          <input name='activo' type="checkbox" checked={form.activo} onChange={changeHandler} />
+          <input name="activo" type="checkbox" checked={form.activo} onChange={changeHandler} />
         </div>
         <div>
           <label>Producto nuevo: </label>
-          <input name='productoNuevo' type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
+          <input name="productoNuevo" type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
         </div>
         <div>
           <label>Oferta: </label>
-          <input name='oferta' type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
+          <input name="oferta" type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
           {form.oferta.offActiva && (
             <div>
               <label>% Descuento</label>
-              <select name='Descuento' value={discount.Descuento} onChange={changeDiscountHandler}>
+              <select name="Descuento" value={discount.Descuento} onChange={changeDiscountHandler}>
                 <option value="">%%</option>
                 <option value="5">5%</option>
                 <option value="10">10%</option>
@@ -236,7 +236,7 @@ const FormEdit = () => {
         </div>
         <div>
           <label>Opciones: </label>
-          <input name='opciones' type="checkbox" />
+          <input name="opciones" type="checkbox" />
         </div>
 
         <ColorGrid colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
@@ -244,16 +244,16 @@ const FormEdit = () => {
         <div>
           <label>Tipo de talle</label>
           <select name="tipoTalle" value={tipoTalle} onChange={tipoTalleHandler}>
-            <option value=''>--Seleccionar--</option>
-            <option value='L'>Letras</option>
-            <option value='N'>Números</option>
+            <option value="">--Seleccionar--</option>
+            <option value="L">Letras</option>
+            <option value="N">Números</option>
           </select>
 
-          {tipoTalle === 'L' && <StockTable sizes={tallesL} stock={stock} setStock={setStock} setForm={setForm} />}
-          {tipoTalle === 'N' && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
+          {tipoTalle === "L" && <StockTable sizes={tallesL} stock={stock} setStock={setStock} setForm={setForm} />}
+          {tipoTalle === "N" && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
         </div>
 
-        <button type='submit'>Crear</button>
+        <button type="submit">Crear</button>
       </form>
     </div>
   )

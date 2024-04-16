@@ -10,20 +10,21 @@ import Carrito from "./components/Carrito/Carrito";
 import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
-import { getCookie } from "./utils/getCookie.js";
-import { jwtDecode } from "jwt-decode";
+import { autoLogin } from "./utils/autoLogin.js"
+import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getProductInfo = useStore((state) => state.getProductInfo);
   const getDestacados = useStore((state) => state.getDestacados);
+  const getFilteredReviews = useStore((state) => state.getFilteredReviews);
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
-
-  const user = useStore((state) => state.user);
-  const getUserById = useStore((state) => state.getUserById);
-
+  const userInfo = useStore((state) => state.userInfo);
+  const login = useStore((state) => state.login);
+  const restoreSession = useStore((state) => state.restoreSession);
+  
   useEffect(() => {
     (async function loadData() {
       try {
@@ -33,6 +34,7 @@ export default function App() {
         await getNuevos();
         await getOfertas();
         await getTendencia();
+        await getFilteredReviews();
       } catch (error) {
         console.error();
       }
@@ -41,19 +43,20 @@ export default function App() {
 
   useEffect(() => {
     (async function loadUserData() {
-      try {
-        if (!user) {
-          const token = getCookie('token'); // Retrieve the token from the cookie
-          if (token) {
-            const userId = jwtDecode(token).id;
-            await getUserById(userId);
-          }
-        }
-      } catch (error) {
-        console.error('Auto-login failed:', error)
-      }
+      // await autoLogin(userInfo, login);
     }())
   });
+
+  useEffect(() => {
+    (async function restore() {
+      try {
+        await restoreSession();
+        await login("", "", true);
+      } catch (error) {
+        console.error("Error fetching userData:", error);
+      }
+    })();
+  }, []);
 
   return (
     <>
@@ -67,7 +70,8 @@ export default function App() {
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/:id" element={<Detail />} />
-        <Route path="/usuario" element={<UserDashboard />} />
+        {userInfo && <Route path="/usuario" element={<UserDashboard />} />}
+        <Route path="/reviews" element={<ReviewsAcceptance />} /> {/* Va En Dashboard Admin */}
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

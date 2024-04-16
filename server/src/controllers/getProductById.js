@@ -1,86 +1,120 @@
 const Producto = require("../models/Producto.js");
 const Resena = require("../models/Resena.js");
 
-const getProductById = async (req, res) => {
-  const { id } = req.params;
+const getProductById = async (request, response) => {
+  const { id } = request.params;
 
   try {
     const product = await Producto.findOne({
       _id: id
     });
-
-    if (product) {
-      const allReviews = await Resena.find({
-        producto_id: id
-      });
-      const topReviews = await Resena.find({
-        producto_id: id
-      }).sort({ valoracion: -1 }).limit(10);
-      const bottomReviews = await Resena.find({
-        producto_id: id
-      }).sort({ valoracion: 1 }).limit(10);
-      const randomReviews = await Resena.aggregate([
-        { $match: { producto_id: id } },
-        { $sample: { size: 10 } }
-      ]);
-      const averageReviews = await Resena.aggregate([
-        { $match: { producto_id: id, esAceptada: true } },
-        {
-          $group: {
-            _id: null,
-            promedio: { $avg: "$valoracion" }
+    if (!product) {
+      return response.status(404).send("No se encontró el producto.");
+    }
+    const allReviews = await Resena.find({
+      producto_id: id, esAceptada: true
+    });
+    const topReviews = await Resena.find({
+      producto_id: id, esAceptada: true
+    }).sort({ valoracion: -1 }).limit(5);
+    const bottomReviews = await Resena.find({
+      producto_id: id, esAceptada: true
+    }).sort({ valoracion: 1 }).limit(5);
+    const randomReviews = await Resena.aggregate([
+      { $match: { producto_id: id, esAceptada: true } },
+      { $sample: { size: 5 } }
+    ]);
+    const averageReviews = await Resena.aggregate([
+      { $match: { producto_id: id, esAceptada: true } },
+      {
+        $group: {
+          _id: null,
+          average: { $avg: "$valoracion" }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          average: {
+            $cond: [
+              { $gte: [{ $mod: ["$average", 1] }, 0.5] },
+              { $ceil: "$average" },
+              { $floor: "$average" }
+            ]
           }
-        },
-        {
-          $project: {
-            _id: 0,
-            promedio: {
-              $cond: [
-                { $gte: [{ $mod: ["$promedio", 1] }, 0.5] },
-                { $ceil: "$promedio" },
-                { $floor: "$promedio" }
-              ]
-            }
-          }
-        },
-        {
-          $lookup: {
-            from: "resenas",
-            let: { promedio: "$promedio", producto_id: id },
-            pipeline: [
-              {
-                $match: {
-                  $expr: {
-                    $and: [
-                      { $eq: ["$producto_id", "$$producto_id"] },
-                      { $eq: ["$valoracion", "$$promedio"] }
-                    ]
-                  }
+        }
+      },
+      {
+        $lookup: {
+          from: "resenas",
+          let: { average: "$average", producto_id: id },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $and: [
+                    { $eq: ["$producto_id", "$$producto_id"] },
+                    {
+                      $or: [
+                        { $eq: ["$valoracion", "$$average"] },
+                        { $eq: ["$valoracion", { $add: ["$$average", 0.5] }] },
+                        { $eq: ["$valoracion", { $subtract: ["$$average", 0.5] }] }
+                      ]
+                    }
+                  ]
                 }
               }
-            ],
-            as: "reseñas"
-          }
-        },
-        { $unwind: "$reseñas" },
-        { $limit: 10 }
-      ]);
+            },
+            { $limit: 5 }
+          ],
+          as: "averageArray"
+        }
+      },
+      { $unwind: "$averageArray" },
+      { $replaceRoot: { newRoot: "$averageArray" } }
+    ]);
 
-      const reviews = {
-        allReviews: allReviews || [],
-        topReviews: topReviews || [],
-        bottomReviews: bottomReviews || [],
-        averageReviews: averageReviews || [],
-        randomReviews: randomReviews || []
-      };
+    const reviews = {
+      allReviews: allReviews || [],
+      topReviews: topReviews || [],
+      bottomReviews: bottomReviews || [],
+      averageReviews: averageReviews || [],
+      randomReviews: randomReviews || [],
+    };
 
-      res.status(200).json({ product, reviews });
-    } else {
-      res.status(404).send("No se encontró el producto.");
+    if (product.oferta && product.oferta.offActiva) {
+      if (product.oferta.aplicado) {
+        return response.status(200).json({
+          message: "El descuento ya ha sido aplicado anteriormente",
+          product,
+          reviews,
+        });
+      } else {
+        const descuento = product.oferta.Descuento;
+        const precioConDescuento = product.precio * (1 - descuento / 100);
+        product.precioOriginal = product.precio;
+
+        product.precio = precioConDescuento;
+        const ofertaActualizada = { ...product.oferta, aplicado: true };
+
+        product.oferta = ofertaActualizada;
+
+        await product.save();
+
+        return response.status(200).json({
+          message: "Precio actualizado exitosamente",
+          product,
+          reviews,
+        });
+      }
     }
+
+    return response
+      .status(200)
+      .json({ message: "Producto y reseñas", product, reviews });
   } catch (error) {
-    console.log("Error interno de ruta /getProductById", error);
-    res.status(500).json({ message: error.message });
+    console.error("Error interno de ruta /getProductById", error);
+    return response.status(500).json({ message: error.message });
   }
 };
 

@@ -1,17 +1,14 @@
 import { create } from "zustand";
 import axios from "axios";
 import Cookies from "universal-cookie";
+
+const { VITE_BACK_URL } = import.meta.env;
 const cookies = new Cookies();
 
 export const useStore = create((set) => ({
-  user: null,
-  userInfo:
-    typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
-      ? JSON.parse(localStorage.getItem("userInfo"))
-      : null,
+  userInfo: null,
   products: [],
   productosFiltrados: [],
-  favoritos: [],
   cart: [],
   nuevos: [],
   destacados: [],
@@ -25,6 +22,25 @@ export const useStore = create((set) => ({
   listaTallas: [],
   productoDetail: "",
   productoReviews: "",
+  resenas: [],
+  filtrosResenas: {
+    buscarPor: "usuario",
+    busqueda: "",
+    valoracionSolo: true,
+    valoracionDesde: "--",
+    valoracionHasta: "--",
+    fechaSolo: true,
+    fechaDesde: "",
+    fechaHasta: "",
+    fechaAceptadaSolo: true,
+    fechaAceptadaDesde: "",
+    fechaAceptadaHasta: "",
+    aceptada: "notAccepted",
+    ordernado: "fecha",
+    ascendente: false,
+    pagina: 1,
+    cantidadDeResenas: 0
+  },
   filtros: {
     busqueda: "",
     marca: [],
@@ -40,7 +56,7 @@ export const useStore = create((set) => ({
     ordenado: "precio",
     ascendente: false,
     pagina: 1,
-    productosPorPagina: 100
+    productosPorPagina: 100,
   },
   filtrosSeleccionados: [],
   marcasDisponibles: [],
@@ -51,42 +67,35 @@ export const useStore = create((set) => ({
   tallasDisponibles: [],
   cantidadDeProductos: 100, // Momentáneamente para traer todo products y usarlo para fotos, nuevos, ofertas, etc
 
-  getUserById: async (userId) => {
+  restoreSession: async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/auth/${userId}`)
-      set({ user: data })
+      await axios(`${VITE_BACK_URL}/auth/restore`);
     } catch (error) {
-      console.error("Error al buscar usuario por Id:", error);
+      console.error("Error al restaurar la sesión", error);
       throw error;
     }
   },
-  setUserInfo: (data) => {
-    localStorage.setItem("userInfo", JSON.stringify({ ...data }));
-    set((state) => ({
-      ...state,
-      userInfo: { ...data }
-    }));
-  },
-  clearUserInfo: () => {
-    localStorage.removeItem("userInfo");
-    set((state) => ({
-      ...state,
-      userInfo: null
-    }));
-  },
   register: async (name, email, password) => {
     try {
-      await axios.post('http://localhost:3001/auth/register', { name, email, password });
+      await axios.post(`${VITE_BACK_URL}/auth/register`, { name, email, password });
     } catch (error) {
       console.error("Error al registrar usuario", error);
       throw error;
     }
   },
-  login: async (email, password) => {
+  login: async (email, password, isAuto) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/auth/login', { email, password });
+      const { data } = await axios.post(`${VITE_BACK_URL}/auth/login`, { email, password, isAuto });
       set(() => ({
         userInfo: data.foundUser
+      }));
+      set((prevState) => ({
+        ...prevState,
+        userInfo: {
+          ...prevState.userInfo,
+          purchases: data.purchases,
+          reviews: data.reviews,
+        },
       }));
       // cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
     } catch (error) {
@@ -96,7 +105,7 @@ export const useStore = create((set) => ({
   },
   changeEmail: async (email, password) => {
     try {
-      await axios.post('http://localhost:3001/auth/changeEmail', { email, password });
+      await axios.post(`${VITE_BACK_URL}/auth/changeEmail`, { email, password });
     } catch (error) {
       console.error("Error al cambiar email", error);
       throw error;
@@ -104,7 +113,7 @@ export const useStore = create((set) => ({
   },
   changePassword: async (currentPassword, newPassword) => {
     try {
-      await axios.post('http://localhost:3001/auth/changePassword', { currentPassword, newPassword });
+      await axios.post(`${VITE_BACK_URL}/auth/changePassword`, { currentPassword, newPassword });
     } catch (error) {
       console.error("Error al cambiar contraseña", error);
       throw error;
@@ -112,7 +121,8 @@ export const useStore = create((set) => ({
   },
   logOut: async () => {
     try {
-      await axios('http://localhost:3001/user/logout');
+      await axios(`${VITE_BACK_URL}/auth/logout`);
+      cookies.remove("token");
       set((state) => ({
         ...state,
         userInfo: null
@@ -122,9 +132,17 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  deleteAccount: async () => {
+  reauthenticate: async (password) => {
     try {
-      await axios.delete('http://localhost:3001/user');
+      await axios.post(`${VITE_BACK_URL}/auth/reauthenticate`, { password });
+    } catch (error) {
+      console.error("Error al reatenticar usuario", error);
+      throw error;
+    }
+  },
+  deleteAccount: async (id) => {
+    try {
+      await axios.delete(`${VITE_BACK_URL}/auth/delete`, { id });
       set((state) => ({
         ...state,
         userInfo: null
@@ -137,7 +155,7 @@ export const useStore = create((set) => ({
   getAllProducts: async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/productos`,
+        `${VITE_BACK_URL}/productos`,
         useStore.getState().filtros
       );
       const { count, filteredProducts } = data;
@@ -157,7 +175,7 @@ export const useStore = create((set) => ({
   },
   getProductInfo: async () => {
     try {
-      const { data } = await axios(`http://localhost:3001/infoProductos`);
+      const { data } = await axios(`${VITE_BACK_URL}/infoProductos`);
       const { marcas, categorias, generos, subcategorias, colores, talles } =
         data;
       set(() => ({
@@ -266,7 +284,7 @@ export const useStore = create((set) => ({
   getFilteredProducts: async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/productos`,
+        `${VITE_BACK_URL}/productos`,
         useStore.getState().filtros
       );
       const { count, productOptions, filteredProducts } = data;
@@ -289,67 +307,143 @@ export const useStore = create((set) => ({
   },
   getProductById: async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/producto/${id}`);
+      const { data } = await axios(`${VITE_BACK_URL}/producto/${id}`);
       const { product, reviews } = data;
       set(() => ({ productoDetail: product, productoReviews: reviews }));
     } catch (error) {
       console.error(error);
+      throw error;
+    }
+  },
+  setReviewsFilters: (name, value) => {
+    set((state) => ({
+      filtrosResenas: {
+        ...state.filtrosResenas,
+        [name]: value,
+      },
+    }));
+  },
+  getFilteredReviews: async () => {
+    try {
+      const { data } = await axios.post(`${VITE_BACK_URL}/resenas`, useStore.getState().filtrosResenas);
+      set((state) => ({
+        ...state,
+        resenas: data.reviews,
+        filtrosResenas: {
+          ...state.filtrosResenas,
+          cantidadDeResenas: data.count
+        }
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  setReviewsPage: (page) => {
+    set((state) => ({
+      filtrosResenas: {
+        ...state.filtrosResenas,
+        pagina: page,
+      },
+    }));
+  },
+  getReviewedProducts: async () => {
+    try {
+      const { data } = await axios.post(`${VITE_BACK_URL}/productoResena`, useStore.getState().userInfo.reviews);
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          reviews: data
+        }
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  updateReview: async (id) => {
+    try {
+      await axios.put(`${VITE_BACK_URL}/resena/${id}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  deleteReview: async (id) => {
+    try {
+      await axios.delete(`${VITE_BACK_URL}/resena/${id}`);
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   },
   createReview: async (review) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/resena', review);
+      const { data } = await axios.post(`${VITE_BACK_URL}/resena`, review );
       set((state) => ({
-        ...state.userInfo,
-        reviews: data
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          reviews: data
+        }
       }));
     } catch (error) {
       console.error(error);
-    }
-  },
-  updateFavorite: async (id) => {
-    try {
-      const { data } = await axios.put('http://localhost:3001/updateFavorite ', { userId: useStore.getState().userInfo._id, productId: id });
-      set((state) => ({
-        ...state.userInfo,
-        favorites: data
-      }));
-    } catch (error) {
-      console.log(error);
+      throw error;
     }
   },
   getFavorites: async () => {
     try {
-      const { data } = await axios.post('http://localhost:3001/getFavorites', useStore.getState().userInfo.favorites);
-      set(() => ({ favoritos: data }));
+      const { data } = await axios.post(`${VITE_BACK_URL}/getFavorites`, useStore.getState().userInfo.favorites);
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          favorites: data
+        }
+      }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      throw error;
     }
   },
-  addFav: (id) => {
+  updateFavorite: async (id) => {
     try {
-      set((state) => ({ favoritos: [...state.favoritos, id] }));
+      const { data } = await axios.put(`${VITE_BACK_URL}/updateFavorite`, { userId: useStore.getState().userInfo._id, productId: id });
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          favorites: data
+        }
+      }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      throw error;
     }
   },
-  removeFav: (id) => {
+  getPurchases: async () => {
     try {
-      set((state) => {
-        const updatedFavoritos = state.favoritos.filter((item) => item !== id);
-        return { favoritos: updatedFavoritos };
-      });
+      const { data } = await axios.post(`${VITE_BACK_URL}/getPurchases`, useStore.getState().userInfo.purchases);
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          purchases: data
+        }
+      }));
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      throw error;
     }
   },
   getCart: async (cartToken) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/carrito/${cartToken}`
+        `${VITE_BACK_URL}/carrito/${cartToken}`
       );
-      set((state) => ({
-        ...state,
+      set(() => ({
         cart: response.data.products
       }));
     } catch (error) {
@@ -360,7 +454,7 @@ export const useStore = create((set) => ({
     try {
       console.log(productToAdd);
       const { data } = await axios.post(
-        "http://localhost:3001/agregarCarrito",
+        `${VITE_BACK_URL}/agregarCarrito`,
         { ...productToAdd, token }
       );
       console.log(data);
@@ -377,9 +471,9 @@ export const useStore = create((set) => ({
   removeFromCart: async (variantId, token) => {
     try {
       const { data } = await axios.delete(
-        "http://localhost:3001/removeFromCart",
+        `${VITE_BACK_URL}/removeFromCart`,
         {
-          data: { variantId, token }
+          data: { variantId, token },
         }
       );
       set({ cart: data.carrito.products });
@@ -390,7 +484,7 @@ export const useStore = create((set) => ({
   incrementQuantity: async (variantId, token) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/incrementQuantity",
+        `${VITE_BACK_URL}/incrementQuantity`,
         { variantId, token }
       );
       set({ cart: response.data.carrito.products });
@@ -404,7 +498,7 @@ export const useStore = create((set) => ({
   decrementQuantity: async (variantId, token) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/decrementQuantity",
+        `${VITE_BACK_URL}/decrementQuantity`,
         { variantId, token }
       );
 
@@ -419,9 +513,12 @@ export const useStore = create((set) => ({
   setCart: (updatedCart) => {
     set({ cart: updatedCart });
   },
+  clearCart: () => {
+    set({ cart: [] });
+  },
   getNuevos: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/nuevos`);
+      // const { data } = await axios(`${VITE_BACK_URL}/nuevos`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
@@ -436,7 +533,7 @@ export const useStore = create((set) => ({
   },
   getDestacados: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/destacados`);
+      // const { data } = await axios(`${VITE_BACK_URL}/destacados`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Destacado") {
@@ -451,7 +548,7 @@ export const useStore = create((set) => ({
   },
   getOfertas: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/ofertas`);
+      // const { data } = await axios(`${VITE_BACK_URL}/ofertas`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
@@ -466,7 +563,7 @@ export const useStore = create((set) => ({
   },
   getTendencia: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/tendencia`);
+      // const { data } = await axios(`${VITE_BACK_URL}/tendencia`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Tendencia") {
@@ -482,22 +579,22 @@ export const useStore = create((set) => ({
 }));
 
 const toggleValue = (array, value) => {
-  if (array.includes(value)) {
-    return array.filter((item) => item !== value);
-  } else {
-    return [...array, value];
-  }
+	if (array.includes(value)) {
+		return array.filter((item) => item !== value);
+	} else {
+		return [...array, value];
+	}
 };
 
 const updateSelectedFilters = (prevSelectedFilters, id, name) => {
-  const updatedFilters = [...prevSelectedFilters];
-  const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
+	const updatedFilters = [...prevSelectedFilters];
+	const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
 
-  if (existingIndex !== -1) {
-    updatedFilters.splice(existingIndex, 1);
-  } else {
-    updatedFilters.push({ name, id });
-  }
+	if (existingIndex !== -1) {
+		updatedFilters.splice(existingIndex, 1);
+	} else {
+		updatedFilters.push({ name, id });
+	}
 
-  return updatedFilters;
+	return updatedFilters;
 };

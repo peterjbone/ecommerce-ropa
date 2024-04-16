@@ -2,6 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  color: var(--better-view-letter-color);
 }
 
 .loading {
@@ -16,6 +17,7 @@
 
 .detailContainer p {
   margin-bottom: 10px;
+  color: inherit;
 }
 
 .detailContainer img {
@@ -52,7 +54,6 @@
 }
 
 .selectedSize {
-  font-weight: bold;
 }
 
 .sizeItem {
@@ -100,7 +101,7 @@
 }
 
 .relatedProductPrice {
-  font-weight: bold;
+  font-family: MornBold;
   margin-top: 5px;
 }
 
@@ -168,4 +169,27 @@
 .addToCartButton[disabled]:hover,
 .buyButton[disabled]:hover {
   background-color: #ccc;
+}
+
+.redSquare {
+  display: inline-block;
+  padding: 3px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.precioOriginal {
+  margin-top: 8px;
+}
+
+.precioDescuento {
+  margin-top: 8px;
+}
+
+.disabledSize {
+  color: black;
+  cursor: not-allowed;
+  background-color: #999;
 }
