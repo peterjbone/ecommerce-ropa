@@ -8,6 +8,7 @@ const cors = require("cors");
 const indexRouter = require("./src/routes/indexRouter.js");
 const authRouter = require("./src/routes/authRouter.js");
 const stripeRouter = require("./src/routes/stripeRouter.js");
+const adminRouter = require('./src/routes/dashboardRouter.js')
 
 //* MIDDLEWARES
 server.use((req, res, next) => {
@@ -30,5 +31,6 @@ server.use(cookieParser());
 server.use("/", indexRouter);
 server.use("/auth", authRouter);
 server.use("/api/stripe", stripeRouter);
+server.use('/admin', adminRouter) 
 
 module.exports = server;

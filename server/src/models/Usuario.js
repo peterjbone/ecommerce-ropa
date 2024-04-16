@@ -29,6 +29,16 @@ const UserSchema = new Schema({
 	lastCart: {
 		type: [Schema.Types.Mixed],
 		default: []
+	},
+	role: {
+		type: String,
+		enum: ["admin", "user", "superAdmin"],
+		default: "user"
+	
+	},
+	delete: {
+		type: Boolean,
+		default: false
 	}
 });
 
