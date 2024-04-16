@@ -57,7 +57,7 @@ export default function Detail() {
           setRelatedProducts(randomProducts);
         }
       } catch (error) {
-        console.error("Error fetching related products:", error);
+        console.error("Error al obtener productos relacionados:", error);
       }
     };
     fetchRelatedProducts();

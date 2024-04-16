@@ -24,6 +24,7 @@ const Carrito = () => {
     if (cartToken) {
       getCart(cartToken);
     }
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
@@ -147,14 +148,14 @@ const Carrito = () => {
                           fontSize: "1.10rem",
                           lineHeight: "1.75rem"
                         }}>
-                        Color seleccionados: 
+                        Color seleccionados:
                         <span
                           style={{
                             fontSize: "1.25rem",
                             lineHeight: "1.75rem",
                             fontWeight: "600"
                           }}>
-                           {cartItem.opcion.color}
+                          {cartItem.opcion.color}
                         </span>
                       </p>
                       <button
@@ -196,7 +197,7 @@ const Carrito = () => {
           {/*----------------- RESUMEN DEL CARRITO --------------------*/}
           <div className={styles.cartSummary}>
             {/* Boton para limpiar el carrito */}
-            <button className={styles.clearBtn} onClick={() =>  VaciarCarrito() }>
+            <button className={styles.clearBtn} onClick={() => VaciarCarrito()}>
               Vaciar carrito
             </button>
             {/* Boton de Pago */}

@@ -208,10 +208,8 @@ const logout = async (request, response) => {
     // });
     await signOut(auth);
     response.status(200).json({ message: "Sesión cerrada correctamente" });
-    response.status(200).json({ message: "Sesión cerrada correctamente" });
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error, message: "Error cerrando sesión" });
     response.status(500).json({ error, message: "Error cerrando sesión" });
   }
 };
