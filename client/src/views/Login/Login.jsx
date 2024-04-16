@@ -70,7 +70,7 @@ export default function Login() {
 					placeholder="Contraseña"
 					onChange={changeHandler}
 				/>
-				<span className={styles.span}>¿Olvidaste tu contraseña?</span>
+				 <Link to="/forgot-password" className={styles.link}>¿Olvidaste tu contraseña?</Link>
 				<button className={styles.button} type="submit">
 					Iniciar sesión
 				</button>
