@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const messageTemplate = require("./message");
+require("dotenv").config();
 
 const sendEmail = async (userData, messageData) => {
   const { name, email } = userData;
@@ -12,8 +13,8 @@ const sendEmail = async (userData, messageData) => {
     port: 587,
     secure: false,
     auth: {
-      user: "ropaftecommerce@gmail.com",
-      pass: "srqohlllnpsnaywa",
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS,
     },
     tls: { rejectUnauthorized: false },
   };
