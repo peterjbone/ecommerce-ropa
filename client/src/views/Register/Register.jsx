@@ -116,7 +116,7 @@ export default function Register() {
           {errors.email ? `${errors.email}` : 'invisible'}
         </p> */}
 
-        <input className={styles.input} name='password' value={user.password} type="password" placeholder='Contraseña' onChange={changeHandler} />
+        <input className={styles.input} name='password' value={user.password} type="password" placeholder='Contraseña' onChange={changeHandler} onBlur={handleInputBlur} />
 
         {/* <p 
           className={errors.password ? '' : 'invisible'} 
@@ -154,4 +154,3 @@ export default function Register() {
     </div>
   )
 }
-
