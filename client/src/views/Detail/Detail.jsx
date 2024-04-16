@@ -138,7 +138,7 @@ export default function Detail() {
   if (!productoDetail) {
     return (
       <div className={styles.notFound}>
-        Loading ...
+        Cargando ...
       </div>
     );
   } else {
