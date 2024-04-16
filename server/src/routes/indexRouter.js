@@ -15,24 +15,26 @@ const incrementoCarrito = require("../controllers/incrementoCarrito.js");
 const decrementoCarrito = require("../controllers/decrementoCarrito.js");
 const updateFavorite = require("../controllers/updateFavorites.js");
 const getFavorites = require("../controllers/getFavorites.js");
+const getUserPurchase = require("../controllers/getUserPurchase.js");
 
 //* Router
 const router = Router();
 
 //* Rutas
-router.get("/infoProductos", getProductsInfo);
-router.get("/producto/:id", getProductById);
-router.get("/carrito/:cartToken", getCarrito);
-router.post("/productos", getProducts);
-router.post("/createproduct", postProduct);
-router.post("/agregarCarrito", addProductToCart);
-router.post("/incrementQuantity", incrementoCarrito);
-router.post("/decrementQuantity", decrementoCarrito);
-router.post("/resena", postReview);
-router.put("/updateFavorite", updateFavorite);
-router.post("/getFavorites", getFavorites);
-router.put("/updateProduct/:id", updateProduct);
-router.delete("/removeproduct/:id", removeProduct);
-router.delete("/removeFromCart", deleteCarrito);
+/* 1) */ router.get("/infoProductos", getProductsInfo);
+/* 2) */ router.get("/producto/:id", getProductById);
+/* 3) */ router.get("/carrito/:cartToken", getCarrito);
+/* 4) */ router.post("/productos", getProducts);
+/* 5) */ router.post("/createproduct", postProduct);
+/* 6) */ router.post("/agregarCarrito", addProductToCart);
+/* 7) */ router.post("/incrementQuantity", incrementoCarrito);
+/* 8) */ router.post("/decrementQuantity", decrementoCarrito);
+/* 9) */ router.post("/resena", postReview);
+/* 10) */ router.put("/updateFavorite", updateFavorite);
+/* 11) */ router.post("/getFavorites", getFavorites);
+/* 12) */ router.put("/updateProduct/:id", updateProduct);
+/* 13) */ router.delete("/removeproduct/:id", removeProduct);
+/* 14) */ router.delete("/removeFromCart", deleteCarrito);
+/* 15) */ router.get("/lastpurchase", getUserPurchase);
 
 module.exports = router;

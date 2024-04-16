@@ -149,9 +149,11 @@ const createOrder = async (customer, data) => {
 		paymentIntentId: data.payment_intent,
 		products,
 		subtotal: data.amount_subtotal,
+		amount_shipping: data.total_details.amount_shipping,
 		total: data.amount_total,
 		shipping: data.customer_details,
-		payment_status: data.payment_status
+		payment_status: data.payment_status,
+		purchase_time: new Date().toLocaleString()
 	});
 
 	try {
@@ -648,6 +650,7 @@ const sendMail = async (transporter, mailOptions) => {
 //sendMail(transporter, mailOptions);
 
 //*------------------------------- STRIPE WEEBHOOK -------------------------------------
+const Usuario = require("../models/Usuario.js");
 let endpointSecret;
 
 router.post(
@@ -683,19 +686,22 @@ router.post(
 			stripe.customers
 				.retrieve(data.customer)
 				.then(async (customer) => {
-					//* console.log("DATA", data);
-					//* console.log("COSTUMER", customer);
-
-					//se crea y se guarda el registro de compra en la BD
+					// se crea y se guarda la compra en la BD
 					const orderId = await createOrder(customer, data);
 
+					// guardar ultima compra en el usuario
+					const { userId } = await Compra.findById(orderId).populate("userId");
+					await Usuario.updateOne(
+						{ _id: userId._id },
+						{ $set: { purchases: [...userId.purchases, orderId] } }
+					);
+
+					// enviar email al usuario
 					const { transporter, mailOptions } = await settingEmail(
 						customer,
 						data,
 						orderId
 					);
-
-					//enviar email al usuario
 					await sendMail(transporter, mailOptions);
 				})
 				.catch((err) => console.log(err.message));

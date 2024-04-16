@@ -2,12 +2,18 @@ import { create } from "zustand";
 import axios from "axios";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+const { VITE_BACK_URL } = import.meta.env;
 
 export const useStore = create((set) => ({
 	user: null,
 	userInfo:
-		typeof localStorage !== "undefined" && localStorage.getItem("userInfo")
-			? JSON.parse(localStorage.getItem("userInfo"))
+		typeof localStorage !== `undefined` && localStorage.getItem(`userInfo`)
+			? JSON.parse(localStorage.getItem(`userInfo`))
+			: null,
+	userLastPurchase:
+		typeof localStorage !== `undefined` &&
+		localStorage.getItem(`userLastPurchase`)
+			? JSON.parse(localStorage.getItem(`userLastPurchase`))
 			: null,
 	products: [],
 	productosFiltrados: [],
@@ -23,21 +29,21 @@ export const useStore = create((set) => ({
 	listaSubcategorias: [],
 	listaColores: [],
 	listaTallas: [],
-	productoDetail: "",
-	productoReviews: "",
+	productoDetail: ``,
+	productoReviews: ``,
 	filtros: {
-		busqueda: "",
+		busqueda: ``,
 		marca: [],
 		genero: [],
 		categoria: [],
 		subcategoria: [],
-		precioDesde: "",
-		precioHasta: "",
+		precioDesde: ``,
+		precioHasta: ``,
 		porcentajeDeOferta: 0,
 		esNuevo: null,
 		color: [],
 		talla: [],
-		ordenado: "precio",
+		ordenado: `precio`,
 		ascendente: false,
 		pagina: 1,
 		productosPorPagina: 100
@@ -53,47 +59,69 @@ export const useStore = create((set) => ({
 
 	getUserById: async (userId) => {
 		try {
-			const { data } = await axios.get(`http://localhost:3001/auth/${userId}`);
+			const { data } = await axios.get(`${VITE_BACK_URL}/auth/${userId}`);
 			set({ user: data });
 		} catch (error) {
-			console.error("Error al buscar usuario por Id:", error);
+			console.error(`Error al buscar usuario por Id:`, error);
 			throw error;
 		}
 	},
 
+	/********************************************************/
+	getUserLastPurchase: async (userId) => {
+		try {
+			const { data } = await axios.get(
+				`${VITE_BACK_URL}/lastpurchase?id=${userId}`
+			);
+
+			if (data) {
+				localStorage.setItem(`userLastPurchase`, JSON.stringify({ ...data }));
+			}
+
+			set((state) => ({
+				...state,
+				userLastPurchase: { ...data }
+			}));
+		} catch (error) {
+			console.error(`Error al buscar compras de usuario (front)`, error);
+		}
+	},
 	setUserInfo: (data) => {
-		localStorage.setItem("userInfo", JSON.stringify({ ...data }));
-		set(() => ({
+		localStorage.setItem(`userInfo`, JSON.stringify({ ...data }));
+		set((state) => ({
+			...state,
 			userInfo: { ...data }
 		}));
 	},
 	clearUserInfo: () => {
-		localStorage.removeItem("userInfo");
-		set(() => ({
+		localStorage.removeItem(`userInfo`);
+		set((state) => ({
+			...state,
 			userInfo: null
 		}));
 	},
+	/***************************************************/
 
 	register: async (name, email, password) => {
 		try {
-			await axios.post("http://localhost:3001/auth/register", {
+			await axios.post(`${VITE_BACK_URL}/auth/register`, {
 				name,
 				email,
 				password
 			});
 		} catch (error) {
-			console.error("Error al registrar usuario", error);
+			console.error(`Error al registrar usuario`, error);
 			throw error;
 		}
 	},
 	login: async (email, password) => {
 		try {
-			const { data } = await axios.post("http://localhost:3001/auth/login", {
+			const { data } = await axios.post(`${VITE_BACK_URL}/auth/login`, {
 				email,
 				password
 			});
 
-			localStorage.setItem("userInfo", JSON.stringify({ ...data.foundUser }));
+			localStorage.setItem(`userInfo`, JSON.stringify({ ...data.foundUser }));
 
 			set((state) => ({
 				...state,
@@ -107,72 +135,72 @@ export const useStore = create((set) => ({
 					reviews: data.reviews
 				}
 			}));
-			// cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
+			// cookies.set(`token`, data.token); // Requiere debugear el token q da el login en el back
 		} catch (error) {
-			console.error("Error al iniciar sesión", error);
+			console.error(`Error al iniciar sesión`, error);
 			throw error;
 		}
 	},
 	changeEmail: async (email, password) => {
 		try {
-			await axios.post("http://localhost:3001/auth/changeEmail", {
+			await axios.post(`${VITE_BACK_URL}/auth/changeEmail`, {
 				email,
 				password
 			});
 		} catch (error) {
-			console.error("Error al cambiar email", error);
+			console.error(`Error al cambiar email`, error);
 			throw error;
 		}
 	},
 	changePassword: async (currentPassword, newPassword) => {
 		try {
-			await axios.post("http://localhost:3001/auth/changePassword", {
+			await axios.post(`${VITE_BACK_URL}/auth/changePassword`, {
 				currentPassword,
 				newPassword
 			});
 		} catch (error) {
-			console.error("Error al cambiar contraseña", error);
+			console.error(`Error al cambiar contraseña`, error);
 			throw error;
 		}
 	},
 	logOut: async () => {
 		try {
-			await axios("http://localhost:3001/auth/logout");
+			await axios(`${VITE_BACK_URL}/auth/logout`);
 			set((state) => ({
 				...state,
 				userInfo: null
 			}));
 		} catch (error) {
-			console.error("Error al cerrar sesión", error);
+			console.error(`Error al cerrar sesión`, error);
 			throw error;
 		}
 	},
 	reauthenticate: async (password) => {
 		try {
-			await axios.post("http://localhost:3001/auth/reauthenticate", {
+			await axios.post(`${VITE_BACK_URL}/auth/reauthenticate`, {
 				password
 			});
 		} catch (error) {
-			console.error("Error al reatenticar usuario", error);
+			console.error(`Error al reatenticar usuario`, error);
 			throw error;
 		}
 	},
 	deleteAccount: async (id) => {
 		try {
-			await axios.delete("http://localhost:3001/auth/delete", { id });
+			await axios.delete(`${VITE_BACK_URL}/auth/delete`, { id });
 			set((state) => ({
 				...state,
 				userInfo: null
 			}));
 		} catch (error) {
-			console.error("Error al borrar cuenta", error);
+			console.error(`Error al borrar cuenta`, error);
 			throw error;
 		}
 	},
 	getAllProducts: async () => {
 		try {
 			const { data } = await axios.post(
-				`http://localhost:3001/productos`,
+				`${VITE_BACK_URL}/productos`,
 				useStore.getState().filtros
 			);
 			const { count, filteredProducts } = data;
@@ -186,13 +214,13 @@ export const useStore = create((set) => ({
 				cantidadDeProductos: count
 			}));
 		} catch (error) {
-			console.error("Error al buscar Todo:", error);
+			console.error(`Error al buscar Todo:`, error);
 			throw error;
 		}
 	},
 	getProductInfo: async () => {
 		try {
-			const { data } = await axios(`http://localhost:3001/infoProductos`);
+			const { data } = await axios(`${VITE_BACK_URL}/infoProductos`);
 			const { marcas, categorias, generos, subcategorias, colores, talles } =
 				data;
 			set(() => ({
@@ -204,7 +232,7 @@ export const useStore = create((set) => ({
 				listaTallas: talles
 			}));
 		} catch (error) {
-			console.error("Error al buscar Todo:", error);
+			console.error(`Error al buscar Todo:`, error);
 			throw error;
 		}
 	},
@@ -281,18 +309,18 @@ export const useStore = create((set) => ({
 			filtrosSeleccionados: [],
 			filtros: {
 				...state.filtros,
-				busqueda: "",
+				busqueda: ``,
 				marca: [],
 				genero: [],
 				categoria: [],
 				subcategoria: [],
-				precioDesde: "",
-				precioHasta: "",
+				precioDesde: ``,
+				precioHasta: ``,
 				porcentajeDeOferta: 0,
 				esNuevo: null,
 				color: [],
 				talla: [],
-				ordenado: "precio",
+				ordenado: `precio`,
 				ascendente: false,
 				pagina: 1
 			}
@@ -301,7 +329,7 @@ export const useStore = create((set) => ({
 	getFilteredProducts: async () => {
 		try {
 			const { data } = await axios.post(
-				`http://localhost:3001/productos`,
+				`${VITE_BACK_URL}/productos`,
 				useStore.getState().filtros
 			);
 			const { count, productOptions, filteredProducts } = data;
@@ -318,13 +346,13 @@ export const useStore = create((set) => ({
 				cantidadDeProductos: count
 			}));
 		} catch (error) {
-			console.error("Error al buscar Todo:", error);
+			console.error(`Error al buscar Todo:`, error);
 			throw error;
 		}
 	},
 	getProductById: async (id) => {
 		try {
-			const { data } = await axios(`http://localhost:3001/producto/${id}`);
+			const { data } = await axios(`${VITE_BACK_URL}/producto/${id}`);
 			const { product, reviews } = data;
 			set(() => ({ productoDetail: product, productoReviews: reviews }));
 		} catch (error) {
@@ -333,7 +361,7 @@ export const useStore = create((set) => ({
 	},
 	createReview: async (review) => {
 		try {
-			const { data } = await axios.post("http://localhost:3001/resena", {
+			const { data } = await axios.post(`${VITE_BACK_URL}/resena`, {
 				review
 			});
 			set((state) => ({
@@ -346,7 +374,7 @@ export const useStore = create((set) => ({
 	},
 	updateFavorite: async (id) => {
 		try {
-			const { data } = await axios.put("http://localhost:3001/updateFavorite", {
+			const { data } = await axios.put(`${VITE_BACK_URL}/updateFavorite`, {
 				userId: useStore.getState().userInfo._id,
 				productId: id
 			});
@@ -365,7 +393,7 @@ export const useStore = create((set) => ({
 	getFavorites: async () => {
 		try {
 			const { data } = await axios.post(
-				"http://localhost:3001/getFavorites",
+				`${VITE_BACK_URL}/getFavorites`,
 				useStore.getState().userInfo.favorites
 			);
 			set(() => ({ favoritos: data }));
@@ -395,72 +423,67 @@ export const useStore = create((set) => ({
 	},
 	getCart: async (cartToken) => {
 		try {
-			const response = await axios.get(
-				`http://localhost:3001/carrito/${cartToken}`
-			);
+			const response = await axios.get(`${VITE_BACK_URL}/carrito/${cartToken}`);
 			set(() => ({
 				cart: response.data.products
 			}));
 		} catch (error) {
-			console.error("Error al obtener productos del carrito:", error);
+			console.error(`Error al obtener productos del carrito:`, error);
 		}
 	},
 	addToCart: async (productToAdd, token) => {
 		try {
 			console.log(productToAdd);
-			const { data } = await axios.post(
-				"http://localhost:3001/agregarCarrito",
-				{ ...productToAdd, token }
-			);
+			const { data } = await axios.post(`${VITE_BACK_URL}/agregarCarrito`, {
+				...productToAdd,
+				token
+			});
 			console.log(data);
 			if (data.carrito) {
 				set({ cart: data.carrito.products });
-				localStorage.setItem("cartToken", data.token);
+				localStorage.setItem(`cartToken`, data.token);
 			} else {
-				console.log("No se pudo obtener el carrito actualizado del servidor");
+				console.log(`No se pudo obtener el carrito actualizado del servidor`);
 			}
 		} catch (error) {
-			console.error("Error al agregar producto al carrito:", error);
+			console.error(`Error al agregar producto al carrito:`, error);
 		}
 	},
 	removeFromCart: async (variantId, token) => {
 		try {
-			const { data } = await axios.delete(
-				"http://localhost:3001/removeFromCart",
-				{
-					data: { variantId, token }
-				}
-			);
+			const { data } = await axios.delete(`${VITE_BACK_URL}/removeFromCart`, {
+				data: { variantId, token }
+			});
 			set({ cart: data.carrito.products });
 		} catch (error) {
-			console.error("Error al eliminar producto del carrito:", error);
+			console.error(`Error al eliminar producto del carrito:`, error);
 		}
 	},
 	incrementQuantity: async (variantId, token) => {
 		try {
-			const response = await axios.post(
-				"http://localhost:3001/incrementQuantity",
-				{ variantId, token }
-			);
+			const response = await axios.post(`${VITE_BACK_URL}/incrementQuantity`, {
+				variantId,
+				token
+			});
 			set({ cart: response.data.carrito.products });
 		} catch (error) {
 			console.error(
-				"Error al incrementar la cantidad del producto en el carrito:",
+				`Error al incrementar la cantidad del producto en el carrito:`,
 				error
 			);
 		}
 	},
 	decrementQuantity: async (variantId, token) => {
 		try {
-			const response = await axios.post(
-				"http://localhost:3001/decrementQuantity",
-				{ variantId, token }
-			);
+			const response = await axios.post(`${VITE_BACK_URL}/decrementQuantity`, {
+				variantId,
+				token
+			});
 
 			set({ cart: response.data.carrito.products });
 		} catch (error) {
 			console.error(
-				"Error al decrementar la cantidad del producto en el carrito:",
+				`Error al decrementar la cantidad del producto en el carrito:`,
 				error
 			);
 		}
@@ -470,7 +493,7 @@ export const useStore = create((set) => ({
 	},
 	getNuevos: async () => {
 		try {
-			// const { data } = await axios(`http://localhost:3001/nuevos`);
+			// const { data } = await axios(`${VITE_BACK_URL}/nuevos`);
 			const data = [];
 			useStore.getState().products.map((producto) => {
 				if (producto.productoNuevo) {
@@ -479,28 +502,28 @@ export const useStore = create((set) => ({
 			});
 			set(() => ({ nuevos: data }));
 		} catch (error) {
-			console.error("Error al buscar Nuevos:", error);
+			console.error(`Error al buscar Nuevos:`, error);
 			throw error;
 		}
 	},
 	getDestacados: async () => {
 		try {
-			// const { data } = await axios(`http://localhost:3001/destacados`);
+			// const { data } = await axios(`${VITE_BACK_URL}/destacados`);
 			const data = [];
 			useStore.getState().products.map((producto) => {
-				if (producto.subcategoria === "Destacado") {
+				if (producto.subcategoria === `Destacado`) {
 					data.push(producto);
 				}
 			});
 			set(() => ({ destacados: data }));
 		} catch (error) {
-			console.error("Error al buscar Destacados:", error);
+			console.error(`Error al buscar Destacados:`, error);
 			throw error;
 		}
 	},
 	getOfertas: async () => {
 		try {
-			// const { data } = await axios(`http://localhost:3001/ofertas`);
+			// const { data } = await axios(`${VITE_BACK_URL}/ofertas`);
 			const data = [];
 			useStore.getState().products.map((producto) => {
 				if (producto.precio < 25) {
@@ -509,22 +532,22 @@ export const useStore = create((set) => ({
 			});
 			set(() => ({ ofertas: data }));
 		} catch (error) {
-			console.error("Error al buscar Ofertas:", error);
+			console.error(`Error al buscar Ofertas:`, error);
 			throw error;
 		}
 	},
 	getTendencia: async () => {
 		try {
-			// const { data } = await axios(`http://localhost:3001/tendencia`);
+			// const { data } = await axios(`${VITE_BACK_URL}/tendencia`);
 			const data = [];
 			useStore.getState().products.map((producto) => {
-				if (producto.subcategoria === "Tendencia") {
+				if (producto.subcategoria === `Tendencia`) {
 					data.push(producto);
 				}
 			});
 			set(() => ({ tendencia: data }));
 		} catch (error) {
-			console.error("Error al buscar Tendencia:", error);
+			console.error(`Error al buscar Tendencia:`, error);
 			throw error;
 		}
 	}

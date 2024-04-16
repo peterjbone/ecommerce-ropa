@@ -7179,6 +7179,966 @@ const productos = [
 				]
 			}
 		]
+	},
+	{
+		nombre: "Converse Run Star Motion",
+		marca: "converse",
+		descripcion:
+			"¡Sé audaz y atrevido, tanto dentro como fuera de la cancha! Dispara a las estrellas y apunta a un tiro ganador en el Converse Run Star Motion. Fabricados en colaboración con la estrella del baloncesto de la NBA Shai Gilgeous-Alexander, estos zapatos presentan un logotipo de Gilgeous-Alexander en la lengüeta con un estampado de silicona que representa sin disculpas su amor y pasión por el juego.La entresuela de espuma CX con rayas esculpidas en relieve te prepara para una zancada amortiguada, mientras que la parte superior de lona de algodón 100% orgánico ofrece una apariencia pulida y comodidad sostenible. Experimenta un estilo audaz y exagerado y una postura elevada en las calles y los pisos de madera con las Converse Run Star Motion.",
+		precio: 80.0,
+		oferta: {
+			offActiva: true,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#EFBC9B"],
+					nombres: ["beige"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A04334C_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04334C_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04334C_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04334C_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse All Star BB Prototype",
+		marca: "converse",
+		descripcion:
+			"La simplicidad es la máxima sofisticación, y el Converse All Star BB Prototype es un claro ejemplo de ello. Impulsadas con una parte superior de materiales mixtos, estas zapatillas de deporte guían tus pasos con una excelente estabilidad y te ayudan a dejar tu huella dondequiera que vayas. Conocidas por su facilidad y comodidad clásica, las Converse All Star BB Prototype te permiten jugar, practicar y recorrer cada sendero con estilo.",
+		precio: 120.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A04332C_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04332C_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04332C_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A03697C_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03697C_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A03697C_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse Weapon Mid",
+		marca: "converse",
+		descripcion:
+			"¡Aprobado por la junta y el tribunal! Átate las Converse Weapon Mid para montar la revolución y luchar por la excelencia. Inmersas en la nostalgia y repletas de elementos tradicionales, estas siluetas rinden homenaje a las siempre tan populares zapatillas de baloncesto y skate de los años 90. Dando un nuevo giro a los detalles clásicos, estos zapatos garantizan que cada movimiento que hagas sea una obra maestra. Una parte superior de cuero en colores retro ofrece el estilo característico de Weapon que te encanta y la durabilidad que anhelas, lo que la convierte en un elemento básico imprescindible en tu rotación. Estas siluetas, que añaden un toque característico que trasciende las tendencias, cuentan con una icónica etiqueta tejida All-Star en la lengüeta que garantiza que tus looks cotidianos sean nada menos que icónicos. Con un estilo poco convencional, el Converse Weapon Mid te permite alcanzar la grandeza con facilidad y confianza.",
+		precio: 100.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000", "#ffffff"],
+					nombres: ["negro", "blanco"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A04400C_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04400C_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04400C_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A04400C_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse Alt Star High Meta Noir",
+		marca: "converse",
+		descripcion:
+			"No es tu par de Chucks normal y corriente. Ingrese a una nueva dimensión de la moda clásica de Converse con las Converse Alt Star High MN. Diseñadas para mantenerte cómodo en negro, estas zapatillas están salpicadas de detalles icónicos como el parche tonal Chuck Taylor All Star y una bandera de Converse para brindar el estilo más icónico de todos los tiempos. La frase 'FAR FROM A CHUCK' alrededor de la entresuela hace eco del diseño futurista y de tu amor por romper límites. Establece nuevos estándares de moda y crea una apariencia verdaderamente única con las Converse Alt Star High MN.",
+		precio: 80.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/A07666C_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A07666C_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A07666C_a3?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/A07666C_a4?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse Space Jam T-Shirt",
+		marca: "converse",
+		descripcion:
+			"Consigue un look 'Lemony Fresh' con la camiseta Converse Space Jam. Confeccionada con tejido de punto de algodón, esta camiseta lista para la cancha luce un gráfico impreso digitalmente del querido Demonio de Tasmania y el logotipo de Converse con una pelota de baloncesto bordada directamente. Terminada con un logotipo Tune Squad impreso digitalmente en la parte exterior del cuello y una etiqueta Star Chevron Flag en la costura lateral izquierda, esta camiseta eleva cada look con un toque de frescura nostálgica.",
+		precio: 20.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "camisetas",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 20
+					},
+					{
+						talla: "L",
+						stock: 20
+					},
+					{
+						talla: "M",
+						stock: 20
+					},
+					{
+						talla: "XL",
+						stock: 20
+					},
+					{
+						talla: "XXL",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/23071A01_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/23071A01_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Converse Chase The Drip Shai Hoodie",
+		marca: "converse",
+		descripcion:
+			"¡Se trata de Shai Gilgeous-Alexander y su envidiable goteo! Con una ejecución estampada en relieve en 'SGA' y su hashtag en estampado brillante 'Don't mind my goteo', la sudadera con capucha Converse Chase The Drip Shai extiende una capa cálida, acogedora y de ajuste clásico. Póntelo para lograr un estilo urbano para el día.",
+		precio: 65.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "masculino",
+		subcategoria: "hoodies",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "S",
+						stock: 45
+					},
+					{
+						talla: "L",
+						stock: 45
+					},
+					{
+						talla: "M",
+						stock: 45
+					},
+					{
+						talla: "XL",
+						stock: 45
+					},
+					{
+						talla: "XXL",
+						stock: 45
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/23453A01_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/23453A01_a2?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas Stella McCartney Earthlight 2.0",
+		marca: "adidas",
+		descripcion:
+			"Escapa de lo ordinario y encuentra la libertad en los senderos y las calles con adidas Stella McCartney Earthlight 2.0. Diseñados para ayudarte a conectarte con el suelo de más de una manera, estos corredores veganos están hechos con al menos un 20 % de materiales renovables para convertir cada día en el Día de la Tierra. La tecnología ENERGYRODS 2.0 devuelve energía con cada paso a medida que recorre kilómetros, mientras que la parte superior textil mínima ofrece un ajuste que se siente como si hubiera estado usando estos zapatos durante años. ¿El resultado? Un par de zapatillas para correr que te ayudan a correr desde la carretera hasta el sendero sin perder el ritmo.",
+		precio: 280.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "femenina",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#FF71CD"],
+					nombres: ["rosado"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/IF8057_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF8057_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF8057_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF8057_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#ffffff"],
+					nombres: ["blanco"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/IF8058_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF8058_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF8058_03?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/IF8058_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "adidas Ultraboost DNA",
+		marca: "adidas",
+		descripcion:
+			"Da un paso audaz con el adidas Ultraboost DNA. Con un diseño sin costuras, estas siluetas brindan una sensación de comodidad y un ajuste ceñido. Diseñados para tus aventuras diarias, estos zapatos garantizan un estilo versátil con una sensación relajada.",
+		precio: 190.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: false,
+		categoria: "adultos",
+		genero: "femenina",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#0000ff"],
+					nombres: ["azul"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/ID9633_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/ID9633_02?wid=565&hei=565&fmt=png-alpha"
+				]
+			},
+			{
+				colores: {
+					codigosHex: ["#000000"],
+					nombres: ["negro"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/GV8743_a1?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/GV8743_a2?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/GV8743_a3?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
+	},
+	{
+		nombre: "Vans FU Sport Low Felicidade",
+		marca: "vans",
+		descripcion:
+			"¡Mantente en movimiento con Vans! A la altura de las expectativas, las Vans FU Sport Low Felicidade te permiten ser dueño de cada pago por el que caminas. Atemporales, originales e inspirados en la calle, estos zapatos están impulsados ​​por una construcción vulcanizada que te permite dar patadas para llegar a la cima. Todo menos ordinario, el Vans FU Sport Low Felicidade te permite emprender tu viaje y caminar con confianza.",
+		precio: 70.0,
+		oferta: {
+			offActiva: false,
+			Descuento: 0
+		},
+		activo: true,
+		productoNuevo: true,
+		categoria: "adultos",
+		genero: "femenina",
+		subcategoria: "zapatos",
+		opciones: [
+			{
+				colores: {
+					codigosHex: ["#EFBC9B"],
+					nombres: ["beige"]
+				},
+				tallas: [
+					{
+						talla: "5.0",
+						stock: 15
+					},
+					{
+						talla: "5.5",
+						stock: 15
+					},
+					{
+						talla: "6.0",
+						stock: 15
+					},
+					{
+						talla: "6.5",
+						stock: 15
+					},
+					{
+						talla: "7.0",
+						stock: 15
+					},
+					{
+						talla: "7.5",
+						stock: 15
+					},
+					{
+						talla: "8.0",
+						stock: 20
+					},
+					{
+						talla: "8.5",
+						stock: 20
+					},
+					{
+						talla: "9.0",
+						stock: 20
+					},
+					{
+						talla: "9.5",
+						stock: 20
+					},
+					{
+						talla: "10.0",
+						stock: 20
+					},
+					{
+						talla: "10.5",
+						stock: 20
+					},
+					{
+						talla: "11.0",
+						stock: 20
+					},
+					{
+						talla: "11.5",
+						stock: 20
+					},
+					{
+						talla: "12.0",
+						stock: 20
+					}
+				],
+				imagenes: [
+					"https://images.footlocker.com/is/image/EBFL2/V0CQRCCZ_01?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/V0CQRCCZ_02?wid=565&hei=565&fmt=png-alpha",
+					"https://images.footlocker.com/is/image/EBFL2/V0CQRCCZ_04?wid=565&hei=565&fmt=png-alpha"
+				]
+			}
+		]
 	}
 ];
 

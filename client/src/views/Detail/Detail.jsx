@@ -1,4 +1,5 @@
 import styles from "./Detail.module.css";
+const { VITE_BACK_URL } = import.meta.env;
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -46,7 +47,7 @@ export default function Detail() {
 		const fetchRelatedProducts = async () => {
 			try {
 				if (productoDetail && productoDetail.categoria) {
-					const response = await axios.post("http://localhost:3001/productos", {
+					const response = await axios.post(`${VITE_BACK_URL}/productos`, {
 						categoria: [productoDetail.categoria],
 						busqueda: ""
 					});

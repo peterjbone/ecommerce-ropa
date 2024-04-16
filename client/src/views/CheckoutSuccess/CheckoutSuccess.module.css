@@ -1,8 +1,10 @@
 .checkoutContainer {
+	box-sizing: border-box;
 	width: 100%;
 	min-height: 80vh;
-	max-width: 800px;
-	margin: 0 auto;
+	min-width: 1150px;
+	max-width: 1250px;
+	margin: 5rem auto 0;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
@@ -11,19 +13,91 @@
 	line-height: 2rem;
 }
 
-.title {
-	margin-bottom: 1rem;
+.checkoutContainer h2 {
+	margin: 0.5rem 0;
 	font-weight: 700;
-	font-size: 2rem;
-	color: #29d863ee;
+	font-size: 1.8rem;
+	color: #008000;
+}
+
+.checkoutContainer h3 {
+	margin: 0 0 0.5rem;
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+
+.checkoutContainer p {
+	margin: 0 0 0.5rem;
+	font-size: 1rem;
+}
+
+.checkoutContainer .order {
+	padding: 0.8rem;
+	margin: 0 0 0.5rem;
+	border-radius: 25px;
+	font-weight: 600;
+	font-size: 1rem;
+	background-color: #ccc;
+}
+
+.checkoutContainer .table {
+	box-sizing: border-box;
+	width: 80%;
+	min-width: 500px;
+	margin: 0 auto;
+	/* border: 3px solid #000; */
+	/* background-color: #ccc; */
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.checkoutContainer .table .row1,
+.checkoutContainer .table .row2 {
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: start;
+	align-items: start;
+	gap: 1rem;
+}
+
+/** detalles de envio*/
+/** resumen de compra*/
+.checkoutContainer .table .row1 div {
+	padding: 0.3rem 0.8rem;
+	font-size: 1rem;
+	background-color: #ccc;
+}
+
+.checkoutContainer .table .row1 div:nth-child(2) {
+	flex: 2;
+}
+
+.checkoutContainer .table .row2 div p {
+	margin: 0;
 }
 
 .button {
-	margin: 0 auto;
+	box-sizing: border-box;
+	width: 100%;
 	padding: 0.8rem 1rem;
-	border: medium solid #000;
-	color: #000;
-	background-color: #fff;
-	text-align: center;
-	font-weight: 600;
+	margin: 1rem 0;
+	border: none;
+	font-size: 1.2rem;
+	color: #fff;
+	background-color: green;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+
+	&:hover {
+		transition: 0.3s;
+		cursor: pointer;
+		filter: brightness(1.2);
+	}
 }

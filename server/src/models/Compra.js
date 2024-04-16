@@ -19,10 +19,12 @@ const orderSchema = new Schema(
 			}
 		],
 		subtotal: { type: Number, required: true },
+		amount_shipping: { type: Number, required: true },
 		total: { type: Number, required: true },
 		shipping: { type: Object, required: true },
 		delivery_status: { type: String, default: "pending" },
-		payment_status: { type: String, required: true }
+		payment_status: { type: String, required: true },
+		purchase_time: { type: String }
 	},
 	{ timestamps: true }
 );

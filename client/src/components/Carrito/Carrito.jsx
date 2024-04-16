@@ -65,6 +65,9 @@ const Carrito = () => {
 
 	console.log(cart);
 
+	// const { VITE_BACK_URL } = import.meta.env;
+	// console.log(VITE_BACK_URL);
+
 	return (
 		<div className={styles.cartContainer}>
 			<h1>Mi Carrito 🛒</h1>
