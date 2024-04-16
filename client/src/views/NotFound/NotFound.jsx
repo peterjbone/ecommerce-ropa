@@ -1,3 +1,4 @@
+import React from "react";
 import CategoriesBar from "../../components/CategoriesBar/CategoriesBar";
 import { useStore } from "../../store";
 import "./NotFound.css";
@@ -13,46 +14,46 @@ export default function NotFound() {
   const listas = [
     {
       lista: listaGeneros,
-      title: 'Géneros',
-      name: 'genero',
+      title: "Géneros",
+      name: "genero",
     },
     {
       lista: listaMarcas,
-      title: 'Marcas',
-      name: 'marca',
+      title: "Marcas",
+      name: "marca",
     },
     {
       lista: listaCategorias,
-      title: 'Categorias',
-      name: 'categoria',
+      title: "Categorias",
+      name: "categoria",
     },
     {
       lista: listaSubcategorias,
-      title: 'Subcategorias',
-      name: 'subcategoria',
+      title: "Subcategorias",
+      name: "subcategoria",
     },
     {
       lista: listaColores,
-      title: 'Colores',
-      name: 'colores',
+      title: "Colores",
+      name: "colores",
     },
     // {
     //   lista: listaTallas,
-    //   title: 'Tallas',
-    //   name: 'talla',
+    //   title: "Tallas",
+    //   name: "talla",
     // },
   ];
   return (
     <div>
-      <div className='not-found-message' >
+      <div className="not-found-message" >
         <h2>Parece que la página que estas buscando no existe</h2>
         <h3>Puedes seguir explorando desde la barra de navegación o seleccionando una categoría de aquí abajo</h3>
       </div>
-      {listas.map(lista => {
+      {listas.map((lista, index) => {
         return (
-          <>
+          <React.Fragment key={index}>
             <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} products={products} />
-          </>
+          </React.Fragment>
         )
       })}
     </div>

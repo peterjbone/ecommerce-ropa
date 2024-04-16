@@ -4,10 +4,10 @@ import "./CardsContainer.css";
 
 export default function CardsContainer({ products }) {
 
-  const [paddingTop, setPaddingTop] = useState('');
+  const [paddingTop, setPaddingTop] = useState("");
 
   useEffect(() => {
-    const selectedList = document.querySelector('.selected-list');
+    const selectedList = document.querySelector(".selected-list");
     
     const resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {

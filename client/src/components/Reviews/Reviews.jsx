@@ -1,14 +1,14 @@
-import './Reviews.css';
+import "./Reviews.css";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-import starIcon from '../../assets/icons/star-icon.svg';
-import halfStarIcon from '../../assets/icons/half-star-icon.svg';
+import starIcon from "../../assets/icons/star-icon.svg";
+import halfStarIcon from "../../assets/icons/half-star-icon.svg";
 
 export default function Reviews({ reviews }) {
   const { allReviews, topReviews, bottomReviews, averageReviews, randomReviews } = reviews;
-  const [selectedTab, setSelectedTab] = useState('average');
-  const [selectedOrder, setSelectedOrder] = useState('average');
+  const [selectedTab, setSelectedTab] = useState("average");
+  const [selectedOrder, setSelectedOrder] = useState("average");
   const [sortedReviews, setSortedReviews] = useState(allReviews);
 
   const handleTabClick = (tab) => {
@@ -17,15 +17,15 @@ export default function Reviews({ reviews }) {
 
   const reviewsToShow = (() => {
     switch (selectedTab) {
-      case 'average':
+      case "average":
         return averageReviews;
-      case 'top':
+      case "top":
         return topReviews;
-      case 'bottom':
+      case "bottom":
         return bottomReviews;
-      case 'random':
+      case "random":
         return randomReviews;
-      case 'all':
+      case "all":
         return sortedReviews;
       default:
         return sortedReviews;
@@ -34,9 +34,9 @@ export default function Reviews({ reviews }) {
 
   const handleSortClick = (sortOrder) => {
     let sorted;
-    if (sortOrder === 'asc') {
+    if (sortOrder === "asc") {
       sorted = [...reviewsToShow].sort((a, b) => a.valoracion - b.valoracion);
-    } else if (sortOrder === 'desc') {
+    } else if (sortOrder === "desc") {
       sorted = [...reviewsToShow].sort((a, b) => b.valoracion - a.valoracion);
     } else {
       sorted = reviewsToShow;
@@ -51,55 +51,55 @@ export default function Reviews({ reviews }) {
         <>
           <div className="tab-buttons">
             <button
-              className={`nav-bar-button ${selectedTab === 'average' ? 'activeTab' : ''}`}
-              onClick={() => handleTabClick('average')}
+              className={`nav-bar-button ${selectedTab === "average" ? "activeTab" : ""}`}
+              onClick={() => handleTabClick("average")}
             >
               Promedio
             </button>
             <button
-              className={`nav-bar-button ${selectedTab === 'top' ? 'activeTab' : ''}`}
-              onClick={() => handleTabClick('top')}
+              className={`nav-bar-button ${selectedTab === "top" ? "activeTab" : ""}`}
+              onClick={() => handleTabClick("top")}
             >
               Mejores
             </button>
             <button
-              className={`nav-bar-button ${selectedTab === 'bottom' ? 'activeTab' : ''}`}
-              onClick={() => handleTabClick('bottom')}
+              className={`nav-bar-button ${selectedTab === "bottom" ? "activeTab" : ""}`}
+              onClick={() => handleTabClick("bottom")}
             >
               Peores
             </button>
             <button
-              className={`nav-bar-button ${selectedTab === 'random' ? 'activeTab' : ''}`}
-              onClick={() => handleTabClick('random')}
+              className={`nav-bar-button ${selectedTab === "random" ? "activeTab" : ""}`}
+              onClick={() => handleTabClick("random")}
             >
               Random
             </button>
             <button
-              className={`nav-bar-button ${selectedTab === 'all' ? 'activeTab' : ''}`}
-              onClick={() => handleTabClick('all')}
+              className={`nav-bar-button ${selectedTab === "all" ? "activeTab" : ""}`}
+              onClick={() => handleTabClick("all")}
             >
               Todos
             </button>
           </div>
-          {selectedTab === 'all' ? (
-            <div className='sort-buttons'>
+          {selectedTab === "all" ? (
+            <div className="sort-buttons">
               <button
-                className={`nav-bar-button ${selectedOrder === 'asc' ? 'activeTab' : ''}`}
-                onClick={() => handleSortClick('asc')}
+                className={`nav-bar-button ${selectedOrder === "asc" ? "activeTab" : ""}`}
+                onClick={() => handleSortClick("asc")}
               >
                 Ascendente
               </button>
               <button
-                className={`nav-bar-button ${selectedOrder === 'desc' ? 'activeTab' : ''}`}
-                onClick={() => handleSortClick('desc')}
+                className={`nav-bar-button ${selectedOrder === "desc" ? "activeTab" : ""}`}
+                onClick={() => handleSortClick("desc")}
               >
                 Descendente
               </button>
             </div>
           ) : null}
           {reviewsToShow.map((review, index) => (
-            <div className='review-container' key={index}>
-              <div className='rating-container'>
+            <div className="review-container" key={index}>
+              <div className="rating-container">
                 <h3>{review.valoracion.toFixed(1)}</h3>
                 <div>{renderStars(review.valoracion)}</div>
               </div>

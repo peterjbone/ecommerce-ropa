@@ -72,7 +72,7 @@ const login = async (request, response) => {
       foundUser = await Usuario.findOne({ email });
     }
     if (!foundUser) {
-      return request.status(400).json({ message: 'El usuario no existe en base de datos' });
+      return request.status(400).json({ message: "El usuario no existe en base de datos" });
     }
     if (!isAuto) {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
@@ -97,7 +97,7 @@ const login = async (request, response) => {
     return response.status(200).json({ foundUser, purchases, reviews });
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error, message: 'Error ingresando en firebase' });
+    response.status(500).json({ error, message: "Error ingresando en firebase" });
   }
 }
 
@@ -177,10 +177,10 @@ const logout = async (request, response) => {
     //   expires: new Date(0)
     // });
     await signOut(auth);
-    response.status(200).json({ message: 'Sesión cerrada correctamente' });
+    response.status(200).json({ message: "Sesión cerrada correctamente" });
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error, message: 'Error cerrando sesión' });
+    response.status(500).json({ error, message: "Error cerrando sesión" });
   }
 }
 const deleteAccount = async (request, response) => {

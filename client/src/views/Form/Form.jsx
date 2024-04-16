@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import styles from './Form.module.css';
-import ColorGrid from '../../components/ColorGrid/ColorGrid';
-import StockTable from '../../components/StockTable/StockTable';
-import axios from 'axios';
-import { uploadCloudinary } from '../../utils/upload';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
-import { useStore } from '../../store.js';
+import { useState } from "react"
+import styles from "./Form.module.css";
+import ColorGrid from "../../components/ColorGrid/ColorGrid";
+import StockTable from "../../components/StockTable/StockTable";
+import axios from "axios";
+import { uploadCloudinary } from "../../utils/upload";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+import { useStore } from "../../store.js";
 
 
 const Form = () => {
@@ -18,26 +18,26 @@ const Form = () => {
   const listaColores = useStore((state) => state.listaColores);
   const listaTallas = useStore((state) => state.listaTallas);
 
-  let tallesL = ['S', 'M', 'L', 'XL', 'XLT', 'XXL']
-  let tallesN = ['10.0', '10.5', '11.0', '11.5', '12.0', '12.5', '13.0', '13.5', '3.5', '4', '4.0',
-  '4.5', '5', '5.0', '5.5', '6', '6.0', '6.5', '7', '7.0', '7.5', '8.0', '8.5', '9.0',
-  '9.5'].sort((a, b) => a - b)
+  let tallesL = ["S", "M", "L", "XL", "XLT", "XXL"]
+  let tallesN = ["10.0", "10.5", "11.0", "11.5", "12.0", "12.5", "13.0", "13.5", "3.5", "4", "4.0",
+  "4.5", "5", "5.0", "5.5", "6", "6.0", "6.5", "7", "7.0", "7.5", "8.0", "8.5", "9.0",
+  "9.5"].sort((a, b) => a - b)
 
   let colores = [
-    { codHexadecimal: '#FFFF00', nombreColor: 'amarillo' },
-    { codHexadecimal: '#0000FF', nombreColor: 'azul' },
-    { codHexadecimal: '#8ecae6', nombreColor: 'azul-marino' },
-    { codHexadecimal: '#F5F5DC', nombreColor: 'beige' },
-    { codHexadecimal: '#FFFFFF', nombreColor: 'blanco' },
-    { codHexadecimal: '#808080', nombreColor: 'gris' },
-    { codHexadecimal: '#000000', nombreColor: 'negro' },
-    { codHexadecimal: '#FF0000', nombreColor: 'rojo' },
-    { codHexadecimal: '#FFC0CB', nombreColor: 'rosa' },
-    { codHexadecimal: '#8B4513', nombreColor: 'marron' },
-    { codHexadecimal: '#008000', nombreColor: 'verde' },
-    { codHexadecimal: '#007FFF', nombreColor: 'francia' },
-    { codHexadecimal: '#fa8072', nombreColor: 'salmon' },
-    { codHexadecimal: '#78288C', nombreColor: 'violeta' },
+    { codHexadecimal: "#FFFF00", nombreColor: "amarillo" },
+    { codHexadecimal: "#0000FF", nombreColor: "azul" },
+    { codHexadecimal: "#8ecae6", nombreColor: "azul-marino" },
+    { codHexadecimal: "#F5F5DC", nombreColor: "beige" },
+    { codHexadecimal: "#FFFFFF", nombreColor: "blanco" },
+    { codHexadecimal: "#808080", nombreColor: "gris" },
+    { codHexadecimal: "#000000", nombreColor: "negro" },
+    { codHexadecimal: "#FF0000", nombreColor: "rojo" },
+    { codHexadecimal: "#FFC0CB", nombreColor: "rosa" },
+    { codHexadecimal: "#8B4513", nombreColor: "marron" },
+    { codHexadecimal: "#008000", nombreColor: "verde" },
+    { codHexadecimal: "#007FFF", nombreColor: "francia" },
+    { codHexadecimal: "#fa8072", nombreColor: "salmon" },
+    { codHexadecimal: "#78288C", nombreColor: "violeta" },
   ]
 
   const [images, setImages] = useState([])
@@ -45,7 +45,7 @@ const Form = () => {
   const [nameColors, setNameColors] = useState([]);
   const [selectedColor, setSelectedColor] = useState();
   
-  const [tipoTalle, setTipoTalle] = useState('')
+  const [tipoTalle, setTipoTalle] = useState("")
   const tipoTalleHandler = (e) => {
     setForm({...form, tallas: {}})
     setStock([])
@@ -62,13 +62,13 @@ const Form = () => {
   })
 
   const [form, setForm] = useState({
-    nombre: '',
-    marca: '',
-    precio: '',
-    categoria: '',
-    subcategoria: '',
-    descripcion: '',
-    genero: '',
+    nombre: "",
+    marca: "",
+    precio: "",
+    categoria: "",
+    subcategoria: "",
+    descripcion: "",
+    genero: "",
     oferta: discount,
     activo: false,
     opciones: opciones,
@@ -78,55 +78,55 @@ const Form = () => {
   })
 
   const [errors, setErrors] = useState({
-    nombre: '',
-    marca: '',
-    precio: '',
-    categoria: '',
-    subcategoria: '',
-    descripcion: '',
-    genero: '',
+    nombre: "",
+    marca: "",
+    precio: "",
+    categoria: "",
+    subcategoria: "",
+    descripcion: "",
+    genero: "",
   })
 
   const validate = (form) => {
 
     const newErrors = {
-      nombre: '',
-      marca: '',
-      precio: '',
-      categoria: '',
-      subcategoria: '',
-      descripcion: '',
-      genero: '',
+      nombre: "",
+      marca: "",
+      precio: "",
+      categoria: "",
+      subcategoria: "",
+      descripcion: "",
+      genero: "",
     };
 
     let passed = true
     
     if(form.nombre.length <= 10) {
-      newErrors.nombre = 'El nombre debe tener al menos 10 caracteres';
+      newErrors.nombre = "El nombre debe tener al menos 10 caracteres";
       passed = false
     }
     if(!form.marca) {
-      newErrors.marca = 'Debes seleccionar una marca';
+      newErrors.marca = "Debes seleccionar una marca";
       passed = false
     }
     if(!form.precio) {
-      newErrors.precio = 'Debes ingresar un precio';
+      newErrors.precio = "Debes ingresar un precio";
       passed = false
     }
     if(!form.categoria) {
-      newErrors.categoria = 'Debes seleccionar una categoria';
+      newErrors.categoria = "Debes seleccionar una categoria";
       passed = false
     }
     if(!form.subcategoria) {
-      newErrors.subcategoria = 'Debes seleccionar una subcategoria';
+      newErrors.subcategoria = "Debes seleccionar una subcategoria";
       passed = false
     }
     if(!form.descripcion) {
-      newErrors.descripcion = 'Debes ingresar una descripcion';
+      newErrors.descripcion = "Debes ingresar una descripcion";
       passed = false
     }
     if(!form.genero) {
-      newErrors.genero = 'Debes ingresar un genero';
+      newErrors.genero = "Debes ingresar un genero";
       passed = false
     }
 
@@ -138,7 +138,7 @@ const Form = () => {
   
   const changeDiscountHandler = (e) => {
     const { checked, name, value } = e.target;
-    if(name === 'Descuento') {
+    if(name === "Descuento") {
       setDiscount({...discount, Descuento: value})
       setForm({...form, oferta: {...discount, Descuento: value}})
     } else {
@@ -149,7 +149,7 @@ const Form = () => {
 
   const changeHandler = (e) => {
     const { name, value } = e.target
-    if(name === 'activo' || name === 'productoNuevo') {
+    if(name === "activo" || name === "productoNuevo") {
       const { checked } = e.target;
       setForm({...form, [name]: checked})
     } else {
@@ -170,25 +170,25 @@ const Form = () => {
           const data = await uploadCloudinary(images[i])
           arr.push(data.url)
         }
-        axios.post('http://localhost:3001/createproduct', {...form, imagenes: arr})
+        axios.post("http://localhost:3001/createproduct", {...form, imagenes: arr})
   
         setSelectedColor([])
         setNameColors([])
         setImages([])
-        setTipoTalle('')
+        setTipoTalle("")
         setStock({})
         setDiscount({
           offActiva: false,
           Descuento: 0
         })
         setForm({
-          nombre: '',
-          marca: '',
-          precio: '',
-          categoria: '',
-          subcategoria: '',
-          descripcion: '',
-          genero: '',
+          nombre: "",
+          marca: "",
+          precio: "",
+          categoria: "",
+          subcategoria: "",
+          descripcion: "",
+          genero: "",
           oferta: {},
           activo: false,
           opciones: {},
@@ -196,15 +196,15 @@ const Form = () => {
           productoNuevo: false,
           tallas: {}
         })
-        toast.success('Producto creado correctamente')
+        toast.success("Producto creado correctamente")
       } catch (error) {
-        console.log(error);
-        toast.error('Error al crear el producto')
+        console.error(error);
+        toast.error("Error al crear el producto")
       }
     } 
   }
 
-  //{ codHexadecimal: '#78288C', nombreColor: 'violeta' },
+  //{ codHexadecimal: "#78288C", nombreColor: "violeta" },
 
   const buttonStockHandler = async () => {
 
@@ -244,7 +244,7 @@ const Form = () => {
       <form className={styles.formContainer} onSubmit={submitHandler}>
         <div>
           <label className={styles.labelFormContainer}>Nombre: </label><br></br>
-          <input className={styles.inputFormContainer} type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} />
+          <input className={styles.inputFormContainer} type="text" name="nombre" value={form.nombre} placeholder="Nombre del producto" onChange={changeHandler} />
           {errors.nombre && <span className={styles.spanErrorNotification}>{errors.nombre}</span>}
         </div>
         <div>
@@ -257,7 +257,7 @@ const Form = () => {
         </div>
         <div>
           <label className={styles.labelFormContainer}>Precio: </label><br></br>
-          <input className={styles.inputFormContainer} type="text" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} />
+          <input className={styles.inputFormContainer} type="text" name="precio" value={form.precio} placeholder="Precio del producto" onChange={changeHandler} />
           {errors.precio && <span className={styles.spanErrorNotification}>{errors.precio}</span>}
         </div>
         <div>
@@ -291,19 +291,19 @@ const Form = () => {
         </div>
         <div>
           <label className={styles.labelFormContainer}>Activo: </label>
-          <input name='activo' className={styles.inputCheckboxForm} type="checkbox" checked={form.activo} onChange={changeHandler} />
+          <input name="activo" className={styles.inputCheckboxForm} type="checkbox" checked={form.activo} onChange={changeHandler} />
         </div>
         <div>
           <label className={styles.labelFormContainer}>Producto nuevo: </label>
-          <input name='productoNuevo' className={styles.inputCheckboxForm} type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
+          <input name="productoNuevo" className={styles.inputCheckboxForm} type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
         </div>
         <div>
           <label className={styles.labelFormContainer}>Oferta: </label>
-          <input name='oferta' className={styles.inputCheckboxForm} type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
+          <input name="oferta" className={styles.inputCheckboxForm} type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
           {form.oferta.offActiva && (
             <div>
               <label className={styles.labelFormContainer}>% Descuento</label>
-              <select className={styles.selectDiscount} name='Descuento' value={discount.Descuento} onChange={changeDiscountHandler}>
+              <select className={styles.selectDiscount} name="Descuento" value={discount.Descuento} onChange={changeDiscountHandler}>
                 <option value="">%%</option>
                 <option value="5">5%</option>
                 <option value="10">10%</option>
@@ -322,13 +322,13 @@ const Form = () => {
         <div>
           <label className={styles.labelFormContainer}>Tipo de talle</label>
           <select name="tipoTalle" value={tipoTalle} onChange={tipoTalleHandler}>
-            <option value=''>--Seleccionar--</option>
-            <option value='L'>Letras</option>
-            <option value='N'>Números</option>
+            <option value="">--Seleccionar--</option>
+            <option value="L">Letras</option>
+            <option value="N">Números</option>
           </select>
 
-          {tipoTalle === 'L' && <StockTable sizes={tallesL} stock={stock} setStock={setStock} setForm={setForm} />}
-          {tipoTalle === 'N' && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
+          {tipoTalle === "L" && <StockTable sizes={tallesL} stock={stock} setStock={setStock} setForm={setForm} />}
+          {tipoTalle === "N" && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
         </div>
 
         <div>
@@ -336,9 +336,9 @@ const Form = () => {
           <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
         </div>
 
-        <button onClick={buttonStockHandler} type='button'>Agregar stock</button>
+        <button onClick={buttonStockHandler} type="button">Agregar stock</button>
 
-        <button className={styles.submitButton} type='submit'>Crear</button>
+        <button className={styles.submitButton} type="submit">Crear</button>
       </form>
       <ToastContainer />
     </div>

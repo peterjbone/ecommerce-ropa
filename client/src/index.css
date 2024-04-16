@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'Morn';
-  src: url('./assets/fonts/MornThin.otf');
+  font-family: "Morn";
+  src: url("./assets/fonts/MornThin.otf");
 }
 @font-face {
-  font-family: 'MornBold';
-  src: url('./assets/fonts/MornBold.ttf');
+  font-family: "MornBold";
+  src: url("./assets/fonts/MornBold.ttf");
 }
 @font-face {
-  font-family: 'MornMedium';
-  src: url('./assets/fonts/MornMedium.ttf');
+  font-family: "MornMedium";
+  src: url("./assets/fonts/MornMedium.ttf");
 }
 
 html,
@@ -75,6 +75,7 @@ textarea {
 	font-size: 100%;
 	vertical-align: baseline;
 	background: transparent;
+  overflow-wrap: break-word;
 	font-family: Morn, Arial, Helvetica, sans-serif;
 	/* font-family: "Poppins", sans-serif; */
 	/* font-weight: 500; */

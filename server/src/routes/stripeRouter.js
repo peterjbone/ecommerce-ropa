@@ -108,7 +108,6 @@ const Compra = require("../models/Compra.js");
 
 const createOrder = async (customer, data) => {
   const products = JSON.parse(customer.metadata.cart);
-  console.log("products", products);
 
   try {
     for (const product of products) {
@@ -164,7 +163,7 @@ const createOrder = async (customer, data) => {
 
     //todo: aquí deberíamos enviar un email al usuario sobre la compra exitosa del producto
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -206,7 +205,7 @@ router.post(
         .then((customer) => {
           createOrder(customer, data); //se crea y se guarda el registro de compra en la BD
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => console.error(err.message));
     }
 
     // Return a 200 response to acknowledge receipt of the event

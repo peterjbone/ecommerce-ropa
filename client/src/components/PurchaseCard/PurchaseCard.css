@@ -1,0 +1,139 @@
+.user-card-outer-container {
+  position: relative;
+}
+
+.user-card-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--filter-border-color);
+  text-transform: capitalize;
+}
+
+.user-card-favorite-button {
+  position: absolute;
+  font-size: 30px;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.user-card-image-container {
+  width: 30%;
+  max-height: 30vh;
+}
+
+.user-card-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-card-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.user-card-rating-button {
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  background: transparent;
+  text-align: center;
+  width: fit-content;
+  z-index: 10;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.user-card-rating-button:hover {
+  transform: scale(1.2);
+  font-weight: bold;
+  color: var(--categories-letter-hover-color);
+}
+
+.purchase-card-container {
+  margin-left: -30%;
+  display: flex;
+  border-radius: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--filter-border-color);
+  background-color: var(--review-acceptance-card-background-color);
+}
+
+.purchase-products-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.purchase-product-container {
+  display: flex;
+}
+
+
+.purchase-product-info {
+  width: 60%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--filter-border-color);
+}
+
+.purchase-title-value-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.purchase-title-value-container p {
+  text-transform: capitalize;
+}
+
+.purchase-image-container {
+  width: 35%;
+}
+
+.purchase-image-container img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.purchase-card-title {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 40%;
+  justify-content: space-between;
+  border-left: 1px solid var(--filter-border-color);
+}
+
+.purchase-product-review-button {
+  font-family: MornMedium;
+  width: fit-content;
+  margin-right: -1%;
+  text-align: right;
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  padding: none;
+  font-size: 16px;
+  transition: 0.2s ease-out;
+  color: var(--letters-color);
+}
+
+.purchase-product-review-button:hover {
+  transform: scale(1.2);
+}

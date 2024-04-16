@@ -7,7 +7,7 @@ const getFavorites = async (request, response) => {
     response.status(200).json(favoritos || []);
   } catch (error) {
     console.error(error);
-    response.status(404).send({ error, message: 'Error al buscar favoritos' });
+    response.status(404).send({ error, message: "Error al buscar favoritos" });
   }
 }
 

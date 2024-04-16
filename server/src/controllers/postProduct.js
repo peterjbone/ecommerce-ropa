@@ -55,7 +55,7 @@ async function postProduct(req, res) {
       } catch (error) {
 				//! 1) Algun valor de un atributo puede estar mal
         //! 2) entra por algun error interno de Mongoose
-        console.log(error);
+        console.error(error);
 				return res.status(500).send(error.message);
 			}
 		}

@@ -3,7 +3,7 @@ import HeroImagesBar from "../../components/HeroImagesBar/HeroImagesBar";
 import ProductsBar from "../../components/ProductsBar/ProductsBar";
 import CategoriesBar from "../../components/CategoriesBar/CategoriesBar";
 import { useStore } from "../../store.js";
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 export default function Home() {
   const products = useStore((state) => state.products);
@@ -21,7 +21,7 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const cartToken = localStorage.getItem('cartToken');
+    const cartToken = localStorage.getItem("cartToken");
     if (cartToken) {
       getCart(cartToken);
     }
@@ -30,33 +30,33 @@ export default function Home() {
   const listas = [
     {
       lista: listaGeneros,
-      title: 'Géneros',
-      name: 'genero',
+      title: "Géneros",
+      name: "genero",
     },
     {
       lista: listaMarcas,
-      title: 'Marcas',
-      name: 'marca',
+      title: "Marcas",
+      name: "marca",
     },
     {
       lista: listaCategorias,
-      title: 'Categorias',
-      name: 'categoria',
+      title: "Categorias",
+      name: "categoria",
     },
     {
       lista: listaSubcategorias,
-      title: 'Subcategorias',
-      name: 'subcategoria',
+      title: "Subcategorias",
+      name: "subcategoria",
     },
     {
       lista: listaColores,
-      title: 'Colores',
-      name: 'color',
+      title: "Colores",
+      name: "color",
     },
     // {
     //   lista: listaTallas,
-    //   title: 'Tallas',
-    //   name: 'talla',
+    //   title: "Tallas",
+    //   name: "talla",
     // },
   ];
 
@@ -64,15 +64,15 @@ export default function Home() {
     <div className={styles["home-container"]} id="home">
       <HeroImagesBar products={products} />
       <div className={styles["product-bar"]}>
-        <ProductsBar title='Nuevos' products={nuevos} />
+        <ProductsBar title="Nuevos" products={nuevos} />
       </div>
-      {/* <ProductsBar title='Destacados' products={destacados} /> */}
+      {/* <ProductsBar title="Destacados" products={destacados} /> */}
       <div className={styles["product-bar"]}>
-        <ProductsBar title='Ofertas' products={ofertas} />
+        <ProductsBar title="Ofertas" products={ofertas} />
       </div>
-      {/* <ProductsBar title='Tendencia' products={tendencia} /> */}
+      {/* <ProductsBar title="Tendencia" products={tendencia} /> */}
       <div className={styles["product-bar"]}>
-        <ProductsBar title='Favoritos' products={products} />
+        <ProductsBar title="Favoritos" products={products} />
       </div>
       {listas.map((lista, index) => {
         return (

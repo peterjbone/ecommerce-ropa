@@ -10,14 +10,14 @@ import Carrito from "./components/Carrito/Carrito";
 import CheckoutSuccess from "./views/CheckoutSuccess/CheckoutSuccess.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
-import { autoLogin } from './utils/autoLogin.js'
+import { autoLogin } from "./utils/autoLogin.js"
 import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
   const getProductInfo = useStore((state) => state.getProductInfo);
   const getDestacados = useStore((state) => state.getDestacados);
-  const getAllReviews = useStore((state) => state.getAllReviews);
+  const getFilteredReviews = useStore((state) => state.getFilteredReviews);
   const getNuevos = useStore((state) => state.getNuevos);
   const getOfertas = useStore((state) => state.getOfertas);
   const getTendencia = useStore((state) => state.getTendencia);
@@ -34,7 +34,7 @@ export default function App() {
         await getNuevos();
         await getOfertas();
         await getTendencia();
-        await getAllReviews();
+        await getFilteredReviews();
       } catch (error) {
         console.error();
       }
@@ -51,9 +51,9 @@ export default function App() {
     (async function restore() {
       try {
         await restoreSession();
-        await login('', '', true);
+        await login("", "", true);
       } catch (error) {
-        console.error('Error fetching userData:', error);
+        console.error("Error fetching userData:", error);
       }
     })();
   }, []);

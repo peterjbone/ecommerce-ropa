@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import axios from "axios";
 import Cookies from "universal-cookie";
+
+const { VITE_BACK_URL } = import.meta.env;
 const cookies = new Cookies();
 
 export const useStore = create((set) => ({
@@ -21,6 +23,24 @@ export const useStore = create((set) => ({
   productoDetail: "",
   productoReviews: "",
   resenas: [],
+  filtrosResenas: {
+    buscarPor: "usuario",
+    busqueda: "",
+    valoracionSolo: true,
+    valoracionDesde: "--",
+    valoracionHasta: "--",
+    fechaSolo: true,
+    fechaDesde: "",
+    fechaHasta: "",
+    fechaAceptadaSolo: true,
+    fechaAceptadaDesde: "",
+    fechaAceptadaHasta: "",
+    aceptada: "notAccepted",
+    ordernado: "fecha",
+    ascendente: false,
+    pagina: 1,
+    cantidadDeResenas: 0
+  },
   filtros: {
     busqueda: "",
     marca: [],
@@ -49,7 +69,7 @@ export const useStore = create((set) => ({
 
   restoreSession: async () => {
     try {
-      await axios('http://localhost:3001/auth/restore');
+      await axios(`${VITE_BACK_URL}/auth/restore`);
     } catch (error) {
       console.error("Error al restaurar la sesión", error);
       throw error;
@@ -57,7 +77,7 @@ export const useStore = create((set) => ({
   },
   register: async (name, email, password) => {
     try {
-      await axios.post('http://localhost:3001/auth/register', { name, email, password });
+      await axios.post(`${VITE_BACK_URL}/auth/register`, { name, email, password });
     } catch (error) {
       console.error("Error al registrar usuario", error);
       throw error;
@@ -65,7 +85,7 @@ export const useStore = create((set) => ({
   },
   login: async (email, password, isAuto) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/auth/login', { email, password, isAuto });
+      const { data } = await axios.post(`${VITE_BACK_URL}/auth/login`, { email, password, isAuto });
       set(() => ({
         userInfo: data.foundUser
       }));
@@ -85,7 +105,7 @@ export const useStore = create((set) => ({
   },
   changeEmail: async (email, password) => {
     try {
-      await axios.post('http://localhost:3001/auth/changeEmail', { email, password });
+      await axios.post(`${VITE_BACK_URL}/auth/changeEmail`, { email, password });
     } catch (error) {
       console.error("Error al cambiar email", error);
       throw error;
@@ -93,7 +113,7 @@ export const useStore = create((set) => ({
   },
   changePassword: async (currentPassword, newPassword) => {
     try {
-      await axios.post('http://localhost:3001/auth/changePassword', { currentPassword, newPassword });
+      await axios.post(`${VITE_BACK_URL}/auth/changePassword`, { currentPassword, newPassword });
     } catch (error) {
       console.error("Error al cambiar contraseña", error);
       throw error;
@@ -101,8 +121,8 @@ export const useStore = create((set) => ({
   },
   logOut: async () => {
     try {
-      await axios('http://localhost:3001/auth/logout');
-      cookies.remove('token');
+      await axios(`${VITE_BACK_URL}/auth/logout`);
+      cookies.remove("token");
       set((state) => ({
         ...state,
         userInfo: null
@@ -114,7 +134,7 @@ export const useStore = create((set) => ({
   },
   reauthenticate: async (password) => {
     try {
-      await axios.post('http://localhost:3001/auth/reauthenticate', { password });
+      await axios.post(`${VITE_BACK_URL}/auth/reauthenticate`, { password });
     } catch (error) {
       console.error("Error al reatenticar usuario", error);
       throw error;
@@ -122,7 +142,7 @@ export const useStore = create((set) => ({
   },
   deleteAccount: async (id) => {
     try {
-      await axios.delete('http://localhost:3001/auth/delete', { id });
+      await axios.delete(`${VITE_BACK_URL}/auth/delete`, { id });
       set((state) => ({
         ...state,
         userInfo: null
@@ -135,7 +155,7 @@ export const useStore = create((set) => ({
   getAllProducts: async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/productos`,
+        `${VITE_BACK_URL}/productos`,
         useStore.getState().filtros
       );
       const { count, filteredProducts } = data;
@@ -155,7 +175,7 @@ export const useStore = create((set) => ({
   },
   getProductInfo: async () => {
     try {
-      const { data } = await axios(`http://localhost:3001/infoProductos`);
+      const { data } = await axios(`${VITE_BACK_URL}/infoProductos`);
       const { marcas, categorias, generos, subcategorias, colores, talles } =
         data;
       set(() => ({
@@ -264,7 +284,7 @@ export const useStore = create((set) => ({
   getFilteredProducts: async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/productos`,
+        `${VITE_BACK_URL}/productos`,
         useStore.getState().filtros
       );
       const { count, productOptions, filteredProducts } = data;
@@ -287,7 +307,7 @@ export const useStore = create((set) => ({
   },
   getProductById: async (id) => {
     try {
-      const { data } = await axios(`http://localhost:3001/producto/${id}`);
+      const { data } = await axios(`${VITE_BACK_URL}/producto/${id}`);
       const { product, reviews } = data;
       set(() => ({ productoDetail: product, productoReviews: reviews }));
     } catch (error) {
@@ -295,11 +315,47 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
-  getAllReviews: async () => {
+  setReviewsFilters: (name, value) => {
+    set((state) => ({
+      filtrosResenas: {
+        ...state.filtrosResenas,
+        [name]: value,
+      },
+    }));
+  },
+  getFilteredReviews: async () => {
     try {
-      const { data } = await axios('http://localhost:3001/resena');
-      set(() => ({
-        resenas: data
+      const { data } = await axios.post(`${VITE_BACK_URL}/resenas`, useStore.getState().filtrosResenas);
+      set((state) => ({
+        ...state,
+        resenas: data.reviews,
+        filtrosResenas: {
+          ...state.filtrosResenas,
+          cantidadDeResenas: data.count
+        }
+      }));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  },
+  setReviewsPage: (page) => {
+    set((state) => ({
+      filtrosResenas: {
+        ...state.filtrosResenas,
+        pagina: page,
+      },
+    }));
+  },
+  getReviewedProducts: async () => {
+    try {
+      const { data } = await axios.post(`${VITE_BACK_URL}/productoResena`, useStore.getState().userInfo.reviews);
+      set((state) => ({
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          reviews: data
+        }
       }));
     } catch (error) {
       console.error(error);
@@ -308,7 +364,7 @@ export const useStore = create((set) => ({
   },
   updateReview: async (id) => {
     try {
-      await axios(`http://localhost:3001/resena/${id}`);
+      await axios.put(`${VITE_BACK_URL}/resena/${id}`);
     } catch (error) {
       console.error(error);
       throw error;
@@ -316,7 +372,7 @@ export const useStore = create((set) => ({
   },
   deleteReview: async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/resena/${id}`);
+      await axios.delete(`${VITE_BACK_URL}/resena/${id}`);
     } catch (error) {
       console.error(error);
       throw error;
@@ -324,10 +380,13 @@ export const useStore = create((set) => ({
   },
   createReview: async (review) => {
     try {
-      const { data } = await axios.post('http://localhost:3001/resena', { review });
+      const { data } = await axios.post(`${VITE_BACK_URL}/resena`, review );
       set((state) => ({
-        ...state.userInfo,
-        reviews: data
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          reviews: data
+        }
       }));
     } catch (error) {
       console.error(error);
@@ -336,7 +395,7 @@ export const useStore = create((set) => ({
   },
   getFavorites: async () => {
     try {
-      const { data } = await axios.post('http://localhost:3001/getFavorites', useStore.getState().userInfo.favorites);
+      const { data } = await axios.post(`${VITE_BACK_URL}/getFavorites`, useStore.getState().userInfo.favorites);
       set((state) => ({
         ...state,
         userInfo: {
@@ -351,7 +410,7 @@ export const useStore = create((set) => ({
   },
   updateFavorite: async (id) => {
     try {
-      const { data } = await axios.put('http://localhost:3001/updateFavorite', { userId: useStore.getState().userInfo._id, productId: id });
+      const { data } = await axios.put(`${VITE_BACK_URL}/updateFavorite`, { userId: useStore.getState().userInfo._id, productId: id });
       set((state) => ({
         ...state,
         userInfo: {
@@ -366,7 +425,7 @@ export const useStore = create((set) => ({
   },
   getPurchases: async () => {
     try {
-      const { data } = await axios.post('http://localhost:3001/getPurchases', useStore.getState().userInfo.purchases);
+      const { data } = await axios.post(`${VITE_BACK_URL}/getPurchases`, useStore.getState().userInfo.purchases);
       set((state) => ({
         ...state,
         userInfo: {
@@ -382,7 +441,7 @@ export const useStore = create((set) => ({
   getCart: async (cartToken) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/carrito/${cartToken}`
+        `${VITE_BACK_URL}/carrito/${cartToken}`
       );
       set(() => ({
         cart: response.data.products
@@ -395,7 +454,7 @@ export const useStore = create((set) => ({
     try {
       console.log(productToAdd);
       const { data } = await axios.post(
-        "http://localhost:3001/agregarCarrito",
+        `${VITE_BACK_URL}/agregarCarrito`,
         { ...productToAdd, token }
       );
       console.log(data);
@@ -412,7 +471,7 @@ export const useStore = create((set) => ({
   removeFromCart: async (variantId, token) => {
     try {
       const { data } = await axios.delete(
-        "http://localhost:3001/removeFromCart",
+        `${VITE_BACK_URL}/removeFromCart`,
         {
           data: { variantId, token },
         }
@@ -425,7 +484,7 @@ export const useStore = create((set) => ({
   incrementQuantity: async (variantId, token) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/incrementQuantity",
+        `${VITE_BACK_URL}/incrementQuantity`,
         { variantId, token }
       );
       set({ cart: response.data.carrito.products });
@@ -439,7 +498,7 @@ export const useStore = create((set) => ({
   decrementQuantity: async (variantId, token) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/decrementQuantity",
+        `${VITE_BACK_URL}/decrementQuantity`,
         { variantId, token }
       );
 
@@ -459,7 +518,7 @@ export const useStore = create((set) => ({
   },
   getNuevos: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/nuevos`);
+      // const { data } = await axios(`${VITE_BACK_URL}/nuevos`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
@@ -474,7 +533,7 @@ export const useStore = create((set) => ({
   },
   getDestacados: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/destacados`);
+      // const { data } = await axios(`${VITE_BACK_URL}/destacados`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Destacado") {
@@ -489,7 +548,7 @@ export const useStore = create((set) => ({
   },
   getOfertas: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/ofertas`);
+      // const { data } = await axios(`${VITE_BACK_URL}/ofertas`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
@@ -504,7 +563,7 @@ export const useStore = create((set) => ({
   },
   getTendencia: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/tendencia`);
+      // const { data } = await axios(`${VITE_BACK_URL}/tendencia`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Tendencia") {
