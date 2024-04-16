@@ -16,8 +16,8 @@ export default function Login() {
   });
 
   const [errors, setErrors] = useState({ 
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const validation = (user/* , direccion */) => {
@@ -26,13 +26,13 @@ export default function Login() {
     const emailRegex = /^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$/;
 
     if (user.name && !nameRegex.test(user.name)) {
-      errors.name = 'Debe ser un nombre válido';
+      errors.name = "Debe ser un nombre válido";
     }
     if (user.email && !emailRegex.test(user.email)) {
-      errors.email = 'Debe ser un Email válido';
+      errors.email = "Debe ser un Email válido";
     }
     if (user.password && (user.password.length < 8 || user.password.length > 16)) {
-      errors.password = 'La contraseña debe tener entre 8 y 16 caracteres';
+      errors.password = "La contraseña debe tener entre 8 y 16 caracteres";
     }
 
     return errors
@@ -97,7 +97,7 @@ export default function Login() {
           onChange={changeHandler}
           onBlur={handleInputBlur}
         />
-        <p className={errors.email ? '' : 'invisible'} >{errors.email ? `${errors.email}` : 'invisible'}</p>
+        <p className={errors.email ? "" : "invisible"} >{errors.email ? `${errors.email}` : "invisible"}</p>
 
         <input
           className={styles.input}
@@ -108,7 +108,7 @@ export default function Login() {
           onChange={changeHandler}
           onBlur={handleInputBlur}
         />
-        <p className={errors.password ? '' : 'invisible'} >{errors.password ? `${errors.password}` : 'invisible'}</p>
+        <p className={errors.password ? "" : "invisible"} >{errors.password ? `${errors.password}` : "invisible"}</p>
 
         <Link to="/forgot-password" className={styles.link}>¿Olvidaste tu contraseña?</Link>
         <button className={styles.button} type="submit">

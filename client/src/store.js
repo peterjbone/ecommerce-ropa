@@ -122,9 +122,7 @@ export const useStore = create((set) => ({
   logOut: async () => {
     try {
       await axios(`${VITE_BACK_URL}/auth/logout`);
-      cookies.remove("token");
-      set((state) => ({
-        ...state,
+      set(() => ({
         userInfo: null,
       }));
     } catch (error) {

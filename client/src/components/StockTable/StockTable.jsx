@@ -17,7 +17,7 @@ function StockTable({ sizes, stock = [], setStock, setForm, setOptions }) {
   const handleInputChange = (event, size) => {
     const { value } = event.target;
     const existingItemIndex = stock.findIndex(item => item.talla === size);
-    // console.log('value: ', value, 'index: ', existingItemIndex);
+    // console.log("value: ", value, "index: ", existingItemIndex);
     if (existingItemIndex !== -1) {
       // si size existe en el array stock, actualiza el valor de stock
       const updatedStock = [...stock];

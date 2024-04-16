@@ -1,25 +1,25 @@
 import styles from "./Register.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
-import { useStore } from '../../store';
-import { auth } from '../../firebase/firebase.js'; // Importa la instancia de autenticación y el proveedor de Google desde tu archivo firebase.js
-import { GoogleAuthProvider, signInWithPopup } from '../../firebase/firebase.js';
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify";
+import { useStore } from "../../store";
+import { auth } from "../../firebase/firebase.js"; // Importa la instancia de autenticación y el proveedor de Google desde tu archivo firebase.js
+import { GoogleAuthProvider, signInWithPopup } from "../../firebase/firebase.js";
 
 export default function Register() {
   const navigate = useNavigate();
   const register = useStore((state) => state.register);
   const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: ""
   });
   const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: ""
   });
 
   const changeHandler = (e) => {
@@ -80,7 +80,7 @@ export default function Register() {
     try {
       // Inicia sesión con Google
       await auth.signInWithPopup(GoogleAuthProvider);
-      navigate('/'); // Redirige a la página principal después del inicio de sesión exitoso
+      navigate("/"); // Redirige a la página principal después del inicio de sesión exitoso
     } catch (error) {
       console.log(error);
       toast.error("Error al iniciar sesión con Google");
@@ -94,56 +94,56 @@ export default function Register() {
 
         <input
           className={styles.input}
-          name='name' type="text"
+          name="name" type="text"
           value={user.name}
-          placeholder='Nombre'
+          placeholder="Nombre"
           onChange={changeHandler}
         />
 
-        {/* Así me gusta agregar los errores a mi porq así ya ocupan el espacio html y se hace visible cuando existe Requiere invisible { visibility: hidden; } o style={{ visibility: `${errors.name ? 'hidden' : ''}` }}*/}
+        {/* Así me gusta agregar los errores a mi porq así ya ocupan el espacio html y se hace visible cuando existe Requiere invisible { visibility: hidden; } o style={{ visibility: `${errors.name ? "hidden" : ""}` }}*/}
 
         {/* <{p
-          className={errors.name ? '' : 'invisible'} 
+          className={errors.name ? "" : "invisible"} 
           >
-          {errors.name ? `${errors.name}` : 'invisible'}
+          {errors.name ? `${errors.name}` : "invisible"}
         </p>} */}
 
-        <input className={styles.input} name='email' type="email" value={user.email} placeholder='Email' onChange={changeHandler} />
+        <input className={styles.input} name="email" type="email" value={user.email} placeholder="Email" onChange={changeHandler} />
 
         {/* <p 
-          className={errors.email ? '' : 'invisible'} 
+          className={errors.email ? "" : "invisible"} 
           >
-          {errors.email ? `${errors.email}` : 'invisible'}
+          {errors.email ? `${errors.email}` : "invisible"}
         </p> */}
 
-        <input className={styles.input} name='password' value={user.password} type="password" placeholder='Contraseña' onChange={changeHandler} onBlur={handleInputBlur} />
+        <input className={styles.input} name="password" value={user.password} type="password" placeholder="Contraseña" onChange={changeHandler} /* onBlur={handleInputBlur} */ />
 
         {/* <p 
-          className={errors.password ? '' : 'invisible'} 
+          className={errors.password ? "" : "invisible"} 
           >
-          {errors.password ? `${errors.password}` : 'invisible'}
+          {errors.password ? `${errors.password}` : "invisible"}
         </p> */}
 
         {/* <input 
           className={styles.input} 
-          name='password' value={user.repeatPassword} 
-          type="password" placeholder='Repetir Contraseña' 
+          name="password" value={user.repeatPassword} 
+          type="password" placeholder="Repetir Contraseña" 
           onChange={changeHandler} 
           /> */}
 
         {/* <p 
-          className={errors.repeatPassword ? '' : 'invisible'} 
+          className={errors.repeatPassword ? "" : "invisible"} 
           >
-          {errors.repeatPassword ? `${errors.repeatPassword}` : 'invisible'}
+          {errors.repeatPassword ? `${errors.repeatPassword}` : "invisible"}
         </p> */}
 
         <button
           className={styles.button}
-          type='submit'
+          type="submit"
           disabled={!user.name || !user.email || !user.password || errors.name || errors.email || errors.password} >
           Crear cuenta
         </button>
-        <Link to='/login'>
+        <Link to="/login">
           <span className={styles.span}>¿Ya tienes cuenta? Inicia sesión</span>
         </Link>
         <button className={styles.button} onClick={googleSignInHandler}>

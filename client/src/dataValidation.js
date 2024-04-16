@@ -1,6 +1,6 @@
 export default function dataValidation(input) {
   const errors = {};
-  const nameRegex = /^[a-zA-Z]+(([",. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+  const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
   const userNameRegex =  /[^\w-]/;
   const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const dateOfBirth = new Date(input.dateOfBirth);

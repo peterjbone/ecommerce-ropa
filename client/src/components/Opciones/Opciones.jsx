@@ -1,31 +1,31 @@
 import { useState } from "react"
-import styles from './Opciones.module.css'
+import styles from "./Opciones.module.css"
 import StockTable from "../StockTable/StockTable"
-import { uploadCloudinary } from '../../utils/upload';
+import { uploadCloudinary } from "../../utils/upload";
 
 const Opciones = ({ opciones, setForm, form }) => {
 
-  let tallesL = ['S', 'M', 'L', 'XL', 'XLT', 'XXL']
-  let tallesN = ['10.0', '10.5', '11.0', '11.5', '12.0', '12.5', '13.0', '13.5', '3.5', '4', '4.0',
-  '4.5', '5', '5.0', '5.5', '6', '6.0', '6.5', '7', '7.0', '7.5', '8.0', '8.5', '9.0',
-  '9.5'].sort((a, b) => a - b)
+  let tallesL = ["S", "M", "L", "XL", "XLT", "XXL"]
+  let tallesN = ["10.0", "10.5", "11.0", "11.5", "12.0", "12.5", "13.0", "13.5", "3.5", "4", "4.0",
+  "4.5", "5", "5.0", "5.5", "6", "6.0", "6.5", "7", "7.0", "7.5", "8.0", "8.5", "9.0",
+  "9.5"].sort((a, b) => a - b)
   
   let colores = [
-    { codigosHex: '#FFFF00', nombres: 'amarillo' },
-    { codigosHex: '#0000FF', nombres: 'azul' },
-    { codigosHex: '#8ecae6', nombres: 'azul-marino' },
-    { codigosHex: '#F5F5DC', nombres: 'beige' },
-    { codigosHex: '#FFFFFF', nombres: 'blanco' },
-    { codigosHex: '#808080', nombres: 'gris' },
-    { codigosHex: '#000000', nombres: 'negro' },
-    { codigosHex: '#FF0000', nombres: 'rojo' },
-    { codigosHex: '#FFC0CB', nombres: 'rosa' },
-    { codigosHex: '#8B4513', nombres: 'marron' },
-    { codigosHex: '#008000', nombres: 'verde' },
-    { codigosHex: '#007FFF', nombres: 'francia' },
-    { codigosHex: '#fa8072', nombres: 'salmon' },
-    { codigosHex: '#78288C', nombres: 'violeta' },
-    { codigosHex: '#FF71CD', nombres: 'rosado' }
+    { codigosHex: "#FFFF00", nombres: "amarillo" },
+    { codigosHex: "#0000FF", nombres: "azul" },
+    { codigosHex: "#8ecae6", nombres: "azul-marino" },
+    { codigosHex: "#F5F5DC", nombres: "beige" },
+    { codigosHex: "#FFFFFF", nombres: "blanco" },
+    { codigosHex: "#808080", nombres: "gris" },
+    { codigosHex: "#000000", nombres: "negro" },
+    { codigosHex: "#FF0000", nombres: "rojo" },
+    { codigosHex: "#FFC0CB", nombres: "rosa" },
+    { codigosHex: "#8B4513", nombres: "marron" },
+    { codigosHex: "#008000", nombres: "verde" },
+    { codigosHex: "#007FFF", nombres: "francia" },
+    { codigosHex: "#fa8072", nombres: "salmon" },
+    { codigosHex: "#78288C", nombres: "violeta" },
+    { codigosHex: "#FF71CD", nombres: "rosado" }
   ]
 
   function getHexCode(nombreColor) {
@@ -44,14 +44,14 @@ const Opciones = ({ opciones, setForm, form }) => {
   //   setOptions(prevOptions => [
   //     ...prevOptions,
   //     {
-  //       colores: { codigosHex: ['#000000'], nombres: ['negro'] },
+  //       colores: { codigosHex: ["#000000"], nombres: ["negro"] },
   //       tallas: [],
   //       imagenes: []
   //     }
   //   ]);
   // };
 
-  const initialTipoTalle =/* options.length > 0 && options[0].tallas && options[0].tallas.length > 0 && options[0].tallas[0] &&*/ isNaN(Number(options[0].tallas[0].talla)) ? 'L' : 'N';
+  const initialTipoTalle =/* options.length > 0 && options[0].tallas && options[0].tallas.length > 0 && options[0].tallas[0] &&*/ isNaN(Number(options[0].tallas[0].talla)) ? "L" : "N";
   const [tipoTalle, setTipoTalle] = useState(initialTipoTalle);
 
   const tipoTalleHandler = (e) => {
@@ -105,7 +105,7 @@ const Opciones = ({ opciones, setForm, form }) => {
         <div key={index}>
           <div>
             <label className={styles.labelFormContainer}>Color: </label>
-            <select name="color" value={item.colores.nombres[0] || ''} onChange={(e) => handleColorChange(index, e.target.value)} >
+            <select name="color" value={item.colores.nombres[0] || ""} onChange={(e) => handleColorChange(index, e.target.value)} >
               <option value="">--Seleccionar--</option>
               {colores.map(color => <option key={color.nombres}>{color.nombres}</option>)}
             </select>
@@ -125,13 +125,13 @@ const Opciones = ({ opciones, setForm, form }) => {
           <div>
             <label className={styles.labelFormContainer}>Tipo de talle</label>
             <select name="tipoTalle" value={tipoTalle} onChange={tipoTalleHandler}>
-              <option value=''>--Seleccionar--</option>
-              <option value='L'>Letras</option>
-              <option value='N'>Números</option>
+              <option value="">--Seleccionar--</option>
+              <option value="L">Letras</option>
+              <option value="N">Números</option>
             </select>
 
-            {tipoTalle === 'L' && <StockTable sizes={tallesL} stock={item.tallas} setOptions={setOptions} setStock={(updatedStock) => handleStockChange(index, updatedStock)} />}
-            {tipoTalle === 'N' && <StockTable sizes={tallesN} stock={item.tallas} setOptions={setOptions} setStock={(updatedStock) => handleStockChange(index, updatedStock)} />}
+            {tipoTalle === "L" && <StockTable sizes={tallesL} stock={item.tallas} setOptions={setOptions} setStock={(updatedStock) => handleStockChange(index, updatedStock)} />}
+            {tipoTalle === "N" && <StockTable sizes={tallesN} stock={item.tallas} setOptions={setOptions} setStock={(updatedStock) => handleStockChange(index, updatedStock)} />}
           </div>
         </div>
       ))}

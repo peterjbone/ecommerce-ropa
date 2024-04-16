@@ -203,9 +203,9 @@ const changePassword = async (request, response) => {
 
 const logout = async (request, response) => {
   try {
-    // request.cookie("token", "", {
-    //   expires: new Date(0)
-    // });
+    response.cookie("firebaseUser", "", {
+      expires: new Date(0)
+    });
     await signOut(auth);
     response.status(200).json({ message: "Sesión cerrada correctamente" });
   } catch (error) {
@@ -213,6 +213,7 @@ const logout = async (request, response) => {
     response.status(500).json({ error, message: "Error cerrando sesión" });
   }
 };
+
 const deleteAccount = async (request, response) => {
   try {
     const { id } = request.body;
