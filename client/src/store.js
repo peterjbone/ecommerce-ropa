@@ -87,7 +87,7 @@ export const useStore = create((set) => ({
     try {
       const { data } = await axios.post(`${VITE_BACK_URL}/auth/login`, { email, password, isAuto });
       set(() => ({
-        userInfo: data.foundUser
+        userInfo: data.foundUser,
       }));
       set((prevState) => ({
         ...prevState,
@@ -125,7 +125,7 @@ export const useStore = create((set) => ({
       cookies.remove("token");
       set((state) => ({
         ...state,
-        userInfo: null
+        userInfo: null,
       }));
     } catch (error) {
       console.error("Error al cerrar sesión", error);
@@ -145,7 +145,7 @@ export const useStore = create((set) => ({
       await axios.delete(`${VITE_BACK_URL}/auth/delete`, { id });
       set((state) => ({
         ...state,
-        userInfo: null
+        userInfo: null,
       }));
     } catch (error) {
       console.error("Error al borrar cuenta", error);
@@ -400,8 +400,8 @@ export const useStore = create((set) => ({
         ...state,
         userInfo: {
           ...state.userInfo,
-          favorites: data
-        }
+          favorites: data,
+        },
       }));
     } catch (error) {
       console.error(error);
@@ -415,8 +415,8 @@ export const useStore = create((set) => ({
         ...state,
         userInfo: {
           ...state.userInfo,
-          favorites: data
-        }
+          favorites: data,
+        },
       }));
     } catch (error) {
       console.error(error);
@@ -430,8 +430,8 @@ export const useStore = create((set) => ({
         ...state,
         userInfo: {
           ...state.userInfo,
-          purchases: data
-        }
+          purchases: data,
+        },
       }));
     } catch (error) {
       console.error(error);
@@ -444,7 +444,7 @@ export const useStore = create((set) => ({
         `${VITE_BACK_URL}/carrito/${cartToken}`
       );
       set(() => ({
-        cart: response.data.products
+        cart: response.data.products,
       }));
     } catch (error) {
       console.error("Error al obtener productos del carrito:", error);
@@ -579,22 +579,22 @@ export const useStore = create((set) => ({
 }));
 
 const toggleValue = (array, value) => {
-	if (array.includes(value)) {
-		return array.filter((item) => item !== value);
-	} else {
-		return [...array, value];
-	}
+  if (array.includes(value)) {
+    return array.filter((item) => item !== value);
+  } else {
+    return [...array, value];
+  }
 };
 
 const updateSelectedFilters = (prevSelectedFilters, id, name) => {
-	const updatedFilters = [...prevSelectedFilters];
-	const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
+  const updatedFilters = [...prevSelectedFilters];
+  const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
 
-	if (existingIndex !== -1) {
-		updatedFilters.splice(existingIndex, 1);
-	} else {
-		updatedFilters.push({ name, id });
-	}
+  if (existingIndex !== -1) {
+    updatedFilters.splice(existingIndex, 1);
+  } else {
+    updatedFilters.push({ name, id });
+  }
 
-	return updatedFilters;
+  return updatedFilters;
 };

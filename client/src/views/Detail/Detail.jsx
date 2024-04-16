@@ -28,12 +28,13 @@ export default function Detail() {
     if (cartToken) {
       getCart(cartToken);
     }
-  });
+  },[]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     (async function getProduct() {
       try {
+        
         await getProductById(id);
       } catch (error) {
         console.error(error);
@@ -45,6 +46,7 @@ export default function Detail() {
     const fetchRelatedProducts = async () => {
       try {
         if (productoDetail && productoDetail.categoria) {
+         
           const response = await axios.post("http://localhost:3001/productos", {
             categoria: [productoDetail.categoria],
             busqueda: ""
@@ -55,7 +57,7 @@ export default function Detail() {
           setRelatedProducts(randomProducts);
         }
       } catch (error) {
-        console.error("Error al obtener productos relacionados:", error);
+        console.error("Error fetching related products:", error);
       }
     };
     fetchRelatedProducts();
@@ -257,6 +259,7 @@ export default function Detail() {
           </div>
         </div>
         <div className={styles.productosRelacionados}>
+          
           <ProductsBar
             title="Productos Relacionados"
             products={relatedProducts}

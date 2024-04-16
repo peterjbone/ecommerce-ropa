@@ -196,7 +196,7 @@ const Carrito = () => {
           {/*----------------- RESUMEN DEL CARRITO --------------------*/}
           <div className={styles.cartSummary}>
             {/* Boton para limpiar el carrito */}
-            <button className={styles.clearBtn} onClick={() => { VaciarCarrito }}>
+            <button className={styles.clearBtn} onClick={() =>  VaciarCarrito() }>
               Vaciar carrito
             </button>
             {/* Boton de Pago */}
