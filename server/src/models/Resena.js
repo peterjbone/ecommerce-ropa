@@ -32,6 +32,10 @@ const ResenaSchema = new Schema({
 		immutable: true,
 		default: () => Date.now()
 	},
+  aceptadoEn: {
+		type: Date,
+		default: () => Date.now()
+	},
 });
 
 const Resena = models.Resena || model("Resena", ResenaSchema);

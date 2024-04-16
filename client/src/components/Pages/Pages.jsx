@@ -1,7 +1,7 @@
-import './Pages.css';
+import "./Pages.css";
 import { useEffect, useState } from "react";
-import CardsContainer from '../CardsContainer/CardsContainer';
-import { useStore } from '../../store.js';
+import CardsContainer from "../CardsContainer/CardsContainer";
+import { useStore } from "../../store.js";
 
 export default function Pages() {
   const products = useStore((state) => state.productosFiltrados);
@@ -19,7 +19,7 @@ export default function Pages() {
   const getCart = useStore((state) => state.getCart);
   
   useEffect(() => {
-    const cartToken = localStorage.getItem('cartToken');
+    const cartToken = localStorage.getItem("cartToken");
     if (cartToken) {
       getCart(cartToken);
     }
@@ -68,7 +68,7 @@ export default function Pages() {
   const handleOptionChange = async (event) => {
     try {
       const { id } = event.target;
-      const name = event.target.getAttribute('name');
+      const name = event.target.getAttribute("name");
       setFilters(name, id);
       await getFilteredProducts();
     } catch (error) {
@@ -87,9 +87,9 @@ export default function Pages() {
 
   return (
     <div>
-      <div className={`selected-list ${filtrosSeleccionados.length === 0 ? 'invisible' : ''}`}>
+      <div className={`selected-list ${filtrosSeleccionados.length === 0 ? "invisible" : ""}`}>
         <p
-          className={filtrosSeleccionados.length === 0 ? 'invisible' : ''}
+          className={filtrosSeleccionados.length === 0 ? "invisible" : ""}
           onClick={handleReset}
         >
           Resetear Todo ✖️
@@ -107,11 +107,11 @@ export default function Pages() {
         })}
       </div>
       <CardsContainer products={products} />
-      <div className='pages-selector' >
+      <div className="pages-selector" >
         {(() => {
           return (
             <button
-              className={(currentPage === 1 || filtros.productosPorPagina === cantidadDeProductos) ? 'invisible' : 'page-button'}
+              className={(currentPage === 1 || filtros.productosPorPagina === cantidadDeProductos) ? "invisible" : "page-button"}
               onClick={previousPage} >
               Anterior
             </button>
@@ -119,7 +119,7 @@ export default function Pages() {
         })()}
         {Array.from({ length: nPages }, (_, i) => (
           <button
-            className={currentPage === i + 1 ? 'selected-page' : 'page-button'}
+            className={currentPage === i + 1 ? "selected-page" : "page-button"}
             key={i}
             id={i + 1}
             disabled={currentPage === i + 1}
@@ -128,7 +128,7 @@ export default function Pages() {
           </button>
         ))}
         {(() => {
-          const nextClassName = (currentPage === nPages || nPages === 0 || filtros.productosPorPagina === cantidadDeProductos) ? 'invisible' : 'page-button';
+          const nextClassName = (currentPage === nPages || nPages === 0 || filtros.productosPorPagina === cantidadDeProductos) ? "invisible" : "page-button";
           return (
             <button
               className={nextClassName}

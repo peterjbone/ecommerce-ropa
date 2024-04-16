@@ -12336,7 +12336,7 @@ colores.forEach(item => {
 });
 
 const uniqueColorsArray = Array.from(uniqueColors).map(identifier => {
-  const [codHexadecimal, nombreColor] = identifier.split('-');
+  const [codHexadecimal, nombreColor] = identifier.split("-");
   return { codHexadecimal, nombreColor };
 });
 

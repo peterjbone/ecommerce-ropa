@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "../../store.js";
 import PayButton from "../PayButton/PayButton.jsx";
-import axios from 'axios';
+import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -147,14 +147,14 @@ const Carrito = () => {
                           fontSize: "1.10rem",
                           lineHeight: "1.75rem"
                         }}>
-                        Color seleccionados:
+                        Color seleccionados: 
                         <span
                           style={{
                             fontSize: "1.25rem",
                             lineHeight: "1.75rem",
                             fontWeight: "600"
                           }}>
-                          {cartItem.opcion.color}
+                           {cartItem.opcion.color}
                         </span>
                       </p>
                       <button

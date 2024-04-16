@@ -10,9 +10,9 @@ if (!process.env.MONGODB_URL) {
 async function connectDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URL);
-    console.log("Conexión establecida con la base de datos 'ecommerce' (backend)");
+    console.log("Conexión establecida con la base de datos \"ecommerce\" (backend)");
   } catch (error) {
-    console.log("Error al conectarse a la base de datos 'ecommerce' (backend):", error.message);
+    console.log("Error al conectarse a la base de datos \"ecommerce\" (backend):", error.message);
   }
 }
 
@@ -33,7 +33,7 @@ async function insertarProductos() {
 
 async function insertarResenas() {
   try {
-    const productIds = await Producto.distinct('_id');
+    const productIds = await Producto.distinct("_id");
     let modifiedReviews = [], productsIndex = 0, reviewsIndex = 0;
 
     while (reviewsIndex < resenas.length && productsIndex < productIds.length) {

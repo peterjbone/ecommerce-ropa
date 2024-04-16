@@ -39,7 +39,7 @@ export default function Detail() {
         console.error(error);
       }
     })();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const fetchRelatedProducts = async () => {

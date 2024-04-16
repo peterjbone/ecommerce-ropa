@@ -1,9 +1,9 @@
-import './ProductsBar.css';
+import "./ProductsBar.css";
 
-import Card from '../Card/Card';
-import nextIcon from '../../assets/icons/next-icon.svg';
-import perviousIcon from '../../assets/icons/previous-icon.svg';
-import { useState } from 'react';
+import Card from "../Card/Card";
+import nextIcon from "../../assets/icons/next-icon.svg";
+import perviousIcon from "../../assets/icons/previous-icon.svg";
+import { useState } from "react";
 
 export default function ProductsBar({ title, products }) {
   const [productPosition, setProductPosition] = useState(0);
@@ -34,7 +34,7 @@ export default function ProductsBar({ title, products }) {
           className="product-arrow-button"
           disabled={productPosition === 0}
           onClick={showPrevImage}>
-          <img src={perviousIcon} alt='nextIcon' />
+          <img src={perviousIcon} alt="nextIcon" />
         </button>
         <div className="products-bar-container">
           {products?.map((product) => (
@@ -52,7 +52,7 @@ export default function ProductsBar({ title, products }) {
           className="product-arrow-button"
           onClick={showNextImage}
           style={{ right: 0 }}>
-          <img src={nextIcon} alt='nextIcon' />
+          <img src={nextIcon} alt="nextIcon" />
         </button>
       </div>
     </div>

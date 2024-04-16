@@ -1,5 +1,5 @@
-import styles from './HeroImagesBarDetail.module.css';
-import { useEffect, useRef, useState } from 'react';
+import styles from "./HeroImagesBarDetail.module.css";
+import { useEffect, useRef, useState } from "react";
 
 export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
 
@@ -91,7 +91,7 @@ export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
                 className={styles.heroImageDotButton}
                 onClick={() => setImageIndex(index)}
               >
-                {index === imageIndex ? '⚪' : '🔘'}
+                {index === imageIndex ? "⚪" : "🔘"}
               </button>
             ))}
           </div>

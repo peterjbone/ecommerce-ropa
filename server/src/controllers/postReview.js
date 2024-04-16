@@ -9,6 +9,7 @@ async function postReview(request, response) {
     const product = await Producto.findOne({
       _id: producto_id
     });
+
     if (product) {
       const user = await Usuario.findOne({
         _id: usuario_id
@@ -18,10 +19,12 @@ async function postReview(request, response) {
           producto_id: producto_id,
           usuario_id: usuario_id
         });
+        console.log(existingReview);
         if (existingReview) {
           existingReview.valoracion = valoracion;
           existingReview.descripcion = descripcion;
           await existingReview.save();
+          console.log(existingReview);
         } else {
           const newReview = await Resena.create({
             producto_id: producto_id,
@@ -33,17 +36,29 @@ async function postReview(request, response) {
           });
         }
         const reviews = await Resena.find({ usuario_id: usuario_id });
-
+        
+        for (const review of reviews) {
+          if (!review.product) {
+            const product = await Producto.findOne({
+              _id: review.
+                producto_id
+            });
+            if (product) {
+              review.product = product;
+            }
+          }
+        }
+        
         return response.status(201).json(reviews);
       } else {
-        return response.status(404).send('No se encontró el usuario');
+        return response.status(404).send("No se encontró el usuario");
       }
     } else {
-      return response.status(404).send('No se encontró el producto');
+      return response.status(404).send("No se encontró el producto");
     }
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error, message: 'Error interno de ruta /postReview' });
+    response.status(500).json({ error, message: "Error interno de ruta /postReview" });
   }
 }
 

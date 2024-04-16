@@ -1,11 +1,11 @@
-const { initializeApp } = require('firebase/app');
-const { getAuth, setPersistence, browserLocalPersistence } = require('firebase/auth');
-const dotenv = require('dotenv');
+const { initializeApp } = require("firebase/app");
+const { getAuth, setPersistence, browserLocalPersistence } = require("firebase/auth");
+const dotenv = require("dotenv");
 
 dotenv.config();
 const { FIREBASE_API_KEY, FIREBASE_AUTH_DOMAIN, FIREBASE_PROJECT_ID, FIREBASE_STORAGE_BUCKET, FIREBASE_MESSAGING_SENDER_ID, FIREBASE_APP_ID } = process.env;
 
-// Your web app's Firebase configuration
+// Your web app"s Firebase configuration
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
   authDomain: FIREBASE_AUTH_DOMAIN,

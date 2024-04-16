@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 100%;
+  width: 96%;
   margin-bottom: 20px;
+  margin-left: 0.5%;
   border-radius: 10px;
   height: fit-content;
   overflow: hidden;
@@ -14,9 +15,23 @@
   padding: 10px;
 }
 
+.review-card-image-description-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.review-card-image-container {
+  width: 20%;
+}
+
+.review-card-image-container img {
+  width: 100%;
+}
+
 .acceptance-rating-container {
   width: 100%;
-  align-items: flex-start;
+  align-items: center;
+  align-content: center;
 }
 
 .acceptance-rating-container h4 {
@@ -30,12 +45,13 @@
 
 .acceptance-rating-container div {
   width: 110px;
-  align-self: center;
   justify-self: flex-end;
 }
 
 .review-card-container p {
+  width: 150%;
   font-size: 15px;
+  padding: 5px;
 }
 
 .review-acceptance-button-container {

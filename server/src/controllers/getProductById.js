@@ -113,7 +113,7 @@ const getProductById = async (request, response) => {
       .status(200)
       .json({ message: "Producto y reseñas", product, reviews });
   } catch (error) {
-    console.log("Error interno de ruta /getProductById", error);
+    console.error("Error interno de ruta /getProductById", error);
     return response.status(500).json({ message: error.message });
   }
 };

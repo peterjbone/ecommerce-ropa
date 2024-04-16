@@ -1,0 +1,192 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--review-modal-overlay-background-color);
+  backdrop-filter: blur(3px);
+  z-index: 50;
+}
+
+.modal {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--review-modal-background-color);
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  padding: 10px;
+  height: 90%;
+  width: 95%;
+}
+
+#review-modal-card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.review-modal-card-product-container {
+  width: 50%;
+}
+
+.review-modal-card-image-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.review-modal-card-image-container img {
+  width: 50%;
+  object-fit: cover;
+}
+
+.review-modal-card-product-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  margin-bottom: 10px;
+}
+
+.review-modal-card-product-info-container div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.review-modal-card-product-container p {
+  height: fit-content;
+  text-transform: capitalize;
+  line-height: normal;
+  padding: 5px;
+  margin: 0;
+  color: var(--review-letter-color);
+}
+
+#review-modal-card-product-description {
+  font-size: 14px;
+  height: fit-content;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+#review-modal-card-container form {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.user-rating-stars-headline-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-rating-stars-headline-container h2 {
+  min-width: 100px;
+  height: fit-content;
+  line-height: 1;
+  font-family: inherit;
+  font-size: 60px;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.star-container-0,
+.star-container-1,
+.star-container-2,
+.star-container-3,
+.star-container-4,
+.star-container-5,
+.star-container-6,
+.star-container-7,
+.star-container-8,
+.star-container-9,
+.star-container-10 {
+  width: 25px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.star-container-1,
+.star-container-3,
+.star-container-5,
+.star-container-7,
+.star-container-9 {
+  padding-right: 10px;
+}
+
+.svg-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.star-container-0 svg,
+.star-container-2 svg,
+.star-container-4 svg,
+.star-container-6 svg,
+.star-container-8 svg,
+.star-container-10 svg {
+  width: 50px;
+  height: auto;
+}
+
+
+.star-container-1 svg,
+.star-container-3 svg,
+.star-container-5 svg,
+.star-container-7 svg,
+.star-container-9 svg {
+  width: 50px;
+  height: auto;
+  transform: translateX(-48%);
+}
+
+.user-rating-input-label-container textarea {
+  width: 98%;
+  height: 50vh;
+  resize: none;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid var(--review-textarea-border-color);
+}
+
+.user-rating-input-label-container textarea:focus {
+  outline: 1px solid var(--review-textarea-border-color);
+}
+
+.review-accept-button:hover:enabled {
+  color: green;
+}
+
+.review-cancel-button:hover:enabled {
+  color: red;
+}
+
+.review-close-button {
+  position: absolute;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  top: -3.5%;
+  right: -1.5%;
+}
+
+.review-close-button svg {
+  transition: 0.2s ease-out;
+  fill: var(--close-modal-button-fill-color);
+}
+
+.review-close-button svg:hover {
+  transform: scale(1.1);
+  fill: var(--close-modal-button-hover-fill-color);
+}
