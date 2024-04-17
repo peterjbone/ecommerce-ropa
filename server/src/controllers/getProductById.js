@@ -6,31 +6,38 @@ const getProductById = async (request, response) => {
 
   try {
     const product = await Producto.findOne({
-      _id: id
+      _id: id,
     });
     if (!product) {
       return response.status(404).send("No se encontró el producto.");
     }
     const allReviews = await Resena.find({
-      producto_id: id, esAceptada: true
+      producto_id: id,
+      esAceptada: true,
     });
     const topReviews = await Resena.find({
-      producto_id: id, esAceptada: true
-    }).sort({ valoracion: -1 }).limit(5);
+      producto_id: id,
+      esAceptada: true,
+    })
+      .sort({ valoracion: -1 })
+      .limit(5);
     const bottomReviews = await Resena.find({
-      producto_id: id, esAceptada: true
-    }).sort({ valoracion: 1 }).limit(5);
+      producto_id: id,
+      esAceptada: true,
+    })
+      .sort({ valoracion: 1 })
+      .limit(5);
     const randomReviews = await Resena.aggregate([
       { $match: { producto_id: id, esAceptada: true } },
-      { $sample: { size: 5 } }
+      { $sample: { size: 5 } },
     ]);
     const averageReviews = await Resena.aggregate([
       { $match: { producto_id: id, esAceptada: true } },
       {
         $group: {
           _id: null,
-          average: { $avg: "$valoracion" }
-        }
+          average: { $avg: "$valoracion" },
+        },
       },
       {
         $project: {
@@ -39,10 +46,10 @@ const getProductById = async (request, response) => {
             $cond: [
               { $gte: [{ $mod: ["$average", 1] }, 0.5] },
               { $ceil: "$average" },
-              { $floor: "$average" }
-            ]
-          }
-        }
+              { $floor: "$average" },
+            ],
+          },
+        },
       },
       {
         $lookup: {
@@ -58,20 +65,25 @@ const getProductById = async (request, response) => {
                       $or: [
                         { $eq: ["$valoracion", "$$average"] },
                         { $eq: ["$valoracion", { $add: ["$$average", 0.5] }] },
-                        { $eq: ["$valoracion", { $subtract: ["$$average", 0.5] }] }
-                      ]
-                    }
-                  ]
-                }
-              }
+                        {
+                          $eq: [
+                            "$valoracion",
+                            { $subtract: ["$$average", 0.5] },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              },
             },
-            { $limit: 5 }
+            { $limit: 5 },
           ],
-          as: "averageArray"
-        }
+          as: "averageArray",
+        },
       },
       { $unwind: "$averageArray" },
-      { $replaceRoot: { newRoot: "$averageArray" } }
+      { $replaceRoot: { newRoot: "$averageArray" } },
     ]);
 
     const reviews = {

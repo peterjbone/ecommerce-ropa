@@ -27,14 +27,17 @@
 
 **********COLORES**************
 
-codigosHex: ["#808080", "#000000"],
-nombres: ["gris", "negro"]
+codigosHex: ["#808080"],
+nombres: ["gris"]
 
-codigosHex: ["#ffffff", "#000000", "#ff0000"],
-nombres: ["blanco", "negro", "rojo"]
+codigosHex: ["#ffffff"],
+nombres: ["blanco"]
 
-codigosHex: ["#00ff00", "#000000"],
-nombres: ["verde", "negro"]
+codigosHex: ["#ff0000"],
+nombres: ["rojo"]
+
+codigosHex: ["#00ff00"],
+nombres: ["verde"]
 
 codigosHex: ["#000000"],
 nombres: ["negro"]

@@ -27,7 +27,7 @@ export default function ReviewsAcceptanceCard({ review }) {
   }
 
   return (
-    <div className="review-card-container" >
+    <div className="review-acceptance-card-container" >
       <div style={{ display: "flex" }} >
         <div className="rating-container acceptance-rating-container">
           <div style={{ display: "flex", flexDirection: "column", flexWrap: "nowrap", width: "50%" }} >
@@ -38,8 +38,8 @@ export default function ReviewsAcceptanceCard({ review }) {
           <div>{renderStars(review.valoracion)}</div>
         </div>
       </div>
-      <div className="review-card-image-description-container" >
-        <div className="review-card-image-container" >
+      <div className="review-acceptance-card-image-description-container" >
+        <div className="review-acceptance-card-image-container" >
           <img src={review.product.opciones[0].imagenes[0]} alt={review.product.opciones[0].imagenes[0]} />
         </div>
         <p>{review.descripcion}</p>

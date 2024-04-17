@@ -1,5 +1,4 @@
 import "./Card.css";
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useStore } from "../../store.js";
@@ -16,6 +15,7 @@ export default function Card({ product, isProductsBar, title, productPosition })
       }
     });
   }, [userInfo?.favorites, product._id]);
+
 
   const handleFavorite = async (event) => {
     event.preventDefault();

@@ -1,6 +1,6 @@
 import styles from "./StockTable.module.css"
 
-function StockTable({ sizes, stock, setStock, setForm }) {
+function StockTable({ sizes, stock = [], setStock, setForm, setOptions }) {
 
   // const handleInputChange = (event, size) => {
   //   const { value } = event.target;
@@ -12,11 +12,12 @@ function StockTable({ sizes, stock, setStock, setForm }) {
   //   //   return {...prevForm, tallas: {...stock, [size]: value}}
   //   // })
   // };
+  // console.log(stock);
 
   const handleInputChange = (event, size) => {
     const { value } = event.target;
     const existingItemIndex = stock.findIndex(item => item.talla === size);
-  
+    // console.log("value: ", value, "index: ", existingItemIndex);
     if (existingItemIndex !== -1) {
       // si size existe en el array stock, actualiza el valor de stock
       const updatedStock = [...stock];
@@ -24,8 +25,10 @@ function StockTable({ sizes, stock, setStock, setForm }) {
       setStock(updatedStock);
     } else {
       // si size no existe en el array stock, los agrega con el valor de stock
-      setStock(prevStock => [...prevStock, { talla: size, stock: value }]);
+      // setStock(prevStock => [...prevStock, { talla: size, stock: value }]);
+      setStock([...stock, { talla: size, stock: value }]);
     }
+
   };
 
   
@@ -46,7 +49,7 @@ function StockTable({ sizes, stock, setStock, setForm }) {
                 <input
                   className={styles.inputStock}
                   type="number"
-                  value={stock.find(item => item.talla === size)?.stock || ""}
+                  value={stock?.find(item => item.talla === size)?.stock || ""}
                   onChange={(e) => handleInputChange(e, size)}
                 />
               </td>

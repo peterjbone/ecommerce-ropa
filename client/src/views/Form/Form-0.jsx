@@ -6,27 +6,73 @@ import axios from "axios";
 import { uploadCloudinary } from "../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
+const { VITE_BACK_URL } = import.meta.env;
 
 const Form = () => {
-
-  let categorias = [ "Adulto", "Infante" ]
-  let subcategorias = ["Camisetas y Polos","Chaquetas y Abrigos","Sudaderas y Hoodies","Chalecos","Jeans","Shorts","Short","Zapatillas Casuales","Botin","Botas","Sandalias","Camisas","Pantalones","Botas Cortas","Leggings y Pantalones Deportivos","Zapatos","Blusas y Tops","Faldas","Pantalones de Pijama","Pantalones Formales","Pantalones Cortos de Ciclismo","Zapatillas de Casa","Zapatillas Deportivas","Camisetas de Deporte","Cardigans y Suéteres","Destacado","Tendencia"]
-  let genero = [ "masculino", "unisex", "femenino"]
-  let tallesL = ["XS", "S", "L", "M", "XL", "XXL", "XXXL"]
-  let tallesN = ["4", "6", "8", "10", "12", "14", "16", "34", "36", "38", "39", "40", "41", "42", "43", "44","45"]
+  let categorias = ["Adulto", "Infante"];
+  let subcategorias = [
+    "Camisetas y Polos",
+    "Chaquetas y Abrigos",
+    "Sudaderas y Hoodies",
+    "Chalecos",
+    "Jeans",
+    "Shorts",
+    "Short",
+    "Zapatillas Casuales",
+    "Botin",
+    "Botas",
+    "Sandalias",
+    "Camisas",
+    "Pantalones",
+    "Botas Cortas",
+    "Leggings y Pantalones Deportivos",
+    "Zapatos",
+    "Blusas y Tops",
+    "Faldas",
+    "Pantalones de Pijama",
+    "Pantalones Formales",
+    "Pantalones Cortos de Ciclismo",
+    "Zapatillas de Casa",
+    "Zapatillas Deportivas",
+    "Camisetas de Deporte",
+    "Cardigans y Suéteres",
+    "Destacado",
+    "Tendencia"
+  ];
+  let genero = ["masculino", "unisex", "femenino"];
+  let tallesL = ["XS", "S", "L", "M", "XL", "XXL", "XXXL"];
+  let tallesN = [
+    "4",
+    "6",
+    "8",
+    "10",
+    "12",
+    "14",
+    "16",
+    "34",
+    "36",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45"
+  ];
   let marcas = [
     "Nike",
     "Adidas",
     "Gucci",
     "H&M",
     "Zara",
-    "Levi"s",
+    "Levi's",
     "Calvin Klein",
     "Tommy Hilfiger",
     "Under Armour",
     "Puma",
     "Ralph Lauren",
-    "Victoria"s Secret",
+    "Victoria's Secret",
     "Versace",
     "Prada",
     "Burberry",
@@ -50,7 +96,8 @@ const Form = () => {
     "Vans",
     "Converse",
     "New Balance",
-    "Reebok"]
+    "Reebok"
+  ];
 
   let colores = [
     { codHexadecimal: "#000000", nombreColor: "negro" },
@@ -64,27 +111,27 @@ const Form = () => {
     { codHexadecimal: "#007FFF", nombreColor: "francia" },
     { codHexadecimal: "#fa8072", nombreColor: "salmon" },
     { codHexadecimal: "#FFC0CB", nombreColor: "rosa" },
-    { codHexadecimal: "#78288C", nombreColor: "violeta" },
-  ]
+    { codHexadecimal: "#78288C", nombreColor: "violeta" }
+  ];
 
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
 
   const [nameColors, setNameColors] = useState([]);
   const [selectedColor, setSelectedColor] = useState([]);
 
-  const [tipoTalle, setTipoTalle] = useState("")
+  const [tipoTalle, setTipoTalle] = useState("");
   const tipoTalleHandler = (e) => {
-    setForm({...form, tallas: {}})
-    setStock({})
-    setTipoTalle(e.target.value)
-  }
+    setForm({ ...form, tallas: {} });
+    setStock({});
+    setTipoTalle(e.target.value);
+  };
 
   const [stock, setStock] = useState({});
 
   const [discount, setDiscount] = useState({
     offActiva: false,
     Descuento: 0
-  })
+  });
 
   const [form, setForm] = useState({
     nombre: "",
@@ -125,32 +172,32 @@ const Form = () => {
     };
 
     let passed = true
-    
-    if(form.nombre.length <= 10) {
+
+    if (form.nombre.length <= 10) {
       newErrors.nombre = "El nombre debe tener al menos 10 caracteres";
       passed = false
     }
-    if(!form.marca) {
+    if (!form.marca) {
       newErrors.marca = "Debes seleccionar una marca";
       passed = false
     }
-    if(!form.precio) {
+    if (!form.precio) {
       newErrors.precio = "Debes ingresar un precio";
       passed = false
     }
-    if(!form.categoria) {
+    if (!form.categoria) {
       newErrors.categoria = "Debes seleccionar una categoria";
       passed = false
     }
-    if(!form.subcategoria) {
+    if (!form.subcategoria) {
       newErrors.subcategoria = "Debes seleccionar una subcategoria";
       passed = false
     }
-    if(!form.descripcion) {
+    if (!form.descripcion) {
       newErrors.descripcion = "Debes ingresar una descripcion";
       passed = false
     }
-    if(!form.genero) {
+    if (!form.genero) {
       newErrors.genero = "Debes ingresar un genero";
       passed = false
     }
@@ -160,43 +207,43 @@ const Form = () => {
     return passed;
   }
 
-  
+
   const changeDiscountHandler = (e) => {
     const { checked, name, value } = e.target;
-    if(name === "Descuento") {
-      setDiscount({...discount, Descuento: value})
-      setForm({...form, oferta: {...discount, Descuento: value}})
+    if (name === "Descuento") {
+      setDiscount({ ...discount, Descuento: value })
+      setForm({ ...form, oferta: { ...discount, Descuento: value } })
     } else {
-      setDiscount({...discount, offActiva: checked});
-      setForm({...form, oferta: {...discount, offActiva: checked}})
+      setDiscount({ ...discount, offActiva: checked });
+      setForm({ ...form, oferta: { ...discount, offActiva: checked } })
     }
   }
 
   const changeHandler = (e) => {
     const { name, value } = e.target
-    if(name === "activo" || name === "productoNuevo") {
+    if (name === "activo" || name === "productoNuevo") {
       const { checked } = e.target;
-      setForm({...form, [name]: checked})
+      setForm({ ...form, [name]: checked })
     } else {
-      setForm({...form, [name]: value})
+      setForm({ ...form, [name]: value })
     }
-    validate({...form, [name]: value})
+    validate({ ...form, [name]: value })
   }
 
   const submitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const isValid = validate(form);
 
-    if(isValid) {
+    if (isValid) {
 
       try {
         let arr = []
-        for(let i = 0; i < images.length; i++) {
+        for (let i = 0; i < images.length; i++) {
           const data = await uploadCloudinary(images[i])
           arr.push(data.url)
         }
-        axios.post("http://localhost:3001/createproduct", {...form, imagenes: arr})
-  
+        axios.post(`${VITE_BACK_URL}/createproduct`, { ...form, imagenes: arr })
+
         setSelectedColor([])
         setNameColors([])
         setImages([])
@@ -226,7 +273,7 @@ const Form = () => {
         console.error(error);
         toast.error("Error al crear el producto")
       }
-    } 
+    }
   }
 
   return (
@@ -312,7 +359,14 @@ const Form = () => {
           <input name="opciones" type="checkbox" />
         </div>
 
-        <ColorGrid nameColors={nameColors} setNameColors={setNameColors} colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
+        <ColorGrid
+          nameColors={nameColors}
+          setNameColors={setNameColors}
+          colores={colores}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+          setForm={setForm}
+        />
 
         <div>
           <label>Tipo de talle</label>
@@ -327,7 +381,11 @@ const Form = () => {
         </div>
 
         <div>
-          <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
+          <input
+            type="file"
+            multiple={true}
+            onChange={(e) => setImages(e.target.files)}
+          />
         </div>
 
         <button type="submit">Crear</button>
@@ -337,4 +395,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default Form;

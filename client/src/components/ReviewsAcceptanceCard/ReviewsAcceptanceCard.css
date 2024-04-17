@@ -1,4 +1,4 @@
-.review-card-container {
+.review-acceptance-card-container {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -15,17 +15,18 @@
   padding: 10px;
 }
 
-.review-card-image-description-container {
+.review-acceptance-card-image-description-container {
   display: flex;
   flex-direction: row;
 }
 
-.review-card-image-container {
+.review-acceptance-card-image-container {
   width: 20%;
 }
 
-.review-card-image-container img {
+.review-acceptance-card-image-container img {
   width: 100%;
+  object-fit: cover;
 }
 
 .acceptance-rating-container {
@@ -48,7 +49,7 @@
   justify-self: flex-end;
 }
 
-.review-card-container p {
+.review-acceptance-card-container p {
   width: 150%;
   font-size: 15px;
   padding: 5px;

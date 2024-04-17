@@ -6,7 +6,15 @@ const { VITE_BACK_URL } = import.meta.env;
 const cookies = new Cookies();
 
 export const useStore = create((set) => ({
-  userInfo: null,
+  userInfo: null, // Creo q ya no se usa pero lo dejo por si servia para algo
+  //   typeof localStorage !== `undefined` && localStorage.getItem(`userInfo`)
+  //     ? JSON.parse(localStorage.getItem(`userInfo`))
+  //     : null,
+  // userLastPurchase:
+  //   typeof localStorage !== `undefined` &&
+  //   localStorage.getItem(`userLastPurchase`)
+  //     ? JSON.parse(localStorage.getItem(`userLastPurchase`))
+  //     : null,
   products: [],
   productosFiltrados: [],
   cart: [],
@@ -75,6 +83,24 @@ export const useStore = create((set) => ({
       throw error;
     }
   },
+  getUserLastPurchase: async (userId) => { // No se si es necesario ya q el carrito ya persiste a menos q sea de otra cosa
+    try {
+      const { data } = await axios.get(
+        `${VITE_BACK_URL}/lastpurchase?id=${userId}`
+      );
+
+      if (data) {
+        localStorage.setItem(`userLastPurchase`, JSON.stringify({ ...data }));
+      }
+
+      set((state) => ({
+        ...state,
+        userLastPurchase: { ...data }
+      }));
+    } catch (error) {
+      console.error(`Error al buscar compras de usuario (front)`, error);
+    }
+  },
   register: async (name, email, password) => {
     try {
       await axios.post(`${VITE_BACK_URL}/auth/register`, { name, email, password });
@@ -87,7 +113,7 @@ export const useStore = create((set) => ({
     try {
       const { data } = await axios.post(`${VITE_BACK_URL}/auth/login`, { email, password, isAuto });
       set(() => ({
-        userInfo: data.foundUser
+        userInfo: data.foundUser,
       }));
       set((prevState) => ({
         ...prevState,
@@ -122,10 +148,8 @@ export const useStore = create((set) => ({
   logOut: async () => {
     try {
       await axios(`${VITE_BACK_URL}/auth/logout`);
-      cookies.remove("token");
-      set((state) => ({
-        ...state,
-        userInfo: null
+      set(() => ({
+        userInfo: null,
       }));
     } catch (error) {
       console.error("Error al cerrar sesión", error);
@@ -145,7 +169,7 @@ export const useStore = create((set) => ({
       await axios.delete(`${VITE_BACK_URL}/auth/delete`, { id });
       set((state) => ({
         ...state,
-        userInfo: null
+        userInfo: null,
       }));
     } catch (error) {
       console.error("Error al borrar cuenta", error);
@@ -380,7 +404,7 @@ export const useStore = create((set) => ({
   },
   createReview: async (review) => {
     try {
-      const { data } = await axios.post(`${VITE_BACK_URL}/resena`, review );
+      const { data } = await axios.post(`${VITE_BACK_URL}/resena`, review);
       set((state) => ({
         ...state,
         userInfo: {
@@ -400,8 +424,8 @@ export const useStore = create((set) => ({
         ...state,
         userInfo: {
           ...state.userInfo,
-          favorites: data
-        }
+          favorites: data,
+        },
       }));
     } catch (error) {
       console.error(error);
@@ -415,8 +439,8 @@ export const useStore = create((set) => ({
         ...state,
         userInfo: {
           ...state.userInfo,
-          favorites: data
-        }
+          favorites: data,
+        },
       }));
     } catch (error) {
       console.error(error);
@@ -430,8 +454,8 @@ export const useStore = create((set) => ({
         ...state,
         userInfo: {
           ...state.userInfo,
-          purchases: data
-        }
+          purchases: data,
+        },
       }));
     } catch (error) {
       console.error(error);
@@ -444,7 +468,7 @@ export const useStore = create((set) => ({
         `${VITE_BACK_URL}/carrito/${cartToken}`
       );
       set(() => ({
-        cart: response.data.products
+        cart: response.data.products,
       }));
     } catch (error) {
       console.error("Error al obtener productos del carrito:", error);
@@ -513,12 +537,9 @@ export const useStore = create((set) => ({
   setCart: (updatedCart) => {
     set({ cart: updatedCart });
   },
-  clearCart: () => {
-    set({ cart: [] });
-  },
   getNuevos: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/nuevos`);
+      // const { data } = await axios(`http://localhost:3001/nuevos`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
@@ -533,7 +554,7 @@ export const useStore = create((set) => ({
   },
   getDestacados: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/destacados`);
+      // const { data } = await axios(`http://localhost:3001/destacados`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Destacado") {
@@ -548,7 +569,7 @@ export const useStore = create((set) => ({
   },
   getOfertas: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/ofertas`);
+      // const { data } = await axios(`http://localhost:3001/ofertas`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
@@ -563,7 +584,7 @@ export const useStore = create((set) => ({
   },
   getTendencia: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/tendencia`);
+      // const { data } = await axios(`http://localhost:3001/tendencia`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Tendencia") {
@@ -575,26 +596,26 @@ export const useStore = create((set) => ({
       console.error("Error al buscar Tendencia:", error);
       throw error;
     }
-  },
+  }
 }));
 
 const toggleValue = (array, value) => {
-	if (array.includes(value)) {
-		return array.filter((item) => item !== value);
-	} else {
-		return [...array, value];
-	}
+  if (array.includes(value)) {
+    return array.filter((item) => item !== value);
+  } else {
+    return [...array, value];
+  }
 };
 
 const updateSelectedFilters = (prevSelectedFilters, id, name) => {
-	const updatedFilters = [...prevSelectedFilters];
-	const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
+  const updatedFilters = [...prevSelectedFilters];
+  const existingIndex = updatedFilters.findIndex((filter) => filter.id === id);
 
-	if (existingIndex !== -1) {
-		updatedFilters.splice(existingIndex, 1);
-	} else {
-		updatedFilters.push({ name, id });
-	}
+  if (existingIndex !== -1) {
+    updatedFilters.splice(existingIndex, 1);
+  } else {
+    updatedFilters.push({ name, id });
+  }
 
-	return updatedFilters;
+  return updatedFilters;
 };

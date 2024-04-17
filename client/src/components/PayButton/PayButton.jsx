@@ -1,6 +1,6 @@
 import axios from "axios";
-const BACK_URL = `http://localhost:3001`;
 import styles from "./PayButton.module.css";
+const { VITE_BACK_URL } = import.meta.env;
 
 //? Receptando productos del carrito y el id del usuario
 function PayButton({ cartItems, userId }) {
@@ -21,8 +21,10 @@ function PayButton({ cartItems, userId }) {
 	});
 	//* Función que maneja el pago
 	async function handleCheckout() {
+		//console.log(formatCart);
+
 		axios
-			.post(`${BACK_URL}/api/stripe/create-checkout-session`, {
+			.post(`${VITE_BACK_URL}/api/stripe/create-checkout-session`, {
 				formatCart,
 				userId,
 				

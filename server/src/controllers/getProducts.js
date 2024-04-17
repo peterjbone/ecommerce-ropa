@@ -2,10 +2,29 @@ const Producto = require("../models/Producto.js");
 
 const getProducts = async (request, response) => {
   try {
-    const { busqueda, precioDesde, precioHasta, porcentajeDeOferta, esNuevo, marca, genero, categoria, subcategoria, color, talla, ordenado, ascendente, pagina, productosPorPagina } = request.body;
+    const {
+      busqueda,
+      precioDesde,
+      precioHasta,
+      porcentajeDeOferta,
+      esNuevo,
+      marca,
+      genero,
+      categoria,
+      subcategoria,
+      color,
+      talla,
+      ordenado,
+      ascendente,
+      pagina,
+      productosPorPagina,
+    } = request.body;
 
     let query = {};
-    const searchTerms = busqueda.split(" ").map(term => `(?=.*${term})`).join(".*");
+    const searchTerms = busqueda
+      .split(" ")
+      .map((term) => `(?=.*${term})`)
+      .join(".*");
     const regex = new RegExp(`.*${searchTerms}.*`, "i");
     query.$or = [
       { nombre: regex },
@@ -45,7 +64,7 @@ const getProducts = async (request, response) => {
     if (color && color.length > 0) {
       query["opciones.colores.nombres"] = { $in: color };
     }
-    
+
     if (talla && talla.length > 0) {
       query["opciones.tallas"] = {
         $elemMatch: { talla: { $in: talla } }
@@ -62,8 +81,8 @@ const getProducts = async (request, response) => {
           generos: { $addToSet: "$genero" },
           subcategorias: { $addToSet: "$subcategoria" },
           colores: { $addToSet: "$opciones.colores.nombres" },
-          talles: { $addToSet: "$opciones.tallas.talla" }
-        }
+          talles: { $addToSet: "$opciones.tallas.talla" },
+        },
       },
       {
         $project: {
@@ -77,12 +96,12 @@ const getProducts = async (request, response) => {
                 $reduce: {
                   input: "$colores",
                   initialValue: [],
-                  in: { $concatArrays: ["$$value", "$$this"] }
-                }
+                  in: { $concatArrays: ["$$value", "$$this"] },
+                },
               },
               initialValue: [],
-              in: { $concatArrays: ["$$value", "$$this"] }
-            }
+              in: { $concatArrays: ["$$value", "$$this"] },
+            },
           },
           talles: {
             $reduce: {
@@ -90,14 +109,14 @@ const getProducts = async (request, response) => {
                 $reduce: {
                   input: "$talles",
                   initialValue: [],
-                  in: { $concatArrays: ["$$value", "$$this"] }
-                }
+                  in: { $concatArrays: ["$$value", "$$this"] },
+                },
               },
               initialValue: [],
-              in: { $concatArrays: ["$$value", "$$this"] }
-            }
-          }
-        }
+              in: { $concatArrays: ["$$value", "$$this"] },
+            },
+          },
+        },
       },
       {
         $project: {
@@ -106,26 +125,27 @@ const getProducts = async (request, response) => {
           generos: 1,
           subcategorias: 1,
           colores: {
-            $setUnion: ["$colores"]
+            $setUnion: ["$colores"],
           },
           talles: {
-            $setUnion: ["$talles"]
-          }
-        }
-      }
+            $setUnion: ["$talles"],
+          },
+        },
+      },
     ];
 
     const [result] = await Producto.aggregate(aggregationPipeline);
     let productOptions = {};
     if (result) {
-      const { marcas, categorias, generos, subcategorias, colores, talles } = result;
+      const { marcas, categorias, generos, subcategorias, colores, talles } =
+        result;
       const productOptions = {
         marcas: marcas.sort(),
         categorias: categorias.sort(),
         generos: generos.sort(),
         subcategorias: subcategorias.sort(),
         colores: colores.sort(),
-        talles: talles.sort()
+        talles: talles.sort(),
       };
     } else {
       productOptions = {
@@ -149,8 +169,8 @@ const getProducts = async (request, response) => {
       case "precio":
         sort.precio = ascendente ? 1 : - 1;
         break;
-      case "oferta":
-        sort["oferta.Descuento"] = ascendente ? 1 : - 1;
+      case 'oferta':
+        sort['oferta.Descuento'] = ascendente ? 1 : - 1;
         break;
       case "genero":
         sort.genero = ascendente ? 1 : - 1;
@@ -175,8 +195,10 @@ const getProducts = async (request, response) => {
     response.status(200).json({ count, productOptions, filteredProducts });
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error, message: "Error interno de ruta /getProducts" });
+    response
+      .status(500)
+      .json({ error, message: "Error interno de ruta /getProducts" });
   }
-}
+};
 
 module.exports = getProducts;

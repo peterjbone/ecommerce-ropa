@@ -1,4 +1,6 @@
 import styles from "./Detail.module.css";
+const { VITE_BACK_URL } = import.meta.env;
+
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -28,12 +30,13 @@ export default function Detail() {
     if (cartToken) {
       getCart(cartToken);
     }
-  });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     (async function getProduct() {
       try {
+
         await getProductById(id);
       } catch (error) {
         console.error(error);
@@ -45,12 +48,11 @@ export default function Detail() {
     const fetchRelatedProducts = async () => {
       try {
         if (productoDetail && productoDetail.categoria) {
-          const response = await axios.post("http://localhost:3001/productos", {
+          const response = await axios.post(`${VITE_BACK_URL}/productos`, {
             categoria: [productoDetail.categoria],
             busqueda: ""
           });
           const filteredProducts = response.data.filteredProducts;
-
           const randomProducts = getRandomItems(filteredProducts, 9, id);
           setRelatedProducts(randomProducts);
         }
@@ -89,6 +91,7 @@ export default function Detail() {
 
         if (totalQuantityInCart < selectedSize.stock) {
           const selectedProduct = {
+            id: productoDetail._id,
             nombre: productoDetail.nombre,
             descripcion: productoDetail.descripcion,
             marca: productoDetail.marca,
@@ -136,7 +139,7 @@ export default function Detail() {
   if (!productoDetail) {
     return (
       <div className={styles.notFound}>
-        Loading ...
+        Cargando ...
       </div>
     );
   } else {
@@ -257,6 +260,7 @@ export default function Detail() {
           </div>
         </div>
         <div className={styles.productosRelacionados}>
+
           <ProductsBar
             title="Productos Relacionados"
             products={relatedProducts}

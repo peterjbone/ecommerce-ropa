@@ -22,75 +22,67 @@ export default function ReviewCard({ review, handleGetReviewedProducts }) {
   const handleCloseModal = () => {
     setIsReviewModalOpen(false);
   }
-  if (!review.product) {
-    return (
-      <div>
-        Loading ...
-      </div>
-    );
-  } else {
-    return (
-      <>
-        <div className="review-card-container">
-          <div className="review-card-product-container" >
-            <div className="review-card-image-container">
-              <img
-                src={review.product?.opciones[0]?.imagenes[0]}
-                alt={`Imagen producto ${review.product.nombre}`}
-              />
-              <div className="review-card-product-info-container">
-                <p style={{ fontSize: "20px" }}>{review.product.nombre}</p>
-                <p>{review.product.marca}</p>
-                {review.product?.opciones[0].tallas && (
-                  <div style={{ display: "flex", flexDirection: "row" }}>
-                    {review.product.opciones[0].tallas.map((talla, index) => (
-                      <p className="sizes" key={`${talla.stock} ${index}`}>
-                        {talla.talla}
-                      </p>
-                    ))}
-                  </div>
-                )}
-                <div style={{ display: "flex", flexDirection: "row", padding: "10px" }}>
-                  {review.product.opciones.map((opcion, index) => {
-                    return (
-                      <div
-                        key={`${opcion.colores?.codigosHex[0]} ${index}`}
-                        className="colorBox"
-                        style={{ backgroundColor: opcion.colores?.codigosHex[0] }}></div>
-                    );
-                  })}
+  return (
+    <>
+      <div className="review-card-container">
+        <div className="review-card-product-container" >
+          <div className="review-card-image-container">
+            <img
+              src={review.product?.opciones[0]?.imagenes[0]}
+              alt={`Imagen producto ${review.product.nombre}`}
+            />
+            <div className="review-card-product-info-container">
+              <p style={{ fontSize: "20px" }}>{review.product.nombre}</p>
+              <p>{review.product.marca}</p>
+              {review.product?.opciones[0].tallas && (
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  {review.product.opciones[0].tallas.map((talla, index) => (
+                    <p className="sizes" key={`${talla.stock} ${index}`}>
+                      {talla.talla}
+                    </p>
+                  ))}
                 </div>
-                <p style={{ fontSize: "20px" }}>
-                  ${" "}
-                  {review.product.precio.toLocaleString("sp-AR", {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                  })}
-                </p>
+              )}
+              <div style={{ display: "flex", flexDirection: "row", padding: "10px" }}>
+                {review.product.opciones.map((opcion, index) => {
+                  return (
+                    <div
+                      key={`${opcion.colores?.codigosHex[0]} ${index}`}
+                      className="colorBox"
+                      style={{ backgroundColor: opcion.colores?.codigosHex[0] }}></div>
+                  );
+                })}
               </div>
+              <p style={{ fontSize: "20px" }}>
+                ${" "}
+                {review.product.precio.toLocaleString("sp-AR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2
+                })}
+              </p>
             </div>
-            <p className="review-card-product-description" >{review.product.descripcion}</p>
           </div>
-          <div className="review-card-user-review" >
-            <div className="review-card-user-rating-container" >
-              <div>{renderStars(review.valoracion)}</div>
-              <h3>{review.valoracion.toFixed(1)}</h3>
-            </div>
-            <p>{review.descripcion}</p>
-            <button
-              className="purchase-product-review-button"
-              onClick={handleReview}
-            >
-              Editar Reseña
-            </button>
-          </div>
+          <p className="review-card-product-description" >{review.product.descripcion}</p>
         </div>
-        {isReviewModalOpen && (
-          <ReviewModal product={review.product} review={review} handleCloseModal={handleCloseModal} />
-        )}
-      </>
-    )
-  }
+        <div className="review-card-user-review" >
+          <div className="review-card-user-rating-container" >
+            <div>{renderStars(review.valoracion)}</div>
+            <h3>{review.valoracion.toFixed(1)}</h3>
+          </div>
+          <p>{review.descripcion}</p>
+          <button
+            className="purchase-product-review-button"
+            onClick={handleReview}
+          >
+            Editar Reseña
+          </button>
+        </div>
+      </div>
+      {isReviewModalOpen && (
+        <ReviewModal product={review.product} review={review} handleCloseModal={handleCloseModal} />
+      )}
+    </>
+  )
 }
 
 const renderStars = valoracion => {
