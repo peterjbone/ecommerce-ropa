@@ -2,10 +2,12 @@ require("dotenv").config();
 const Usuario = require("../models/Usuario");
 const Compra = require("../models/Compra");
 const Resena = require("../models/Resena");
+const TOKEN_SECRET = process.env.TOKEN_SECRET
 const { createAccessToken } = require("../libs/jwt");
 const auth = require("../firebase/firebaseConfig.js");
 const Cookies = require("universal-cookie");
 const cookies = new Cookies();
+const jwt = require('jsonwebtoken');
 const {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -32,23 +34,42 @@ const restoreSession = (request, response) => {
   }
 }
 
+const isAdmin = async (request, response, next)=>{
+  const token = request.cookies.token
+  if(!token) return response.status(401).json({message: "No hay token"})
+
+  jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded)=>{
+    if(err){
+      return response.status(400).json({message: "Token inválido"})
+    }
+  
+  if (decoded && decoded.role === 'admin'){
+    request.usuario = decoded
+    next()
+  }else{
+    return response.status(403).json({message: "No tienes permisos para realizar esta acción"})
+  }
+})
+}
+
 const register = async (request, response) => {
   try {
-    const { name, email, password } = request.body;
+    const { name, email, password, role} = request.body;
 
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
     );
     const newUser = new Usuario({
       name,
       email,
       password,
+      role : role
     });
     await newUser.save();
-    // const token = await createAccessToken({ email: newUser.email, id: newUser.password });
-    // request.cookie("token", token);
+     const token = jwt.sign({email: newUser.email, id: newUser._id, role: newUser.role}, process.env.TOKEN_SECRET, {expiresIn : "1h"})
+     response.cookie("token", token)
 
     response.status(201).json({ message: "Nuevo usuario creado exitosamente" });
   } catch (error) {
@@ -72,7 +93,7 @@ const login = async (request, response) => {
       foundUser = await Usuario.findOne({ email });
     }
     if (!foundUser) {
-      return request.status(400).json({ message: "El usuario no existe en base de datos" });
+      return response.status(400).json({ message: "El usuario no existe en base de datos" });
     }
     if (!isAuto) {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
@@ -91,8 +112,8 @@ const login = async (request, response) => {
       }, reject);
     });
 
-    // const token = await createAccessToken({ email: foundUser.email, id: foundUser.password });
-    // request.cookie("token", token);
+    const token = jwt.sign({email: foundUser.email, id: foundUser._id, role: foundUser.role}, process.env.TOKEN_SECRET, {expiresIn : "1h"})
+     response.cookie("token", token)
 
     return response.status(200).json({ foundUser, purchases, reviews });
   } catch (error) {
@@ -173,9 +194,9 @@ const changePassword = async (request, response) => {
 
 const logout = async (request, response) => {
   try {
-    // request.cookie("token", "", {
-    //   expires: new Date(0)
-    // });
+     response.cookie("token", "", {
+      expires: new Date(0)
+     });
     await signOut(auth);
     response.status(200).json({ message: "Sesión cerrada correctamente" });
   } catch (error) {
@@ -213,4 +234,5 @@ module.exports = {
   changePassword,
   logout,
   deleteAccount,
+  isAdmin
 };

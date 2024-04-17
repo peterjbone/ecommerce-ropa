@@ -31,6 +31,6 @@ server.use(cookieParser());
 server.use("/", indexRouter);
 server.use("/auth", authRouter);
 server.use("/api/stripe", stripeRouter);
-server.use('/admin', adminRouter) 
+server.use('/auth/admin', adminRouter) 
 
 module.exports = server;

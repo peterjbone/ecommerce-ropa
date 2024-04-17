@@ -36,7 +36,7 @@ const UserSchema = new Schema({
 		default: "user"
 	
 	},
-	delete: {
+	deleted: {
 		type: Boolean,
 		default: false
 	}
