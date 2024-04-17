@@ -8,6 +8,8 @@ import { useStore } from "../../store.js";
 import { uploadCloudinary } from "../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import Opciones from "../../components/Opciones/Opciones.jsx";
+const { VITE_BACK_URL } = import.meta.env;
+
 
 const FormEdit = () => {
 
@@ -32,7 +34,7 @@ const FormEdit = () => {
     setTipoTalle(e.target.value)
   }
 
-  const [stock, setStock] = useState({});
+	const [stock, setStock] = useState({});
 
   const [discount, setDiscount] = useState({
     offActiva: false,
@@ -108,7 +110,7 @@ const FormEdit = () => {
     // if(isValid) {
 
       try {
-        axios.put(`http://localhost:3001/updateProduct/${id}`, form)
+        axios.put(`${VITE_BACK_URL}/updateProduct/${id}`, form);
   
         setDiscount({
           offActiva: false,
@@ -250,4 +252,4 @@ const FormEdit = () => {
   )
 }
 
-export default FormEdit
+export default FormEdit;

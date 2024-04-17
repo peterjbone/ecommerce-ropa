@@ -6,7 +6,15 @@ const { VITE_BACK_URL } = import.meta.env;
 const cookies = new Cookies();
 
 export const useStore = create((set) => ({
-  userInfo: null,
+  userInfo: null, // Creo q ya no se usa pero lo dejo por si servia para algo
+  //   typeof localStorage !== `undefined` && localStorage.getItem(`userInfo`)
+  //     ? JSON.parse(localStorage.getItem(`userInfo`))
+  //     : null,
+  // userLastPurchase:
+  //   typeof localStorage !== `undefined` &&
+  //   localStorage.getItem(`userLastPurchase`)
+  //     ? JSON.parse(localStorage.getItem(`userLastPurchase`))
+  //     : null,
   products: [],
   productosFiltrados: [],
   cart: [],
@@ -73,6 +81,24 @@ export const useStore = create((set) => ({
     } catch (error) {
       console.error("Error al restaurar la sesión", error);
       throw error;
+    }
+  },
+  getUserLastPurchase: async (userId) => { // No se si es necesario ya q el carrito ya persiste a menos q sea de otra cosa
+    try {
+      const { data } = await axios.get(
+        `${VITE_BACK_URL}/lastpurchase?id=${userId}`
+      );
+
+      if (data) {
+        localStorage.setItem(`userLastPurchase`, JSON.stringify({ ...data }));
+      }
+
+      set((state) => ({
+        ...state,
+        userLastPurchase: { ...data }
+      }));
+    } catch (error) {
+      console.error(`Error al buscar compras de usuario (front)`, error);
     }
   },
   register: async (name, email, password) => {
@@ -378,7 +404,7 @@ export const useStore = create((set) => ({
   },
   createReview: async (review) => {
     try {
-      const { data } = await axios.post(`${VITE_BACK_URL}/resena`, review );
+      const { data } = await axios.post(`${VITE_BACK_URL}/resena`, review);
       set((state) => ({
         ...state,
         userInfo: {
@@ -511,12 +537,9 @@ export const useStore = create((set) => ({
   setCart: (updatedCart) => {
     set({ cart: updatedCart });
   },
-  clearCart: () => {
-    set({ cart: [] });
-  },
   getNuevos: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/nuevos`);
+      // const { data } = await axios(`http://localhost:3001/nuevos`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
@@ -531,7 +554,7 @@ export const useStore = create((set) => ({
   },
   getDestacados: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/destacados`);
+      // const { data } = await axios(`http://localhost:3001/destacados`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Destacado") {
@@ -546,7 +569,7 @@ export const useStore = create((set) => ({
   },
   getOfertas: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/ofertas`);
+      // const { data } = await axios(`http://localhost:3001/ofertas`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
@@ -561,7 +584,7 @@ export const useStore = create((set) => ({
   },
   getTendencia: async () => {
     try {
-      // const { data } = await axios(`${VITE_BACK_URL}/tendencia`);
+      // const { data } = await axios(`http://localhost:3001/tendencia`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Tendencia") {
@@ -573,7 +596,7 @@ export const useStore = create((set) => ({
       console.error("Error al buscar Tendencia:", error);
       throw error;
     }
-  },
+  }
 }));
 
 const toggleValue = (array, value) => {

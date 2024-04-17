@@ -10,7 +10,6 @@ const UserSchema = new Schema({
 		unique: true,
 		required: true
 	},
-	emailVerified: Boolean,
 	password: String,
 	image: String,
 	createdAt: {
@@ -26,10 +25,7 @@ const UserSchema = new Schema({
 		type: [Schema.Types.Mixed],
 		default: []
 	},
-	lastCart: {
-		type: [Schema.Types.Mixed],
-		default: []
-	}
+	purchases: [{ type: Schema.Types.ObjectId, ref: "Compra" }]
 });
 
 // La lógica aqui evita que se cree un nuevo modelo cada vez que una ruta lo llama

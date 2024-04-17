@@ -7,40 +7,63 @@ import { uploadCloudinary } from "../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import { useStore } from "../../store.js";
-
+const { VITE_BACK_URL } = import.meta.env;
 
 const Form = () => {
+	const marcas = useStore((state) => state.listaMarcas);
+	const genero = useStore((state) => state.listaGeneros);
+	const categorias = useStore((state) => state.listaCategorias);
+	const subcategorias = useStore((state) => state.listaSubcategorias);
+	const listaColores = useStore((state) => state.listaColores);
+	const listaTallas = useStore((state) => state.listaTallas);
 
-  const marcas = useStore((state) => state.listaMarcas);
-  const genero = useStore((state) => state.listaGeneros);
-  const categorias = useStore((state) => state.listaCategorias);
-  const subcategorias = useStore((state) => state.listaSubcategorias);
-  const listaColores = useStore((state) => state.listaColores);
-  const listaTallas = useStore((state) => state.listaTallas);
+	let tallesL = ["S", "M", "L", "XL", "XLT", "XXL"];
+	let tallesN = [
+		"10.0",
+		"10.5",
+		"11.0",
+		"11.5",
+		"12.0",
+		"12.5",
+		"13.0",
+		"13.5",
+		"3.5",
+		"4",
+		"4.0",
+		"4.5",
+		"5",
+		"5.0",
+		"5.5",
+		"6",
+		"6.0",
+		"6.5",
+		"7",
+		"7.0",
+		"7.5",
+		"8.0",
+		"8.5",
+		"9.0",
+		"9.5"
+	].sort((a, b) => a - b);
 
-  let tallesL = ["S", "M", "L", "XL", "XLT", "XXL"]
-  let tallesN = ["10.0", "10.5", "11.0", "11.5", "12.0", "12.5", "13.0", "13.5", "3.5", "4", "4.0",
-  "4.5", "5", "5.0", "5.5", "6", "6.0", "6.5", "7", "7.0", "7.5", "8.0", "8.5", "9.0",
-  "9.5"].sort((a, b) => a - b)
+	let colores = [
+		{ codHexadecimal: "#FFFF00", nombreColor: "amarillo" },
+		{ codHexadecimal: "#0000FF", nombreColor: "azul" },
+		{ codHexadecimal: "#8ecae6", nombreColor: "azul-marino" },
+		{ codHexadecimal: "#F5F5DC", nombreColor: "beige" },
+		{ codHexadecimal: "#FFFFFF", nombreColor: "blanco" },
+		{ codHexadecimal: "#808080", nombreColor: "gris" },
+		{ codHexadecimal: "#000000", nombreColor: "negro" },
+		{ codHexadecimal: "#FF0000", nombreColor: "rojo" },
+		{ codHexadecimal: "#FFC0CB", nombreColor: "rosa" },
+		{ codHexadecimal: "#8B4513", nombreColor: "marron" },
+		{ codHexadecimal: "#008000", nombreColor: "verde" },
+		{ codHexadecimal: "#007FFF", nombreColor: "francia" },
+		{ codHexadecimal: "#fa8072", nombreColor: "salmon" },
+		{ codHexadecimal: "#78288C", nombreColor: "violeta" }
+	];
 
-  let colores = [
-    { codHexadecimal: "#FFFF00", nombreColor: "amarillo" },
-    { codHexadecimal: "#0000FF", nombreColor: "azul" },
-    { codHexadecimal: "#8ecae6", nombreColor: "azul-marino" },
-    { codHexadecimal: "#F5F5DC", nombreColor: "beige" },
-    { codHexadecimal: "#FFFFFF", nombreColor: "blanco" },
-    { codHexadecimal: "#808080", nombreColor: "gris" },
-    { codHexadecimal: "#000000", nombreColor: "negro" },
-    { codHexadecimal: "#FF0000", nombreColor: "rojo" },
-    { codHexadecimal: "#FFC0CB", nombreColor: "rosa" },
-    { codHexadecimal: "#8B4513", nombreColor: "marron" },
-    { codHexadecimal: "#008000", nombreColor: "verde" },
-    { codHexadecimal: "#007FFF", nombreColor: "francia" },
-    { codHexadecimal: "#fa8072", nombreColor: "salmon" },
-    { codHexadecimal: "#78288C", nombreColor: "violeta" },
-  ]
-
-  const [images, setImages] = useState([])
+	const [images, setImages] = useState([]);
 
   const [nameColors, setNameColors] = useState([]);
   const [selectedColor, setSelectedColor] = useState();
@@ -52,14 +75,14 @@ const Form = () => {
     setTipoTalle(e.target.value)
   }
 
-  const [stock, setStock] = useState([]);
+	const [stock, setStock] = useState([]);
 
-  const [opciones, setOpciones] = useState([])
+	const [opciones, setOpciones] = useState([]);
 
-  const [discount, setDiscount] = useState({
-    offActiva: false,
-    Descuento: 0
-  })
+	const [discount, setDiscount] = useState({
+		offActiva: false,
+		Descuento: 0
+	});
 
   const [form, setForm] = useState({
     nombre: "",
@@ -130,7 +153,7 @@ const Form = () => {
       passed = false
     }
 
-    setErrors(newErrors);
+		setErrors(newErrors);
 
     return passed;
   }
@@ -158,9 +181,9 @@ const Form = () => {
     validate({...form, [name]: value})
   }
 
-  const submitHandler = async (e) => {
-    e.preventDefault()
-    const isValid = validate(form);
+	const submitHandler = async (e) => {
+		e.preventDefault();
+		const isValid = validate(form);
 
     if(isValid) {
 
@@ -170,7 +193,7 @@ const Form = () => {
           const data = await uploadCloudinary(images[i])
           arr.push(data.url)
         }
-        axios.post("http://localhost:3001/createproduct", {...form, imagenes: arr})
+        axios.post(`{VITE_BACK_URL}/createproduct`, {...form, imagenes: arr})
   
         setSelectedColor([])
         setNameColors([])
@@ -206,37 +229,42 @@ const Form = () => {
 
   //{ codHexadecimal: "#78288C", nombreColor: "violeta" },
 
-  const buttonStockHandler = async () => {
+	const buttonStockHandler = async () => {
+		let arr = [];
+		for (let i = 0; i < images.length; i++) {
+			const data = await uploadCloudinary(images[i]);
+			arr.push(data.url);
+		}
 
-    let arr = []
-    for(let i = 0; i < images.length; i++) {
-      const data = await uploadCloudinary(images[i])
-      arr.push(data.url)
-    }
-
-    setOpciones([
-      ...opciones,
-      {
-        colores: {
-          nombres: [selectedColor.nombreColor],
-          codigosHex: [selectedColor.codHexadecimal]
-        },
-        tallas: stock,
-        imagenes: arr
-      }
-    ])
-    setForm({...form, opciones: [...opciones, {
-      colores: {
-        nombres: [selectedColor.nombreColor],
-        codigosHex: [selectedColor.codHexadecimal]
-      },
-      tallas: stock,
-      imagenes: arr
-    }]})
-    setSelectedColor([])
-    setStock([])
-    setImages([])
-  }
+		setOpciones([
+			...opciones,
+			{
+				colores: {
+					nombres: [selectedColor.nombreColor],
+					codigosHex: [selectedColor.codHexadecimal]
+				},
+				tallas: stock,
+				imagenes: arr
+			}
+		]);
+		setForm({
+			...form,
+			opciones: [
+				...opciones,
+				{
+					colores: {
+						nombres: [selectedColor.nombreColor],
+						codigosHex: [selectedColor.codHexadecimal]
+					},
+					tallas: stock,
+					imagenes: arr
+				}
+			]
+		});
+		setSelectedColor([]);
+		setStock([]);
+		setImages([]);
+	};
 
   return (
     <div className={styles.container}>
@@ -331,10 +359,14 @@ const Form = () => {
           {tipoTalle === "N" && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
         </div>
 
-        <div>
-          <label className={styles.labelFormContainer}>Imágenes: </label>
-          <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
-        </div>
+				<div>
+					<label className={styles.labelFormContainer}>Imágenes: </label>
+					<input
+						type="file"
+						multiple={true}
+						onChange={(e) => setImages(e.target.files)}
+					/>
+				</div>
 
         <button onClick={buttonStockHandler} type="button">Agregar stock</button>
 
@@ -345,4 +377,4 @@ const Form = () => {
   )
 }
 
-export default Form
+export default Form;
