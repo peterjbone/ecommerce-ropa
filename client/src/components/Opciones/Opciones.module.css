@@ -81,3 +81,7 @@
 .thumbnailOpciones {
   border: 1px solid black;
 }
+
+.singleOptionContainer {
+  margin-bottom: 2rem;
+}
