@@ -8,7 +8,7 @@ import { useStore } from "../../store.js";
 import { uploadCloudinary } from "../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import Opciones from "../../components/Opciones/Opciones.jsx";
-const { VITE_BACK_URL } = import.meta.env;
+const { BACK_URL } = process.env;
 
 
 const FormEdit = () => {
@@ -162,7 +162,7 @@ const FormEdit = () => {
     if(isValid) {
 
       try {
-        axios.put(`${VITE_BACK_URL}/updateProduct/${id}`, form);
+        axios.put(`${BACK_URL}/updateProduct/${id}`, form);
   
         setDiscount({
           offActiva: false,

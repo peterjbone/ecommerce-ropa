@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const presetName = import.meta.env.VITE_PRESET_NAME;
-const cloudinaryUrl = import.meta.env.VITE_CLOUDINARY_URL;
+const presetName = process.env.VITE_PRESET_NAME;
+const cloudinaryUrl = process.env.VITE_CLOUDINARY_URL;
 
 
 export const uploadCloudinary = async (file) =>  {

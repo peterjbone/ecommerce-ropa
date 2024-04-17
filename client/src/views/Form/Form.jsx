@@ -7,7 +7,7 @@ import { uploadCloudinary } from "../../utils/upload";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import { useStore } from "../../store.js";
-const { VITE_BACK_URL } = import.meta.env;
+const { BACK_URL } = process.env;
 
 const Form = () => {
   const marcas = useStore((state) => state.listaMarcas);
@@ -254,7 +254,7 @@ const Form = () => {
           const data = await uploadCloudinary(images[i])
           arr.push(data.url)
         }
-        axios.post(`${VITE_BACK_URL}/createproduct`, { ...form, imagenes: arr })
+        axios.post(`${BACK_URL}/createproduct`, { ...form, imagenes: arr })
 
         setSelectedColor([])
         setNameColors([])

@@ -1,6 +1,6 @@
 import axios from "axios";
 import styles from "./PayButton.module.css";
-const { VITE_BACK_URL } = import.meta.env;
+const { BACK_URL } = process.env;
 
 //? Receptando productos del carrito y el id del usuario
 function PayButton({ cartItems, userId }) {
@@ -24,7 +24,7 @@ function PayButton({ cartItems, userId }) {
 		//console.log(formatCart);
 
 		axios
-			.post(`${VITE_BACK_URL}/api/stripe/create-checkout-session`, {
+			.post(`${BACK_URL}/api/stripe/create-checkout-session`, {
 				formatCart,
 				userId,
 				
