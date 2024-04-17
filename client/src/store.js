@@ -1,11 +1,19 @@
 import { create } from "zustand";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { parse } from "cookie";
+import jwt from 'jsonwebtoken'
+import {persist} from 'zustand/middleware'
+
 
 const { VITE_BACK_URL } = import.meta.env;
 const cookies = new Cookies();
 
 export const useStore = create((set) => ({
+  role: null,
+  setRole: (role) => set({ role }),
+  token: '',
+  setToken: (token) => set({ token }),
   userInfo: null,
   products: [],
   productosFiltrados: [],
@@ -66,8 +74,97 @@ export const useStore = create((set) => ({
   coloresDisponibles: [],
   tallasDisponibles: [],
   cantidadDeProductos: 100, // Momentáneamente para traer todo products y usarlo para fotos, nuevos, ofertas, etc
-
-  restoreSession: async () => {
+  
+  
+  getAllUsers : async ()=>{
+    try {
+      if(useStore.getState().role !== 'admin'){
+        throw new Error('No tienes permisos para realizar esta acción')
+      }
+      const response= await axios.get(`${VITE_BACK_URL}/auth/admin/users`);
+      return response.data
+    } catch (error) {
+      console.error("Error al buscar usuarios:", error);
+      throw error
+    }
+  },
+  getAllCompras : async ()=>{
+    try {
+      if(useStore.getState().role !== 'admin'){
+        throw new Error('No tienes permisos para realizar esta acción')
+      } 
+      const response = await axios.get(`${VITE_BACK_URL}/auth/admin/compras`);
+      return response.data
+    } catch (error) {
+      console.error("Error al buscar compras:", error);
+      throw error
+    }
+  },
+deleteUser : async (id)=>{
+  try {
+    if(useStore.getState().role !== 'admin'){
+      throw new Error('No tienes permisos para realizar esta accion')
+    }
+    const response = await axios.put(`{VITE_BACK_URL}/auth/admin/deleteUser/${id}`)
+    return response.data
+  } catch (error) {
+    console.error("Error al eliminar usuario:", error);
+    throw error
+  }
+},
+  updateUser: async (id, data) => {
+    try {
+      const response = await axios.put(`${VITE_BACK_URL}/auth/updateUser/${id}`, data);
+      return response.data
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
+  },
+  updateUserAdmin : async (id, data) => {
+    try {
+      if(useStore.getState().role !== 'admin'){
+        throw new Error('No tienes permisos para realizar esta acción')
+      }
+      const response = await axios.put(`${VITE_BACK_URL}/auth/admin/updateUser/${id}`, data);
+      return response.data
+    } catch (error) {
+      console.log("Error al actualizar usuario:", error);
+      throw error
+    }
+  },
+  postProduct : async (data)=>{
+    if(useStore.getState().role !== 'admin'){
+      throw new Error('No tienes permisos para realizar esta acción')
+    }
+    const response = await axios.post(`${VITE_BACK_URL}/auth/admin/postProduct`, data);
+    return response.data
+  },
+  removeProduct : async (id)=>{
+    try {
+      if(useStore.getState().role !== 'admin'){
+        throw new Error('No tienes permisos para realizar esta acción')
+      }
+      const response = await axios.delete(`${VITE_BACK_URL}/auth/admin/removeProduct/${id}`);
+      return response.data
+    } catch (error) {
+      console.log("Error al eliminar producto:", error);
+      throw error
+    }
+  },
+  updateProduct : async (id, data)=>{
+    try {
+      if(useStore.getState().role !== 'admin'){
+        throw new Error('No tienes permisos para realizar esta acción')
+      }
+      const response = await axios.put(`${VITE_BACK_URL}/auth/admin/updateProduct/${id}`, data);
+      return response.data
+    } catch (error) {
+      console.log("Error al actualizar producto:", error);
+      throw error
+    }
+  },
+    restoreSession: async () => {
     try {
       await axios(`${VITE_BACK_URL}/auth/restore`);
     } catch (error) {
@@ -577,6 +674,14 @@ export const useStore = create((set) => ({
     }
   },
 }));
+
+const token = parse(document.cookie).token
+if(token){
+  const decodedToken = jwt.decode(token)
+  const userRole = decodedToken.role
+
+  useStore.getState().setRole(userRole)
+}
 
 const toggleValue = (array, value) => {
 	if (array.includes(value)) {

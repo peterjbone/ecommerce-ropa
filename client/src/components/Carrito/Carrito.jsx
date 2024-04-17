@@ -206,85 +206,6 @@ const Carrito = () => {
                 <span className={styles.amount}>${totalPrice}</span>
               </div>
 
-<<<<<<< HEAD
-	return (
-		<div className={styles.cartContainer}>
-			<h2 className={styles.title}>Carrito de Compras</h2>
-			{cart?.length === 0 ? (
-				<p className={styles.emptyCart}>No hay productos en el carrito.</p>
-			) : (
-				<div className={styles.productContainer}>
-					{cart?.map((product) => (
-						<div key={product.variantId} className={styles.productItem}>
-							<div className={styles.productDetails}>
-								<div>
-									<h3 className={styles.productName}>{product.nombre}</h3>
-									<img
-										src={product.imagen}
-										alt={product.nombre}
-										className={styles.productImage}
-									/>
-								</div>
-								<div className={styles.productActions}>
-									<div className={styles.caracteristicas}>
-										<p className={styles.productGenero}>
-											<strong>Género:</strong>
-											{product.genero}
-										</p>
-										<p className={styles.productColor}>
-											<strong>Color:</strong>
-											{product.opcion.color}
-										</p>
-										<p className={styles.productSize}>
-											<strong>Talla:</strong> {product.opcion.talla}
-										</p>
-										<p className={styles.productStock}>
-											<strong>Stock:</strong> {product.opcion.stock}
-										</p>
-										<p className={styles.productPrice}>
-											<strong>Precio Unitario: </strong> ${product.precio}
-										</p>
-									</div>
-									<div className={styles.quantityButtons}>
-										<button
-											onClick={() =>
-												decrementQuantityAndSave(product.variantId)
-											}
-											className={styles.quantityButton}>
-											-
-										</button>
-										<p className={styles.productQuantity}>{product.quantity}</p>
-										<button
-											onClick={() =>
-												incrementQuantityAndSave(product.variantId)
-											}
-											className={styles.quantityButton}>
-											+
-										</button>
-										<p className={styles.productTotalPrice}>
-											<strong>Precio Total: </strong>$
-											{(product.precio * product.quantity).toFixed(2)}
-										</p>
-									</div>
-									<button
-										onClick={() => handleRemoveFromCart(product.variantId)}
-										className={styles.removeButton}>
-										Eliminar
-									</button>
-								</div>
-							</div>
-						</div>
-					))}
-				</div>
-			)}
-			<div className={styles.totalPriceContainer}>
-					<p className={styles.totalPriceLabel}>Precio Total:</p>
-					<p className={styles.totalPrice}>${totalPrice}</p>
-					<PayButton cartItems={cart} userId={userInfo.id} />
-				</div>
-			</div>
-	);
-=======
               <p
                 style={{
                   margin: "1.2rem 0",
@@ -318,7 +239,6 @@ const Carrito = () => {
       )}
     </div>
   );
->>>>>>> 44b2d3e4a07f500eac4818fda6e19c44ae2351b2
 };
 
 export default Carrito;

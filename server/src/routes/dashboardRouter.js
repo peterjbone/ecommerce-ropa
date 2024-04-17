@@ -21,7 +21,7 @@ router.get('/compras', isAdmin, getAllCompras)
 router.put('/updateUser/:id', isAdmin, updateUsers)
 router.put('/deleteUser/:id',isAdmin, deleteUser)
 router.post('/postProduct', isAdmin, postProduct)
-router.delete('/removeProduct',isAdmin, removeProduct)
-router.put('/updateProduct', isAdmin, updateProduct)
+router.delete('/removeProduct/:id',isAdmin, removeProduct)
+router.put('/updateProduct/:id', isAdmin, updateProduct)
 
 module.exports = router

@@ -12,6 +12,7 @@ import NotFound from "./views/NotFound/NotFound.jsx";
 import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
 import { autoLogin } from "./utils/autoLogin.js"
 import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
+import DashBoard from "./views/DashBoard/DashBoard.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
@@ -74,6 +75,7 @@ export default function App() {
         <Route path="/reviews" element={<ReviewsAcceptance />} /> {/* Va En Dashboard Admin */}
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
+        {/* <Route path='/auth/admin' element ={<DashBoard/>}/> */}
       </Routes>
       <Footer />
     </>

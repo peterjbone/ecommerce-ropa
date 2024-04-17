@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function Nav() {
+  const getAllUsers = useStore((state) => state.getAllUsers);
   const listaMarcas = useStore((state) => state.listaMarcas);
   const listaGeneros = useStore((state) => state.listaGeneros);
   const listaCategorias = useStore((state) => state.listaCategorias);
@@ -219,7 +220,7 @@ export default function Nav() {
       console.error(error);
     }
   };
-
+  console.log(getAllUsers())
   return (
     <>
       <nav className="nav-bar">
