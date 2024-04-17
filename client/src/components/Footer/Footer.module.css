@@ -35,8 +35,9 @@
 .item1 .infoLinks {
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: space-around;
-	gap: 6rem;
+	justify-content: space-between;
+  width: 80%;
+	gap: 4rem;
 }
 
 .item1 .infoLinks h3 {
@@ -57,7 +58,7 @@
 }
 
 .item1 .subscribe p {
-	width: 65%;
+	width: 90%;
 	margin: 0 0 1.5rem 0;
 	font-size: 1rem;
 	font-weight: 400;

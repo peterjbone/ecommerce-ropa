@@ -189,7 +189,7 @@ const createOrder = async (customer, data) => {
     amount_shipping: data.total_details.amount_shipping,
     total: data.amount_total,
     shipping: data.customer_details,
-    payment_status: data.payment_status,,
+    payment_status: data.payment_status,
     purchase_time: new Date().toLocaleString()
   });
 

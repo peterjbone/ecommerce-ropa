@@ -193,7 +193,7 @@ const Form = () => {
           const data = await uploadCloudinary(images[i])
           arr.push(data.url)
         }
-        axios.post(`{VITE_BACK_URL}/createproduct`, {...form, imagenes: arr})
+        axios.post(`${VITE_BACK_URL}/createproduct`, {...form, imagenes: arr})
   
         setSelectedColor([])
         setNameColors([])

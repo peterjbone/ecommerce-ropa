@@ -224,7 +224,7 @@ export default function Filters() {
             </div>
           )
         })}
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       </div>
     </>
   )
