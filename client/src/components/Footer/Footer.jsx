@@ -42,7 +42,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.item2}>
-        <img src={logo} alt="logo" width={175} height={45} />
+        <img src={logo} alt="logo" width={174} height={29} />
         <p style={{ fontSize: "16px" }}>
           © 2024 ecommerce-ropa.com, Inc. All Rights Reserved
         </p>

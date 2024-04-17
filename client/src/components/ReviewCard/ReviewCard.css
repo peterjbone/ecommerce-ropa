@@ -1,16 +1,15 @@
 .review-card-container {
-  margin-left: -22%;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
-  width: 80vw;
   height: fit-content;
   background-color: var(--review-acceptance-card-background-color);
-  padding: 10px;
+  padding: 5px;
   margin-bottom: 10px;
 }
 
 .review-card-product-container {
+  padding: 5px;
   width: 50%;
 }
 
@@ -19,7 +18,7 @@
 }
 
 .review-card-image-container img {
-  width: 30%;
+  width: 50%;
   object-fit: cover;
 }
 
@@ -29,7 +28,8 @@
 }
 
 .review-card-product-description {
-  padding: 10px;
+  padding: 5px;
+  padding-top: 10px;
 }
 
 .review-card-user-review {
@@ -37,7 +37,7 @@
   flex-direction: column;
   width: 50%;
   overflow: hidden;
-  padding: 10px;
+  padding: 5px;
 }
 
 .review-card-user-rating-container {
@@ -45,7 +45,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 5px;
 }
 
 .review-card-user-rating-container {
@@ -69,5 +69,9 @@
 
 .review-card-user-review p {
   height: 100%;
-  padding: 10px;
+  padding: 5px;
+}
+
+.purchase-product-review-button {
+  margin-right: 10px;
 }

@@ -539,7 +539,7 @@ export const useStore = create((set) => ({
   },
   getNuevos: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/nuevos`);
+      // const { data } = await axios(`${VITE_BACK_URL}/nuevos`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.productoNuevo) {
@@ -554,7 +554,7 @@ export const useStore = create((set) => ({
   },
   getDestacados: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/destacados`);
+      // const { data } = await axios(`${VITE_BACK_URL}/destacados`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Destacado") {
@@ -569,7 +569,7 @@ export const useStore = create((set) => ({
   },
   getOfertas: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/ofertas`);
+      // const { data } = await axios(`${VITE_BACK_URL}/ofertas`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.precio < 25) {
@@ -584,7 +584,7 @@ export const useStore = create((set) => ({
   },
   getTendencia: async () => {
     try {
-      // const { data } = await axios(`http://localhost:3001/tendencia`);
+      // const { data } = await axios(`${VITE_BACK_URL}/tendencia`);
       const data = [];
       useStore.getState().products.map((producto) => {
         if (producto.subcategoria === "Tendencia") {

@@ -12,6 +12,7 @@
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid var(--filter-border-color);
+  background-color: var(--review-acceptance-card-background-color);
   text-transform: capitalize;
 }
 
@@ -64,7 +65,6 @@
 }
 
 .purchase-card-container {
-  margin-left: -30%;
   display: flex;
   border-radius: 10px;
   overflow: hidden;
