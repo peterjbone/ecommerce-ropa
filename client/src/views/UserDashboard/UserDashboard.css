@@ -1,6 +1,7 @@
 .user-dashboard-container {
   margin-top: 10vh;
   display: flex;
+  overflow-x: hidden;
 }
 
 .user-options-container {

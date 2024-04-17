@@ -1,19 +1,65 @@
-import { useState } from 'react'
-import styles from './Form.module.css';
-import ColorGrid from '../../components/ColorGrid/ColorGrid';
-import StockTable from '../../components/StockTable/StockTable';
-import axios from 'axios';
-import { uploadCloudinary } from '../../utils/upload';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { useState } from "react"
+import styles from "./Form.module.css";
+import ColorGrid from "../../components/ColorGrid/ColorGrid";
+import StockTable from "../../components/StockTable/StockTable";
+import axios from "axios";
+import { uploadCloudinary } from "../../utils/upload";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+const { VITE_BACK_URL } = import.meta.env;
 
 const Form = () => {
-
-  let categorias = [ 'Adulto', 'Infante' ]
-  let subcategorias = ['Camisetas y Polos','Chaquetas y Abrigos','Sudaderas y Hoodies','Chalecos','Jeans','Shorts','Short','Zapatillas Casuales','Botin','Botas','Sandalias','Camisas','Pantalones','Botas Cortas','Leggings y Pantalones Deportivos','Zapatos','Blusas y Tops','Faldas','Pantalones de Pijama','Pantalones Formales','Pantalones Cortos de Ciclismo','Zapatillas de Casa','Zapatillas Deportivas','Camisetas de Deporte','Cardigans y Suéteres','Destacado','Tendencia']
-  let genero = [ 'masculino', 'unisex', 'femenino']
-  let tallesL = ['XS', 'S', 'L', 'M', 'XL', 'XXL', 'XXXL']
-  let tallesN = ['4', '6', '8', '10', '12', '14', '16', '34', '36', '38', '39', '40', '41', '42', '43', '44','45']
+  let categorias = ["Adulto", "Infante"];
+  let subcategorias = [
+    "Camisetas y Polos",
+    "Chaquetas y Abrigos",
+    "Sudaderas y Hoodies",
+    "Chalecos",
+    "Jeans",
+    "Shorts",
+    "Short",
+    "Zapatillas Casuales",
+    "Botin",
+    "Botas",
+    "Sandalias",
+    "Camisas",
+    "Pantalones",
+    "Botas Cortas",
+    "Leggings y Pantalones Deportivos",
+    "Zapatos",
+    "Blusas y Tops",
+    "Faldas",
+    "Pantalones de Pijama",
+    "Pantalones Formales",
+    "Pantalones Cortos de Ciclismo",
+    "Zapatillas de Casa",
+    "Zapatillas Deportivas",
+    "Camisetas de Deporte",
+    "Cardigans y Suéteres",
+    "Destacado",
+    "Tendencia"
+  ];
+  let genero = ["masculino", "unisex", "femenino"];
+  let tallesL = ["XS", "S", "L", "M", "XL", "XXL", "XXXL"];
+  let tallesN = [
+    "4",
+    "6",
+    "8",
+    "10",
+    "12",
+    "14",
+    "16",
+    "34",
+    "36",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "43",
+    "44",
+    "45"
+  ];
   let marcas = [
     "Nike",
     "Adidas",
@@ -50,50 +96,51 @@ const Form = () => {
     "Vans",
     "Converse",
     "New Balance",
-    "Reebok"]
+    "Reebok"
+  ];
 
   let colores = [
-    { codHexadecimal: '#000000', nombreColor: 'negro' },
-    { codHexadecimal: '#FFFFFF', nombreColor: 'blanco' },
-    { codHexadecimal: '#FF0000', nombreColor: 'rojo' },
-    { codHexadecimal: '#0000FF', nombreColor: 'azul' },
-    { codHexadecimal: '#808080', nombreColor: 'gris' },
-    { codHexadecimal: '#8B4513', nombreColor: 'marron' },
-    { codHexadecimal: '#FFFF00', nombreColor: 'amarillo' },
-    { codHexadecimal: '#008000', nombreColor: 'verde' },
-    { codHexadecimal: '#007FFF', nombreColor: 'francia' },
-    { codHexadecimal: '#fa8072', nombreColor: 'salmon' },
-    { codHexadecimal: '#FFC0CB', nombreColor: 'rosa' },
-    { codHexadecimal: '#78288C', nombreColor: 'violeta' },
-  ]
+    { codHexadecimal: "#000000", nombreColor: "negro" },
+    { codHexadecimal: "#FFFFFF", nombreColor: "blanco" },
+    { codHexadecimal: "#FF0000", nombreColor: "rojo" },
+    { codHexadecimal: "#0000FF", nombreColor: "azul" },
+    { codHexadecimal: "#808080", nombreColor: "gris" },
+    { codHexadecimal: "#8B4513", nombreColor: "marron" },
+    { codHexadecimal: "#FFFF00", nombreColor: "amarillo" },
+    { codHexadecimal: "#008000", nombreColor: "verde" },
+    { codHexadecimal: "#007FFF", nombreColor: "francia" },
+    { codHexadecimal: "#fa8072", nombreColor: "salmon" },
+    { codHexadecimal: "#FFC0CB", nombreColor: "rosa" },
+    { codHexadecimal: "#78288C", nombreColor: "violeta" }
+  ];
 
-  const [images, setImages] = useState([])
+  const [images, setImages] = useState([]);
 
   const [nameColors, setNameColors] = useState([]);
   const [selectedColor, setSelectedColor] = useState([]);
 
-  const [tipoTalle, setTipoTalle] = useState('')
+  const [tipoTalle, setTipoTalle] = useState("");
   const tipoTalleHandler = (e) => {
-    setForm({...form, tallas: {}})
-    setStock({})
-    setTipoTalle(e.target.value)
-  }
+    setForm({ ...form, tallas: {} });
+    setStock({});
+    setTipoTalle(e.target.value);
+  };
 
   const [stock, setStock] = useState({});
 
   const [discount, setDiscount] = useState({
     offActiva: false,
     Descuento: 0
-  })
+  });
 
   const [form, setForm] = useState({
-    nombre: '',
-    marca: '',
-    precio: '',
-    categoria: '',
-    subcategoria: '',
-    descripcion: '',
-    genero: '',
+    nombre: "",
+    marca: "",
+    precio: "",
+    categoria: "",
+    subcategoria: "",
+    descripcion: "",
+    genero: "",
     oferta: discount,
     activo: false,
     opciones: {},
@@ -103,55 +150,55 @@ const Form = () => {
   })
 
   const [errors, setErrors] = useState({
-    nombre: '',
-    marca: '',
-    precio: '',
-    categoria: '',
-    subcategoria: '',
-    descripcion: '',
-    genero: '',
+    nombre: "",
+    marca: "",
+    precio: "",
+    categoria: "",
+    subcategoria: "",
+    descripcion: "",
+    genero: "",
   })
 
   const validate = (form) => {
 
     const newErrors = {
-      nombre: '',
-      marca: '',
-      precio: '',
-      categoria: '',
-      subcategoria: '',
-      descripcion: '',
-      genero: '',
+      nombre: "",
+      marca: "",
+      precio: "",
+      categoria: "",
+      subcategoria: "",
+      descripcion: "",
+      genero: "",
     };
 
     let passed = true
-    
-    if(form.nombre.length <= 10) {
-      newErrors.nombre = 'El nombre debe tener al menos 10 caracteres';
+
+    if (form.nombre.length <= 10) {
+      newErrors.nombre = "El nombre debe tener al menos 10 caracteres";
       passed = false
     }
-    if(!form.marca) {
-      newErrors.marca = 'Debes seleccionar una marca';
+    if (!form.marca) {
+      newErrors.marca = "Debes seleccionar una marca";
       passed = false
     }
-    if(!form.precio) {
-      newErrors.precio = 'Debes ingresar un precio';
+    if (!form.precio) {
+      newErrors.precio = "Debes ingresar un precio";
       passed = false
     }
-    if(!form.categoria) {
-      newErrors.categoria = 'Debes seleccionar una categoria';
+    if (!form.categoria) {
+      newErrors.categoria = "Debes seleccionar una categoria";
       passed = false
     }
-    if(!form.subcategoria) {
-      newErrors.subcategoria = 'Debes seleccionar una subcategoria';
+    if (!form.subcategoria) {
+      newErrors.subcategoria = "Debes seleccionar una subcategoria";
       passed = false
     }
-    if(!form.descripcion) {
-      newErrors.descripcion = 'Debes ingresar una descripcion';
+    if (!form.descripcion) {
+      newErrors.descripcion = "Debes ingresar una descripcion";
       passed = false
     }
-    if(!form.genero) {
-      newErrors.genero = 'Debes ingresar un genero';
+    if (!form.genero) {
+      newErrors.genero = "Debes ingresar un genero";
       passed = false
     }
 
@@ -160,60 +207,60 @@ const Form = () => {
     return passed;
   }
 
-  
+
   const changeDiscountHandler = (e) => {
     const { checked, name, value } = e.target;
-    if(name === 'Descuento') {
-      setDiscount({...discount, Descuento: value})
-      setForm({...form, oferta: {...discount, Descuento: value}})
+    if (name === "Descuento") {
+      setDiscount({ ...discount, Descuento: value })
+      setForm({ ...form, oferta: { ...discount, Descuento: value } })
     } else {
-      setDiscount({...discount, offActiva: checked});
-      setForm({...form, oferta: {...discount, offActiva: checked}})
+      setDiscount({ ...discount, offActiva: checked });
+      setForm({ ...form, oferta: { ...discount, offActiva: checked } })
     }
   }
 
   const changeHandler = (e) => {
     const { name, value } = e.target
-    if(name === 'activo' || name === 'productoNuevo') {
+    if (name === "activo" || name === "productoNuevo") {
       const { checked } = e.target;
-      setForm({...form, [name]: checked})
+      setForm({ ...form, [name]: checked })
     } else {
-      setForm({...form, [name]: value})
+      setForm({ ...form, [name]: value })
     }
-    validate({...form, [name]: value})
+    validate({ ...form, [name]: value })
   }
 
   const submitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const isValid = validate(form);
 
-    if(isValid) {
+    if (isValid) {
 
       try {
         let arr = []
-        for(let i = 0; i < images.length; i++) {
+        for (let i = 0; i < images.length; i++) {
           const data = await uploadCloudinary(images[i])
           arr.push(data.url)
         }
-        axios.post('http://localhost:3001/createproduct', {...form, imagenes: arr})
-  
+        axios.post(`${VITE_BACK_URL}/createproduct`, { ...form, imagenes: arr })
+
         setSelectedColor([])
         setNameColors([])
         setImages([])
-        setTipoTalle('')
+        setTipoTalle("")
         setStock({})
         setDiscount({
           offActiva: false,
           Descuento: 0
         })
         setForm({
-          nombre: '',
-          marca: '',
-          precio: '',
-          categoria: '',
-          subcategoria: '',
-          descripcion: '',
-          genero: '',
+          nombre: "",
+          marca: "",
+          precio: "",
+          categoria: "",
+          subcategoria: "",
+          descripcion: "",
+          genero: "",
           oferta: {},
           activo: false,
           opciones: {},
@@ -221,12 +268,12 @@ const Form = () => {
           productoNuevo: false,
           tallas: {}
         })
-        toast.success('Producto creado correctamente')
+        toast.success("Producto creado correctamente")
       } catch (error) {
-        console.log(error);
-        toast.error('Error al crear el producto')
+        console.error(error);
+        toast.error("Error al crear el producto")
       }
-    } 
+    }
   }
 
   return (
@@ -235,7 +282,7 @@ const Form = () => {
       <form onSubmit={submitHandler}>
         <div>
           <label>Nombre: </label>
-          <input type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} />
+          <input type="text" name="nombre" value={form.nombre} placeholder="Nombre del producto" onChange={changeHandler} />
           {errors.nombre && <span>{errors.nombre}</span>}
         </div>
         <div>
@@ -248,7 +295,7 @@ const Form = () => {
         </div>
         <div>
           <label>Precio: </label>
-          <input type="text" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} />
+          <input type="text" name="precio" value={form.precio} placeholder="Precio del producto" onChange={changeHandler} />
           {errors.precio && <span>{errors.precio}</span>}
         </div>
         <div>
@@ -282,19 +329,19 @@ const Form = () => {
         </div>
         <div>
           <label>Activo: </label>
-          <input name='activo' type="checkbox" checked={form.activo} onChange={changeHandler} />
+          <input name="activo" type="checkbox" checked={form.activo} onChange={changeHandler} />
         </div>
         <div>
           <label>Producto nuevo: </label>
-          <input name='productoNuevo' type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
+          <input name="productoNuevo" type="checkbox" checked={form.productoNuevo} onChange={changeHandler} />
         </div>
         <div>
           <label>Oferta: </label>
-          <input name='oferta' type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
+          <input name="oferta" type="checkbox" checked={form.oferta.offActiva} onChange={changeDiscountHandler} />
           {form.oferta.offActiva && (
             <div>
               <label>% Descuento</label>
-              <select name='Descuento' value={discount.Descuento} onChange={changeDiscountHandler}>
+              <select name="Descuento" value={discount.Descuento} onChange={changeDiscountHandler}>
                 <option value="">%%</option>
                 <option value="5">5%</option>
                 <option value="10">10%</option>
@@ -309,32 +356,43 @@ const Form = () => {
         </div>
         <div>
           <label>Opciones: </label>
-          <input name='opciones' type="checkbox" />
+          <input name="opciones" type="checkbox" />
         </div>
 
-        <ColorGrid nameColors={nameColors} setNameColors={setNameColors} colores={colores} selectedColor={selectedColor} setSelectedColor={setSelectedColor} setForm={setForm}/>
+        <ColorGrid
+          nameColors={nameColors}
+          setNameColors={setNameColors}
+          colores={colores}
+          selectedColor={selectedColor}
+          setSelectedColor={setSelectedColor}
+          setForm={setForm}
+        />
 
         <div>
           <label>Tipo de talle</label>
           <select name="tipoTalle" value={tipoTalle} onChange={tipoTalleHandler}>
-            <option value=''>--Seleccionar--</option>
-            <option value='L'>Letras</option>
-            <option value='N'>Números</option>
+            <option value="">--Seleccionar--</option>
+            <option value="L">Letras</option>
+            <option value="N">Números</option>
           </select>
 
-          {tipoTalle === 'L' && <StockTable sizes={tallesL} stock={stock} setStock={setStock} setForm={setForm} />}
-          {tipoTalle === 'N' && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
+          {tipoTalle === "L" && <StockTable sizes={tallesL} stock={stock} setStock={setStock} setForm={setForm} />}
+          {tipoTalle === "N" && <StockTable sizes={tallesN} stock={stock} setStock={setStock} setForm={setForm} />}
         </div>
 
         <div>
-          <input type="file" multiple={true} onChange={(e) => setImages(e.target.files)} />
+          <input
+            type="file"
+            multiple={true}
+            onChange={(e) => setImages(e.target.files)}
+          />
         </div>
 
-        <button type='submit'>Crear</button>
+        <button type="submit">Crear</button>
       </form>
       <ToastContainer />
     </div>
   )
 }
 
-export default Form
+export default Form;

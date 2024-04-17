@@ -22,7 +22,7 @@ async function removeProduct(req, res) {
 	} catch (error) {
 		//* Error interno de Mongoose
 		//* No se encontro el id
-		console.log(error);
+		console.error(error);
 		return res.status(500).send(error.message);
 	}
 }

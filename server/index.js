@@ -1,7 +1,13 @@
 require("dotenv").config();
 
 const server = require("./server.js");
-const { connectDB, insertarTodo, insertarProductos, insertarResenas } = require("./db.js");
+
+const {
+  connectDB,
+  insertarTodo,
+  insertarProductos,
+  insertarResenas,
+} = require("./db.js");
 
 const port = process.env.PORT || 3000;
 

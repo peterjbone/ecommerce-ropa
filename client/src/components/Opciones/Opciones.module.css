@@ -1,0 +1,87 @@
+.container {
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.containerTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.formContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.labelFormContainer {
+  font-weight: bold;
+}
+
+.inputFormContainer {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+.inputCheckboxForm {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.selectDiscount {
+  width: 80px;
+  text-align: center;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-gap: 10px;
+}
+
+.color-grid-item {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.color-grid-item.selected {
+  border: 2px solid #007bff;
+}
+
+.spanErrorNotification {
+  color: rgb(44, 13, 13);
+  background-color: rgb(238, 167, 167);
+  border-radius: 5px;
+  padding: .2rem;
+  font-size: small;
+}
+
+.thumbnailOpciones {
+  border: 1px solid black;
+}
+
+.singleOptionContainer {
+  margin-bottom: 2rem;
+}

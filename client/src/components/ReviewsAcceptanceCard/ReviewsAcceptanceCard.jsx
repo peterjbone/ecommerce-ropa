@@ -1,18 +1,18 @@
-import './ReviewsAcceptanceCard.css';
+import "./ReviewsAcceptanceCard.css";
 import { useStore } from "../../store";
 
-import starIcon from '../../assets/icons/star-icon.svg';
-import halfStarIcon from '../../assets/icons/half-star-icon.svg';
+import starIcon from "../../assets/icons/star-icon.svg";
+import halfStarIcon from "../../assets/icons/half-star-icon.svg";
 
 export default function ReviewsAcceptanceCard({ review }) {
-  const getAllReviews = useStore(state => state.getAllReviews);
+  const getFilteredReviews = useStore(state => state.getFilteredReviews);
   const updateReview = useStore(state => state.updateReview);
   const deleteReview = useStore(state => state.deleteReview);
 
   const handleAcceptReview = async (id) => {
     try {
       await updateReview(id);
-      await getAllReviews();
+      await getFilteredReviews();
     } catch (error) {
       console.error;
     }
@@ -20,31 +20,39 @@ export default function ReviewsAcceptanceCard({ review }) {
   const handleDeleteReview = async (id) => {
     try {
       await deleteReview(id);
-      await getAllReviews();
+      await getFilteredReviews();
     } catch (error) {
       console.error;
     }
   }
 
   return (
-    <div className='review-card-container' >
-      <div style={{ display: 'flex' }} >
-        <div className='rating-container acceptance-rating-container'>
-          <h4>{review.nombreUsuario}</h4>
+    <div className="review-acceptance-card-container" >
+      <div style={{ display: "flex" }} >
+        <div className="rating-container acceptance-rating-container">
+          <div style={{ display: "flex", flexDirection: "column", flexWrap: "nowrap", width: "50%" }} >
+            <h4>{review.nombreUsuario}</h4>
+            <h4>{review.product.nombre}</h4>
+          </div>
           <h3>{review.valoracion.toFixed(1)}</h3>
           <div>{renderStars(review.valoracion)}</div>
         </div>
       </div>
-      <p>{review.descripcion}</p>
-      <div className='review-acceptance-button-container' >
+      <div className="review-acceptance-card-image-description-container" >
+        <div className="review-acceptance-card-image-container" >
+          <img src={review.product.opciones[0].imagenes[0]} alt={review.product.opciones[0].imagenes[0]} />
+        </div>
+        <p>{review.descripcion}</p>
+      </div>
+      <div className="review-acceptance-button-container" >
         <button
-          className={`review-acceptance-button ${review.esAceptada ? 'review-acceptance-accept-button' : 'review-acceptance-cancel-button'}`}
+          className={`review-acceptance-button ${!review.esAceptada ? "review-acceptance-accept-button" : "review-acceptance-cancel-button"}`}
           onClick={() => handleAcceptReview(review._id)}
         >
-          {review.esAceptada ? 'Aceptar' : 'Cancelar'}
+          {!review.esAceptada ? "Aceptar" : "Cancelar"}
         </button>
         <button
-          className='review-acceptance-button review-acceptance-delete-button'
+          className="review-acceptance-button review-acceptance-delete-button"
           onClick={() => handleDeleteReview(review._id)}
         >
           Eliminar

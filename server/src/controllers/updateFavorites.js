@@ -6,7 +6,7 @@ const updateFavorite = async (request, response) => {
     
     const usuario = await Usuario.findById(userId);
     if (!usuario) {
-      return response.status(404).send({ message: 'El usuario no existe' });
+      return response.status(404).send({ message: "El usuario no existe" });
     }
 
     const index = usuario.favorites.indexOf(productId);
@@ -19,7 +19,7 @@ const updateFavorite = async (request, response) => {
     response.status(200).json(usuario.favorites);
   } catch (error) {
     console.error(error);
-    response.status(500).send({ error, message: 'Error al actualizar favoritos' });
+    response.status(500).send({ error, message: "Error al actualizar favoritos" });
   }
 }
 

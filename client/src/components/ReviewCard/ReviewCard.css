@@ -1,0 +1,73 @@
+.review-card-container {
+  margin-left: -22%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  width: 80vw;
+  height: fit-content;
+  background-color: var(--review-acceptance-card-background-color);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.review-card-product-container {
+  width: 50%;
+}
+
+.review-card-image-container {
+  display: flex;
+}
+
+.review-card-image-container img {
+  width: 30%;
+  object-fit: cover;
+}
+
+.review-card-image-container p {
+  padding: 5px;
+  text-transform: capitalize;
+}
+
+.review-card-product-description {
+  padding: 10px;
+}
+
+.review-card-user-review {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.review-card-user-rating-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.review-card-user-rating-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.review-card-user-rating-container h3 {
+  font-size: 40px;
+  min-width: 40px;
+  padding: 5px;
+  margin-right: 10px;
+  font-family: inherit;
+}
+
+.review-card-user-rating-container img {
+  align-self: center;
+  justify-self: center;
+  width: 50px;
+}
+
+.review-card-user-review p {
+  height: 100%;
+  padding: 10px;
+}

@@ -170,3 +170,26 @@
 .buyButton[disabled]:hover {
   background-color: #ccc;
 }
+
+.redSquare {
+  display: inline-block;
+  padding: 3px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.precioOriginal {
+  margin-top: 8px;
+}
+
+.precioDescuento {
+  margin-top: 8px;
+}
+
+.disabledSize {
+  color: black;
+  cursor: not-allowed;
+  background-color: #999;
+}

@@ -8,12 +8,15 @@ const orderSchema = new Schema(
         products: [
             {
                 _id: false,
-                productId: {
+                productId: { type: String, required: true },
+                idProductOriginal: {
                     type: Schema.Types.ObjectId,
                     ref: "Producto",
                     required: true
                 },
-                quantity: { type: Number, default: 1 }
+                productColor: { type: String, required: true },
+                quantity: { type: Number, default: 1 },
+                productSize: { type: String, required: true }
             }
         ],
         subtotal: { type: Number, required: true },

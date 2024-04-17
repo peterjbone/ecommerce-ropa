@@ -6,15 +6,16 @@ async function updateReview(request, response) {
     const review = await Resena.findById(id);
 
     if (!review) {
-      return response.status(404).json({ message: 'Reseña no encontrada' });
+      return response.status(404).json({ message: "Reseña no encontrada" });
     }
     review.esAceptada = !review.esAceptada;
+    review.aceptadoEn = Date.now();
     await review.save();
 
     response.status(200).json();
   } catch (error) {
     console.error(error);
-    response.status(500).json({ error, message: 'Error interno de ruta /updateReview' });
+    response.status(500).json({ error, message: "Error interno de ruta /updateReview" });
   }
 }
 

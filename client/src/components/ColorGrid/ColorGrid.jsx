@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react"
 
 const ColorGrid = ({ nameColors, setNameColors, colores, selectedColor, setSelectedColor, setForm }) => {
 
@@ -22,17 +22,17 @@ const ColorGrid = ({ nameColors, setNameColors, colores, selectedColor, setSelec
 
   return (
     <div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 40px)', gap: '10px' }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 40px)", gap: "10px" }}>
           {colores.map(color => (
             <div
               key={color.codHexadecimal}
               onClick={() => handleColorClick(color)}
               style={{
-                width: '40px',
-                height: '40px',
+                width: "40px",
+                height: "40px",
                 backgroundColor: color.codHexadecimal,
-                border: nameColors.includes(color.nombreColor) ? '3px solid cyan' : '3px solid transparent',
-                cursor: 'pointer'
+                border: nameColors.includes(color.nombreColor) ? "3px solid cyan" : "3px solid transparent",
+                cursor: "pointer"
               }}
             />
           ))}
