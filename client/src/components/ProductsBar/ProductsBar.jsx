@@ -37,7 +37,7 @@ export default function ProductsBar({ title, products }) {
           <img src={perviousIcon} alt="nextIcon" />
         </button>
         <div className="products-bar-container">
-          {products??.map((product) => (
+          {products?.map((product) => (
             <Card
               product={product}
               isProductsBar={true}

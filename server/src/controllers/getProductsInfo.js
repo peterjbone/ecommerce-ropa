@@ -65,28 +65,17 @@ const getProductsInfo = async (request, response) => {
     ];
     
     const [result] = await Producto.aggregate(aggregationPipeline);
-    let productOptions = {};
-    if (result) {
-      const { marcas, categorias, generos, subcategorias, colores, talles } =
-        result;
-      const productOptions = {
-        marcas: marcas.sort(),
-        categorias: categorias.sort(),
-        generos: generos.sort(),
-        subcategorias: subcategorias.sort(),
-        colores: colores.sort(),
-        talles: talles.sort(),
-      };
-    } else {
-      productOptions = {
-        marcas: [],
-        categorias: [],
-        generos: [],
-        subcategorias: [],
-        colores: [],
-        talles: [],
-      };
-    }
+    console.log(result);
+    const { marcas, categorias, generos, subcategorias, colores, talles } = result;
+    
+    const productOptions = {
+      marcas,
+      categorias,
+      generos,
+      subcategorias,
+      colores,
+      talles
+    };
 
     response.status(200).json(productOptions);
   } catch (error) {
