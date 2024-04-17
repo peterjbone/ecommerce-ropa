@@ -40,18 +40,41 @@ const Opciones = ({ opciones, setForm, form }) => {
 
   // console.log(opciones);
 
-  // const handleAddOption = () => {
-  //   setOptions(prevOptions => [
-  //     ...prevOptions,
-  //     {
-  //       colores: { codigosHex: ['#000000'], nombres: ['negro'] },
-  //       tallas: [],
-  //       imagenes: []
-  //     }
-  //   ]);
-  // };
+  const handleAddOption = () => {
+    setOptions(prevOptions => [
+      ...prevOptions,
+      {
+        colores: { codigosHex: ['#000000'], nombres: ['negro'] },
+        tallas: [],
+        imagenes: []
+      }
+    ]);
+  };
 
-  const initialTipoTalle =/* options.length > 0 && options[0].tallas && options[0].tallas.length > 0 && options[0].tallas[0] &&*/ isNaN(Number(options[0].tallas[0].talla)) ? 'L' : 'N';
+  const handleDeleteOption = index => {
+    setOptions(prevOptions => {
+      const updatedOptions = [...prevOptions];
+      updatedOptions.splice(index, 1);
+      return updatedOptions;
+    });
+    setForm(prevForm => {
+      const updatedForm = { ...prevForm };
+      updatedForm.opciones.splice(index, 1); 
+      return updatedForm;
+    });
+  };
+
+  //const initialTipoTalle =/* options.length > 0 && options[0].tallas && options[0].tallas.length > 0 && options[0].tallas[0] &&*/ isNaN(Number(options[0].tallas[0].talla)) ? 'L' : 'N';
+
+  const initialTipoTalle =
+  options.length > 0 &&
+  options[0] &&
+  options[0].tallas &&
+  options[0].tallas.length > 0 &&
+  isNaN(Number(options[0].tallas[0].talla))
+    ? "L"
+    : "N";
+
   const [tipoTalle, setTipoTalle] = useState(initialTipoTalle);
 
   const tipoTalleHandler = (e) => {
@@ -69,7 +92,7 @@ const Opciones = ({ opciones, setForm, form }) => {
     });
     setForm({...form, opciones: options})
   };
-  console.log(opciones);
+  // console.log(opciones);
 
   const handleStockChange = (index, updatedStock) => {
     setOptions(prevOptions => {
@@ -102,7 +125,7 @@ const Opciones = ({ opciones, setForm, form }) => {
 
     <div>
       {options.map((item, index) => ( // Added parentheses to wrap JSX
-        <div key={index}>
+        <div key={index} className={styles.singleOptionContainer}>
           <div>
             <label className={styles.labelFormContainer}>Color: </label>
             <select name="color" value={item.colores.nombres[0] || ''} onChange={(e) => handleColorChange(index, e.target.value)} >
@@ -133,9 +156,14 @@ const Opciones = ({ opciones, setForm, form }) => {
             {tipoTalle === 'L' && <StockTable sizes={tallesL} stock={item.tallas} setOptions={setOptions} setStock={(updatedStock) => handleStockChange(index, updatedStock)} />}
             {tipoTalle === 'N' && <StockTable sizes={tallesN} stock={item.tallas} setOptions={setOptions} setStock={(updatedStock) => handleStockChange(index, updatedStock)} />}
           </div>
+
+          <div>
+            <button type="button" onClick={() => handleDeleteOption(index)}>Delete Option</button>
+          </div>
         </div>
       ))}
-      {/* <button onClick={handleAddOption}>Add Option</button> */}
+
+      <button type="button" onClick={handleAddOption}>Add Option</button>
     </div>
   )
 }

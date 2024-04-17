@@ -40,6 +40,8 @@ const Form = () => {
     { codHexadecimal: '#78288C', nombreColor: 'violeta' },
   ]
 
+  const [submitCLick, setSubmitClick] = useState(false)
+
   const [images, setImages] = useState([])
 
   const [nameColors, setNameColors] = useState([]);
@@ -72,9 +74,7 @@ const Form = () => {
     oferta: discount,
     activo: false,
     opciones: opciones,
-    colores: selectedColor,
     productoNuevo: false,
-    tallas: stock
   })
 
   const [errors, setErrors] = useState({
@@ -87,6 +87,8 @@ const Form = () => {
     genero: '',
   })
 
+  const [touchedFields, setTouchedFields] = useState({});
+
   const validate = (form) => {
 
     const newErrors = {
@@ -97,6 +99,7 @@ const Form = () => {
       subcategoria: '',
       descripcion: '',
       genero: '',
+      opciones
     };
 
     let passed = true
@@ -129,11 +132,67 @@ const Form = () => {
       newErrors.genero = 'Debes ingresar un genero';
       passed = false
     }
+    if(form.opciones.length === 0) {
+      newErrors.opciones = 'Debes ingresar un color, stock e imagenes';
+      passed = false
+    }
 
     setErrors(newErrors);
 
     return passed;
   }
+
+  const validation = (form) => {
+    const errors = {};
+
+    if(form.nombre.length <= 10) {
+      errors.nombre = 'El nombre debe tener al menos 10 caracteres';
+    }
+    if(isNaN(Number(form.precio))) {
+      errors.precio = 'El precio debe ser un numero';
+    }
+    if(Number(form.precio) <= 0) {
+      errors.precio = 'El precio debe ser mayor a cero';
+    }
+    if(!form.marca) {
+      errors.marca = 'Debes seleccionar una marca';
+    }
+    if(!form.precio) {
+      errors.precio = 'Debes ingresar un precio';
+    }
+    if(!form.categoria) {
+      errors.categoria = 'Debes seleccionar una categoria';
+    }
+    if(!form.subcategoria) {
+      errors.subcategoria = 'Debes seleccionar una subcategoria';
+    }
+    if(!form.descripcion) {
+      errors.descripcion = 'Debes ingresar una descripcion';
+    }
+    if(!form.genero) {
+      errors.genero = 'Debes ingresar un genero';
+    }
+
+    return errors
+  }
+
+  const handleInputBlur = (e) => {
+    const { name, value } = e.target
+
+    setTouchedFields({ ...touchedFields, [name]: true });
+
+    setErrors(validation({
+      ...form,
+      [name]: value,
+    }));
+  }
+
+  const handleInputFocus = (e) => {
+    const { name } = e.target;
+
+    // Mark the field as touched
+    setTouchedFields({ ...touchedFields, [name]: true });
+  };
 
   
   const changeDiscountHandler = (e) => {
@@ -155,11 +214,13 @@ const Form = () => {
     } else {
       setForm({...form, [name]: value})
     }
-    validate({...form, [name]: value})
+    // validate({...form, [name]: value})
+    
   }
 
   const submitHandler = async (e) => {
     e.preventDefault()
+    setSubmitClick(true)
     const isValid = validate(form);
 
     if(isValid) {
@@ -196,6 +257,7 @@ const Form = () => {
           productoNuevo: false,
           tallas: {}
         })
+        setErrors({})
         toast.success('Producto creado correctamente')
       } catch (error) {
         console.log(error);
@@ -244,50 +306,78 @@ const Form = () => {
       <form className={styles.formContainer} onSubmit={submitHandler}>
         <div>
           <label className={styles.labelFormContainer}>Nombre: </label><br></br>
-          <input className={styles.inputFormContainer} type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} />
-          {errors.nombre && <span className={styles.spanErrorNotification}>{errors.nombre}</span>}
+          <input className={styles.inputFormContainer} type="text" name='nombre' value={form.nombre} placeholder='Nombre del producto' onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus} />
+          {/* {errors.nombre && <span className={styles.spanErrorNotification}>{errors.nombre}</span>} */}
+          {(submitCLick || touchedFields.nombre) && <p
+            className={`${styles.errorNotificationForm} ${errors.nombre ? '' : 'invisible'}`} >
+            {errors.nombre ? `${errors.nombre}` : 'invisible'}
+          </p>}
         </div>
         <div>
           <label className={styles.labelFormContainer}>Marca: </label><br></br>
-          <select className={styles.inputFormContainer} name="marca" value={form.marca} onChange={changeHandler}>
+          <select className={styles.inputFormContainer} name="marca" value={form.marca} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
             {marcas.map(marca => <option key={marca}>{marca}</option>)}
           </select>
-          {errors.marca && <span className={styles.spanErrorNotification}>{errors.marca}</span>}
+          {/* {errors.marca && <span className={styles.spanErrorNotification}>{errors.marca}</span>} */}
+          {(submitCLick || touchedFields.marca) && <p
+            className={`${styles.errorNotificationForm} ${errors.marca ? '' : 'invisible'}`} >
+            {errors.marca ? `${errors.marca}` : 'invisible'}
+          </p>}
         </div>
         <div>
           <label className={styles.labelFormContainer}>Precio: </label><br></br>
-          <input className={styles.inputFormContainer} type="text" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} />
-          {errors.precio && <span className={styles.spanErrorNotification}>{errors.precio}</span>}
+          <input className={styles.inputFormContainer} type="number" name='precio' value={form.precio} placeholder='Precio del producto' onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus} />
+          {/* {errors.precio && <span className={styles.spanErrorNotification}>{errors.precio}</span>} */}
+          {(submitCLick || touchedFields.precio) && <p
+            className={`${styles.errorNotificationForm} ${errors.precio ? '' : 'invisible'}`} >
+            {errors.precio ? `${errors.precio}` : 'invisible'}
+          </p>}
         </div>
         <div>
           <label className={styles.labelFormContainer}>Categoria: </label><br></br>
-          <select className={styles.inputFormContainer} name="categoria" value={form.categoria} onChange={changeHandler}>
+          <select className={styles.inputFormContainer} name="categoria" value={form.categoria} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
             {categorias.map(categoria => <option key={categoria}>{categoria}</option>)}
           </select>
-          {errors.categoria && <span className={styles.spanErrorNotification}>{errors.categoria}</span>}
+          {/* {errors.categoria && <span className={styles.spanErrorNotification}>{errors.categoria}</span>} */}
+          {(submitCLick || touchedFields.categoria) && <p
+            className={`${styles.errorNotificationForm} ${errors.categoria ? '' : 'invisible'}`} >
+            {errors.categoria ? `${errors.categoria}` : 'invisible'}
+          </p>}
         </div>
         <div>
           <label className={styles.labelFormContainer}>Sub-categoria: </label><br></br>
-          <select className={styles.inputFormContainer} name="subcategoria" value={form.subcategoria} onChange={changeHandler}>
+          <select className={styles.inputFormContainer} name="subcategoria" value={form.subcategoria} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
             {subcategorias.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
           </select>
-          {errors.subcategoria && <span className={styles.spanErrorNotification}>{errors.subcategoria}</span>}
+          {/* {errors.subcategoria && <span className={styles.spanErrorNotification}>{errors.subcategoria}</span>} */}
+          {(submitCLick || touchedFields.subcategoria) && <p
+            className={`${styles.errorNotificationForm} ${errors.subcategoria ? '' : 'invisible'}`} >
+            {errors.subcategoria ? `${errors.subcategoria}` : 'invisible'}
+          </p>}
         </div>
         <div>
           <label className={styles.labelFormContainer}>Género: </label><br></br>
-          <select className={styles.inputFormContainer} name="genero" value={form.genero} onChange={changeHandler}>
+          <select className={styles.inputFormContainer} name="genero" value={form.genero} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
             {genero.map(genero => <option key={genero}>{genero}</option>)}
           </select>
-          {errors.genero && <span className={styles.spanErrorNotification}>{errors.genero}</span>}
+          {/* {errors.genero && <span className={styles.spanErrorNotification}>{errors.genero}</span>} */}
+          {(submitCLick || touchedFields.genero) && <p
+            className={`${styles.errorNotificationForm} ${errors.genero ? '' : 'invisible'}`} >
+            {errors.genero ? `${errors.genero}` : 'invisible'}
+          </p>}
         </div>
         <div>
           <label className={styles.labelFormContainer}>Descripción: </label><br></br>
-          <textarea className={styles.inputFormContainer} name="descripcion" value={form.descripcion} id="" cols="30" rows="5" onChange={changeHandler}></textarea>
-          {errors.descripcion && <span className={styles.spanErrorNotification}>{errors.descripcion}</span>}
+          <textarea className={styles.inputFormContainer} name="descripcion" value={form.descripcion} id="" cols="30" rows="5" onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}></textarea>
+          {/* {errors.descripcion && <span className={styles.spanErrorNotification}>{errors.descripcion}</span>} */}
+          {(submitCLick || touchedFields.descripcion) && <p
+            className={`${styles.errorNotificationForm} ${errors.descripcion ? '' : 'invisible'}`} >
+            {errors.descripcion ? `${errors.descripcion}` : 'invisible'}
+          </p>}
         </div>
         <div>
           <label className={styles.labelFormContainer}>Activo: </label>
@@ -337,6 +427,11 @@ const Form = () => {
         </div>
 
         <button onClick={buttonStockHandler} type='button'>Agregar stock</button>
+
+        <p
+          className={`${styles.errorNotificationForm} ${errors.opciones ? '' : 'invisible'}`} >
+          {errors.opciones ? `${errors.opciones}` : 'invisible'}
+        </p>
 
         <button className={styles.submitButton} type='submit'>Crear</button>
       </form>
