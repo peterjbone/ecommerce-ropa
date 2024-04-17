@@ -24,7 +24,7 @@ function PayButton({ cartItems, userId }) {
 		//console.log(formatCart);
 
 		axios
-			.post(`${BACK_URL}/api/stripe/create-checkout-session`, {
+			.post(`https://ecommerce-ropa-production.up.railway.app/api/stripe/create-checkout-session`, {
 				formatCart,
 				userId,
 				

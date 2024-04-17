@@ -48,7 +48,7 @@ export default function Detail() {
     const fetchRelatedProducts = async () => {
       try {
         if (productoDetail && productoDetail.categoria) {
-          const response = await axios.post(`${BACK_URL}/productos`, {
+          const response = await axios.post(`https://ecommerce-ropa-production.up.railway.app/productos`, {
             categoria: [productoDetail.categoria],
             busqueda: ""
           });

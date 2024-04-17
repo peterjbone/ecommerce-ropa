@@ -10,7 +10,7 @@ function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${BACK_URL}/auth/forgot-password`, { email });
+      const response = await axios.post(`https://ecommerce-ropa-production.up.railway.app/auth/forgot-password`, { email });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.error);

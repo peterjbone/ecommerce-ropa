@@ -242,7 +242,7 @@ const Form = () => {
           const data = await uploadCloudinary(images[i])
           arr.push(data.url)
         }
-        axios.post(`${BACK_URL}/createproduct`, { ...form, imagenes: arr })
+        axios.post(`https://ecommerce-ropa-production.up.railway.app/createproduct`, { ...form, imagenes: arr })
 
         setSelectedColor([])
         setNameColors([])

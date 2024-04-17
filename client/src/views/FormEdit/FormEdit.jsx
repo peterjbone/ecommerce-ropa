@@ -162,7 +162,7 @@ const FormEdit = () => {
     if(isValid) {
 
       try {
-        axios.put(`${BACK_URL}/updateProduct/${id}`, form);
+        axios.put(`https://ecommerce-ropa-production.up.railway.app/updateProduct/${id}`, form);
   
         setDiscount({
           offActiva: false,

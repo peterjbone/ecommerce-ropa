@@ -43,7 +43,7 @@ const Carrito = () => {
     try {
       const confirm = window.confirm("¿Está seguro de que desea vaciar el carrito?")
       if (cartToken && confirm) {
-        await axios.put(`${BACK_URL}/vaciarCarrito/${cartToken}`);
+        await axios.put(`https://ecommerce-ropa-production.up.railway.app/vaciarCarrito/${cartToken}`);
         console.log("Carrito eliminado correctamente");
         setCart([]);
       } else {
