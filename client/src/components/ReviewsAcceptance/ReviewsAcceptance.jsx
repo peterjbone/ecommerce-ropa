@@ -138,14 +138,14 @@ export default function ReviewsAcceptance() {
           >
             Id Producto
           </button>
-          <button
+          {/* <button
             id="buscarPor"
             value="nombreProducto"
             className={`reviews-acceptance-button ${filtrosResenas.buscarPor === "nombreProducto" ? "selected-rating" : ""}`}
             onClick={handleOptionChange}
           >
             Nombre Producto
-          </button>
+          </button> */}
         </div>
         <div className="review-acceptance-filter-row">
           <button
@@ -229,7 +229,7 @@ export default function ReviewsAcceptance() {
             ))}
           </div>
         </div>
-        <div className="reviews-acceptance-title-button-container" >
+        {/* <div className="reviews-acceptance-title-button-container" >
           <label htmlFor="dateFrom">
             Fecha
           </label>
@@ -290,7 +290,7 @@ export default function ReviewsAcceptance() {
               />
             </>
           )}
-        </div>
+        </div> */}
       </div>
       <div className="reviews-acceptance-select-container" >
         <div className="reviews-acceptance-label-button-container" >
@@ -319,7 +319,7 @@ export default function ReviewsAcceptance() {
             </button>
           </div>
         </div>
-        <div className="reviews-acceptance-label-button-container" >
+        {/*<di v className="reviews-acceptance-label-button-container" >
           <label>Orden</label>
           <div className="sort-buttons">
             <button
@@ -357,7 +357,7 @@ export default function ReviewsAcceptance() {
               {filtrosResenas.ascendente ? "🔼" : "🔽"}
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="reviews-list">
         {resenas.map(review => (
