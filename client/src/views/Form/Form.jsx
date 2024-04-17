@@ -345,7 +345,7 @@ const Form = () => {
           <label className={styles.labelFormContainer}>Marca: </label><br></br>
           <select className={styles.inputFormContainer} name="marca" value={form.marca} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
-            {marcas.map(marca => <option key={marca}>{marca}</option>)}
+            {marcas?.map(marca => <option key={marca}>{marca}</option>)}
           </select>
           {/* {errors.marca && <span className={styles.spanErrorNotification}>{errors.marca}</span>} */}
           {(submitCLick || touchedFields.marca) && <p
@@ -366,7 +366,7 @@ const Form = () => {
           <label className={styles.labelFormContainer}>Categoria: </label><br></br>
           <select className={styles.inputFormContainer} name="categoria" value={form.categoria} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
-            {categorias.map(categoria => <option key={categoria}>{categoria}</option>)}
+            {categorias?.map(categoria => <option key={categoria}>{categoria}</option>)}
           </select>
           {/* {errors.categoria && <span className={styles.spanErrorNotification}>{errors.categoria}</span>} */}
           {(submitCLick || touchedFields.categoria) && <p
@@ -378,7 +378,7 @@ const Form = () => {
           <label className={styles.labelFormContainer}>Sub-categoria: </label><br></br>
           <select className={styles.inputFormContainer} name="subcategoria" value={form.subcategoria} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
-            {subcategorias.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
+            {subcategorias?.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
           </select>
           {/* {errors.subcategoria && <span className={styles.spanErrorNotification}>{errors.subcategoria}</span>} */}
           {(submitCLick || touchedFields.subcategoria) && <p
@@ -390,7 +390,7 @@ const Form = () => {
           <label className={styles.labelFormContainer}>Género: </label><br></br>
           <select className={styles.inputFormContainer} name="genero" value={form.genero} onChange={changeHandler} onBlur={handleInputBlur} onFocus={handleInputFocus}>
             <option value="">--Seleccionar--</option>
-            {genero.map(genero => <option key={genero}>{genero}</option>)}
+            {genero?.map(genero => <option key={genero}>{genero}</option>)}
           </select>
           {/* {errors.genero && <span className={styles.spanErrorNotification}>{errors.genero}</span>} */}
           {(submitCLick || touchedFields.genero) && <p

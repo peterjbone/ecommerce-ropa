@@ -541,7 +541,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`${VITE_BACK_URL}/nuevos`);
       const data = [];
-      useStore.getState().products.map((producto) => {
+      useStore.getState().products?.map((producto) => {
         if (producto.productoNuevo) {
           data.push(producto);
         }
@@ -556,7 +556,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`${VITE_BACK_URL}/destacados`);
       const data = [];
-      useStore.getState().products.map((producto) => {
+      useStore.getState().products?.map((producto) => {
         if (producto.subcategoria === "Destacado") {
           data.push(producto);
         }
@@ -571,7 +571,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`${VITE_BACK_URL}/ofertas`);
       const data = [];
-      useStore.getState().products.map((producto) => {
+      useStore.getState().products?.map((producto) => {
         if (producto.precio < 25) {
           data.push(producto);
         }
@@ -586,7 +586,7 @@ export const useStore = create((set) => ({
     try {
       // const { data } = await axios(`${VITE_BACK_URL}/tendencia`);
       const data = [];
-      useStore.getState().products.map((producto) => {
+      useStore.getState().products?.map((producto) => {
         if (producto.subcategoria === "Tendencia") {
           data.push(producto);
         }

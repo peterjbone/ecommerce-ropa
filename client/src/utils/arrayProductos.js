@@ -12315,9 +12315,9 @@ productos.forEach(prod => {
 let talles = []
 let colores = []
 productos.forEach(prod => {
-  prod.opcion.map(op => {
+  prod.opcion?.map(op => {
     colores.push(op.color)
-    op.talles?.map(o => {
+    op.talles??.map(o => {
       if(!talles.includes(o.talla)) {
         talles.push(o.talla)
       }
@@ -12335,7 +12335,7 @@ colores.forEach(item => {
   uniqueColors.add(uniqueIdentifier);
 });
 
-const uniqueColorsArray = Array.from(uniqueColors).map(identifier => {
+const uniqueColorsArray = Array.from(uniqueColors)?.map(identifier => {
   const [codHexadecimal, nombreColor] = identifier.split("-");
   return { codHexadecimal, nombreColor };
 });

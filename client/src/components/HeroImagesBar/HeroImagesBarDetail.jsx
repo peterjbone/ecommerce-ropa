@@ -64,7 +64,7 @@ export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
 
       {product && product.opciones && product.opciones[selectedColorIndex] && product.opciones[selectedColorIndex].imagenes && product.opciones[selectedColorIndex].imagenes.length > 0 && (
         <div className={styles.heroImagesContainer}>
-          {product.opciones[selectedColorIndex].imagenes.map((imagen, i) => (
+          {product.opciones[selectedColorIndex].imagenes?.map((imagen, i) => (
             <img
               key={i}
               src={imagen}
@@ -88,7 +88,7 @@ export default function HeroImagesBarDetail({ product, selectedColorIndex }) {
             <img src={nextIcon} alt="nextIcon" />
           </button>
           <div className={styles.heroImageDotContainer}>
-            {product.opciones[selectedColorIndex].imagenes.map((_, index) => (
+            {product.opciones[selectedColorIndex].imagenes?.map((_, index) => (
               <button
                 key={index}
                 className={styles.heroImageDotButton}

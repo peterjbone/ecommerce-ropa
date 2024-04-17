@@ -32,7 +32,7 @@ export default function FavoriteCard({ product }) {
             <p>{product.marca}</p>
             {product?.opciones[0].tallas && (
               <div style={{ display: "flex", flexDirection: "row" }}>
-                {product.opciones[0].tallas.map((talla, index) => (
+                {product.opciones[0].tallas?.map((talla, index) => (
                   <p className="sizes" key={`${talla.stock} ${index}`}>
                     {talla.talla}
                   </p>
@@ -40,7 +40,7 @@ export default function FavoriteCard({ product }) {
               </div>
             )}
             <div style={{ display: "flex", flexDirection: "row" }}>
-              {product.opciones.map((opcion, index) => {
+              {product.opciones?.map((opcion, index) => {
                 return (
                   <div
                     key={`${opcion.colores?.codigosHex[0]} ${index}`}

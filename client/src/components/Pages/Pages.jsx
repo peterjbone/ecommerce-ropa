@@ -94,7 +94,7 @@ export default function Pages() {
         >
           Resetear Todo ✖️
         </p>
-        {filtrosSeleccionados.map((filter) => {
+        {filtrosSeleccionados?.map((filter) => {
           return (
             <p
               key={filter.id}

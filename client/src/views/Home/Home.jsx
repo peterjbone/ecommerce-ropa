@@ -74,7 +74,7 @@ export default function Home() {
       <div className={styles["product-bar"]}>
         <ProductsBar title="Favoritos" products={products} />
       </div>
-      {listas.map((lista, index) => {
+      {listas?.map((lista, index) => {
         return (
           <React.Fragment key={index}>
             <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} products={products} />

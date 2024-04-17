@@ -202,11 +202,11 @@ export default function Detail() {
             <h3>Opciones:</h3>
             {productoDetail &&
               productoDetail.opciones &&
-              productoDetail.opciones.map((opcion, index) => (
+              productoDetail.opciones?.map((opcion, index) => (
                 <div key={index}>
                   <p>Color:</p>
                   <div className={styles.colorsList}>
-                    {opcion.colores.codigosHex.map((color, colorIndex) => (
+                    {opcion.colores.codigosHex?.map((color, colorIndex) => (
                       <div
                         key={colorIndex}
                         className={`${styles.colorCircle} ${selectedColorIndex === index
@@ -222,7 +222,7 @@ export default function Detail() {
                     <div className={styles.sizeOptions}>
                       <p>Tallas disponibles:</p>
                       <div className={styles.sizeList}>
-                        {opcion.tallas.map((tallaData, sizeIndex) => (
+                        {opcion.tallas?.map((tallaData, sizeIndex) => (
                           <div
                             key={sizeIndex}
                             className={`${styles.sizeItem} ${selectedSizeIndex === sizeIndex && tallaData.stock > 0 ? styles.selectedSize : tallaData.stock === 0 ? styles.disabledSize : ""

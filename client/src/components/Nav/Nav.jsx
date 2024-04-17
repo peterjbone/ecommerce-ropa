@@ -339,11 +339,11 @@ export default function Nav() {
         key="categories-window"
         onMouseEnter={cancelMoveWindowUp}
         onMouseLeave={resetAnimation}>
-        {listas.map((list, index) => (
+        {listas?.map((list, index) => (
           <React.Fragment key={`${list.title}-${index}`}>
             <>
               <label key={`${list.title} ${index}`}>{list.title}</label>
-              {list.lista.map((value, index) => (
+              {list.lista?.map((value, index) => (
                 <p
                   key={`${value} ${index}`}
                   onMouseEnter={cancelMoveWindowUp}

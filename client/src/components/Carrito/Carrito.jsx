@@ -123,7 +123,7 @@ const Carrito = () => {
           {/*------------------ ITEMS DEL CARRITO -----------------*/}
           <div className={styles.cartItems}>
             {cart &&
-              cart.map((cartItem) => (
+              cart?.map((cartItem) => (
                 <div
                   className={styles.cartItem}
                   key={cartItem._id + cartItem.color}>

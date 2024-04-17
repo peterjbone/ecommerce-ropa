@@ -97,7 +97,7 @@ export default function Reviews({ reviews }) {
               </button>
             </div>
           ) : null}
-          {reviewsToShow.map((review, index) => (
+          {reviewsToShow?.map((review, index) => (
             <div className="review-container" key={index}>
               <div className="rating-container">
                 <h3>{review.valoracion.toFixed(1)}</h3>

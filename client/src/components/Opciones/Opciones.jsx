@@ -106,13 +106,13 @@ const Opciones = ({ opciones, setForm, form }) => {
   const handleImagenChange = async (index, files) => {
     try {
       // Upload each file to Cloudinary
-      const uploadPromises = Array.from(files).map(file => uploadCloudinary(file));
+      const uploadPromises = Array.from(files)?.map(file => uploadCloudinary(file));
       const uploadedImages = await Promise.all(uploadPromises);
 
       // Update the imagenes array with the uploaded image URLs
       setOptions(prevOptions => {
         const updatedOptions = [...prevOptions];
-        updatedOptions[index].imagenes = uploadedImages.map(image => image.url);
+        updatedOptions[index].imagenes = uploadedImages?.map(image => image.url);
         return updatedOptions;
       });
       setForm({ ...form, opciones: options })
@@ -124,18 +124,18 @@ const Opciones = ({ opciones, setForm, form }) => {
   return (
 
     <div>
-      {options.map((item, index) => ( // Added parentheses to wrap JSX
+      {options?.map((item, index) => ( // Added parentheses to wrap JSX
         <div key={index} className={styles.singleOptionContainer}>
           <div>
             <label className={styles.labelFormContainer}>Color: </label>
             <select name="color" value={item.colores.nombres[0] || ""} onChange={(e) => handleColorChange(index, e.target.value)} >
               <option value="">--Seleccionar--</option>
-              {colores.map(color => <option key={color.nombres}>{color.nombres}</option>)}
+              {colores?.map(color => <option key={color.nombres}>{color.nombres}</option>)}
             </select>
           </div>
 
           <div>
-            {item.imagenes.map((image, index) => <img className={styles.thumbnailOpciones} key={index} width={80} height={80} src={image} />)}
+            {item.imagenes?.map((image, index) => <img className={styles.thumbnailOpciones} key={index} width={80} height={80} src={image} />)}
 
             <div>
               <label className={styles.labelFormContainer}>Imágenes: </label>

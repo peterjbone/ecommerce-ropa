@@ -134,7 +134,7 @@ const CheckoutSuccess = () => {
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            {products.map((item) => (
+            {products?.map((item) => (
               <CardProduct
                 key={item.productId}
                 nombre={item.productId.nombre}

@@ -186,7 +186,7 @@ export default function ReviewsAcceptance() {
             {filtrosResenas.valoracionDesde}
           </button>
           <div className={`rating-options-container ${isRatingFromFocused ? "" : "not-visible"}`}>
-            {ratingValues.map((rating) => (
+            {ratingValues?.map((rating) => (
               <div className="rating-options-button-container" key={rating}>
                 <button
                   key={rating}
@@ -214,7 +214,7 @@ export default function ReviewsAcceptance() {
             </>
           )}
           <div className={`rating-options-container right ${isRatingTillFocused ? "" : "invisible"}`}>
-            {ratingValues.map((rating) => (
+            {ratingValues?.map((rating) => (
               <div className="rating-options-button-container" key={rating}>
                 <button
                   key={rating}
@@ -360,7 +360,7 @@ export default function ReviewsAcceptance() {
         </div> */}
       </div>
       <div className="reviews-list">
-        {resenas.map(review => (
+        {resenas?.map(review => (
           <ReviewsAcceptanceCard key={review._id} review={review} />
         ))}
       </div>

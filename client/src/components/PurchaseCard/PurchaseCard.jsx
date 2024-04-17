@@ -39,7 +39,7 @@ export default function PurchaseCard({ purchase }) {
     <>
       <div className="purchase-card-container">
         <div className="purchase-products-container">
-          {purchase.products.map((prod, index) => (
+          {purchase.products?.map((prod, index) => (
             <div key={index} className="purchase-product-container">
               <div className="purchase-image-container">
                 <img src={prod.product.opciones.find(opcion => opcion.colores.nombres[0] === prod.productColor).imagenes[0]} alt={purchase.paymentIntentId + index} />

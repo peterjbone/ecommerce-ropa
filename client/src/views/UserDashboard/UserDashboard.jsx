@@ -394,7 +394,7 @@ export default function UserDashboard() {
             case "favorites":
               return (
                 <>
-                  {userInfo.favorites.map((product) => (
+                  {userInfo.favorites?.map((product) => (
                     <FavoriteCard key={product._id} product={product} />
                   ))}
                 </>
@@ -402,7 +402,7 @@ export default function UserDashboard() {
             case "purchases":
               return (
                 <>
-                  {userInfo.purchases.map((purchase) => (
+                  {userInfo.purchases?.map((purchase) => (
                     <PurchaseCard key={purchase._id} purchase={purchase} />
                   ))}
                 </>
@@ -410,7 +410,7 @@ export default function UserDashboard() {
             case "reviews":
               return (
                 <>
-                  {userInfo.reviews.map((review) => (
+                  {userInfo.reviews?.map((review) => (
                     <ReviewCard key={review._id} review={review} handleGetReviewedProducts={handleGetReviewedProducts} />
                   ))}
                 </>

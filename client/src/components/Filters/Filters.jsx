@@ -147,7 +147,7 @@ export default function Filters() {
           </button>
         </div>
         <div className={`order-by-options-container ${isOrderFocused ? "" : "invisible"}`} >
-          {orderByOptions.options.map((order, index) => {
+          {orderByOptions.options?.map((order, index) => {
             return (
               <div className="order-by-options-button-div" key={order} >
                 <button
@@ -193,7 +193,7 @@ export default function Filters() {
             </button>
           </div>
         </div>
-        {filters.map((type, index) => {
+        {filters?.map((type, index) => {
           return (
             <div className="filter-list-container" key={`${type.title} ${index}`} >
               <label className="filter-titles" >{type.title}</label>
@@ -206,7 +206,7 @@ export default function Filters() {
                       Cualquiera
                     </button>
                   </div>
-              {type.completeList.map((value, index) => {
+              {type.completeList?.map((value, index) => {
                 return (
                   <div className="filter-list-button-container" key={value} >
                     <button

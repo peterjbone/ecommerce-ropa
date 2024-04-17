@@ -36,7 +36,7 @@ export default function ReviewCard({ review, handleGetReviewedProducts }) {
               <p>{review.product.marca}</p>
               {review.product?.opciones[0].tallas && (
                 <div style={{ display: "flex", flexWrap: 'wrap' }}>
-                  {review.product.opciones[0].tallas.map((talla, index) => (
+                  {review.product.opciones[0].tallas?.map((talla, index) => (
                     <p className="sizes" key={`${talla.stock} ${index}`}>
                       {talla.talla}
                     </p>
@@ -44,7 +44,7 @@ export default function ReviewCard({ review, handleGetReviewedProducts }) {
                 </div>
               )}
               <div style={{ display: "flex", flexDirection: "row", padding: "10px" }}>
-                {review.product.opciones.map((opcion, index) => {
+                {review.product.opciones?.map((opcion, index) => {
                   return (
                     <div
                       key={`${opcion.colores?.codigosHex[0]} ${index}`}

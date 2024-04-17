@@ -5,7 +5,7 @@ const { BACK_URL } = process.env;
 //? Receptando productos del carrito y el id del usuario
 function PayButton({ cartItems, userId }) {
 	//* formateando el cartItems para Stripe
-	const formatCart = cartItems.map((item) => {
+	const formatCart = cartItems?.map((item) => {
 		return {
 			_id: item._id,
 			idProductOriginal:item.idProductOriginal,

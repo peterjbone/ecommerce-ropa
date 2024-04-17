@@ -67,7 +67,7 @@ export default function HeroImagesBar() {
 	return (
 		<div className="hero-images-bar-container">
 			<div className="hero-images-container">
-				{products.slice(0, 10).map((product, index) => (
+				{products.slice(0, 10)?.map((product, index) => (
 					<img
 						key={`${product}${index}`}
 						id={`${product}${index}`}
@@ -104,7 +104,7 @@ export default function HeroImagesBar() {
 					display: "flex",
 					gap: ".25rem"
 				}}>
-				{products.slice(0, 10).map((_, index) => (
+				{products.slice(0, 10)?.map((_, index) => (
 					<button
 						key={index}
 						className="hero-image-dot-button"

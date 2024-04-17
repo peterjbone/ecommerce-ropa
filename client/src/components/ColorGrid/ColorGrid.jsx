@@ -23,7 +23,7 @@ const ColorGrid = ({ nameColors, setNameColors, colores, selectedColor, setSelec
   return (
     <div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 40px)", gap: "10px" }}>
-          {colores.map(color => (
+          {colores?.map(color => (
             <div
               key={color.codHexadecimal}
               onClick={() => handleColorClick(color)}

@@ -49,7 +49,7 @@ export default function NotFound() {
         <h2>Parece que la página que estas buscando no existe</h2>
         <h3>Puedes seguir explorando desde la barra de navegación o seleccionando una categoría de aquí abajo</h3>
       </div>
-      {listas.map((lista, index) => {
+      {listas?.map((lista, index) => {
         return (
           <React.Fragment key={index}>
             <CategoriesBar title={lista.title} name={lista.name} categories={lista.lista} products={products} />

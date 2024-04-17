@@ -289,7 +289,7 @@ const Form = () => {
           <label>Marca: </label>
           <select name="marca" value={form.marca} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
-            {marcas.map(marca => <option key={marca}>{marca}</option>)}
+            {marcas?.map(marca => <option key={marca}>{marca}</option>)}
           </select>
           {errors.marca && <span>{errors.marca}</span>}
         </div>
@@ -302,7 +302,7 @@ const Form = () => {
           <label>Categoria: </label>
           <select name="categoria" value={form.categoria} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
-            {categorias.map(categoria => <option key={categoria}>{categoria}</option>)}
+            {categorias?.map(categoria => <option key={categoria}>{categoria}</option>)}
           </select>
           {errors.categoria && <span>{errors.categoria}</span>}
         </div>
@@ -310,7 +310,7 @@ const Form = () => {
           <label>Sub-categoria: </label>
           <select name="subcategoria" value={form.subcategoria} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
-            {subcategorias.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
+            {subcategorias?.map(subcategoria => <option key={subcategoria}>{subcategoria}</option>)}
           </select>
           {errors.subcategoria && <span>{errors.subcategoria}</span>}
         </div>
@@ -318,7 +318,7 @@ const Form = () => {
           <label>Género: </label>
           <select name="genero" value={form.genero} onChange={changeHandler}>
             <option value="">--Seleccionar--</option>
-            {genero.map(genero => <option key={genero}>{genero}</option>)}
+            {genero?.map(genero => <option key={genero}>{genero}</option>)}
           </select>
           {errors.genero && <span>{errors.genero}</span>}
         </div>

@@ -4,7 +4,7 @@ function StockTable({ sizes, stock = [], setStock, setForm, setOptions }) {
 
   // const handleInputChange = (event, size) => {
   //   const { value } = event.target;
-  //   const updatedStock = stock.map(item =>
+  //   const updatedStock = stock?.map(item =>
   //     item.talla === size ? { ...item, stock: value } : item
   //   );
   //   setStock(updatedStock);
@@ -42,7 +42,7 @@ function StockTable({ sizes, stock = [], setStock, setForm, setOptions }) {
           </tr>
         </thead>
         <tbody>
-          {sizes.map(size => (
+          {sizes?.map(size => (
             <tr key={size}>
               <td>{size}</td>
               <td>

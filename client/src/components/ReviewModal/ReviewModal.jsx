@@ -70,7 +70,7 @@ export default function ReviewModal({ product, review, handleCloseModal }) {
                 <p>{product.marca}</p>
                 {product?.opciones[0].tallas && (
                   <div style={{ display: "flex", flexDirection: "row" }}>
-                    {product.opciones[0].tallas.map((talla, index) => (
+                    {product.opciones[0].tallas?.map((talla, index) => (
                       <p className="sizes" key={`${talla.stock} ${index}`}>
                         {talla.talla}
                       </p>
@@ -78,7 +78,7 @@ export default function ReviewModal({ product, review, handleCloseModal }) {
                   </div>
                 )}
                 <div style={{ display: "flex", flexDirection: "row", padding: "10px" }}>
-                  {product.opciones.map((opcion, index) => {
+                  {product.opciones?.map((opcion, index) => {
                     return (
                       <div
                         key={`${opcion.colores?.codigosHex[0]} ${index}`}
@@ -103,7 +103,7 @@ export default function ReviewModal({ product, review, handleCloseModal }) {
               <div className="user-rating-input-label-container" >
                 <label>Valoración</label>
                 <div className="rating-container create-review-rating-container">
-                  {[...Array(10)].map((_, index) => (
+                  {[...Array(10)]?.map((_, index) => (
                     <div
                       key={index}
                       className={`star-container-${index}`}
