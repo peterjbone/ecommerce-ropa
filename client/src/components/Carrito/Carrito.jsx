@@ -6,6 +6,7 @@ import PayButton from "../PayButton/PayButton.jsx";
 import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+const { VITE_BACK_URL } = import.meta.env;
 
 const Carrito = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Carrito = () => {
     try {
       const confirm = window.confirm("¿Está seguro de que desea vaciar el carrito?")
       if (cartToken && confirm) {
-        await axios.put(`http://localhost:3001/vaciarCarrito/${cartToken}`);
+        await axios.put(`${VITE_BACK_URL}/vaciarCarrito/${cartToken}`);
         console.log("Carrito eliminado correctamente");
         setCart([]);
       } else {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import styles from "./ForgotPassword.module.css";
+const { VITE_BACK_URL } = import.meta.env;
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/auth/forgot-password", { email });
+      const response = await axios.post(`${VITE_BACK_URL}/auth/forgot-password`, { email });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.error);
