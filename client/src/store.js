@@ -673,7 +673,8 @@ const checkAuthorization = () =>{
 
 const handleAdminAction = async()=>{
   if(!checkAuthorization()){
-    return 
+    return
+  }
     try {
       const users = await useStore.getState().getAllUsers()
       const compras = await useStore.getState().getAllCompras()
@@ -681,11 +682,19 @@ const handleAdminAction = async()=>{
       const updateUserAdmin = await useStore.getState().updateUser(id, data)
       const postProduct = await useStore.getState().postProduct(data)
       const removeProduct = await useStore.getState().removeProduct(id)
+      return{
+        users,
+        compras,
+        deleteUsuario,
+        updateUserAdmin,
+        postProduct,
+        removeProduct
+      }
     } catch (error) {
       console.error(error)
     }
 }
-}
+
 
 const toggleValue = (array, value) => {
 	if (array.includes(value)) {
