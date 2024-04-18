@@ -78,7 +78,7 @@ const login = async (request, response) => {
       foundUser = await Usuario.findOne({ email });
     }
     if (!foundUser) {
-      return request
+      return response
         .status(400)
         .json({ message: "El usuario no existe en base de datos" });
     }
