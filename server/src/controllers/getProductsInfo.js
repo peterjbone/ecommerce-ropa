@@ -65,7 +65,6 @@ const getProductsInfo = async (request, response) => {
     ];
     
     const [result] = await Producto.aggregate(aggregationPipeline);
-    console.log(result);
     const { marcas, categorias, generos, subcategorias, colores, talles } = result;
     
     const productOptions = {

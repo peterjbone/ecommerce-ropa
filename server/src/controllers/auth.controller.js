@@ -126,7 +126,7 @@ const getPasswordAuth = async (request, response) => {
     }
     const { email } = user;
     if (!email) {
-      return response.status(400).json({ message: "Email de usario inválido" });
+      return response.status(400).json({ message: "Email de usuario inválido" });
     }
     const credential = EmailAuthProvider.credential(email, password);
     await reauthenticateWithCredential(auth.currentUser, credential);
