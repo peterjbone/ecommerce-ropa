@@ -1,9 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { parse } from "cookie";
-import jwt from 'jsonwebtoken'
-import {persist} from 'zustand/middleware'
+import * as jwt_decode from "jwt-decode";
 
 
 const { VITE_BACK_URL } = import.meta.env;
@@ -78,9 +76,6 @@ export const useStore = create((set) => ({
   
   getAllUsers : async ()=>{
     try {
-      if(useStore.getState().role !== 'admin'){
-        throw new Error('No tienes permisos para realizar esta acción')
-      }
       const response= await axios.get(`${VITE_BACK_URL}/auth/admin/users`);
       return response.data
     } catch (error) {
@@ -90,9 +85,6 @@ export const useStore = create((set) => ({
   },
   getAllCompras : async ()=>{
     try {
-      if(useStore.getState().role !== 'admin'){
-        throw new Error('No tienes permisos para realizar esta acción')
-      } 
       const response = await axios.get(`${VITE_BACK_URL}/auth/admin/compras`);
       return response.data
     } catch (error) {
@@ -102,9 +94,6 @@ export const useStore = create((set) => ({
   },
 deleteUser : async (id)=>{
   try {
-    if(useStore.getState().role !== 'admin'){
-      throw new Error('No tienes permisos para realizar esta accion')
-    }
     const response = await axios.put(`{VITE_BACK_URL}/auth/admin/deleteUser/${id}`)
     return response.data
   } catch (error) {
@@ -123,9 +112,6 @@ deleteUser : async (id)=>{
   },
   updateUserAdmin : async (id, data) => {
     try {
-      if(useStore.getState().role !== 'admin'){
-        throw new Error('No tienes permisos para realizar esta acción')
-      }
       const response = await axios.put(`${VITE_BACK_URL}/auth/admin/updateUser/${id}`, data);
       return response.data
     } catch (error) {
@@ -134,17 +120,11 @@ deleteUser : async (id)=>{
     }
   },
   postProduct : async (data)=>{
-    if(useStore.getState().role !== 'admin'){
-      throw new Error('No tienes permisos para realizar esta acción')
-    }
     const response = await axios.post(`${VITE_BACK_URL}/auth/admin/postProduct`, data);
     return response.data
   },
   removeProduct : async (id)=>{
     try {
-      if(useStore.getState().role !== 'admin'){
-        throw new Error('No tienes permisos para realizar esta acción')
-      }
       const response = await axios.delete(`${VITE_BACK_URL}/auth/admin/removeProduct/${id}`);
       return response.data
     } catch (error) {
@@ -154,9 +134,6 @@ deleteUser : async (id)=>{
   },
   updateProduct : async (id, data)=>{
     try {
-      if(useStore.getState().role !== 'admin'){
-        throw new Error('No tienes permisos para realizar esta acción')
-      }
       const response = await axios.put(`${VITE_BACK_URL}/auth/admin/updateProduct/${id}`, data);
       return response.data
     } catch (error) {
@@ -183,6 +160,10 @@ deleteUser : async (id)=>{
   login: async (email, password, isAuto) => {
     try {
       const { data } = await axios.post(`${VITE_BACK_URL}/auth/login`, { email, password, isAuto });
+      const token = data.cookies.find((cookie) => cookie.name === 'token').value
+      const decodedToken = jwt_decode(token)
+      const role = decodedToken.role
+
       set(() => ({
         userInfo: data.foundUser
       }));
@@ -193,6 +174,8 @@ deleteUser : async (id)=>{
           purchases: data.purchases,
           reviews: data.reviews,
         },
+        token : token,
+        role : role
       }));
       // cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
     } catch (error) {
@@ -675,12 +658,33 @@ deleteUser : async (id)=>{
   },
 }));
 
-const token = parse(document.cookie).token
-if(token){
-  const decodedToken = jwt.decode(token)
-  const userRole = decodedToken.role
+const checkAuthorization = () =>{
+  const {token, role} = useStore.getState()
+  if(!token){
+    console.error('No hay token')
+    return false
+  }
+  if(role !== 'admin'){
+    console.error('No tienes permisos para realizar esta acción')
+    return false
+  } 
+  return true
+}
 
-  useStore.getState().setRole(userRole)
+const handleAdminAction = async()=>{
+  if(!checkAuthorization()){
+    return 
+    try {
+      const users = await useStore.getState().getAllUsers()
+      const compras = await useStore.getState().getAllCompras()
+      const deleteUsuario = await useStore.getState().deleteUser(id)
+      const updateUserAdmin = await useStore.getState().updateUser(id, data)
+      const postProduct = await useStore.getState().postProduct(data)
+      const removeProduct = await useStore.getState().removeProduct(id)
+    } catch (error) {
+      console.error(error)
+    }
+}
 }
 
 const toggleValue = (array, value) => {
