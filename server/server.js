@@ -8,6 +8,7 @@ const cors = require("cors");
 const indexRouter = require("./src/routes/indexRouter.js");
 const authRouter = require("./src/routes/authRouter.js");
 const stripeRouter = require("./src/routes/stripeRouter.js");
+const adminRouter = require('./src/routes/dashboardRouter.js')
 
 //* MIDDLEWARES
 server.use((req, res, next) => {
@@ -20,7 +21,7 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-server.use(cors());
+server.use(cors({origin: '*'}));
 server.use(morgan("dev"));
 server.use(express.json());
 server.use(morgan("dev"));
@@ -30,5 +31,6 @@ server.use(cookieParser());
 server.use("/", indexRouter);
 server.use("/auth", authRouter);
 server.use("/api/stripe", stripeRouter);
+server.use('/auth/admin', adminRouter) 
 
 module.exports = server;

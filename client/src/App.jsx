@@ -13,6 +13,7 @@ import UserDashboard from "./views/UserDashboard/UserDashboard.jsx";
 import { autoLogin } from "./utils/autoLogin.js"
 import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx"
+import DashBoard from "./views/DashBoard/DashBoard.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
@@ -76,6 +77,7 @@ export default function App() {
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/forgot-password" element={<ForgotPassword/>}/>
+        {/* <Route path='/auth/admin' element ={<DashBoard/>}/> */}
       </Routes>
       <Footer />
     </>

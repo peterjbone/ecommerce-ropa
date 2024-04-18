@@ -1,7 +1,6 @@
 import styles from "./Login.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";

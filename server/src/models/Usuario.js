@@ -25,7 +25,20 @@ const UserSchema = new Schema({
 		type: [Schema.Types.Mixed],
 		default: []
 	},
-	purchases: [{ type: Schema.Types.ObjectId, ref: "Compra" }]
+	lastCart: {
+		type: [Schema.Types.Mixed],
+		default: []
+	},
+	role: {
+		type: String,
+		enum: ["admin", "user", "superAdmin"],
+		default: "user"
+	
+	},
+	deleted: {
+		type: Boolean,
+		default: false
+	}
 });
 
 // La lógica aqui evita que se cree un nuevo modelo cada vez que una ruta lo llama
