@@ -35,7 +35,7 @@ export default function ReviewCard({ review, handleGetReviewedProducts }) {
               <p style={{ fontSize: "20px" }}>{review.product.nombre}</p>
               <p>{review.product.marca}</p>
               {review.product?.opciones[0].tallas && (
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                <div style={{ display: "flex", flexWrap: 'wrap' }}>
                   {review.product.opciones[0].tallas.map((talla, index) => (
                     <p className="sizes" key={`${talla.stock} ${index}`}>
                       {talla.talla}
