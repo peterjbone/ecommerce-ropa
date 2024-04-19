@@ -14,6 +14,7 @@ import { autoLogin } from "./utils/autoLogin.js"
 import ReviewsAcceptance from "./components/ReviewsAcceptance/ReviewsAcceptance.jsx";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword.jsx"
 import DashBoard from "./views/DashBoard/DashBoard.jsx";
+import AdminDashboard from "./views/AdminDashboard/AdminDashboard.jsx";
 
 export default function App() {
   const getAllProducts = useStore((state) => state.getAllProducts);
@@ -26,6 +27,7 @@ export default function App() {
   const userInfo = useStore((state) => state.userInfo);
   const login = useStore((state) => state.login);
   const restoreSession = useStore((state) => state.restoreSession);
+  const seleccionMenuUsuario = useStore((state) => state.seleccionMenuUsuario);
   
   useEffect(() => {
     (async function loadData() {
@@ -72,8 +74,8 @@ export default function App() {
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/:id" element={<Detail />} />
-        {userInfo && <Route path="/usuario" element={<UserDashboard />} />}
-        <Route path="/reviews" element={<ReviewsAcceptance />} /> {/* Va En Dashboard Admin */}
+        {userInfo && <Route path="/usuario" element={<UserDashboard selectedOption={seleccionMenuUsuario}/>} />}
+        {/* {userInfo && userInfo.role === "/admin" &&  */}<Route path="/admin" element={<AdminDashboard />} />{/* } */}
         <Route path="/carrito" element={<Carrito />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/forgot-password" element={<ForgotPassword/>}/>

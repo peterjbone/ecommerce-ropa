@@ -6,12 +6,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // ACA TIENE QUE PONER CADA UNO SU CONFIGURACION DE FIREBASE
 const firebaseConfig = {
-  apiKey: "AIzaSyBU3MWsE2QXwYOF_l9LTjHG1u86wnqahm4",
-  authDomain: "ecommerce-ropa-14b0b.firebaseapp.com",
-  projectId: "ecommerce-ropa-14b0b",
-  storageBucket: "ecommerce-ropa-14b0b.appspot.com",
-  messagingSenderId: "539196868408",
-  appId: "1:539196868408:web:099f8516c42244a3f163cd"
+  apiKey: "AIzaSyCBjX5C2R6XSPKhg__B5PJe1CPNE-RRdS4",
+  authDomain: "rick-and-morty-api-spa.firebaseapp.com",
+  projectId: "rick-and-morty-api-spa",
+  storageBucket: "rick-and-morty-api-spa.appspot.com",
+  messagingSenderId: "208786305357",
+  appId: "1:208786305357:web:1f0e6b9c7629f77613c704"
 };
 
 // Initialize Firebase

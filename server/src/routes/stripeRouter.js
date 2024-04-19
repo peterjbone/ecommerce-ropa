@@ -8,206 +8,208 @@ const stripe = Stripe(process.env.STRIPE_KEY);
 
 //*-------------------------- STRIPE CHECKOUT SESSION --------------------------------
 router.post("/create-checkout-session", async (req, res) => {
-	// Guardando solo el id, color, talla y cantidad de los productos
-	const products = req.body.formatCart.map((item) => {
-		return {
-			productId: item.id,
-			color: item.color,
-			talla: item.talla,
-			quantity: item.quantity
-		};
-	});
+  // Guardando solo el id, color, talla y cantidad de los productos
+  const products = req.body.formatCart.map((item) => {
+    console.log(item);
+    return {
+      productId: item._id,
+      idProductOriginal: item.idProductOriginal,
+      productColor: item.color,
+      quantity: item.quantity,
+      productSize: item.talla,
+    };
+  });
 
-	const customer = await stripe.customers.create({
-		metadata: {
-			userId: req.body.userId,
-			cart: JSON.stringify(products)
-		}
-	});
+  const customer = await stripe.customers.create({
+    metadata: {
+      userId: req.body.userId,
+      cart: JSON.stringify(products)
+    }
+  });
 
-	const line_items = req.body.formatCart.map((item) => {
-		return {
-			price_data: {
-				currency: "usd",
-				product_data: {
-					name: item.nombre,
-					images: [item.imagen],
-					description: item.descripcion,
-					metadata: {
-						id: item._id
-					}
-				},
-				unit_amount: Math.round(item.precio * 100)
-			},
-			quantity: item.quantity
-		};
-	});
+  const line_items = req.body.formatCart.map((item) => {
+    return {
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: item.nombre,
+          images: [item.imagen],
+          description: item.descripcion,
+          metadata: {
+            id: item._id
+          }
+        },
+        unit_amount: Math.round(item.precio * 100)
+      },
+      quantity: item.quantity
+    };
+  });
 
-	const session = await stripe.checkout.sessions.create({
-		payment_method_types: ["card"],
-		shipping_address_collection: {
-			allowed_countries: [
-				"AF",
-				"AL",
-				"DZ",
-				"AD",
-				"AR",
-				"AM",
-				"AU",
-				"AT",
-				"BS",
-				"BH",
-				"BD",
-				"BB",
-				"BY",
-				"BE",
-				"BO",
-				"BR",
-				"CA",
-				"CL",
-				"CN",
-				"CO",
-				"DK",
-				"DO",
-				"EC",
-				"EG",
-				"SV",
-				"FK",
-				"FO",
-				"FI",
-				"FR",
-				"DE",
-				"GR"
-			]
-		},
-		shipping_options: [
-			{
-				shipping_rate_data: {
-					type: "fixed_amount",
-					fixed_amount: {
-						amount: 0,
-						currency: "usd"
-					},
-					display_name: "Envío gratis",
-					delivery_estimate: {
-						minimum: {
-							unit: "business_day",
-							value: 5
-						},
-						maximum: {
-							unit: "business_day",
-							value: 7
-						}
-					}
-				}
-			},
-			{
-				shipping_rate_data: {
-					type: "fixed_amount",
-					fixed_amount: {
-						amount: 1500,
-						currency: "usd"
-					},
-					display_name: "Siguiente día",
-					delivery_estimate: {
-						minimum: {
-							unit: "business_day",
-							value: 1
-						},
-						maximum: {
-							unit: "business_day",
-							value: 1
-						}
-					}
-				}
-			}
-		],
-		phone_number_collection: {
-			enabled: true
-		},
-		customer: customer.id,
-		line_items,
-		mode: "payment",
-		success_url: `${process.env.FRONT_URL}/checkout-success`,
-		cancel_url: `${process.env.FRONT_URL}/carrito`,
-		locale: "es"
-	});
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    shipping_address_collection: {
+      allowed_countries: [
+        "AF",
+        "AL",
+        "DZ",
+        "AD",
+        "AR",
+        "AM",
+        "AU",
+        "AT",
+        "BS",
+        "BH",
+        "BD",
+        "BB",
+        "BY",
+        "BE",
+        "BO",
+        "BR",
+        "CA",
+        "CL",
+        "CN",
+        "CO",
+        "DK",
+        "DO",
+        "EC",
+        "EG",
+        "SV",
+        "FK",
+        "FO",
+        "FI",
+        "FR",
+        "DE",
+        "GR"
+      ]
+    },
+    shipping_options: [
+      {
+        shipping_rate_data: {
+          type: "fixed_amount",
+          fixed_amount: {
+            amount: 0,
+            currency: "usd"
+          },
+          display_name: "Envío gratis",
+          delivery_estimate: {
+            minimum: {
+              unit: "business_day",
+              value: 5
+            },
+            maximum: {
+              unit: "business_day",
+              value: 7
+            }
+          }
+        }
+      },
+      {
+        shipping_rate_data: {
+          type: "fixed_amount",
+          fixed_amount: {
+            amount: 1500,
+            currency: "usd"
+          },
+          display_name: "Siguiente día",
+          delivery_estimate: {
+            minimum: {
+              unit: "business_day",
+              value: 1
+            },
+            maximum: {
+              unit: "business_day",
+              value: 1
+            }
+          }
+        }
+      }
+    ],
+    phone_number_collection: {
+      enabled: true
+    },
+    customer: customer.id,
+    line_items,
+    mode: "payment",
+    success_url: `${process.env.FRONT_URL}/checkout-success`,
+    cancel_url: `${process.env.FRONT_URL}/carrito`,
+    locale: "es"
+  });
 
-	res.send({ url: session.url });
+  res.send({ url: session.url });
 });
 
 //* ------------------ CREANDO REGISTRO DE COMPRA (función) ---------------------
 const Compra = require("../models/Compra.js");
 
 const createOrder = async (customer, data) => {
-	const products = JSON.parse(customer.metadata.cart);
+  const products = JSON.parse(customer.metadata.cart);
 
-	//? Nueva orden de compra en la BD
-	const newOrder = new Compra({
-		userId: customer.metadata.userId,
-		customerId: data.customer,
-		paymentIntentId: data.payment_intent,
-		products,
-		subtotal: data.amount_subtotal,
-		amount_shipping: data.total_details.amount_shipping,
-		total: data.amount_total,
-		shipping: data.customer_details,
-		payment_status: data.payment_status,
-		purchase_time: new Date().toLocaleString()
-	});
+  // ? Nueva orden de compra en la BD
+  const newOrder = new Compra({
+  	userId: customer.metadata.userId,
+  	customerId: data.customer,
+  	paymentIntentId: data.payment_intent,
+  	products,
+  	subtotal: data.amount_subtotal,
+  	amount_shipping: data.total_details.amount_shipping,
+  	total: data.amount_total,
+  	shipping: data.customer_details,
+  	payment_status: data.payment_status,
+  	purchase_time: new Date().toLocaleString()
+  });
 
-	try {
-		const savedOrder = await newOrder.save();
+  try {
+    const savedOrder = await newOrder.save();
 
-		return savedOrder._id;
-	} catch (error) {
-		console.log("Error al crear el registro de compra", error);
-	}
+    return savedOrder._id;
+  } catch (error) {
+    console.log("Error al crear el registro de compra", error);
+  }
 };
 
 //* ------------------ ENVIAR EMAIL DE COMPRA EXITOSA (funciones) ---------------------
 const nodemailer = require("nodemailer");
 
 function fechaDeEntrega(dias) {
-	const fechaActual = new Date();
+  const fechaActual = new Date();
 
-	// sumamos los dias
-	fechaActual.setDate(fechaActual.getDate() + dias);
+  // sumamos los dias
+  fechaActual.setDate(fechaActual.getDate() + dias);
 
-	// Convertimos la fecha a un formato legible
-	const options = {
-		weekday: "long",
-		year: "numeric",
-		month: "long",
-		day: "numeric"
-	};
-	const fechaFormateada = fechaActual.toLocaleDateString("es-ES", options);
+  // Convertimos la fecha a un formato legible
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+  const fechaFormateada = fechaActual.toLocaleDateString("es-ES", options);
 
-	return fechaFormateada;
+  return fechaFormateada;
 }
 
 async function settingEmail(customer, data, orderId) {
-	//! ESTO SE RETORNAR
-	const transporter = nodemailer.createTransport({
-		service: "gmail",
-		host: "smtp.gmail.com",
-		port: 587,
-		secure: false, // Use `true` for port 465, `false` for all other ports
-		auth: {
-			user: process.env.USER_EMAIL, // correo del emisor
-			pass: process.env.APP_PASSWORD // Contraseña de la cuenta de Gmail
-		}
-	});
+  //! ESTO SE RETORNAR
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Use `true` for port 465, `false` for all other ports
+    auth: {
+      user: process.env.USER_EMAIL, // correo del emisor
+      pass: process.env.APP_PASSWORD // Contraseña de la cuenta de Gmail
+    }
+  });
 
-	//? Obteniendo el registro de compra (con usuario y productos)
-	const purchaseRecord = await Compra.findById(orderId)
-		.populate("products.productId")
-		.populate("userId");
+  //? Obteniendo el registro de compra (con usuario y productos)
+  const purchaseRecord = await Compra.findById(orderId)
+    .populate("products.productId")
+    .populate("userId");
 
-	//? Creando un <div> para cada producto
-	let listingProducts = [];
-	purchaseRecord.products.forEach((item) => {
-		const newProduct = `
+  //? Creando un <div> para cada producto
+  let listingProducts = [];
+  purchaseRecord.products.forEach((item) => {
+    const newProduct = `
         <div style="width: 100%; position: relative">
 					<div
 						style="
@@ -235,9 +237,8 @@ async function settingEmail(customer, data, orderId) {
 						<p style="margin: 0 0 8px 0; font-size: 16px">Talla: ${item.talla} </p>
 						<p style="margin: 0 0 8px 0; font-size: 16px">Color: ${item.color} </p>
 						<p style="margin: 0 0 8px 0; font-size: 16px">Cantidad: ${item.quantity} </p>
-						<p style="margin: 0 0 8px 0; font-size: 16px">Precio (c/u): $${
-							item.productId.precio
-						} </p>
+						<p style="margin: 0 0 8px 0; font-size: 16px">Precio (c/u): $${item.productId.precio
+      } </p>
 					</div>
 					<div
 						style="
@@ -248,26 +249,25 @@ async function settingEmail(customer, data, orderId) {
 							position: relative;
 							top: -140px;
 						">
-						<p style="margin: 0; font-size: 16px">Precio: $${
-							item.productId.precio * item.quantity
-						}</p>
+						<p style="margin: 0; font-size: 16px">Precio: $${item.productId.precio * item.quantity
+      }</p>
 					</div>
 				</div>
     `;
 
-		listingProducts.push(newProduct);
-	});
+    listingProducts.push(newProduct);
+  });
 
-	//! ESTO SE RETORNAR
-	const mailOptions = {
-		from: {
-			name: "Ecommerce ropa",
-			address: process.env.USER_EMAIL
-		}, // sender address
-		to: customer.email, // list of receivers
-		subject: "Compra realizada con éxito 😎", // Subject line
-		// html body
-		html: `
+  //! ESTO SE RETORNAR
+  const mailOptions = {
+    from: {
+      name: "Ecommerce ropa",
+      address: process.env.USER_EMAIL
+    }, // sender address
+    to: customer.email, // list of receivers
+    subject: "Compra realizada con éxito 😎", // Subject line
+    // html body
+    html: `
       <h1 style="text-align: center">Gracias por su compra 🤝</h1>    
       <h2 style="text-align: center">Este es un resumen de la compra que hiciste 🙂</h2>
       	<!-- Container principal -->
@@ -430,11 +430,10 @@ async function settingEmail(customer, data, orderId) {
 								font-size: 16px;
 								text-align: right;
 							">
-							${
-								data.total_details.amount_shipping
-									? `$${data.total_details.amount_shipping / 100}`
-									: "Gratis"
-							}
+							${data.total_details.amount_shipping
+        ? `$${data.total_details.amount_shipping / 100}`
+        : "Gratis"
+      }
 						</p>
 					</div> 
 					<div style="width: 100%">
@@ -555,9 +554,8 @@ async function settingEmail(customer, data, orderId) {
                 ${data.customer_details.address.line1} <br>
                 ${data.customer_details.address.line2} <br>
                 Código postal ${data.customer_details.address.postal_code}<br>
-                ${data.customer_details.address.city}, ${
-			data.customer_details.address.country
-		}
+                ${data.customer_details.address.city}, ${data.customer_details.address.country
+      }
               </p>
 						</div>
 						<div style="display: inline-block; width: 49%">
@@ -574,11 +572,10 @@ async function settingEmail(customer, data, orderId) {
 								Tipo / Método de envío
 							</p>
 							<p style="margin: 0 0 10px; font-size: 16px">
-                ${
-									data.total_details.amount_shipping === 0
-										? "Envío Gratis <br> (de 5 a 7 días hábiles)"
-										: "Al siguiente día <br> (solo 1 día hábil)"
-								}
+                ${data.total_details.amount_shipping === 0
+        ? "Envío Gratis <br> (de 5 a 7 días hábiles)"
+        : "Al siguiente día <br> (solo 1 día hábil)"
+      }
 							</p>
 						</div>
 					</div>
@@ -588,11 +585,10 @@ async function settingEmail(customer, data, orderId) {
 					Fecha estimada de entrega:
 				</h2>
 				<p style="margin: 0; font-size: 18px">
-                ${
-									data.total_details.amount_shipping === 0
-										? fechaDeEntrega(5)
-										: fechaDeEntrega(1)
-								}
+                ${data.total_details.amount_shipping === 0
+        ? fechaDeEntrega(5)
+        : fechaDeEntrega(1)
+      }
         </p>
 				<br />
 				<!-- SOPORTE DE ATENCION AL CLIENTE -->
@@ -633,18 +629,18 @@ async function settingEmail(customer, data, orderId) {
 			</div>
 		</div>
     `
-	};
+  };
 
-	return { transporter, mailOptions };
+  return { transporter, mailOptions };
 }
 
 const sendMail = async (transporter, mailOptions) => {
-	try {
-		await transporter.sendMail(mailOptions);
-		console.log("Email has been sent! ");
-	} catch (error) {
-		console.log("Error sending email", error);
-	}
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Email has been sent! ");
+  } catch (error) {
+    console.log("Error sending email", error);
+  }
 };
 
 //sendMail(transporter, mailOptions);
@@ -654,62 +650,62 @@ const Usuario = require("../models/Usuario.js");
 let endpointSecret;
 
 router.post(
-	"/webhook",
-	express.raw({ type: "application/json" }),
-	(req, res) => {
-		const sig = req.headers["stripe-signature"];
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (req, res) => {
+    const sig = req.headers["stripe-signature"];
 
-		let data;
-		let eventType;
+    let data;
+    let eventType;
 
-		if (endpointSecret) {
-			let event;
+    if (endpointSecret) {
+      let event;
 
-			try {
-				event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
-				console.log("Webhook verified");
-			} catch (err) {
-				console.log(`Webhook error: ${err.message}`);
-				response.status(400).send(`Webhook Error: ${err.message}`);
-				return;
-			}
+      try {
+        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+        console.log("Webhook verified");
+      } catch (err) {
+        console.log(`Webhook error: ${err.message}`);
+        response.status(400).send(`Webhook Error: ${err.message}`);
+        return;
+      }
 
-			data = event.data.object;
-			eventType = event.type;
-		} else {
-			data = req.body.data.object;
-			eventType = req.body.type;
-		}
+      data = event.data.object;
+      eventType = event.type;
+    } else {
+      data = req.body.data.object;
+      eventType = req.body.type;
+    }
 
-		// Handle the event
-		if (eventType === "checkout.session.completed") {
-			stripe.customers
-				.retrieve(data.customer)
-				.then(async (customer) => {
-					// se crea y se guarda la compra en la BD
-					const orderId = await createOrder(customer, data);
+    // Handle the event
+    if (eventType === "checkout.session.completed") {
+      stripe.customers
+        .retrieve(data.customer)
+        .then(async (customer) => {
+          // se crea y se guarda la compra en la BD
+          const orderId = await createOrder(customer, data);
 
-					// guardar ultima compra en el usuario
-					const { userId } = await Compra.findById(orderId).populate("userId");
-					await Usuario.updateOne(
-						{ _id: userId._id },
-						{ $set: { purchases: [...userId.purchases, orderId] } }
-					);
+          // guardar ultima compra en el usuario
+          const { userId } = await Compra.findById(orderId).populate("userId");
+          await Usuario.updateOne(
+            { _id: userId._id },
+            { $set: { purchases: [...userId.purchases, orderId] } }
+          );
 
-					// enviar email al usuario
-					const { transporter, mailOptions } = await settingEmail(
-						customer,
-						data,
-						orderId
-					);
-					await sendMail(transporter, mailOptions);
-				})
-				.catch((err) => console.log(err.message));
-		}
+          // enviar email al usuario
+          const { transporter, mailOptions } = await settingEmail(
+            customer,
+            data,
+            orderId
+          );
+          await sendMail(transporter, mailOptions);
+        })
+        .catch((err) => console.log(err.message));
+    }
 
-		// Return a 200 response to acknowledge receipt of the event
-		res.send().end();
-	}
+    // Return a 200 response to acknowledge receipt of the event
+    res.send().end();
+  }
 );
 
 module.exports = router;

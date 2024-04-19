@@ -58,7 +58,7 @@ const isAdmin = async (request, response, next) => {
 
 const register = async (request, response) => {
   try {
-    const { name, email, password, role } = request.body;
+    const { name, email, password } = request.body;
 
     const { user } = await createUserWithEmailAndPassword(
       auth,
@@ -69,11 +69,11 @@ const register = async (request, response) => {
       name,
       email,
       password,
-      role: role
+      role: "user"
     });
     await newUser.save();
-    const token = jwt.sign({ email: newUser.email, id: newUser._id, role: newUser.role }, process.env.TOKEN_SECRET, { expiresIn: "1h" })
-    response.cookie("token", token)
+    // const token = jwt.sign({ email: newUser.email, id: newUser._id, role: newUser.role }, process.env.TOKEN_SECRET, { expiresIn: "1h" })
+    // response.cookie("token", token)
 
     response.status(201).json({ message: "Nuevo usuario creado exitosamente" });
   } catch (error) {
@@ -122,8 +122,8 @@ const login = async (request, response) => {
       );
     });
 
-    const token = jwt.sign({ email: foundUser.email, id: foundUser._id, role: foundUser.role }, process.env.TOKEN_SECRET, { expiresIn: "1h" })
-    response.cookie("token", token)
+    // const token = jwt.sign({ email: foundUser.email, id: foundUser._id, role: foundUser.role }, process.env.TOKEN_SECRET, { expiresIn: "1h" })
+    // response.cookie("token", token)
 
     return response.status(200).json({ foundUser, purchases, reviews });
   } catch (error) {

@@ -10,19 +10,20 @@ import FavoriteCard from "../../components/FavoriteCard/FavoriteCard.jsx";
 import PurchaseCard from "../../components/PurchaseCard/PurchaseCard.jsx";
 import ReviewCard from "../../components/ReviewCard/ReviewCard.jsx";
 
-export default function UserDashboard() {
+export default function UserDashboard({ selectedOption }) {
   const userInfo = useStore((state) => state.userInfo);
   const changeEmail = useStore((state) => state.changeEmail);
   const getFavorites = useStore((state) => state.getFavorites);
   const getPurchases = useStore((state) => state.getPurchases);
   const getReviewedProducts = useStore((state) => state.getReviewedProducts);
   const changePassword = useStore((state) => state.changePassword);
+  const updateUserData = useStore((state) => state.updateUserData);
   const logOut = useStore((state) => state.logOut);
   const reauthenticate = useStore((state) => state.reauthenticate);
   const deleteAccount = useStore((state) => state.deleteAccount);
-  const [activeOption, setActiveOption] = useState("userData");
+  const [activeOption, setActiveOption] = useState(selectedOption);
   const [isUserDataChanged, setIsUserDataChanged] = useState(false);
-  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
+  const [isDeleteAccountModalOpeZn, setIsDeleteAccountModalOpen] = useState(false);
   const [changeData, setChangeData] = useState({
     name: userInfo.name,
     surName: "",
@@ -52,6 +53,9 @@ export default function UserDashboard() {
     deletePassword: "",
   });
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   const handleOptionClick = (id) => {
     setActiveOption(id);
@@ -74,12 +78,12 @@ export default function UserDashboard() {
   const handleUserDataChangeSubmit = async (event) => {
     event.preventDefault();
     try {
-      const userData = {
-        name: changeData.name,
-        surName: changeData.surName,
-        userName: changeData.userName,
+      // const userData = {
+      //   name: changeData.name,
+      //   surName: changeData.surName,
+      //   userName: changeData.userName,
         // dateOfBirth: changeData.dateOfBirth
-      }
+      // }
       // await changeUserData(userData);
       setIsUserDataChanged(false);
       // setModalMessage({
@@ -88,6 +92,10 @@ export default function UserDashboard() {
       //   message: "User Data Updated Succesfully"
       // });
       // setIsNotificationModalOpen(true);
+      console.log(changeData.name);
+
+      updateUserData(changeData.name, userInfo._id);
+
     } catch (error) {
       setChangeDataErrors({
         ...changeDataErrors,
@@ -269,7 +277,7 @@ export default function UserDashboard() {
                       onChange={handleUserDataChange} />
                   </div>
                   <p className={changeDataErrors.name ? "" : "invisible"} >{changeDataErrors.name ? `${changeDataErrors.name}` : "invisible"}</p>
-                  <div className="user-data-input-label-container" >
+                  {/* <div className="user-data-input-label-container" >
                     <label htmlFor="changeSurName" >Apellido</label>
                     <input
                       type="text"
@@ -305,7 +313,7 @@ export default function UserDashboard() {
                       onChange={handleUserDataChange} />
                   </div>
                   <p className={changeDataErrors.dateOfBirth ? "" : "invisible"} >{changeDataErrors.dateOfBirth ? `${changeDataErrors.dateOfBirth}` : "invisible"}</p>
-                  <p className={changeDataErrors.userData ? "" : "invisible"} >{changeDataErrors.userData ? `${changeDataErrors.userData}` : "invisible"}</p>
+                  <p className={changeDataErrors.userData ? "" : "invisible"} >{changeDataErrors.userData ? `${changeDataErrors.userData}` : "invisible"}</p> */}
                   <button
                     type="submit"
                     className="nav-bar-button user-submit-button"

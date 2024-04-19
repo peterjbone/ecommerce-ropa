@@ -1,7 +1,7 @@
 import styles from "./Login.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 import { useStore } from "../../store";
@@ -14,9 +14,13 @@ export default function Login() {
     password: ""
   });
 
-  const [errors, setErrors] = useState({ 
+  const [errors, setErrors] = useState({
     email: "",
     password: "",
+  });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   });
 
   const validation = (user/* , direccion */) => {
@@ -113,7 +117,7 @@ export default function Login() {
         <button className={styles.button} type="submit">
           Iniciar sesión
         </button>
-        <button className={styles.googleButton} onClick={googleSignInHandler}>
+        <button className={styles.button} onClick={googleSignInHandler}>
           Iniciar sesión con Google
         </button>
         <Link to="/register">

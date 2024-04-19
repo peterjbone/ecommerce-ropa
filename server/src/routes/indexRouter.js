@@ -21,6 +21,7 @@ const updateFavorite = require("../controllers/updateFavorites.js");
 const getFavorites = require("../controllers/getFavorites.js");
 const getPurchases = require("../controllers/getPurchases.js");
 const getReviewedProducts = require("../controllers/getReviewedProducts.js");
+const updateUser = require("../controllers/updateUser.js");
 
 //* Router
 const router = Router();
@@ -40,6 +41,7 @@ router.post("/resena", postReview);
 router.post("/getFavorites", getFavorites);
 router.post("/getPurchases", getPurchases);
 router.post("/productoResena", getReviewedProducts);
+router.post("/updateUserData/:id", updateUser);
 
 router.put("/resena/:id", updateReview);
 router.put("/updateProduct/:id", updateProduct);

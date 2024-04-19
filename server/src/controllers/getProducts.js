@@ -139,7 +139,7 @@ const getProducts = async (request, response) => {
     if (result) {
       const { marcas, categorias, generos, subcategorias, colores, talles } =
         result;
-      const productOptions = {
+      productOptions = {
         marcas: marcas.sort(),
         categorias: categorias.sort(),
         generos: generos.sort(),

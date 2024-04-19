@@ -28,6 +28,14 @@ export default function CardsContainer({ products }) {
     };
   }, []);
 
+  if (products.length === 0) {
+    return (
+      <div className="cards-container" style={{ paddingLeft: '20px', paddingTop: `${paddingTop}px`}} >
+        Al parecer no hay resultados para esta busqueda, prueba quitando o reseteando filtros
+      </div>
+    );
+  }
+
 	return (
 		<div className="cards-container" style={{ paddingTop: `${paddingTop}px`}} >
 			{products.map((product) => (

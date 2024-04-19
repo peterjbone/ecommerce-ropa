@@ -12,15 +12,15 @@ export const useStore = create((set) => ({
   setRole: (role) => set({ role }),
   token: '',
   setToken: (token) => set({ token }),
-  userInfo:
-    typeof localStorage !== `undefined` && localStorage.getItem(`userInfo`)
-      ? JSON.parse(localStorage.getItem(`userInfo`))
-      : null,
-  userLastPurchase:
-    typeof localStorage !== `undefined` &&
-      localStorage.getItem(`userLastPurchase`)
-      ? JSON.parse(localStorage.getItem(`userLastPurchase`))
-      : null,
+  userInfo: null,
+  //   typeof localStorage !== `undefined` && localStorage.getItem(`userInfo`)
+  //     ? JSON.parse(localStorage.getItem(`userInfo`))
+  //     : null,
+  // userLastPurchase:
+  //   typeof localStorage !== `undefined` &&
+  //     localStorage.getItem(`userLastPurchase`)
+  //     ? JSON.parse(localStorage.getItem(`userLastPurchase`))
+  //     : null,
   products: [],
   productosFiltrados: [],
   cart: [],
@@ -37,6 +37,7 @@ export const useStore = create((set) => ({
   productoDetail: "",
   productoReviews: "",
   resenas: [],
+  seleccionMenuUsuario: "userData",
   filtrosResenas: {
     buscarPor: "usuario",
     busqueda: "",
@@ -53,7 +54,7 @@ export const useStore = create((set) => ({
     ordernado: "fecha",
     ascendente: false,
     pagina: 1,
-    cantidadDeResenas: 0
+    cantidadDeResenas: 0,
   },
   filtros: {
     busqueda: "",
@@ -195,9 +196,9 @@ export const useStore = create((set) => ({
         password,
         isAuto
       });
-      const token = data.cookies.find((cookie) => cookie.name === 'token').value
-      const decodedToken = jwt_decode(token)
-      const role = decodedToken.role
+      // const token = data.cookies.find((cookie) => cookie.name === 'token').value
+      // const decodedToken = jwt_decode(token)
+      // const role = decodedToken.role
 
       set(() => ({
         userInfo: data.foundUser
@@ -209,12 +210,33 @@ export const useStore = create((set) => ({
           purchases: data.purchases,
           reviews: data.reviews
         },
-        token: token,
-        role: role
+
+        // token: token,
+        // role: role
       }));
+      // localStorage.setItem('userInfo', JSON.stringify(useStore.getState().userInfo));
       // cookies.set("token", data.token); // Requiere debugear el token q da el login en el back
     } catch (error) {
       console.error("Error al iniciar sesión", error);
+      throw error;
+    }
+  },
+  setUserSelectedOption: (name) => {
+    try {
+      set(() => ({
+        seleccionMenuUsuario: name
+      }));
+    } catch (error) {
+      console.error("Error al cambiar email", error);
+      throw error;
+    }
+  },
+  updateUserData: async (name, id) => {
+    console.log(name);
+    try {
+      await axios.post(`${VITE_BACK_URL}/updateUserData/:${id}"`, name) ;
+    } catch (error) {
+      console.error("Error al cambiar nombre", error);
       throw error;
     }
   },
@@ -704,42 +726,42 @@ export const useStore = create((set) => ({
   }
 }));
 
-const checkAuthorization = () => {
-  const { token, role } = useStore.getState()
-  if (!token) {
-    console.error('No hay token')
-    return false
-  }
-  if (role !== 'admin') {
-    console.error('No tienes permisos para realizar esta acción')
-    return false
-  }
-  return true
-}
+// const checkAuthorization = () => {
+//   const { token, role } = useStore.getState()
+//   if (!token) {
+//     console.error('No hay token')
+//     return false
+//   }
+//   if (role !== 'admin') {
+//     console.error('No tienes permisos para realizar esta acción')
+//     return false
+//   }
+//   return true
+// }
 
-const handleAdminAction = async () => {
-  if (!checkAuthorization()) {
-    return
-  }
-  try {
-    const users = await useStore.getState().getAllUsers()
-    const compras = await useStore.getState().getAllCompras()
-    const deleteUsuario = await useStore.getState().deleteUser(id)
-    const updateUserAdmin = await useStore.getState().updateUser(id, data)
-    const postProduct = await useStore.getState().postProduct(data)
-    const removeProduct = await useStore.getState().removeProduct(id)
-    return {
-      users,
-      compras,
-      deleteUsuario,
-      updateUserAdmin,
-      postProduct,
-      removeProduct
-    }
-  } catch (error) {
-    console.error(error)
-  }
-}
+// const handleAdminAction = async () => {
+//   if (!checkAuthorization()) {
+//     return
+//   }
+//   try {
+//     const users = await useStore.getState().getAllUsers()
+//     const compras = await useStore.getState().getAllCompras()
+//     const deleteUsuario = await useStore.getState().deleteUser(id)
+//     const updateUserAdmin = await useStore.getState().updateUser(id, data)
+//     const postProduct = await useStore.getState().postProduct(data)
+//     const removeProduct = await useStore.getState().removeProduct(id)
+//     return {
+//       users,
+//       compras,
+//       deleteUsuario,
+//       updateUserAdmin,
+//       postProduct,
+//       removeProduct
+//     }
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 
 const toggleValue = (array, value) => {

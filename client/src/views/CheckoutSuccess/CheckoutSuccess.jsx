@@ -9,15 +9,15 @@ const CheckoutSuccess = () => {
   //? Obteniendo la ultima compra del usuario
   const userInfo = useStore((state) => state.userInfo);
 
-  const getUserLastPurchase = useStore((state) => state.getUserLastPurchase);
-  useEffect(() => {
-    getUserLastPurchase(userInfo._id);
-  }, [getUserLastPurchase, userInfo._id]);
+  // const getUserLastPurchase = useStore((state) => state.getUserLastPurchase);
+  // useEffect(() => {
+  //   getUserLastPurchase(userInfo._id);
+  // }, [getUserLastPurchase, userInfo._id]);
 
-  const purchase = useStore((state) => state.userLastPurchase);
-  console.log(purchase);
+  // const purchase = useStore((state) => state.userLastPurchase);
+  // console.log(purchase);
 
-  const products = purchase.lastPurchase.products;
+  // const products = purchase.lastPurchase.products;
 
   //prettier-ignore
   return (
@@ -33,13 +33,13 @@ const CheckoutSuccess = () => {
         El correo de confirmación de tu compra con los detalles ha sido enviado
         a tu Email
       </p>
-      <div className={styles.order}>
+      {/* <div className={styles.order}>
         El # de tu pedido es: {purchase.lastPurchase._id}
       </div>
       <p>Fecha y hora de la compra: {purchase.lastPurchase.purchase_time}</p>
-      <div className={styles.table}>
+      <div className={styles.table}> */}
         {/* Encabezados */}
-        <div className={styles.row1}>
+        {/* <div className={styles.row1}>
           <div style={{ width: "20%", minWidth: "250px" }}>
             <svg
               style={{ position: "relative", top: "4px" }}
@@ -81,9 +81,9 @@ const CheckoutSuccess = () => {
               Resumen de compra
             </span>
           </div>
-        </div>
+        </div> */}
         {/* Informacion */}
-        <div className={styles.row2}>
+        {/* <div className={styles.row2}>
           <div
             style={{
               padding: "0.3rem 0.8rem",
@@ -163,7 +163,7 @@ const CheckoutSuccess = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Volver a comprar */}
       <Link to={"/tienda"}>
         <button className={styles.button}>

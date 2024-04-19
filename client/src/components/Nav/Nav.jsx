@@ -34,6 +34,8 @@ export default function Nav() {
   const userInfo = useStore((state) => state.userInfo);
   const logOut = useStore((state) => state.logOut);
   const [search, setSearch] = useState("");
+  const seleccionMenuUsuario = useStore((state) => state.seleccionMenuUsuario);
+  const setUserSelectedOption = useStore((state) => state.setUserSelectedOption);
   const [isDarkTheme, setIsDarkTheme] = useState(
     window.matchMedia("(prefers-color-scheme: dark)").matches
   );
@@ -75,6 +77,13 @@ export default function Nav() {
     }
   ];
   let windowTimeout;
+
+  const userOptions = {
+    title: "Ordenar Por",
+    options: ["Mi Perfil", "Información personal", "Cambiar Email", "Cambiar Contraseña", "Mis Favoritos", "Mis Compras", "Mis Reseñas", "Cerrar Sesión"],
+    ids: ["userData", "userData", "email", "password", "favorites", "purchases", "reviews", "logout"],
+    default: "userData"
+  };
 
   useEffect(() => {
     let totalQuantity = 0;
@@ -141,6 +150,29 @@ export default function Nav() {
       console.error(error);
     }
   };
+  const handleSearchReset = async () => {
+    try {
+      setSearch("");
+      searchFunction("");
+      await getFilteredProducts();
+      navigate("/tienda");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const handleUserOptionSelect = (event) => {
+    const { id } = event.target;
+    setUserSelectedOption(id);
+    navigate("/usuario");
+  }
+  const [isUserOptionsFocused, setIsUserOptionsFocused] = useState(false);
+
+  const handleUserOptionsFocus = () => {
+    setIsUserOptionsFocused(true);
+  }
+  const handleUserOptionsBlur = () => {
+    setIsUserOptionsFocused(false);
+  }
   const goToStore = async () => {
     try {
       resetFilters();
@@ -155,7 +187,7 @@ export default function Nav() {
     try {
       const { id } = event.target;
       const name = event.target.getAttribute("name");
-      if (location.path !== "/tienda") {
+      if (location.pathname !== "/tienda") {
         resetFilters();
       }
       setFilters(name, id);
@@ -206,21 +238,22 @@ export default function Nav() {
   }
 
   //? Para salir de sesion
-  const handlelogOut = async () => {
-    try {
-      await logOut();
-      localStorage.removeItem("userInfo");
-      toast.success("Saliste de tu sesión", {
-        onClose: () => {
-          navigate("/");
-        },
-        autoClose: 1000
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  console.log(getAllUsers())
+  // const handlelogOut = async () => {
+  //   try {
+  //     await logOut();
+  //     localStorage.removeItem("userInfo");
+  //     toast.success("Saliste de tu sesión", {
+  //       onClose: () => {
+  //         navigate("/");
+  //       },
+  //       autoClose: 1000
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+
   return (
     <>
       <nav className="nav-bar">
@@ -257,32 +290,79 @@ export default function Nav() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
           />
+          <button
+            className="nav-bar-button"
+            onClick={handleSearchReset}
+          >
+            Resetear
+          </button>
         </div>
         {/*** SECCION DE USUARIO: FAVORITO, CARRITO Y PERFIL ***/}
-        <div
+        {/* <div
           style={{
             position: "relative",
             display: "flex",
             alignItems: "center",
             gap: "1rem"
-          }}>
-          {/* Perfil */}
-          <div
-            className="cursor-pointer"
-            onClick={toggleOpen}>
-            <Avatar src={userInfo?.image} />
-          </div>
+          }}> */}
+        {/* Perfil */}
+        <div
+          className="nav-user-button"
+          style={{ display: 'flex', }}
+          tabIndex={0}
+          onBlur={() => setTimeout(handleUserOptionsBlur, 100)}
+          onClick={handleUserOptionsFocus}
+        >
+          <Avatar src={userInfo?.image} />
           {userInfo?.name && (
-            <p
-              style={{
-                fontSize: "1.1rem",
-                lineHeight: "1.75rem",
-                marginLeft: "-10px"
-              }}>
+            <p >
               {userInfo?.name}
             </p>
           )}
-          {isOpen && (
+          <div className={`nav-user-options-container ${isUserOptionsFocused ? "" : "invisible"}`}>
+            {userInfo ? (
+              <>
+                {userOptions.options.map((option, index) => (
+                  <div className="nav-user-options-button-div" key={option}>
+                    <button
+                      key={option}
+                      id={userOptions.ids[index]}
+                      style={{ zIndex: index }}
+                      className="nav-user-options-button"
+                      onClick={handleUserOptionSelect}
+                    >
+                      {option}
+                    </button>
+                  </div>
+                ))}
+                {userInfo.role === "admin" && (
+                  <div className="nav-user-options-button-div" key={userInfo.role}>
+                    <button
+                      className="nav-user-options-button"
+                      onClick={() => navigate("/admin")}
+                    >
+                      Admin
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="nav-nav-user-options-button-div">
+                  <button className="nav-user-options-button" onClick={goToLogin}>
+                    Iniciar Sesión
+                  </button>
+                </div>
+                <div className="nav-nav-user-options-button-div">
+                  <button className="nav-user-options-button" onClick={goToRegister}>
+                    Registrarse
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+        {/* {!userInfo && (
             <div
               style={{
                 position: "absolute",
@@ -313,28 +393,28 @@ export default function Nav() {
                 )}
               </div>
             </div>
-          )}
-          {/* Favoritos */}
-          <NavLink to="/favoritos">
+          )} */}
+        {/* Favoritos */}
+        {/* <NavLink to="/favoritos">
             <button className="nav-bar-button">
               <FaHeart size={25} className="icon-favorito" />
             </button>
-          </NavLink>
-          {/* Carrito */}
-          <NavLink to="/carrito">
-            <button className="nav-bar-button">
-              <FaCartShopping size={25} />
-              <span className="cart-number">{totalItemsInCart}</span>
-            </button>
-          </NavLink>
-        </div>
+          </NavLink> */}
+        {/* Carrito */}
+        <NavLink to="/carrito">
+          <button className="nav-bar-button">
+            <FaCartShopping size={25} />
+            <span className="cart-number">{totalItemsInCart}</span>
+          </button>
+        </NavLink>
+        {/* </div> */}
         {/* DARK MODE */}
         <button
           className="nav-bar-button theme-button"
           onClick={toggleTheme}>
           <img src={isDarkTheme ? moon : sun} alt="sun" />
         </button>
-      </nav>
+      </nav >
       <div
         className="categories-window"
         key="categories-window"

@@ -22,6 +22,7 @@ function ForgotPassword() {
       <form onSubmit={handleSubmit}>
         <input
           type="email"
+          className="reviews-acceptance-search-button"
           placeholder="Correo Electrónico"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
